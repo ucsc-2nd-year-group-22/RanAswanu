@@ -1,0 +1,36 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+#header {
+    background-color: rgb(7, 85, 158);
+    padding: 20px;
+    box-shadow: 0px 3px 5px #aaa;
+}
+
+#header a {
+    color:white;
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+#header a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+#content {
+    padding: 20px 40px;
+    color:#333;
+
+}
+
+#footer {
+    background-color: rgb(147, 157, 184);
+    padding: 20px;
+    text-align: center;
+}

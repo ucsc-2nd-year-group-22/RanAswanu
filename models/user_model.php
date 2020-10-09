@@ -47,7 +47,7 @@ class User_Model extends Model {
         ));
     }
 
-    public function login() {
+    public function loginto() {
         $st = $this->db->prepare("SELECT id, role FROM users WHERE login= :login AND password = MD5(:password) ");
         $st->execute(array(
             ':login' => $_POST['login'],

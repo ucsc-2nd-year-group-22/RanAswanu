@@ -7,9 +7,9 @@ class User extends Controller {
         Session::init();
         $logged = Session::get('loggedIn');
         $role = Session::get('role');
-        if($logged == false || $role != 'owner') {
+        if($logged == false) {
             Session::destroy();
-            header('location: '. URL .'login');
+            header('location: '. URL);
             exit;
         }
     }
@@ -62,13 +62,13 @@ class User extends Controller {
     }
     //login to the syetem
     public function loginusr(){
-        $this->model->login();
+        $this->model->loginto();
     }
 
     //logout user from the system
     function logout() {
-        // Session::destroy();
-        Session::unset('loggedIn');
+        Session::destroy();
+        // Session::unset('loggedIn');
         header('location: '. URL .'user/login');
         exit;
     }

@@ -1,3 +1,3 @@
 <?php
 
-define('URL', 'http://localhost/mvc-framework/');
+define('URL', 'http://localhost/mvc-ui-embeded/');

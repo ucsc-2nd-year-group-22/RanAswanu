@@ -14,5 +14,5 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 # Be aware
 
 * Don't try to work in others' branches.
-* Never work/push with tha main branch (master branch) without informing group members.
+* Never work/push with tha main branch (master branch) without informing group members
 

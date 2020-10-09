@@ -14,4 +14,20 @@ class Vendor extends Controller{
     public function register($arg = false) {
         $this->view->rendor('vendor/register');
     }
+
+    public function create(){
+        $data = array();
+
+        $data['firstname'] = $_POST['firstname'];
+        $data['lastname'] = $_POST['lastname'];
+
+        // TODO: Do error checking
+
+        $this->model->create($data);
+        header('location: ' . URL . 'vendor');
+    }
+
+    public function viewVendor(){
+        $this->view->rendor('vendor/view');
+    }
 }

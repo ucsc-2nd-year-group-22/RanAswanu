@@ -4,7 +4,7 @@
 
             <!-- FORM -->
             <div class="main-form">
-                <form action="#">
+                <form action="<?= URL;?>/vendor/create" method="post">
                 <div class="row">
                   <div class="col-25">
                     <label for="fname">First Name</label>

@@ -1,40 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/title-logo.png" type="image/icon type">
+    <link rel="stylesheet" href="<?php echo URL; ?>public/css/main.css"/>
+    <!-- <link rel="stylesheet" href="my-profile.css"> -->
+    <!-- <link rel="stylesheet" href="lay-table.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css"/>
-    <script src="<?php echo URL;?>public/js/custom.js"></script>
-    <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
-    <?php
-        if(isset($this->js)) {
-            foreach ($this->js as $js)
-                echo '<script src="'.URL.'views/'.$js.'"></script>';
-        }
-    ?>
-    <title>Document</title>
-
+    <title>My Profile</title>
 </head>
 <body>
-
-<?php Session::init();?>
-<div id="header">
-    <?php if(Session::get('loggedIn') == false): ?>
-        <a href="<?= URL?>">Home</a> | 
-        <a href="<?= URL?>help">Help</a> |
-    <?php endif; ?>
-
-    <?php if(Session::get('loggedIn') == true): ?>
-        <a href="<?= URL?>dashboard">Dashboard</a> | 
-        
-        <?php if(Session::get('role') == 'owner'): ?>
-            <a href="<?= URL?>user">Users</a> |
-        <?php endif; ?>
-
-        <a href="<?= URL?>dashboard/logout">Logout</a> | 
-    <?php else: ?>
-
-        <a href="<?= URL?>login">Login</a>
-    <?php endif?>
-</div>
-<div id="content">
+    <div class="main-grid">
+        <header>
+            <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="active">Downloads</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            <div class="dropdown">
+                <button class="header-popup-btn">My Profile</button>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Setting</a>
+                    <a href="#">Help & Support</a>
+                    <hr>
+                    <a href="#">Log out</a>
+                </div>
+            </div>
+        </header>
+        <div class="content">

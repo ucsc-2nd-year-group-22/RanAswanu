@@ -1,0 +1,127 @@
+
+/* Please make sure to add common styles to this document */
+ /* Import Google fonts */
+ @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+ @import "variables.css"; 
+ @import "header-drop-down.css"; 
+ @import "form-controllers.css"; 
+ @import "lay-table.css";
+ 
+ *{
+     padding:0;
+     margin:0;
+     box-sizing: border-box;
+     font-family: var(--main-font);
+ }
+ 
+ 
+ /* Main Grid Layout -------------------------------------------------- */
+ /* DO NOT CHANGE ! */
+ .main-grid {
+     display: grid;
+     grid-template-columns: 1fr 80% 1fr;
+     grid-template-rows: 100px 8fr 50px;
+     grid-template-areas:
+     "header header header"
+     ". content ."
+     "footer footer footer";
+     background-color:var(--main-layout-bg-color);
+     min-height: 100vh;
+ }
+ 
+ .content {
+     color:var(--main-font-color);
+     grid-area: content;
+     min-height: 600px;
+     padding: 10px 0 30px 0;
+ }
+ 
+ header {
+     display:grid;
+     grid-template-columns: 150px 1fr 100px;
+     grid-template-rows: 1fr;
+     grid-template-areas:
+     "logo nav btn";
+     justify-content: space-between;
+     align-items: center;
+     background-color:var(--main-bg-color);
+     grid-area: header;
+     padding:0 5rem;
+     box-shadow:0 2px 10px #ccc;
+ }
+ 
+ .logo {
+     grid-area: logo;
+ }
+ 
+ 
+ footer {
+     color:var(--main-bg-color);
+     background-color: var(--main-dark-color);
+     grid-area: footer;
+     text-align: center;
+     padding: 12px 0;
+ }
+ 
+ 
+ /* Navigation bar ---------------------------------- */
+ 
+ nav ul {
+     list-style-type: none;
+     grid-area: nav;
+     margin-left: 20px;
+ }
+ 
+ nav ul li {
+     display: inline-block;
+ }
+ 
+ nav li a {
+     text-decoration: none;
+     padding: 5px 8px;
+     font-weight: 500;
+     font-size: 1.2rem;
+     color: var(--main-dark-color);
+ }
+ 
+ header .nav-profile ul li{
+     display: inline-block;
+ }
+ 
+ header li a{
+     text-decoration: none;
+     padding: 5px 8px;
+     font-weight: 500;
+     color: var(--main-font-color);
+     font-weight: bold;
+     transition:  ease .2s;
+     border-top: 3px solid #FFF;
+ }
+ 
+ nav li a:hover {
+     color:var(--main-theme-color);
+     border-top: 3px solid var(--main-theme-color);
+ }
+ 
+ .active {
+     color: var(--main-theme-color);
+     border-top: 3px solid var(--main-theme-color);
+ }
+ 
+ /* Common Styles -------------------------------------- */
+ 
+ h1 {
+     padding: 20px 0;
+ }
+ 
+ h2, h3, h4, h6 {
+     padding: 25px 0 20px 0;
+ }
+ 
+ p {
+     line-height: 1.8em;
+ }
+ 
+ .danger {
+     background-color: var(--danger);
+ }

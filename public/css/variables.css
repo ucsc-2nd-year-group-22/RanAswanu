@@ -1,0 +1,16 @@
+/* GLOBAL SCOPE VARIABLES*/
+/* Don't change   */
+:root {
+    --main-theme-color: #058A00;
+    --main-light-green: #2ebd29;
+    --main-dark-green: #046801;
+    --main-font-color: #4b4b4b;
+    --main-dark-color: #6D6D6D;
+    --main-bg-color: #FFFFFF;
+    --main-layout-bg-color:#eee;
+    --main-font: 'Quicksand', sans-serif;
+
+/* Color COdes */
+    --danger: rgb(200, 78, 78);
+    --normal: rgb(182, 182, 182);
+}

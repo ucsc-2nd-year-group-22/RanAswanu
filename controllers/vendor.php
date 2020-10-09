@@ -11,11 +11,7 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/index');
     }
 
-    public function other($arg = false) {
-        require 'models/help_model.php';
-        $model = new Help_Model();
-        $this->view->rendor('help/index', $data);
-        
-        // $this->view->blah = $model->blah();
+    public function register($arg = false) {
+        $this->view->rendor('vendor/register');
     }
 }

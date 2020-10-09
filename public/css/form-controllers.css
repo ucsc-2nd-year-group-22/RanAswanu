@@ -1,0 +1,97 @@
+@import "variables.css"; 
+
+/* form css */
+/* Responsive */
+/* Form Controllers  */
+.btn, input[type=submit]{
+  background-color: var(--main-theme-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  transition: ease .3s;
+  font-size: 1.1em;
+  font-weight: bold;
+  outline: none;
+}
+
+.btn:hover, input[type=submit]:hover {
+  background-color: var(--main-light-green);
+}
+
+.btn:active, input[type=submit]:active {
+  background-color: var(--main-dark-green);
+}
+
+.mini-button {
+  background-color: var(--main-theme-color);
+  color: white;
+  padding: 8px 15px;
+  font-size: .9em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  transition: ease .3s;
+  font-weight: bold;
+  outline: none;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid rgb(223, 223, 223);
+  transition: 0.5s;
+  outline: none;
+  resize: vertical;
+  font-size: 1em;
+  color:var(--main-font-color);
+}
+
+input[type=text]:focus, textarea:focus, select:hover {
+  border: 2px solid var(--main-light-green);
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+   
+.main-form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-shadow: 2px 2px 10px #ccc;
+  }
+  
+.main-form .col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+  
+.main-form .col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+  
+  /* Clear floats after the columns */
+.main-form .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .main-form .col-25, .main-form .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}

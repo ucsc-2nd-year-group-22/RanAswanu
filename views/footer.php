@@ -1,6 +1,9 @@
-    </div>
-    <div id="footer">
-    footer
-    </div>
-</body>
+
+            </div>
+            <footer>
+                <p>Ran Aswanu Harvest Management System &copy;</p>
+            </footer>
+        </div>
+
+    </body>
 </html>

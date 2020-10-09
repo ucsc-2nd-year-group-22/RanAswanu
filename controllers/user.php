@@ -7,11 +7,11 @@ class User extends Controller {
         Session::init();
         $logged = Session::get('loggedIn');
         $role = Session::get('role');
-        if($logged == false) {
-            Session::destroy();
-            header('location: '. URL);
-            exit;
-        }
+        // if($logged == false) {
+        //     Session::destroy();
+        //     header('location: '. URL);
+        //     exit;
+        // }
     }
 
     public function index() {
@@ -67,8 +67,8 @@ class User extends Controller {
 
     //logout user from the system
     function logout() {
-        Session::destroy();
-        // Session::unset('loggedIn');
+        // Session::destroy();
+        Session::unset('loggedIn');
         header('location: '. URL .'user/login');
         exit;
     }

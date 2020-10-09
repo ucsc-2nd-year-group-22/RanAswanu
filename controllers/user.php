@@ -67,8 +67,8 @@ class User extends Controller {
 
     //logout user from the system
     function logout() {
-        // Session::destroy();
-        Session::unset('loggedIn');
+        Session::destroy();
+        // Session::unset('loggedIn');
         header('location: '. URL .'user/login');
         exit;
     }

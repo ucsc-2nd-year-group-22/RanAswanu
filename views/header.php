@@ -29,8 +29,10 @@
                     <a href="#">Profile</a>
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>
-                    <hr>
-                    <a href="#">Log out</a>
+                    <?php if(Session::get('loggedIn') == true):?>
+                        <hr>
+                        <a href="<?= URL?>user/logout">Log out</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>

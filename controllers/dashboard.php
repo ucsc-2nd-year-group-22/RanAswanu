@@ -18,13 +18,6 @@ class Dashboard extends Controller {
     function index() {
         $this->view->rendor('dashboard/index');
     }
-
-    function logout() {
-        // Session::destroy();
-        Session::unset('loggedIn');
-        header('location: '. URL .'login');
-        exit;
-    }
     
     // xhr => xml http request
     function xhrInsert () {

@@ -55,4 +55,21 @@ class User extends Controller {
         $this->model->delete($id);
         header('location: ' . URL . 'user');
     }
+
+    //route to the user/login
+    public function login(){
+        $this->view->rendor('user/login');
+    }
+    //login to the syetem
+    public function loginusr(){
+        $this->model->login();
+    }
+
+    //logout user from the system
+    function logout() {
+        // Session::destroy();
+        Session::unset('loggedIn');
+        header('location: '. URL .'user/login');
+        exit;
+    }
 }  

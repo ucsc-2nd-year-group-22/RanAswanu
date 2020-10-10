@@ -21,9 +21,9 @@
                             <div class="dropdown">
                                 <a href="#">User Management</a>
                                 <div class="dropdown-content">
-                                    <a href="<? echo URL; ?>officer">Officers</a>
-                                    <a href="<? echo URL; ?>farmer">Farmers</a>
-                                    <a href="<? echo URL; ?>vendor">Vendors</a>
+                                    <a href="<? echo URL; ?>admin/officers">Officers</a>
+                                    <a href="<? echo URL; ?>admin/farmers">Farmers</a>
+                                    <a href="<? echo URL; ?>admin/vendors">Vendors</a>
                                 </div>
                             </div>
                         </li>

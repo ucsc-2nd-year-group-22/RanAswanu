@@ -18,21 +18,74 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 
 **! Please update following list of Models, Views, Controllers each time you make changes
 
-## Controllers
+## Controllers & Methods
 
 - admin
+    - index => Empty
     
 - dashboard
-  
+    - index
+    - xhrInsert
+    - xhrGetListings
+    - xhrDeleteListing
+    
 - error
+    - contructor only
+    
+- help (Used to demonstrate passing data array to views, no relation to this project)
+    - index
+    - other
+    - vcon (array passing to view)
   
-- help
-  
-- index
+- index (default controller)
+    - index => Rendors index/index method
   
 - user
+    - index
+    - create
+    - edit
+    - editSave
+    - delete
+    - login
+    - loginusr
+    - logout
   
 - vendor
+    - index
+    - register
+    - create
+    - viewVendor
 
 
 ## Views
+- header.php 
+- footer.php
+
+- admin 
+    - index
+    
+- dashboard
+    - js/default.js
+    - index
+    
+- error  
+    - 404.php
+    - index.php
+
+- help  
+    - con.php
+    - index.php
+    
+- index
+    - index.php => welcome message
+    
+- user  
+    - edit.php
+    - index.php
+    - login.php
+    
+- vendor
+    - index.php
+    - register.php
+    - view.php
+

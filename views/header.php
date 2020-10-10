@@ -48,19 +48,17 @@
                     <? endif ?>
                 </ul>
             </nav>
+            <? if(Session::get('loggedIn') == true): ?>
             <div class="dropdown" >
                 <button class="header-popup-btn">My Profile</button>
                 <div class="dropdown-content right-menu">
                     <a href="#">Profile</a>
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>
-                    <hr>
-                    <? if(Session::get('loggedIn') == true): ?>
-                        <a href="<?= URL?>user/logout">Log out</a>
-                    <? else: ?>
-                        <a href="<?= URL?>user/login">Login</a>
-                    <? endif ?>
+                    <a href="<?= URL?>user/logout">Log out</a>
+                    <a href="<?= URL?>user/login">Login</a>
                 </div>
             </div>
+            <? endif;?>
         </header>
         <div class="content">

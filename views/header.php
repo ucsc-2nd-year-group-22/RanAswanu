@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="images/title-logo.png" type="image/icon type">
+    <link rel="icon" href="<?php echo URL; ?>public/img/title-logo.png" type="image/icon type">
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/main.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
+    <title>Harvest Mgt System</title>
 </head>
 <body>
     <div class="main-grid">

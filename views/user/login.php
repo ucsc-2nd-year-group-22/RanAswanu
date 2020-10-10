@@ -1,5 +1,5 @@
 <h1>Login</h1>
-<form action="login/run" method="POST">
+<form action="loginusr" method="POST">
     <label>Login</label>
     <input type="text" name="login">
     <br>

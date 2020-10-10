@@ -7,11 +7,11 @@ class User extends Controller {
         Session::init();
         $logged = Session::get('loggedIn');
         $role = Session::get('role');
-        if($logged == false || $role != 'owner') {
-            Session::destroy();
-            header('location: '. URL .'login');
-            exit;
-        }
+        // if($logged == false) {
+        //     Session::destroy();
+        //     header('location: '. URL);
+        //     exit;
+        // }
     }
 
     public function index() {
@@ -54,5 +54,22 @@ class User extends Controller {
     public function delete($id){
         $this->model->delete($id);
         header('location: ' . URL . 'user');
+    }
+
+    //route to the user/login
+    public function login(){
+        $this->view->rendor('user/login');
+    }
+    //login to the syetem
+    public function loginusr(){
+        $this->model->loginto();
+    }
+
+    //logout user from the system
+    function logout() {
+        Session::destroy();
+        // Session::unset('loggedIn');
+        header('location: '. URL .'user/login');
+        exit;
     }
 }  

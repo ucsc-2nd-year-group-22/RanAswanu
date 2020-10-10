@@ -58,8 +58,8 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 
 
 ## Views
-header.php 
-footer.php
+- header.php
+- footer.php
 
 - admin 
     - index

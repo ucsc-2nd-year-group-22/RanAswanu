@@ -48,9 +48,9 @@
                     <? endif ?>
                 </ul>
             </nav>
-            <div class="dropdown">
+            <div class="dropdown" >
                 <button class="header-popup-btn">My Profile</button>
-                <div class="dropdown-content">
+                <div class="dropdown-content right-menu">
                     <a href="#">Profile</a>
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>

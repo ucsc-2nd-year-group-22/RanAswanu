@@ -76,13 +76,13 @@
      display: inline-block;
  }
  
- nav li a {
+ /* nav li a {
      text-decoration: none;
      padding: 5px 8px;
      font-weight: 500;
      font-size: 1.2rem;
      color: var(--main-dark-color);
- }
+ } */
  
  header .nav-profile ul li{
      display: inline-block;
@@ -90,12 +90,13 @@
  
  header li a{
      text-decoration: none;
-     padding: 5px 8px;
+     padding: 25px 10px;
      font-weight: 500;
      color: var(--main-font-color);
      font-weight: bold;
      transition:  ease .2s;
      border-top: 3px solid #FFF;
+     font-size: 1rem;
  }
  
  nav li a:hover {

@@ -3,7 +3,7 @@ This is the repository for implementing actual system with real UIs
 
 GitHub has replaced their keyword 'master' with 'main'. Then the master branch will become main branch now onwards.
 
-# Desiered working progress
+# Desired Working Progress
 1. clone the dev branch of this repository using 'git clone' command (make sure to clone into your htdocs folder).
 2. make your own local development repository (ex:- if your name is Nimal make a branch such as nimalDev or something entends the username).
 3. continue your part within the dev branch created at the obove step (ex:- nimalDev).

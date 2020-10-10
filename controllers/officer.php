@@ -30,6 +30,26 @@ class Officer extends Controller {
                 'farmerName' => "Madupala",
                 'cropType' => "Beans"
             ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'cropType' => "Carrot"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'cropType' => "Beans"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'cropType' => "Carrot"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'cropType' => "Beans"
+            ],
         ];
 
         $pageData = [

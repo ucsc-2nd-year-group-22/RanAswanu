@@ -15,11 +15,11 @@
   outline: none;
 }
 
-.btn:hover, input[type=submit]:hover {
+.btn:hover, input[type=submit]:hover{
   background-color: var(--main-light-green);
 }
 
-.btn:active, input[type=submit]:active {
+.btn:active, input[type=submit]:active{
   background-color: var(--main-dark-green);
 }
 
@@ -51,7 +51,7 @@ input[type=date], input[type=email], input[type=text], select, textarea {
   color:var(--main-font-color);
 }
 
-input[type=text]:focus, textarea:focus, select:hover {
+input[type=text]:focus, textarea:focus, select:hover, input[type=email]:focus, input[type=date]:focus {
   border: 2px solid var(--main-light-green);
 }
 

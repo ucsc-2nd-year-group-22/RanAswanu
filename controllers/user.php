@@ -16,6 +16,15 @@ class User extends Controller {
 
     public function index() {
         $this->view->userList = $this->model->userList();
+        $role = Session::get('role');
+        if($role == 'admin') {
+            header('Location: admin');
+        }else if($role == 'officer'){
+            header('Location: officer');
+        }else if($role == 'farmer'){
+            header('Location: farmer');
+        }
+
         $this->view->rendor('user/index');
     }
 

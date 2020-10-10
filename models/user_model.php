@@ -62,7 +62,7 @@ class User_Model extends Model {
             Session::init();
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
-            header('location: ../dashboard');
+            header('location: ../user');
         } else {
             // show error
             header('location: ../login');

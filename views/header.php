@@ -14,7 +14,6 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                <li><a href="#">Home</a></li>
                     <li><a href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>
@@ -41,10 +40,15 @@
                         </li>
                         <li><a href="#">Reports</a></li>
                         <li><a href="#">Notifications</a></li>
-                    <? else: ?>
                     <!-- ==================================================== End of admin configuration =================================== -->
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                    
+                    <!-- Officer configurations for the navigation bar =============================================================== -->
+                    <? elseif(Session::get('role') == 'officer'): ?>
+
+                        <li><a href="<? echo URL; ?>officer/cropReq">Crop Requests</a></li>
+                        <li><a href="<? echo URL; ?>officer/damageClaims">Damage Claims</a></li>
+                        <li><a href="<? echo URL; ?>officer/reports">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications">Notifications</a></li>
                     <? endif ?>
                 </ul>
             </nav>

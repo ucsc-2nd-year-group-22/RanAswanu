@@ -1,4 +1,4 @@
-<h1>Officer Index</h1>
+<h1>Reports</h1>
 
 <div class="user-tabs">
     <ul>

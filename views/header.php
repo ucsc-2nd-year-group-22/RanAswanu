@@ -17,14 +17,14 @@
                 <li><a href="#">Home</a></li>
                     <li><a href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
                     <!-- Admin configurations for the navigation bar =============================================================== -->
-                    <?php if(Session::get('role') == 'admin'){ ?>
+                    <?php if(Session::get('role') == 'admin'): ?>
                         <li>
                             <div class="dropdown">
                                 <a href="#">User Management</a>
                                 <div class="dropdown-content">
-                                    <a href="<?php echo URL; ?>officer">Officers</a>
-                                    <a href="<?php echo URL; ?>farmer">Farmers</a>
-                                    <a href="<?php echo URL; ?>vendor">Vendors</a>
+                                    <a href="<? echo URL; ?>officer">Officers</a>
+                                    <a href="<? echo URL; ?>farmer">Farmers</a>
+                                    <a href="<? echo URL; ?>vendor">Vendors</a>
                                 </div>
                             </div>
                         </li>
@@ -41,11 +41,11 @@
                         </li>
                         <li><a href="#">Reports</a></li>
                         <li><a href="#">Notifications</a></li>
-                    <?php }else{ ?>
+                    <? else: ?>
                     <!-- ==================================================== End of admin configuration =================================== -->
                         <li><a href="#">About</a></li>
                         <li><a href="#">Contact Us</a></li>
-                    <?php } ?>
+                    <? endif ?>
                 </ul>
             </nav>
             <div class="dropdown">
@@ -55,11 +55,11 @@
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>
                     <hr>
-                    <?php if(Session::get('loggedIn') == true){ ?>
+                    <? if(Session::get('loggedIn') == true): ?>
                         <a href="<?= URL?>user/logout">Log out</a>
-                    <?php }else{ ?>
+                    <? else: ?>
                         <a href="<?= URL?>user/login">Login</a>
-                    <?php } ?>
+                    <? endif ?>
                 </div>
             </div>
         </header>

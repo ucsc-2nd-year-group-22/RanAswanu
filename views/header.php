@@ -14,17 +14,16 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                <li><a href="#">Home</a></li>
                     <li><a href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
                     <!-- Admin configurations for the navigation bar =============================================================== -->
-                    <?php if(Session::get('role') == 'admin'){ ?>
+                    <?php if(Session::get('role') == 'admin'): ?>
                         <li>
                             <div class="dropdown">
                                 <a href="#">User Management</a>
                                 <div class="dropdown-content">
-                                    <a href="<?php echo URL; ?>officer">Officers</a>
-                                    <a href="<?php echo URL; ?>farmer">Farmers</a>
-                                    <a href="<?php echo URL; ?>vendor">Vendors</a>
+                                    <a href="<? echo URL; ?>officer">Officers</a>
+                                    <a href="<? echo URL; ?>farmer">Farmers</a>
+                                    <a href="<? echo URL; ?>vendor">Vendors</a>
                                 </div>
                             </div>
                         </li>
@@ -41,26 +40,30 @@
                         </li>
                         <li><a href="#">Reports</a></li>
                         <li><a href="#">Notifications</a></li>
-                    <?php }else{ ?>
                     <!-- ==================================================== End of admin configuration =================================== -->
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    <?php } ?>
+                    
+                    <!-- Officer configurations for the navigation bar =============================================================== -->
+                    <? elseif(Session::get('role') == 'officer'): ?>
+
+                        <li><a href="<? echo URL; ?>officer/cropReq">Crop Requests</a></li>
+                        <li><a href="<? echo URL; ?>officer/damageClaims">Damage Claims</a></li>
+                        <li><a href="<? echo URL; ?>officer/reports">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications">Notifications</a></li>
+                    <? endif ?>
                 </ul>
             </nav>
-            <div class="dropdown">
+            <? if(Session::get('loggedIn') == true): ?>
+            <div class="dropdown" >
                 <button class="header-popup-btn">My Profile</button>
-                <div class="dropdown-content">
+                <div class="dropdown-content right-menu">
                     <a href="#">Profile</a>
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>
-                    <hr>
-                    <?php if(Session::get('loggedIn') == true){ ?>
+                    <? if(Session::get('loggedIn') == true): ?>
                         <a href="<?= URL?>user/logout">Log out</a>
-                    <?php }else{ ?>
-                        <a href="<?= URL?>user/login">Login</a>
-                    <?php } ?>
+                    <? endif; ?>
                 </div>
             </div>
+            <? endif;?>
         </header>
         <div class="content">

@@ -1,13 +1,4 @@
 /* Profile drop-down  */
-/* .dropbtn {
-    background-color: var(--main-theme-color);
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  } */
-
   .dropdown {
     position: relative;
     display: inline-block;
@@ -16,37 +7,53 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #fff;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    box-shadow:0 2px 10px #ccc;
     z-index: 1;
-    font-size: .9em;
     border-radius: 5px;
+    margin-top: 20px;
   }
 
+.dropdown-content.right-menu {
+  margin-top:0px;
+  font-weight: bold;
+}
+
+.dropdown-content.right-menu a:hover{
+  margin-top:0px;
+}
+
 .dropdown-content a {
-    color: black;
+    color:var(--main-font-color);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    font-size: .9em;
+    
   }
 
-  .dropdown-content a:hover {
-      background-color:var(--main-light-green);
+.dropdown-content a:hover {
+  background-color:var(--main-light-green);
+  color: var(--main-font-color);
+}
 
-    }
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+.dropdown:hover .dropbtn {
+  background-color: var(--main-light-green);
+}
 
-  .dropdown:hover .dropbtn {
-    background-color: var(--main-light-green);
-  }
+.dropdown hr {
+border: 1px solid rgb(218, 218, 218);
+}
 
-  .dropdown hr {
-      border: 1px solid rgb(218, 218, 218);
-  }
+.dropdown .header-btn {
+  margin-top: 0;
+}
 
 .header-popup-btn {
     background-color:var(--main-theme-color);

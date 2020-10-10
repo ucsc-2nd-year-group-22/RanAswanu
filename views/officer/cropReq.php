@@ -56,14 +56,16 @@
             <th>Crop Type</th>
             <th>Action</th>
         </tr>
-<? foreach($cropReqData as $cropReqItem) :?>
-    
+<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
         <tr>
+            <td> <?= $i ?></td>
             <td><?=$cropReqItem['farmerId'];?> </td>
             <td><?=$cropReqItem['farmerName'];?> </td>
             <td> <?=$cropReqItem['cropType'];?></td>
-            <td><button class="mini-button normal">Accept</button> </td>
-            <td><button class="mini-button danger">Reject</button> </td>
+            <td>
+                <button class="mini-button normal">Accept</button> 
+                <button class="mini-button danger">Reject</button> 
+            </td>
         </tr>
 <?endforeach;?>
     </table>

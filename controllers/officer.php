@@ -62,14 +62,17 @@ class Officer extends Controller {
     }
 
     public function damageClaims() {
+        $data = [];
         $this->view->rendor('officer/damageClaims', $data);
     }
 
     public function reports() {
+        $data = [];
         $this->view->rendor('officer/reports', $data);
     }
 
     public function notifications() {
+        $data = [];
         $this->view->rendor('officer/notifications', $data);
     }
 

@@ -3,7 +3,7 @@ This is the repository for implementing actual system with real UIs
 
 GitHub has replaced their keyword 'master' with 'main'. Then the master branch will become main branch now onwards.
 
-# desiered working progress
+# Desiered working progress
 1. clone the dev branch of this repository using 'git clone' command (make sure to clone into your htdocs folder).
 2. make your own local development repository (ex:- if your name is Nimal make a branch such as nimalDev or something entends the username).
 3. continue your part within the dev branch created at the obove step (ex:- nimalDev).
@@ -16,3 +16,23 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 * Don't try to work in others' branches.
 * Never work/push with tha main branch (master branch) without informing group members
 
+**! Please update following list of Models, Views, Controllers each time you make changes
+
+## Controllers
+
+- admin
+    
+- dashboard
+  
+- error
+  
+- help
+  
+- index
+  
+- user
+  
+- vendor
+
+
+## Views

@@ -8,6 +8,8 @@ Dashboard :: Login only
 
 <hr>
 
+<?php echo $_SESSION['role'] ;?>
+
 <div id="listInserts">
     
 </div>

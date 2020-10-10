@@ -15,8 +15,8 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 
 * Don't try to work in others' branches.
 * Never work/push with tha main branch (master branch) without informing group members
-<br>
-***
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 **! Please update following list of Models, Views, Controllers each time you make changes**
 
 ## Controllers & Methods

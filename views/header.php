@@ -55,8 +55,9 @@
                     <a href="#">Profile</a>
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>
-                    <a href="<?= URL?>user/logout">Log out</a>
-                    <a href="<?= URL?>user/login">Login</a>
+                    <? if(Session::get('loggedIn') == true): ?>
+                        <a href="<?= URL?>user/logout">Log out</a>
+                    <? endif; ?>
                 </div>
             </div>
             <? endif;?>

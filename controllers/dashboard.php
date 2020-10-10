@@ -16,7 +16,12 @@ class Dashboard extends Controller {
     }
 
     function index() {
-        $this->view->rendor('dashboard/index');
+        if($_SESSION['role' == 'admin'])
+            // $this->view->rendor('admin/index');
+            header('admin');
+        if($_SESSION['role' == 'officer'])
+            // $this->view->rendor('officer/index');
+            header('officer');
     }
     
     // xhr => xml http request

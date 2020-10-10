@@ -6,6 +6,7 @@
         <select name="role" id="role">
             <option value="default">default</option>
             <option value="admin">admin</option>
+            <option value="officer">Officer</option>
         </select><br>
     <label for="submit">&nbsp</label><input type="submit" name="submit" id="submitBtn">
 </form>

@@ -76,5 +76,8 @@ class Officer extends Controller {
         $this->view->rendor('officer/notifications', $data);
     }
 
+    public function register(){
+        $this->view->rendor('officer/register');
+    }
 
 }

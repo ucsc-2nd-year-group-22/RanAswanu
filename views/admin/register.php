@@ -1,0 +1,1 @@
+<h1>Register new admin</h1>

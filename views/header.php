@@ -21,13 +21,14 @@
                             <div class="dropdown">
                                 <a href="#">User Management</a>
                                 <div class="dropdown-content">
+                                <a href="<? echo URL; ?>admin/admins">Admins</a>
                                     <a href="<? echo URL; ?>admin/officers">Officers</a>
                                     <a href="<? echo URL; ?>admin/farmers">Farmers</a>
                                     <a href="<? echo URL; ?>admin/vendors">Vendors</a>
                                 </div>
                             </div>
                         </li>
-                        <li><a href="#">Crop Management</a></li>
+                        <li><a href="<? echo URL; ?>admin/crops">Crop Management</a></li>
                         <li><a href="#">Collection Centers</a></li>
                         <li>
                             <div class="dropdown">

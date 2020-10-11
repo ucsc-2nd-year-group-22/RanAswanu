@@ -15,7 +15,7 @@
     <div class="login">
       <form action="loginusr" method="POST">
         <div class="imgcontainer">
-          <img src="images/logo.png" width="250px" >
+          <img src="<?= URL ?>public/img/logo.png" width="250px" >
         </div>
         <div class="col-center">
           <input type="text" placeholder="Enter Username" name="login" required>

@@ -15,7 +15,7 @@
   outline: none;
 }
 
-.btn:hover, input[type=submit]:hover{
+.btn:hover, input[type=submit]:hover, button:hover{
   background-color: var(--main-light-green);
 }
 

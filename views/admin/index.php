@@ -9,4 +9,3 @@
         <li><a href="#">About</a></li>
     </ul>
 </div>
-<?php echo $role; ?>

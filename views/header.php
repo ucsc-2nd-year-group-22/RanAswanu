@@ -30,24 +30,37 @@
                         </li>
                         <li><a href="<? echo URL; ?>admin/crops">Crop Management</a></li>
                         <li><a href="#">Collection Centers</a></li>
-                        <li>
-                            <div class="dropdown">
-                                <a href="#">Change Role</a>
-                                <div class="dropdown-content">
-                                    <a href="#">Admin</a>
-                                    <a href="#">Officer</a>
+                        <?php if(Session::get('isadmin') == 1): ?>
+                            <li>
+                                <div class="dropdown">
+                                    <a href="#">Change Role</a>
+                                    <div class="dropdown-content">
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('id'); ?>">Officer</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        <?php endif; ?>
                         <li><a href="#">Reports</a></li>
                         <li><a href="#">Notifications</a></li>
-                    <!-- ==================================================== End of admin configuration =================================== -->
-                    
+
                     <!-- Officer configurations for the navigation bar =============================================================== -->
                     <? elseif(Session::get('role') == 'officer'): ?>
 
                         <li><a href="<? echo URL; ?>officer/cropReq">Crop Requests</a></li>
                         <li><a href="<? echo URL; ?>officer/damageClaims">Damage Claims</a></li>
+                        <!-- for real admins act as officers ===== -->
+                        <?php if(Session::get('isadmin') == 1): ?>   
+                            <li>
+                                <div class="dropdown">
+                                    <a href="#">Change Role</a>
+                                    <div class="dropdown-content">
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('id'); ?>">Officer</a>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endif; ?>
                         <li><a href="<? echo URL; ?>officer/reports">Reports</a></li>
                         <li><a href="<? echo URL; ?>officer/notifications">Notifications</a></li>
                     <? endif ?>

@@ -7,6 +7,7 @@ class User extends Controller {
         Session::init();
         $logged = Session::get('loggedIn');
         $role = Session::get('role');
+        $isAdmin = Session::get('isadmin');
         // if($logged == false) {
         //     Session::destroy();
         //     header('location: '. URL);

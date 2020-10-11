@@ -15,7 +15,13 @@ class Officer extends Controller {
         $data = array(
             'role' => $role
         );
-        $this->view->rendor('officer/index', $data);
+        if(($role=='officer'|| 'admin') && $logged==true)
+            $this->view->rendor('officer/index', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
+            
     }
 
     public function cropReq() {

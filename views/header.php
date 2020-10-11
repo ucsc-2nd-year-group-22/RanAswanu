@@ -32,7 +32,7 @@
                             </div>
                         </li>
                         <li><a href="<? echo URL; ?>admin/crops">Crop Management</a></li>
-                        <li><a href="#">Collection Centers</a></li>
+                        <li><a href="<? echo URL; ?>admin/collectingcenters">Collection Centers</a></li>
                         <?php if(Session::get('isadmin') == 1): ?>
                             <li>
                                 <div class="dropdown">

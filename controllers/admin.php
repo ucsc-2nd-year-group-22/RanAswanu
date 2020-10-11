@@ -124,6 +124,57 @@ class Admin extends Controller {
         $this->view->rendor('crop/crops', $pageData);
     }
 
+    public function collectingcenters(){
+
+        // This is a dummy data object for testing 
+        $cropReqData = [
+            [
+                'farmerId' => 443,
+                'farmerName' => "Carrot",
+                'nic' => "2"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Carrot",
+                'nic' => "2"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Carrot",
+                'nic' => "2"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Carrot",
+                'nic' => "2"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Carrot",
+                'nic' => "2"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Carrot",
+                'nic' => "2"
+            ],
+        ];
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [ ['label' =>'Register New Col. Center',
+                          'path' => 'collectingcenter/register'
+                        ],
+                        ['label' =>'some label',
+                          'path' => 'admin/#'
+                        ],            
+                      ],
+            'cropReqData' => $cropReqData,
+        ];
+        
+        $this->view->rendor('collectingcenter/collectingcenters', $pageData);
+    }
+
     public function admins(){
 
         // This is a dummy data object for testing 

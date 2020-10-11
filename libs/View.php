@@ -17,4 +17,8 @@ class View {
             require 'views/footer.php';
         }
     }
+
+    public function getActivePage($view) {
+        if(Session::get(activePage) == $view) echo 'active';
+    }
 }

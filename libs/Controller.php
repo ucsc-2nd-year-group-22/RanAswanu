@@ -19,4 +19,8 @@ class Controller {
         }
     }
 
+    public function setActivePage($view) {
+        Session::set('activePage', $view);
+    }
+
 } 

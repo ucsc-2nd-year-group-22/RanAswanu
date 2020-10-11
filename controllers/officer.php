@@ -57,22 +57,27 @@ class Officer extends Controller {
             'tabs' => ['Crop Requests', 'other-tab'],
             'cropReqData' => $cropReqData,
         ];
-        
+        // Session::set('activePage', 'cropReq');
+        $this->setActivePage('cropReq');
         $this->view->rendor('officer/cropReq', $pageData);
     }
 
     public function damageClaims() {
         $data = [];
+        // Session::set('activePage', 'damageClaims');
+        $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
     }
 
     public function reports() {
         $data = [];
+        $this->setActivePage('reports');
         $this->view->rendor('officer/reports', $data);
     }
 
     public function notifications() {
         $data = [];
+        $this->setActivePage('notifications');
         $this->view->rendor('officer/notifications', $data);
     }
 

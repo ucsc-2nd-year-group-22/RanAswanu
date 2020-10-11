@@ -14,7 +14,7 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                    <li><a href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
+                    <li><a href="<?php echo URL; ?>dashboard">Dashboard</a></li>
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>
                         <li>
@@ -45,8 +45,8 @@
                     <!-- Officer configurations for the navigation bar =============================================================== -->
                     <? elseif(Session::get('role') == 'officer'): ?>
 
-                        <li><a href="<? echo URL; ?>officer/cropReq">Crop Requests</a></li>
-                        <li><a href="<? echo URL; ?>officer/damageClaims">Damage Claims</a></li>
+                        <li><a href="<? echo URL; ?>officer/cropReq" class="<? if(Session::get(activePage) == "cropReq") echo 'active' ?>">Crop Requests</a></li>
+                        <li><a href="<? echo URL; ?>officer/damageClaims" class="<? if(Session::get(activePage) == "damageClaims") echo 'active' ?>">Damage Claims</a></li>
                         <li><a href="<? echo URL; ?>officer/reports">Reports</a></li>
                         <li><a href="<? echo URL; ?>officer/notifications">Notifications</a></li>
                     <? endif ?>

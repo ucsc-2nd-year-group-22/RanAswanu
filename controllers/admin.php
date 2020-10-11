@@ -130,33 +130,33 @@ class Admin extends Controller {
         $cropReqData = [
             [
                 'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Dambulla",
+                'nic' => "Mathale"
             ],
             [
                 'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Dambulla",
+                'nic' => "Mathale"
             ],
             [
                 'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Dambulla",
+                'nic' => "Mathale"
             ],
             [
                 'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Dambulla",
+                'nic' => "Mathale"
             ],
             [
                 'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Dambulla",
+                'nic' => "Mathale"
             ],
             [
                 'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Dambulla",
+                'nic' => "Mathale"
             ],
         ];
 

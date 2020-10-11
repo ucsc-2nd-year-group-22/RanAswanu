@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <link rel="icon" href="<?php echo URL; ?>public/img/title-logo.png" type="image/icon type">
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/main.css"/>
+    <script src="<?php echo URL;?>public/js/custom.js"></script>
+    <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harvest Mgt System</title>
 </head>
@@ -14,7 +16,8 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                    <li><a href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
+                <li><a href="<?php echo URL; ?>">Home</a></li>
+                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>
                         <li>
@@ -23,7 +26,6 @@
                                 <div class="dropdown-content">
                                 <a href="<? echo URL; ?>admin/admins">Admins</a>
                                     <a href="<? echo URL; ?>admin/officers">Officers</a>
-                                    <a href="<? echo URL; ?>admin/farmers">Farmers</a>
                                     <a href="<? echo URL; ?>admin/vendors">Vendors</a>
                                 </div>
                             </div>

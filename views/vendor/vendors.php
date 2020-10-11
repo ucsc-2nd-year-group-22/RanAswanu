@@ -1,4 +1,4 @@
-<h1>Manage Officers</h1>
+<h1>Manage Vendors</h1>
 
 <div class="user-tabs">
     <ul>
@@ -47,9 +47,9 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Officer-ID</th>
-            <th>Officer Name</th>
-            <th>NIC Number</th>
+            <th>Vendor-ID</th>
+            <th>Vendor Name</th>
+            <th>Telephone Number</th>
             <th>Action</th>
         </tr>
 <? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>

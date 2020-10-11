@@ -58,7 +58,7 @@ class Admin extends Controller {
         $pageData = [
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New Officer',
-                          'path' => 'officer/register'
+                          'path' => 'user/register'
                         ],
                         ['label' =>'some label',
                           'path' => 'admin/#'
@@ -112,7 +112,7 @@ class Admin extends Controller {
         $pageData = [
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New Crop',
-                          'path' => 'crop/register'
+                          'path' => 'user/register'
                         ],
                         ['label' =>'some label',
                           'path' => 'admin/#'
@@ -130,40 +130,40 @@ class Admin extends Controller {
         $cropReqData = [
             [
                 'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Kamal",
+                'nic' => "864753012v"
             ],
             [
                 'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Kamal",
+                'nic' => "864753012v"
             ],
             [
                 'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Kamal",
+                'nic' => "864753012v"
             ],
             [
                 'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Kamal",
+                'nic' => "864753012v"
             ],
             [
                 'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Kamal",
+                'nic' => "864753012v"
             ],
             [
                 'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
+                'farmerName' => "Kamal",
+                'nic' => "864753012v"
             ],
         ];
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New Crop',
-                          'path' => 'admin/register'
+            'tabs' => [ ['label' =>'Register New admin',
+                          'path' => 'user/register'
                         ],
                         ['label' =>'some label',
                           'path' => 'admin/#'
@@ -173,6 +173,57 @@ class Admin extends Controller {
         ];
         
         $this->view->rendor('admin/admins', $pageData);
+    }
+
+    public function vendors(){
+
+        // This is a dummy data object for testing 
+        $cropReqData = [
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'nic' => "07123456789"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Nimal",
+                'nic' => "07123456789"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'nic' => "07123456789"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Nimal",
+                'nic' => "07123456789"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'nic' => "07123456789"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Nimal",
+                'nic' => "07123456789"
+            ],
+        ];
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [ ['label' =>'some label',
+                          'path' => 'admin/#'
+                        ],
+                        ['label' =>'some label',
+                          'path' => 'admin/#'
+                        ],            
+                      ],
+            'cropReqData' => $cropReqData,
+        ];
+        
+        $this->view->rendor('vendor/vendors', $pageData);
     }
 
     //change role to officer

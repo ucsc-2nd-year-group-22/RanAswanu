@@ -60,24 +60,58 @@
 /* Filter panel section ----------------------------------------- */
 .filter-panel {
     display: grid;
-    grid-template-columns:repeat(4, 1fr);
+    grid-template-columns:repeat(4, auto);
     grid-template-rows: 1fr;
-    grid-gap: 6px;
+    grid-gap: 3px;
     grid-template-areas:
     "pane1 pane2 pane3 pane4";
-    padding: 10px;
     background-color: #fff;
     margin-bottom: 5px;
 }
 
+.filter-panel > * {
+    padding: 5px 10px;
+}
+
 .pane1 {
     grid-area:pane1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-auto-flow: dense;
+}
+
+.pane1 .left .right{
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
 }
 
 .pane2 {
     grid-area:pane2;
 }
+.search-container {
+    padding: 5px;
+    box-sizing: border-box;
+}
+.search-container button {
+    float: right;
+    cursor: pointer;
+    width:30%;
+}
 
+.search-container input {
+    padding: 11px;
+    margin: 0;
+}
+
+.search-container .left {
+    float: left;
+    width:69%;
+}
+
+.search-container .right {
+    width:40%;
+}
 .pane3 {
     grid-area:pane3;
 }
@@ -87,7 +121,7 @@
 }
 
 .pane4 select{
-    width: 50%;
+    width: 60%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -96,7 +130,7 @@
 }
 
 .pane3 select{
-    width: 50%;
+    width: 60%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

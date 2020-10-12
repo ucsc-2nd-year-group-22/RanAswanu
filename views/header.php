@@ -17,8 +17,8 @@
             <nav>
                 <ul>
 
-                <li><a href="<?php echo URL; ?>">Home</a></li>
-                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
+                    <li><a href="<?php echo URL; ?>" class="<? View::getActivePage('homepage'); ?>">Home</a></li>
+                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<? View::getActivePage('dashboard'); ?>">Dashboard</a></li>
 
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>

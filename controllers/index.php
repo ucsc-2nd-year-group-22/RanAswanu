@@ -7,6 +7,7 @@ class Index extends Controller {
     }
 
     function index() {
+        $this->setActivePage('homepage');
         $this->view->rendor('index/index');
     }
 

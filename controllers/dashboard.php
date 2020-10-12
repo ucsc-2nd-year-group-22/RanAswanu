@@ -18,6 +18,7 @@ class Dashboard extends Controller {
     function index() {
         // $logged = Session::get('loggedIn');
         // $role = Session::get('role');
+        $this->setActivePage('dashboard');
         $this->view->rendor('dashboard/index');
     }
     

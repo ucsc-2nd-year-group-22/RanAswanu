@@ -31,6 +31,7 @@ class User extends Controller {
 
     //rout to the register user
     public function register(){
+        $this->destroActivePage();
         $this->view->rendor('user/register');
     }
 
@@ -74,6 +75,7 @@ class User extends Controller {
 
     //route to the user/login
     public function login(){
+        $this->destroActivePage();
         $this->view->rendor('user/login');
     }
     //login to the syetem

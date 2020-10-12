@@ -8,7 +8,7 @@
     <script src="<?php echo URL;?>public/js/custom.js"></script>
     <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harvest Mgt System</title>
+    <title>Ran Aswanu Hvst Mgt Sys</title>
 </head>
 <body>
     <div class="main-grid">

@@ -8,7 +8,7 @@
     <script src="<?php echo URL;?>public/js/custom.js"></script>
     <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harvest Mgt System</title>
+    <title>Ran Aswanu Hvst Mgt Sys</title>
 </head>
 <body>
     <div class="main-grid">
@@ -16,8 +16,11 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                <li><a href="<?php echo URL; ?>">Home</a></li>
-                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
+                    <? if(Session::get('loggedIn')==false): ?>
+                    <li><a href="<?php echo URL; ?>" class="<? View::getActivePage('homepage'); ?>">Home</a></li>
+                    <? endif; ?>
+                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<? View::getActivePage('dashboard'); ?>">Dashboard</a></li>
+
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>
                         <li>
@@ -50,8 +53,12 @@
                     <!-- Officer configurations for the navigation bar =============================================================== -->
                     <? elseif(Session::get('role') == 'officer'): ?>
 
-                        <li><a href="<? echo URL; ?>officer/cropReq">Crop Requests</a></li>
-                        <li><a href="<? echo URL; ?>officer/damageClaims">Damage Claims</a></li>
+                        <li><a href="<? echo URL; ?>officer/cropReq" class="<? View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<? echo URL; ?>officer/damageClaims" class="<? View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
+                        <li><a href="<? echo URL; ?>officer/farmerMng" class="<? View::getActivePage('farmerMng'); ?>">Farmers</a></li>
+                        <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
+
                         <!-- for real admins act as officers ===== -->
                         <?php if(Session::get('isadmin') == 1): ?>   
                             <li>
@@ -64,8 +71,9 @@
                                 </div>
                             </li>
                         <?php endif; ?>
-                        <li><a href="<? echo URL; ?>officer/reports">Reports</a></li>
-                        <li><a href="<? echo URL; ?>officer/notifications">Notifications</a></li>
+                        <!-- <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li> -->
+
                     <? endif ?>
                 </ul>
             </nav>

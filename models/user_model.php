@@ -71,7 +71,7 @@ class User_Model extends Model {
             header('location: ../user');
         } else {
             // show error
-            header('location: ../login');
+            header('location: login');
         }
         
     }

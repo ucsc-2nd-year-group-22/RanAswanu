@@ -21,7 +21,7 @@ class User extends Controller {
         if($role == 'admin') {
             header('Location: admin');
         }else if($role == 'officer'){
-            header('Location: officer');
+            header('Location: officer/cropReq');
         }else if($role == 'farmer'){
             header('Location: farmer');
         }
@@ -31,6 +31,7 @@ class User extends Controller {
 
     //rout to the register user
     public function register(){
+        $this->destroyActivePage();
         $this->view->rendor('user/register');
     }
 
@@ -90,6 +91,7 @@ class User extends Controller {
 
     //route to the user/login
     public function login(){
+        $this->destroyActivePage();
         $this->view->rendor('user/login');
     }
     //login to the syetem

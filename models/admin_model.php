@@ -29,10 +29,18 @@ class Admin_Model extends Model {
 
     //retrieve all vendors
     public function vendorList() {
-        $st = $this->db->prepare("SELECT firstname, address, tel FROM users WHERE role = :role");
+        $st = $this->db->prepare("SELECT id, firstname, address, tel FROM users WHERE role = :role");
         $st->execute(array(
             ':role' => 'vendor'
         ));
         return $st->fetchAll();
+    }
+
+    //delete a vendor
+    public function delete($id){
+        $st = $this->db->prepare('DELETE FROM users WHERE id = :id');
+        $st->execute(array(
+            ':id' => $id
+        ));
     }
 } 

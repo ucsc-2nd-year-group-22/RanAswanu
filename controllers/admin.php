@@ -214,6 +214,7 @@ class Admin extends Controller {
         $this->view->rendor('admin/admins', $pageData);
     }
 
+    //view all vendors
     public function vendors(){
 
         $vendorData = $this->model->vendorList();
@@ -225,6 +226,11 @@ class Admin extends Controller {
         ];
         
         $this->view->rendor('vendor/vendors', $pageData);
+    }
+    //remove a vendor
+    public function delete($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'admin/vendors');
     }
 
     public function farmers(){

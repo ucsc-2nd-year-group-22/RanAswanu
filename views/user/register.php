@@ -106,7 +106,7 @@
             <label for="address">Address</label>
             </div>
             <div class="col-75">
-            <textarea id="address" name="address" placeholder="Enter your address.." style="height:200px"></textarea>
+                <input type="text" id="address" name="address" placeholder="Enter your home address..">
             </div>
         </div>
         <div class="row">

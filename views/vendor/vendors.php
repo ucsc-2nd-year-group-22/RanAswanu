@@ -47,10 +47,11 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Vendor-ID</th>
             <th>Vendor Name</th>
-            <th>Telephone Number</th>
-            <th>Action</th>
+            <th>Telephone</th>
+            <th>Address</th>
+            <th>View User</th>
+            <th>Remove User</th>
         </tr>
 <? $i = 0; foreach($vendorData as $vendor) :; $i++;?>
         <tr>
@@ -59,8 +60,10 @@
             <td><?=$vendor['tel'];?> </td>
             <td> <?=$vendor['address'];?></td>
             <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
+                <a class="mini-button normal">View</a> 
+            </td>
+            <td>
+                <a href="<?php echo URL .'admin/delete/'.$vendor['id']; ?>" class="mini-button danger">Remove</a> 
             </td>
         </tr>
 <?endforeach;?>

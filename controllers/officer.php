@@ -71,9 +71,14 @@ class Officer extends Controller {
 
     public function damageClaims() {
         $data = [];
-        // Session::set('activePage', 'damageClaims');
         $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
+    }
+
+    public function farmerMng() {
+        $data = [];
+        $this->setActivePage('farmerMng');
+        $this->view->rendor('officer/farmerMng', $data);
     }
 
     public function reports() {

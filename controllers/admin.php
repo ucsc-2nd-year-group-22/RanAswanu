@@ -120,47 +120,12 @@ class Admin extends Controller {
 
     public function collectingcenters(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-        ];
+        $centerData = $this->model->centerList();
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New Col. Center',
-                          'path' => 'collectingcenter/register'
-                        ]            
-                      ],
-            'cropReqData' => $cropReqData,
+            'tabs' => [],
+            'centerData' => $centerData,
         ];
         
         $this->view->rendor('collectingcenter/collectingcenters', $pageData);
@@ -228,7 +193,7 @@ class Admin extends Controller {
         $this->view->rendor('vendor/vendors', $pageData);
     }
     //remove a vendor
-    public function delete($id){
+    public function deleteVendor($id){
         $this->model->delete($id);
         header('location: ' . URL . 'admin/vendors');
     }

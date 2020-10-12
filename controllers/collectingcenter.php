@@ -18,12 +18,14 @@ class CollectingCenter extends Controller{
     public function create(){
         $data = array();
 
-        $data['firstname'] = $_POST['firstname'];
-        $data['lastname'] = $_POST['lastname'];
+        $data['center_name'] = $_POST['center_name'];
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['grama'] = $_POST['grama'];
 
         // TODO: Do error checking
 
         $this->model->create($data);
-        header('location: ' . URL . 'vendor');
+        header('location: ' . URL . 'admin/collectingcenters');
     }
 }

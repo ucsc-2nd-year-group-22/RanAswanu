@@ -9,25 +9,20 @@
 </div>
 <div class="filter-panel">
     <div class="pane1">
-        <ul>
-            <li id="sortByLbl">
-                <label for="radio">Sort by</label></li>
-            <li>
-                <label class="container">Acending
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </li>
-            <li>
-                <label class="container">Decending
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </li>
-        </ul>                    
+        <!-- <label for="filter4">Search</label>                     -->
     </div>
+    
     <div class="pane2">
-        <!-- panel2                     -->
+        <div class="search-container">
+            <form action="#">
+                <span class="left">
+                    <input type="text" placeholder="Search.." name="search">
+                </span>
+                <span class="right">
+                    <button type="submit">Submit</button>
+                </span>
+            </form>
+        </div>
     </div>
     <div class="pane3">
         <label for="filter4">Sort by</label>
@@ -51,20 +46,23 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Col. Center-ID</th>
-            <th>Col. Center Name</th>
-            <th>District</th>
-            <th>Action</th>
+            <th>Vendor Name</th>
+            <th>Telephone</th>
+            <th>Address</th>
+            <th>View User</th>
+            <th>Remove User</th>
         </tr>
-<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<? $i = 0; foreach($centerData as $center) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td><?=$center['center_name'];?> </td>
+            <td><?=$center['province'];?> </td>
+            <td> <?=$center['district'];?></td>
             <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
+                <a href="<?php echo URL .'admin/editCenter/'.$center['id']; ?>" class="mini-button normal">View</a> 
+            </td>
+            <td>
+                <a href="<?php echo URL .'admin/deleteCenter/'.$center['id']; ?>" class="mini-button danger">Remove</a> 
             </td>
         </tr>
 <?endforeach;?>

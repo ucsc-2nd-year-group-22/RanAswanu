@@ -216,44 +216,12 @@ class Admin extends Controller {
 
     public function vendors(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-        ];
+        $vendorData = $this->model->vendorList();
 
         $pageData = [
             'role' => Session::get('role'),
             'tabs' => [],
-            'cropReqData' => $cropReqData,
+            'vendorData' => $vendorData,
         ];
         
         $this->view->rendor('vendor/vendors', $pageData);

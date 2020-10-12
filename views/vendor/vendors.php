@@ -52,12 +52,12 @@
             <th>Telephone Number</th>
             <th>Action</th>
         </tr>
-<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<? $i = 0; foreach($vendorData as $vendor) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td><?=$vendor['firstname'];?> </td>
+            <td><?=$vendor['tel'];?> </td>
+            <td> <?=$vendor['address'];?></td>
             <td>
                 <button class="mini-button normal">Accept</button> 
                 <button class="mini-button danger">Reject</button> 

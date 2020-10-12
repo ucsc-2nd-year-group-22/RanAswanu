@@ -64,6 +64,7 @@ class Officer extends Controller {
             'cropReqData' => $cropReqData,
         ];
         // Session::set('activePage', 'cropReq');
+        $this->view->js = 'officer/js/default';
         $this->setActivePage('cropReq');
         $this->view->rendor('officer/cropReq', $pageData);
     }

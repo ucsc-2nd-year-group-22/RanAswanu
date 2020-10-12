@@ -12,7 +12,7 @@ class Dashboard extends Controller {
         //     exit;
         // }
 
-        $this->view->js = array('dashboard/js/default.js');
+        $this->view->js ='dashboard/js/default.js';
     }
 
     function index() {

@@ -46,11 +46,11 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Vendor Name</th>
-            <th>Telephone</th>
-            <th>Address</th>
-            <th>View User</th>
-            <th>Remove User</th>
+            <th>Col. Center Name</th>
+            <th>Province</th>
+            <th>District</th>
+            <th>View Col. Center</th>
+            <th>Remove Col. Center</th>
         </tr>
 <? $i = 0; foreach($centerData as $center) :; $i++;?>
         <tr>
@@ -59,7 +59,7 @@
             <td><?=$center['province'];?> </td>
             <td> <?=$center['district'];?></td>
             <td>
-                <a href="<?php echo URL .'admin/editCenter/'.$center['id']; ?>" class="mini-button normal">View</a> 
+                <a href="<?php echo URL .'collectingcenter/edit/'.$center['id']; ?>" class="mini-button normal">View</a> 
             </td>
             <td>
                 <a href="<?php echo URL .'admin/deleteCenter/'.$center['id']; ?>" class="mini-button danger">Remove</a> 

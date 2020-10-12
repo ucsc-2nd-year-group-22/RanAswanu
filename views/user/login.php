@@ -21,7 +21,7 @@
           <input type="text" placeholder="Enter Username" name="login" required>
         </div>
         <div class="col-center">
-          <input type="password" placeholder="Enter Password"  name="password" >
+          <input type="password" placeholder="Enter Password"  name="password" required>
         </div>
         <div class="col-center">
           <div class="col-half-left">

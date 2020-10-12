@@ -16,8 +16,9 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-
+                    <? if(Session::get('loggedIn')==false): ?>
                     <li><a href="<?php echo URL; ?>" class="<? View::getActivePage('homepage'); ?>">Home</a></li>
+                    <? endif; ?>
                     <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<? View::getActivePage('dashboard'); ?>">Dashboard</a></li>
 
                     <!-- Admin configurations for the navigation bar =============================================================== -->
@@ -69,8 +70,8 @@
                                 </div>
                             </li>
                         <?php endif; ?>
-                        <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
-                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
+                        <!-- <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
                     <? endif ?>
                 </ul>

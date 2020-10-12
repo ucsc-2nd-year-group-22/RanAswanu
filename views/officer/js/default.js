@@ -12,7 +12,5 @@ $('.user-tabs a').click(function(){
         $(this).addClass('active-tab');
         $('.tabContainer').hide();
         $('.tabContainer#'+this.id+'C').show();
-
     }
-    
 });

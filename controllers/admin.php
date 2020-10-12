@@ -124,7 +124,10 @@ class Admin extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [],
+            'tabs' => [['label' =>'Register New Col. Center',
+                        'path' => 'collectingcenter/register'
+                        ] 
+                    ],
             'centerData' => $centerData,
         ];
         

@@ -16,17 +16,9 @@ class Dashboard extends Controller {
     }
 
     function index() {
-        $logged = Session::get('loggedIn');
-        $role = Session::get('role');
-
-        
-
-        if($role == 'admin') {
-            header('Location: admin');
-        }
-        if($role == 'officer')
-            header('Location: officer');
-
+        // $logged = Session::get('loggedIn');
+        // $role = Session::get('role');
+        $this->view->rendor('dashboard/index');
     }
     
     // xhr => xml http request

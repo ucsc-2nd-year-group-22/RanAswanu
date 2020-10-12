@@ -12,15 +12,6 @@ class User_Model extends Model {
         return $st->fetchAll();
     }
 
-    public function userSingleList($id){
-        
-        $st = $this->db->prepare("SELECT id, login, role FROM users WHERE id = :id");
-        $st->execute(array(
-            ':id' => $id,
-        ));
-        return $st->fetch();
-    }
-
     public function create($data){
         $st = $this->db->prepare('INSERT INTO users (`login`, `password`, `role`) VALUES (:login, MD5(:password), :role)');
         $st->execute(array(
@@ -48,7 +39,7 @@ class User_Model extends Model {
     }
 
     public function loginto() {
-        $st = $this->db->prepare("SELECT id, role FROM users WHERE login= :login AND password = MD5(:password) ");
+        $st = $this->db->prepare("SELECT id, role, isadmin FROM users WHERE login= :login AND password = MD5(:password) ");
         $st->execute(array(
             ':login' => $_POST['login'],
             ':password' => $_POST['password']
@@ -60,13 +51,24 @@ class User_Model extends Model {
         if($count > 0) {
             // login
             Session::init();
+            Session::set('id', $data['id']);
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
-            header('location: ../dashboard');
+            Session::set('isadmin', $data['isadmin']);
+            header('location: ../user');
         } else {
             // show error
             header('location: ../login');
         }
         
+    }
+
+    public function userSingleList($id){
+        
+        $st = $this->db->prepare("SELECT id, login, role, isadmin FROM users WHERE id = :id");
+        $st->execute(array(
+            ':id' => $id,
+        ));
+        return $st->fetch();
     }
 } 

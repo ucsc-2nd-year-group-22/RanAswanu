@@ -1,4 +1,4 @@
-Dashboard :: Login only
+<!-- Dashboard :: Login only
 <hr>
 
 <form id="randomInsert" action="<?= URL;?>dashboard/xhrInsert" method="post">
@@ -8,8 +8,12 @@ Dashboard :: Login only
 
 <hr>
 
-<?php echo $_SESSION['role'] ;?>
-
 <div id="listInserts">
     
-</div>
+</div> -->
+
+<h1>Dashboard</h1>
+
+<h2>For all users</h2>
+
+<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam nisi quaerat architecto sint explicabo atque ratione unde consequatur repudiandae eum, harum excepturi laborum id doloremque animi laboriosam earum odio accusantium.</p>

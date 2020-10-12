@@ -64,15 +64,21 @@ class Officer extends Controller {
             'cropReqData' => $cropReqData,
         ];
         // Session::set('activePage', 'cropReq');
+        $this->view->js = 'officer/js/default';
         $this->setActivePage('cropReq');
         $this->view->rendor('officer/cropReq', $pageData);
     }
 
     public function damageClaims() {
         $data = [];
-        // Session::set('activePage', 'damageClaims');
         $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
+    }
+
+    public function farmerMng() {
+        $data = [];
+        $this->setActivePage('farmerMng');
+        $this->view->rendor('officer/farmerMng', $data);
     }
 
     public function reports() {

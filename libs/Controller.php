@@ -23,4 +23,8 @@ class Controller {
         Session::set('activePage', $view);
     }
 
+    public function destroyActivePage() {
+        Session::unset('activePage');
+    }
+
 } 

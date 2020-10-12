@@ -59,10 +59,7 @@ class Admin extends Controller {
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New Officer',
                           'path' => 'user/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
+                        ]        
                       ],
             'cropReqData' => $cropReqData,
         ];
@@ -113,10 +110,7 @@ class Admin extends Controller {
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New Crop',
                           'path' => 'crop/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
+                        ]            
                       ],
             'cropReqData' => $cropReqData,
         ];
@@ -164,10 +158,7 @@ class Admin extends Controller {
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New Col. Center',
                           'path' => 'collectingcenter/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
+                        ]            
                       ],
             'cropReqData' => $cropReqData,
         ];
@@ -215,10 +206,7 @@ class Admin extends Controller {
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New admin',
                           'path' => 'user/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
+                        ]           
                       ],
             'cropReqData' => $cropReqData,
         ];
@@ -264,13 +252,7 @@ class Admin extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
-                      ],
+            'tabs' => [],
             'cropReqData' => $cropReqData,
         ];
         
@@ -309,19 +291,13 @@ class Admin extends Controller {
             [
                 'farmerId' => 412,
                 'farmerName' => "Madupala",
-                'nic' => "874568123v"
+                'nic' => "874568123v"       
             ],
         ];
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'some label',
-                          'path' => 'user/#'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
-                      ],
+            'tabs' => [],
             'cropReqData' => $cropReqData,
         ];
         

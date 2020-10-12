@@ -4,7 +4,7 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/vendor/create" method="post">
+    <form action="<?= URL;?>/user/create" method="post">
         <div class="row">
             <div class="col-25">
             <label for="fname">First Name</label>
@@ -124,6 +124,22 @@
                 <option value="vendor">Vendor</option>
             <? } ?>
             </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+            <label for="login">User Name</label>
+            </div>
+            <div class="col-75">
+            <input type="text" id="login" name="login" placeholder="Enter user name..">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+            <label for="password">Last Name</label>
+            </div>
+            <div class="col-75">
+            <input type="password" id="password" name="password" placeholder="Enter password..">
             </div>
         </div>
         <div class="row">

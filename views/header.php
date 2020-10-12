@@ -3,10 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="images/title-logo.png" type="image/icon type">
+    <link rel="icon" href="<?php echo URL; ?>public/img/title-logo.png" type="image/icon type">
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/main.css"/>
+    <script src="<?php echo URL;?>public/js/custom.js"></script>
+    <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
+    <title>Harvest Mgt System</title>
 </head>
 <body>
     <div class="main-grid">
@@ -14,34 +16,39 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                    <li><a href="<?php echo URL;  ?>dashboard">Dashboard</a></li>
+
+                <li><a href="<?php echo URL; ?>">Home</a></li>
+                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
+
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>
                         <li>
                             <div class="dropdown">
                                 <a href="#">User Management</a>
                                 <div class="dropdown-content">
-                                    <a href="<? echo URL; ?>officer">Officers</a>
-                                    <a href="<? echo URL; ?>farmer">Farmers</a>
-                                    <a href="<? echo URL; ?>vendor">Vendors</a>
+                                <a href="<? echo URL; ?>admin/admins">Admins</a>
+                                    <a href="<? echo URL; ?>admin/officers">Officers</a>
+                                    <a href="<? echo URL; ?>admin/farmers">Farmers</a>
+                                    <a href="<? echo URL; ?>admin/vendors">Vendors</a>
                                 </div>
                             </div>
                         </li>
-                        <li><a href="#">Crop Management</a></li>
-                        <li><a href="#">Collection Centers</a></li>
-                        <li>
-                            <div class="dropdown">
-                                <a href="#">Change Role</a>
-                                <div class="dropdown-content">
-                                    <a href="#">Admin</a>
-                                    <a href="#">Officer</a>
+                        <li><a href="<? echo URL; ?>admin/crops">Crop Management</a></li>
+                        <li><a href="<? echo URL; ?>admin/collectingcenters">Collection Centers</a></li>
+                        <?php if(Session::get('isadmin') == 1): ?>
+                            <li>
+                                <div class="dropdown">
+                                    <a href="#">Change Role</a>
+                                    <div class="dropdown-content">
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('id'); ?>">Officer</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        <?php endif; ?>
                         <li><a href="#">Reports</a></li>
                         <li><a href="#">Notifications</a></li>
-                    <!-- ==================================================== End of admin configuration =================================== -->
-                    
+
                     <!-- Officer configurations for the navigation bar =============================================================== -->
                     <? elseif(Session::get('role') == 'officer'): ?>
 
@@ -49,6 +56,22 @@
                         <li><a href="<? echo URL; ?>officer/damageClaims" class="<? View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
                         <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
                         <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
+
+                        <!-- for real admins act as officers ===== -->
+                        <?php if(Session::get('isadmin') == 1): ?>   
+                            <li>
+                                <div class="dropdown">
+                                    <a href="#">Change Role</a>
+                                    <div class="dropdown-content">
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('id'); ?>">Officer</a>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endif; ?>
+                        <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
+
                     <? endif ?>
                 </ul>
             </nav>

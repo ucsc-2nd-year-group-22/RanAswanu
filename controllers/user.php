@@ -7,6 +7,7 @@ class User extends Controller {
         Session::init();
         $logged = Session::get('loggedIn');
         $role = Session::get('role');
+        $isAdmin = Session::get('isadmin');
         // if($logged == false) {
         //     Session::destroy();
         //     header('location: '. URL);
@@ -16,45 +17,60 @@ class User extends Controller {
 
     public function index() {
         $this->view->userList = $this->model->userList();
+        $role = Session::get('role');
+        if($role == 'admin') {
+            header('Location: admin');
+        }else if($role == 'officer'){
+            header('Location: officer');
+        }else if($role == 'farmer'){
+            header('Location: farmer');
+        }
+
         $this->view->rendor('user/index');
     }
 
-    public function create(){
-
-        $data = array();
-
-        $data['login'] = $_POST['login'];
-        $data['password'] = $_POST['password'];
-        $data['role'] = $_POST['role'];
-
-        // TODO: Do error checking
-
-        $this->model->create($data);
-        header('location: ' . URL . 'user');
+    //rout to the register user
+    public function register(){
+        $this->view->rendor('user/register');
     }
+
+    // public function create(){
+
+    //     $data = array();
+
+    //     $data['login'] = $_POST['login'];
+    //     $data['password'] = $_POST['password'];
+    //     $data['role'] = $_POST['role'];
+
+    //     // TODO: Do error checking
+
+    //     $this->model->create($data);
+    //     header('location: ' . URL . 'user');
+    // }
+    
+    //fetch individual user
     public function edit($id){
-        //fetch individual user
         $this->view->user = $this->model->userSingleList($id);
         $this->view->rendor('user/edit');
     }
 
-    public function editSave($id){
+    // public function editSave($id){
 
-        $data = array();
-        $data['id'] = $id;
-        $data['login'] = $_POST['login'];
-        $data['password'] = $_POST['password'];
-        $data['role'] = $_POST['role'];
+    //     $data = array();
+    //     $data['id'] = $id;
+    //     $data['login'] = $_POST['login'];
+    //     $data['password'] = $_POST['password'];
+    //     $data['role'] = $_POST['role'];
 
-        // TODO: Do error checking
+    //     // TODO: Do error checking
 
-        $this->model->editSave($data);
-        header('location: ' . URL . 'user');
-    }
-    public function delete($id){
-        $this->model->delete($id);
-        header('location: ' . URL . 'user');
-    }
+    //     $this->model->editSave($data);
+    //     header('location: ' . URL . 'user');
+    // }
+    // public function delete($id){
+    //     $this->model->delete($id);
+    //     header('location: ' . URL . 'user');
+    // }
 
     //route to the user/login
     public function login(){

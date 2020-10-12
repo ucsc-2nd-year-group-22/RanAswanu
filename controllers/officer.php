@@ -15,7 +15,13 @@ class Officer extends Controller {
         $data = array(
             'role' => $role
         );
-        $this->view->rendor('officer/index', $data);
+        if(($role=='officer'|| 'admin') && $logged==true)
+            $this->view->rendor('officer/index', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
+            
     }
 
     public function cropReq() {
@@ -57,22 +63,27 @@ class Officer extends Controller {
             'tabs' => ['Crop Requests', 'other-tab'],
             'cropReqData' => $cropReqData,
         ];
-        
+        // Session::set('activePage', 'cropReq');
+        $this->setActivePage('cropReq');
         $this->view->rendor('officer/cropReq', $pageData);
     }
 
     public function damageClaims() {
         $data = [];
+        // Session::set('activePage', 'damageClaims');
+        $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
     }
 
     public function reports() {
         $data = [];
+        $this->setActivePage('reports');
         $this->view->rendor('officer/reports', $data);
     }
 
     public function notifications() {
         $data = [];
+        $this->setActivePage('notifications');
         $this->view->rendor('officer/notifications', $data);
     }
 

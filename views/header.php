@@ -16,8 +16,10 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
+
                 <li><a href="<?php echo URL; ?>">Home</a></li>
                     <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="active">Dashboard</a></li>
+
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>
                         <li>
@@ -50,8 +52,11 @@
                     <!-- Officer configurations for the navigation bar =============================================================== -->
                     <? elseif(Session::get('role') == 'officer'): ?>
 
-                        <li><a href="<? echo URL; ?>officer/cropReq">Crop Requests</a></li>
-                        <li><a href="<? echo URL; ?>officer/damageClaims">Damage Claims</a></li>
+                        <li><a href="<? echo URL; ?>officer/cropReq" class="<? View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<? echo URL; ?>officer/damageClaims" class="<? View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
+                        <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
+
                         <!-- for real admins act as officers ===== -->
                         <?php if(Session::get('isadmin') == 1): ?>   
                             <li>
@@ -64,8 +69,9 @@
                                 </div>
                             </li>
                         <?php endif; ?>
-                        <li><a href="<? echo URL; ?>officer/reports">Reports</a></li>
-                        <li><a href="<? echo URL; ?>officer/notifications">Notifications</a></li>
+                        <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
+
                     <? endif ?>
                 </ul>
             </nav>

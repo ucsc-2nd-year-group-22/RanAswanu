@@ -88,7 +88,7 @@ class User extends Controller {
     public function delete($id) {
         $this->model->delete($id);
         if(Session::get('role')=='officer')
-        header('location: ' . URL . 'officer/farmerMng');
+            header('location: ' . URL . 'officer/farmerMng');
     }
 
     // public function editSave($id){

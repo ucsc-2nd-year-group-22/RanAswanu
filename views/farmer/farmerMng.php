@@ -3,7 +3,8 @@
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >View</a></li>
-        <li><a id="tab2" href="<? URL ;?>../user/register" >Add new Farmer +</a></li>
+        <li><a id="tab2" href="#" >Delete</a></li>
+        <li><a id="tab3" href="<? URL ;?>../user/register" >Add new Farmer +</a></li>
     </ul>
 </div>
 
@@ -66,34 +67,57 @@
 
 
     <div class="main-table">
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Officer-ID</th>
-            <th>First Name</th>
-            <th>Last name</th>
-            <th>Action</th>
-            <th>Cotact</th>
-            <th>email</th>
-        </tr>
-    <? $i = 0; foreach($officerData as $officer) :; $i++;?>
-        <tr>
-            <td> <?= $i ?></td>
-            <td><?=$officer['id'];?> </td>
-            <td><?=$officer['firstname'];?> </td>
-            <td><?=$officer['lastname'];?> </td>
-            <td><?=$officer['nic'];?> </td>
-            <td><?=$officer['tel'];?> </td>
-            <td><?=$officer['email'];?> </td>
-
-        </tr>
-    <?endforeach;?>
-    </table>
-
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Farmer-ID</th>
+                <th>First Name</th>
+                <th>Last name</th>
+                <th>Action</th>
+                <th>Cotact</th>
+                <th>email</th>
+                <th>Action</th>
+            </tr>
+        <? $i = 0; foreach($officerData as $officer) :; $i++;?>
+            <tr>
+                <td> <?= $i ?></td>
+                <td><?=$officer['id'];?> </td>
+                <td><?=$officer['firstname'];?> </td>
+                <td><?=$officer['lastname'];?> </td>
+                <td><?=$officer['nic'];?> </td>
+                <td><?=$officer['tel'];?> </td>
+                <td><?=$officer['email'];?> </td>
+                <td><a class="mini-button danger" onclick="return confirm('Are you sure you want to delete this user?');" href="<? echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a></td>
+            </tr>
+        <?endforeach;?>
+        </table>
     </div>
 
-    <div id="tab2C" class="tabContainer">
-        <h2>Add New</h2>
-    </div>
+</div>
 
+<div class="tabContainer" id="tab2C">
+    <div class="main-table">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Officer-ID</th>
+                <th>First Name</th>
+                <th>Last name</th>
+                <th>Action</th>
+                <th>Cotact</th>
+                <th>email</th>
+            </tr>
+        <? $i = 0; foreach($officerData as $officer) :; $i++;?>
+            <tr>
+                <td> <?= $i ?></td>
+                <td><?=$officer['id'];?> </td>
+                <td><?=$officer['firstname'];?> </td>
+                <td><?=$officer['lastname'];?> </td>
+                <td><?=$officer['nic'];?> </td>
+                <td><?=$officer['tel'];?> </td>
+                <td><?=$officer['email'];?> </td>
+            </tr>
+        <?endforeach;?>
+        </table>
+    </div>
 </div>

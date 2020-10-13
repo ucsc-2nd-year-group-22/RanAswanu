@@ -87,7 +87,7 @@
                 <td><?=$officer['nic'];?> </td>
                 <td><?=$officer['tel'];?> </td>
                 <td><?=$officer['email'];?> </td>
-                <td><a class="mini-button danger" onclick="return confirm('Are you sure you want to delete this user?');" href="<? echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a></td>
+                <td><button class="mini-button danger" onclick="return confirm('Are you sure you want to delete this user?');" href="<? echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</button></td>
             </tr>
         <?endforeach;?>
         </table>

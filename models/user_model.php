@@ -35,10 +35,11 @@ class User_Model extends Model {
     }
 
     public function editSave($data){
-        $st = $this->db->prepare('UPDATE users SET `login` = :login, `password` = :password, `role` = :role WHERE id = :id');
+        $st = $this->db->prepare('UPDATE users SET `login` = :login, `firstname` = :firstname, `password` = :password, `role` = :role WHERE id = :id');
         $st->execute(array(
             ':id' => $data['id'],
             ':login' => $data['login'],
+            ':firstname' => $data['firstname'],
             ':password' => MD5($data['password']),
             ':role' => $data['role']
         ));
@@ -78,7 +79,7 @@ class User_Model extends Model {
 
     public function userSingleList($id){
         
-        $st = $this->db->prepare("SELECT id, login, role, isadmin FROM users WHERE id = :id");
+        $st = $this->db->prepare("SELECT * FROM users WHERE id = :id");
         $st->execute(array(
             ':id' => $id,
         ));

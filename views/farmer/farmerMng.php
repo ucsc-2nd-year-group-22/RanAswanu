@@ -172,7 +172,7 @@
                 <td><?=$officer['nic'];?> </td>
                 <td><?=$officer['tel'];?> </td>
                 <td><?=$officer['email'];?> </td>
-                <td><button class="mini-button warning" onclick="return confirm('Are you sure you want to edit this user?');" href="<? echo URL . '/user/edit/' . $officer['id'] ;?>">Edit</button></td>
+                <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<? echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>
             </tr>
         <?endforeach;?>
         </table>
@@ -259,7 +259,7 @@
                 <td><?=$officer['nic'];?> </td>
                 <td><?=$officer['tel'];?> </td>
                 <td><?=$officer['email'];?> </td>
-                <td><button class="mini-button danger" onclick="return confirm('Are you sure you want to delete this user?');" href="<? echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</button></td>
+                <td><a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<? echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a></td>
             </tr>
         <?endforeach;?>
         </table>

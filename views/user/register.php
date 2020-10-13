@@ -145,7 +145,7 @@
             <label for="password">Last Name</label>
             </div>
             <div class="col-75">
-            <input type="password" id="password" name="password" placeholder="ex: w@$@nth!123">
+            <input type="password" id="password" name="password" placeholder="ex: w@$@nth!">
             </div>
         </div>
         <div class="row">

@@ -30,7 +30,7 @@
                                 <a href="<? echo URL; ?>admin/admins">Admins</a>
                                     <a href="<? echo URL; ?>admin/officers">Officers</a>
                                     <a href="<? echo URL; ?>admin/farmers">Farmers</a>
-                                    <a href="<? echo URL; ?>admin/vendors">Vendors</a>
+                                    <a href="<? echo URL; ?>vendor/vendors">Vendors</a>
                                 </div>
                             </div>
                         </li>

@@ -182,26 +182,6 @@ class Admin extends Controller {
         $this->view->rendor('admin/admins', $pageData);
     }
 
-    //view all vendors
-    public function vendors(){
-
-        $vendorData = $this->model->vendorList();
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'tabs' => [],
-            'vendorData' => $vendorData,
-        ];
-        
-        $this->setActivePage('userMgt');
-        $this->view->rendor('vendor/vendors', $pageData);
-    }
-    //remove a vendor
-    public function deleteVendor($id){
-        $this->model->delete($id);
-        header('location: ' . URL . 'admin/vendors');
-    }
-
     public function farmers(){
 
         // This is a dummy data object for testing 

@@ -19,6 +19,7 @@ class Admin extends Controller {
         $this->view->rendor('admin/index', $data);
     }
 
+    //retrieve all registered admins ( + routing )
     public function admins(){
 
         // This is a dummy data object for testing 

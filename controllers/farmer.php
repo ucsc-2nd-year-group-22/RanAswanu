@@ -16,6 +16,7 @@ class Farmer extends Controller{
         $this->view->rendor('farmer/index');
     }
 
+    //retrieve all registered farmers and rout to the table
     public function farmers(){
 
         // This is a dummy data object for testing 

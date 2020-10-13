@@ -15,6 +15,7 @@ class CollectingCenter extends Controller{
     public function register($arg = false) {
         $this->view->rendor('collectingcenter/register');
     }
+    
     //insert into the database 
     public function create(){
         $data = array();

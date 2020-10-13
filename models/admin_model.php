@@ -27,13 +27,4 @@ class Admin_Model extends Model {
         return;
     }
 
-    //retrieve all vendors
-    public function vendorList() {
-        $st = $this->db->prepare("SELECT id, firstname, address, tel FROM users WHERE role = :role");
-        $st->execute(array(
-            ':role' => 'vendor'
-        ));
-        return $st->fetchAll();
-    }
-
 } 

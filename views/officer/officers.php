@@ -67,3 +67,5 @@
 <?endforeach;?>
     </table>
 </div>
+
+</div>

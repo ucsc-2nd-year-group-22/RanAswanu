@@ -3,7 +3,7 @@
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >View</a></li>
-        <li><a id="tab2" href="#" >Add new Farmer +</a></li>
+        <li><a id="tab2" href="<? URL ;?>../user/register" >Add new Farmer +</a></li>
     </ul>
 </div>
 

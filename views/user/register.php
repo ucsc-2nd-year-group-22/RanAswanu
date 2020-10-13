@@ -1,5 +1,11 @@
 <div class="subHeader">
+<? if(Session::get('role')== 'admin'):?>
+    <h1>Admin & Officer Registration</h1>
+<? elseif(Session::get('role') == 'officer'): ?>
+    <h1>Farmer Registration</h1>
+<? else: ?>
     <h1>Vendor Registration</h1>
+<? endif ?>
 </div>
 
 <!-- FORM -->
@@ -10,7 +16,7 @@
             <label for="fname">First Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <input type="text" id="fname" name="firstname" placeholder="ex: Wasantha">
             </div>
         </div>
         <div class="row">
@@ -18,7 +24,7 @@
             <label for="lname">Last Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <input type="text" id="lname" name="lastname" placeholder="ex: Jayawardana">
             </div>
         </div>
         <div class="row">
@@ -26,7 +32,7 @@
             <label for="nic">NIC Number</label>
             </div>
             <div class="col-75">
-            <input type="text" id="nic" name="nic" placeholder="Your NIC number..">
+            <input type="text" id="nic" name="nic" placeholder="ex: 123456789V">
             </div>
         </div>
         <div class="row">
@@ -34,7 +40,7 @@
             <label for="tel">Telephone Number</label>
             </div>
             <div class="col-75">
-            <input type="text" id="tel" name="tel" placeholder="Your telephone number..">
+            <input type="text" id="tel" name="tel" placeholder="ex: 0123456789">
             </div>
         </div>
         <div class="row">
@@ -42,7 +48,7 @@
             <label for="email">Email Address</label>
             </div>
             <div class="col-75">
-            <input type="email" id="email" name="email" placeholder="Your email (if available)..">
+            <input type="email" id="email" name="email" placeholder="ex: wasantha@gmail.com (if available)..">
             </div>
         </div>
         <div class="row">
@@ -50,7 +56,7 @@
             <label for="dob">Birthday</label>
             </div>
             <div class="col-75">
-            <input type="date" id="dob" name="dob" placeholder="Your birthday..">
+            <input type="date" id="dob" name="dob" placeholder="Month/Date/Year ">
             </div>
         </div>
         <div class="row">
@@ -106,7 +112,7 @@
             <label for="address">Address</label>
             </div>
             <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="Enter your home address..">
+                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
             </div>
         </div>
         <div class="row">
@@ -115,14 +121,14 @@
             </div>
             <div class="col-75">
             <select id="role" name="role">
-            <?php if(Session::get('role') == 'admin'){ ?>
+            <?php if(Session::get('role') == 'admin'):?>
                 <option value="admin">Admin</option>
                 <option value="officer">Officer</option>
-            <?php }elseif(Session::get('role') == 'officer'){ ?>
+            <?php elseif(Session::get('role') == 'officer'): ?>
                 <option value="farmer">Farmer</option>
-            <?php }else{ ?>
+            <?php else: ?>
                 <option value="vendor">Vendor</option>
-            <? } ?>
+            <? endif ?>
             </select>
             </div>
         </div>
@@ -131,7 +137,7 @@
             <label for="login">User Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="login" name="login" placeholder="Enter user name..">
+            <input type="text" id="login" name="login" placeholder="ex: wasantha123">
             </div>
         </div>
         <div class="row">
@@ -139,7 +145,7 @@
             <label for="password">Last Name</label>
             </div>
             <div class="col-75">
-            <input type="password" id="password" name="password" placeholder="Enter password..">
+            <input type="password" id="password" name="password" placeholder="ex: w@$@nth!123">
             </div>
         </div>
         <div class="row">

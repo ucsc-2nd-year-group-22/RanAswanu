@@ -62,7 +62,21 @@ class User extends Controller {
 
         // TODO: Do error checking
         $this->model->create($data);
-        header('location: ' . URL . 'user/login');
+
+        switch (Session::get('role')) {
+            case 'admin':
+                header('location: ' . URL . 'admin');
+                break;
+
+            case 'officer':
+                header('location: ' . URL . 'officer/farmerMng');
+                break;
+            
+            default:
+            header('location: ' . URL . 'user/login');
+                break;
+        }
+
     }
     
     //fetch individual user

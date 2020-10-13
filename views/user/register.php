@@ -1,5 +1,11 @@
 <div class="subHeader">
+<? if(Session::get('role')== 'admin'):?>
+    <h1>Admin & Officer Registration</h1>
+<? elseif(Session::get('role') == 'officer'): ?>
+    <h1>Farmer Registration</h1>
+<? else: ?>
     <h1>Vendor Registration</h1>
+<? endif ?>
 </div>
 
 <!-- FORM -->
@@ -115,14 +121,14 @@
             </div>
             <div class="col-75">
             <select id="role" name="role">
-            <?php if(Session::get('role') == 'admin'){ ?>
+            <?php if(Session::get('role') == 'admin'):?>
                 <option value="admin">Admin</option>
                 <option value="officer">Officer</option>
-            <?php }elseif(Session::get('role') == 'officer'){ ?>
+            <?php elseif(Session::get('role') == 'officer'): ?>
                 <option value="farmer">Farmer</option>
-            <?php }else{ ?>
+            <?php else: ?>
                 <option value="vendor">Vendor</option>
-            <? } ?>
+            <? endif ?>
             </select>
             </div>
         </div>

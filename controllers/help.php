@@ -25,7 +25,7 @@ class Help extends Controller{
             'content' => "This is some random content.",
             'num' => 11332
         ];
-        $this->view->rendor('help/con', $data);
+        $this->view->rendor('help/content', $data);
     }
 
 }

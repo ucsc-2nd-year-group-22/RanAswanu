@@ -26,4 +26,27 @@ class Admin_Model extends Model {
         ));
         return;
     }
+
+    //retrieve all vendors
+    public function vendorList() {
+        $st = $this->db->prepare("SELECT id, firstname, address, tel FROM users WHERE role = :role");
+        $st->execute(array(
+            ':role' => 'vendor'
+        ));
+        return $st->fetchAll();
+    }
+    //retrieve all col centers
+    public function centerList() {
+        $st = $this->db->prepare("SELECT id, center_name, province, district FROM colcenter");
+        $st->execute();
+        return $st->fetchAll();
+    }
+
+    //delete a vendor
+    public function delete($id){
+        $st = $this->db->prepare('DELETE FROM users WHERE id = :id');
+        $st->execute(array(
+            ':id' => $id
+        ));
+    }
 } 

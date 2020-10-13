@@ -11,19 +11,42 @@ class CollectingCenter extends Controller{
         $this->view->rendor('collectingcenter/collectingcenters');
     }
 
+    //rote to the register col. center
     public function register($arg = false) {
         $this->view->rendor('collectingcenter/register');
     }
-
+    //insert into the database 
     public function create(){
         $data = array();
 
-        $data['firstname'] = $_POST['firstname'];
-        $data['lastname'] = $_POST['lastname'];
+        $data['center_name'] = $_POST['center_name'];
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['grama'] = $_POST['grama'];
 
         // TODO: Do error checking
 
         $this->model->create($data);
-        header('location: ' . URL . 'vendor');
+        header('location: ' . URL . 'admin/collectingcenters');
+    }
+
+    // route to the edit form with retrieved data
+    public function edit($id){
+        $this->view->center = $this->model->singleCenterList($id);
+        $this->view->rendor('collectingcenter/edit');
+    }
+    //update the database
+    public function update($id){
+
+        $data = array();
+
+        $data['id'] = $id;
+        $data['center_name'] = $_POST['center_name'];
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['grama'] = $_POST['grama'];
+
+        $this->model->update($data);
+        header('location: ' . URL . 'admin/collectingcenters');
     }
 }

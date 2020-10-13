@@ -4,77 +4,48 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/crop/create" method="post">
+    <form action="<?= URL;?>/collectingcenter/create" method="post">
         <div class="row">
             <div class="col-25">
-            <label for="crop_varient">Crop Varient</label>
+            <label for="center_name">Collecting Center Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="crop_varient" name="crop_varient" placeholder="Crop varient..">
+            <input type="text" id="center_name" name="center_name" placeholder="Collecting center name..">
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="crop_type">Crop Type</label>
+            <label for="province">Province</label>
             </div>
             <div class="col-75">
-            <select id="crop_type" name="crop_type">
-                <option value="type1">Type 1</option>
-                <option value="type2">Type 2</option>
-                <option value="type3">Type 3</option>
+            <select id="province" name="province">
+                <option value="province1">Province 1</option>
+                <option value="province2">Province 2</option>
+                <option value="province3">Province 3</option>
             </select>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="best_area">Best Area</label>
+            <label for="district">District</label>
             </div>
             <div class="col-75">
-            <select id="best_area" name="best_area">
-                <option value="area1">Area 1</option>
-                <option value="area2">Area 2</option>
-                <option value="area3">Area 3</option>
+            <select id="district" name="district">
+                <option value="district1">District 1</option>
+                <option value="district2">District 2</option>
+                <option value="district3">District 3</option>
             </select>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="harvest_per_land">Harvest Per Land (Kg)</label>
+            <label for="grama">Gramasewa Division</label>
             </div>
             <div class="col-75">
-            <input type="number" id="harvest_per_land" name="harvest_per_land" placeholder="Harvest per land(Kg)..">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="harvest_period">Harvest Period (Days)</label>
-            </div>
-            <div class="col-75">
-            <input type="number" id="harvest_period" name="harvest_period" placeholder="Harvest period in days">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="address">Discription</label>
-            </div>
-            <div class="col-75">
-            <textarea id="address" name="address" placeholder="Enter if any..." style="height:200px"></textarea>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="role">Role</label>
-            </div>
-            <div class="col-75">
-            <select id="role" name="role">
-            <?php if(Session::get('role') == 'admin'){ ?>
-                <option value="admin">Admin</option>
-                <option value="officer">Officer</option>
-            <?php }elseif(Session::get('role') == 'officer'){ ?>
-                <option value="farmer">Farmer</option>
-            <?php }else{ ?>
-                <option value="vendor">Vendor</option>
-            <? } ?>
+            <select id="grama" name="grama">
+                <option value="grama1">Grama 1</option>
+                <option value="grama2">Grama 2</option>
+                <option value="grama1">Grama 3</option>
             </select>
             </div>
         </div>

@@ -35,19 +35,35 @@ class User extends Controller {
         $this->view->rendor('user/register');
     }
 
-    // public function create(){
+    //instert new user in to the database
+    public function create(){
+        $data = array();
 
-    //     $data = array();
+        $data['firstname'] = $_POST['firstname'];
+        $data['lastname'] = $_POST['lastname'];
+        $data['nic'] = $_POST['nic'];
+        $data['tel'] = $_POST['tel'];
+        $data['email'] = $_POST['email'];
+        $data['dob'] = $_POST['dob'];
+        $data['sex'] = $_POST['sex'];
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['grama'] = $_POST['grama'];
+        $data['address'] = $_POST['address'];
+        $data['role'] = $_POST['role'];
+        $data['login'] = $_POST['login'];
+        $data['password'] = $_POST['password'];
 
-    //     $data['login'] = $_POST['login'];
-    //     $data['password'] = $_POST['password'];
-    //     $data['role'] = $_POST['role'];
+        if($data['role'] == 'admin'){
+            $data['isadmin'] = 1;
+        }else{
+            $data['isadmin'] = 0;
+        }
 
-    //     // TODO: Do error checking
-
-    //     $this->model->create($data);
-    //     header('location: ' . URL . 'user');
-    // }
+        // TODO: Do error checking
+        $this->model->create($data);
+        header('location: ' . URL . 'user/login');
+    }
     
     //fetch individual user
     public function edit($id){

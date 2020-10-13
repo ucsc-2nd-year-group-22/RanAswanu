@@ -59,10 +59,7 @@ class Admin extends Controller {
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New Officer',
                           'path' => 'user/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
+                        ]        
                       ],
             'cropReqData' => $cropReqData,
         ];
@@ -113,10 +110,7 @@ class Admin extends Controller {
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New Crop',
                           'path' => 'crop/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
+                        ]            
                       ],
             'cropReqData' => $cropReqData,
         ];
@@ -126,50 +120,15 @@ class Admin extends Controller {
 
     public function collectingcenters(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Dambulla",
-                'nic' => "Mathale"
-            ],
-        ];
+        $centerData = $this->model->centerList();
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New Col. Center',
-                          'path' => 'collectingcenter/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
-                      ],
-            'cropReqData' => $cropReqData,
+            'tabs' => [['label' =>'Register New Col. Center',
+                        'path' => 'collectingcenter/register'
+                        ] 
+                    ],
+            'centerData' => $centerData,
         ];
         
         $this->view->rendor('collectingcenter/collectingcenters', $pageData);
@@ -215,10 +174,7 @@ class Admin extends Controller {
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'Register New admin',
                           'path' => 'user/register'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
+                        ]           
                       ],
             'cropReqData' => $cropReqData,
         ];
@@ -226,55 +182,23 @@ class Admin extends Controller {
         $this->view->rendor('admin/admins', $pageData);
     }
 
+    //view all vendors
     public function vendors(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Nimal",
-                'nic' => "07123456789"
-            ],
-        ];
+        $vendorData = $this->model->vendorList();
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
-                      ],
-            'cropReqData' => $cropReqData,
+            'tabs' => [],
+            'vendorData' => $vendorData,
         ];
         
         $this->view->rendor('vendor/vendors', $pageData);
+    }
+    //remove a vendor
+    public function deleteVendor($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'admin/vendors');
     }
 
     public function farmers(){
@@ -309,19 +233,13 @@ class Admin extends Controller {
             [
                 'farmerId' => 412,
                 'farmerName' => "Madupala",
-                'nic' => "874568123v"
+                'nic' => "874568123v"       
             ],
         ];
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'some label',
-                          'path' => 'user/#'
-                        ],
-                        ['label' =>'some label',
-                          'path' => 'admin/#'
-                        ],            
-                      ],
+            'tabs' => [],
             'cropReqData' => $cropReqData,
         ];
         

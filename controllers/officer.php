@@ -100,39 +100,8 @@ class Officer extends Controller {
             header('location: '. URL .'user/login');
             exit;
         }
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'nic' => "874568123v"
-            ],
-        ];
+        
+        $officerData = $this->model->officerList();
 
         $pageData = [
             'role' => Session::get('role'),
@@ -140,10 +109,12 @@ class Officer extends Controller {
                           'path' => 'user/register'
                         ]        
                       ],
-            'cropReqData' => $cropReqData,
+            'officerData' => $officerData,
         ];
         
         $this->view->rendor('officer/officers', $pageData);
     }
 
 }
+
+        

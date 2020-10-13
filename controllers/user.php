@@ -85,6 +85,12 @@ class User extends Controller {
         $this->view->rendor('user/edit');
     }
 
+    public function delete($id) {
+        $this->model->delete($id);
+        if(Session::get('role')=='officer')
+        header('location: ' . URL . 'officer/farmerMng');
+    }
+
     // public function editSave($id){
 
     //     $data = array();

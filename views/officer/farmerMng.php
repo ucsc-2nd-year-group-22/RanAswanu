@@ -63,9 +63,37 @@
             </select>                
         </div>
     </div>
-</div>
 
-<div id="tab2C" class="tabContainer">
-    <h2>Add New</h2>
-   
+
+    <div class="main-table">
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Officer-ID</th>
+            <th>First Name</th>
+            <th>Last name</th>
+            <th>Action</th>
+            <th>Cotact</th>
+            <th>email</th>
+        </tr>
+    <? $i = 0; foreach($officerData as $officer) :; $i++;?>
+        <tr>
+            <td> <?= $i ?></td>
+            <td><?=$officer['id'];?> </td>
+            <td><?=$officer['firstname'];?> </td>
+            <td><?=$officer['lastname'];?> </td>
+            <td><?=$officer['nic'];?> </td>
+            <td><?=$officer['tel'];?> </td>
+            <td><?=$officer['email'];?> </td>
+
+        </tr>
+    <?endforeach;?>
+    </table>
+
+    </div>
+
+    <div id="tab2C" class="tabContainer">
+        <h2>Add New</h2>
+    </div>
+
 </div>

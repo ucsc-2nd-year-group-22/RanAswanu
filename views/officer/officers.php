@@ -23,8 +23,7 @@
                     <button type="submit">Submit</button>
                 </span>
             </form>
-            </div>
-        <div class="right">
+        </div>
     </div>
     <div class="pane3">
         <label for="filter4">Sort by</label>

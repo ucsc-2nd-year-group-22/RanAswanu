@@ -114,7 +114,7 @@ class Admin extends Controller {
                       ],
             'cropReqData' => $cropReqData,
         ];
-        
+        $this->setActivePage('crops');
         $this->view->rendor('crop/crops', $pageData);
     }
 
@@ -130,7 +130,7 @@ class Admin extends Controller {
                     ],
             'centerData' => $centerData,
         ];
-        
+        $this->setActivePage('collectingcenters');
         $this->view->rendor('collectingcenter/collectingcenters', $pageData);
     }
 
@@ -193,6 +193,7 @@ class Admin extends Controller {
             'vendorData' => $vendorData,
         ];
         
+        $this->setActivePage('userMgt');
         $this->view->rendor('vendor/vendors', $pageData);
     }
     //remove a vendor

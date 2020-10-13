@@ -13,5 +13,8 @@
 
 /* Color COdes */
     --danger: rgb(200, 78, 78);
-    --normal: rgb(182, 182, 182);
+    --warning: rgb(231, 168, 30);
+    --success: var(--main-light-green);
+    --info: rgb(23, 117, 224);
+    --gray: rgb(153, 153, 153);
 }

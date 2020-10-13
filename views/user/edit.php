@@ -1,6 +1,3 @@
-<? print_r($this->user);
-echo "<hr>" .  $this->user['firstname'];
-?>
 <!-- 
 <h1>User Edit </h1>
 <form action="<?php echo URL; ?>user/editSave/<?php echo $this->user['id']; ?>" method="post">
@@ -28,7 +25,7 @@ echo "<hr>" .  $this->user['firstname'];
 </div>
 
 <div class="main-form">
-    <form action="<?= URL;?>/user/editSave" method="post">
+    <form action="<?= URL;?>user/editSave/<?php echo $this->user['id']; ?>" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">First Name</label>
@@ -158,14 +155,14 @@ echo "<hr>" .  $this->user['firstname'];
             <input type="text" id="login" name="login" value="<?= $this->user['login']; ?>">
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
             <label for="password">Password</label>
             </div>
             <div class="col-75">
             <input type="password" id="password" name="password" placeholder="new password">
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-25">
             

@@ -108,23 +108,41 @@ class User extends Controller {
         }
     }
 
-    // public function editSave($id){
+    public function editSave($id){
 
-    //     $data = array();
-    //     $data['id'] = $id;
-    //     $data['login'] = $_POST['login'];
-    //     $data['password'] = $_POST['password'];
-    //     $data['role'] = $_POST['role'];
+        $data = array();
+        $data['firstname'] = $_POST['firstname'];
+        $data['lastname'] = $_POST['lastname'];
+        $data['nic'] = $_POST['nic'];
+        $data['tel'] = $_POST['tel'];
+        $data['email'] = $_POST['email'];
+        $data['dob'] = $_POST['dob'];
+        $data['sex'] = $_POST['sex'];
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['grama'] = $_POST['grama'];
+        $data['address'] = $_POST['address'];
+        $data['role'] = $_POST['role'];
+        $data['login'] = $_POST['login'];
+        $data['id'] = $id;
+        // $data['password'] = MD5($_POST['password']);
 
-    //     // TODO: Do error checking
+        
 
-    //     $this->model->editSave($data);
-    //     header('location: ' . URL . 'user');
-    // }
-    // public function delete($id){
-    //     $this->model->delete($id);
-    //     header('location: ' . URL . 'user');
-    // }
+        // TODO: Do error checking
+
+        $this->model->editSave($data);
+        print_r($data);
+        switch (Session::get('role')) {
+            case 'officer':
+                header('location: ' . URL . 'officer/farmerMng');
+                break;
+
+            case 'admin':
+                header('location: ' . URL . 'admin/farmers');
+                break;
+        }
+    }
 
     //route to the user/login
     public function login(){

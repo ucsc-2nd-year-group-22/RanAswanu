@@ -10,20 +10,20 @@
 <div class="filter-panel">
 
     <div class="pane1">
-        <label for="filter4">Search</label>                    
+        <!-- <label for="filter4">Search</label>                     -->
     </div>
     
     <div class="pane2">
-        <!-- panel2 -->
-        <form action="#">
-            <!-- <div class="row"> -->
-                
-                <!-- <div class="search-75"> -->
-                <input type="text" id="search" name="search" placeholder="Enter for search..">
-                <!-- </div> -->
-            <!-- </div> -->
-            <input type="submit" value="Submit">
-        </form>
+        <div class="search-container">
+            <form action="#">
+                <span class="left">
+                    <input type="text" placeholder="Search.." name="search">
+                </span>
+                <span class="right">
+                    <button type="submit">Submit</button>
+                </span>
+            </form>
+        </div>
     </div>
     <div class="pane3">
         <label for="filter4">Sort by</label>
@@ -47,20 +47,23 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Vendor-ID</th>
             <th>Vendor Name</th>
-            <th>Telephone Number</th>
-            <th>Action</th>
+            <th>Telephone</th>
+            <th>Address</th>
+            <th>View User</th>
+            <th>Remove User</th>
         </tr>
-<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<? $i = 0; foreach($vendorData as $vendor) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td><?=$vendor['firstname'];?> </td>
+            <td><?=$vendor['tel'];?> </td>
+            <td> <?=$vendor['address'];?></td>
             <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
+                <a class="mini-button normal">View</a> 
+            </td>
+            <td>
+                <a href="<?php echo URL .'admin/deleteVendor/'.$vendor['id']; ?>" class="mini-button danger">Remove</a> 
             </td>
         </tr>
 <?endforeach;?>

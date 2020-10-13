@@ -12,12 +12,25 @@ class User_Model extends Model {
         return $st->fetchAll();
     }
 
-    public function create($data){
-        $st = $this->db->prepare('INSERT INTO users (`login`, `password`, `role`) VALUES (:login, MD5(:password), :role)');
+    //register new user into the  database user table
+    public function create($data){  
+        $st = $this->db->prepare("INSERT INTO users (`firstname`, `lastname`, `login`, `password`, `role`, `isadmin`, `nic`, `tel`, `email`, `dob`, `sex`, `province`, `district`, `grama`, `address`) VALUES (:firstname, :lastname, :login, :password, :role, :isadmin, :nic, :tel, :email, :dob, :sex, :province, :district, :grama, :address)");
         $st->execute(array(
+            ':firstname' => $data['firstname'],
+            ':lastname' => $data['lastname'],
             ':login' => $data['login'],
-            ':password' => $data['password'],
-            ':role' => $data['role']
+            ':password' => MD5($data['password']),
+            ':role' => $data['role'],
+            ':isadmin' => $data['isadmin'],
+            ':nic' => $data['nic'],
+            ':tel' => $data['tel'],
+            ':email' => $data['email'],
+            ':dob' => $data['dob'],
+            ':sex' => $data['sex'],
+            ':province' => $data['province'],
+            ':district' => $data['district'],
+            ':grama' => $data['grama'],
+            ':address' => $data['address'],
         ));
     }
 

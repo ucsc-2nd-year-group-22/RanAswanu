@@ -49,4 +49,13 @@ class Admin_Model extends Model {
             ':id' => $id
         ));
     }
+
+    public function farmerList() {
+        $st = $this->db->prepare("SELECT * FROM users WHERE role = :role");
+        $st->execute(array(
+            ':role' => 'farmer'
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetchAll();
+    }
 } 

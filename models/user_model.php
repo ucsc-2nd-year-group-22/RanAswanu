@@ -35,12 +35,23 @@ class User_Model extends Model {
     }
 
     public function editSave($data){
-        $st = $this->db->prepare('UPDATE users SET `login` = :login, `password` = :password, `role` = :role WHERE id = :id');
+        $st = $this->db->prepare('UPDATE users SET `login` = :login, `firstname` = :firstname, `lastname` = :lastname, `role` = :role, `nic` = :nic, `tel` = :tel, `email` = :email, `dob` = :dob, `sex` = :sex, `province` = :province, `district` = :district, `grama` = :grama, `address` = :address WHERE `id` = :id');
         $st->execute(array(
-            ':id' => $data['id'],
+            ':firstname' => $data['firstname'],
+            ':lastname' => $data['lastname'],
             ':login' => $data['login'],
-            ':password' => MD5($data['password']),
-            ':role' => $data['role']
+            // ':password' => MD5($data['password']),
+            ':role' => $data['role'],
+            ':nic' => $data['nic'],
+            ':tel' => $data['tel'],
+            ':email' => $data['email'],
+            ':dob' => $data['dob'],
+            ':sex' => $data['sex'],
+            ':province' => $data['province'],
+            ':district' => $data['district'],
+            ':grama' => $data['grama'],
+            ':address' => $data['address'],
+            ':id' => $data['id']
         ));
     }
 
@@ -78,7 +89,7 @@ class User_Model extends Model {
 
     public function userSingleList($id){
         
-        $st = $this->db->prepare("SELECT id, login, role, isadmin FROM users WHERE id = :id");
+        $st = $this->db->prepare("SELECT * FROM users WHERE id = :id");
         $st->execute(array(
             ':id' => $id,
         ));

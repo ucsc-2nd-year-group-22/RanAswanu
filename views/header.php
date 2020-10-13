@@ -27,9 +27,9 @@
                             <div class="dropdown">
                                 <a href="#" class="<? View::getActivePage('userMgt'); ?>">User Management</a>
                                 <div class="dropdown-content">
-                                <a href="<? echo URL; ?>admin/admins">Admins</a>
+                                    <a href="<? echo URL; ?>admin/admins">Admins</a>
                                     <a href="<? echo URL; ?>officer/officers">Officers</a>
-                                    <a href="<? echo URL; ?>farmer/farmers">Farmers</a>
+                                    <a href="<? echo URL; ?>farmer/farmerMng">Farmers</a>
                                     <a href="<? echo URL; ?>vendor/vendors">Vendors</a>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
 
                         <li><a href="<? echo URL; ?>officer/cropReq" class="<? View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
                         <li><a href="<? echo URL; ?>officer/damageClaims" class="<? View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
-                        <li><a href="<? echo URL; ?>officer/farmerMng" class="<? View::getActivePage('farmerMng'); ?>">Farmers</a></li>
+                        <li><a href="<? echo URL; ?>farmer/farmerMng" class="<? View::getActivePage('farmerMng'); ?>">Farmers</a></li>
                         <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
                         <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
 

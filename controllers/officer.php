@@ -75,12 +75,6 @@ class Officer extends Controller {
         $this->view->rendor('officer/damageClaims', $data);
     }
 
-    public function farmerMng() {
-        $data = [];
-        $this->setActivePage('farmerMng');
-        $this->view->rendor('officer/farmerMng', $data);
-    }
-
     public function reports() {
         $data = [];
         $this->setActivePage('reports');

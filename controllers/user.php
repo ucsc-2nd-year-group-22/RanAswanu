@@ -69,7 +69,7 @@ class User extends Controller {
                 break;
 
             case 'officer':
-                header('location: ' . URL . 'officer/farmerMng');
+                header('location: ' . URL . 'farmer/farmerMng');
                 break;
             
             default:
@@ -99,7 +99,7 @@ class User extends Controller {
         $this->model->delete($id);
         switch (Session::get('role')) {
             case 'officer':
-                header('location: ' . URL . 'officer/farmerMng');
+                header('location: ' . URL . 'farmer/farmerMng');
                 break;
 
             case 'admin':
@@ -135,7 +135,7 @@ class User extends Controller {
         print_r($data);
         switch (Session::get('role')) {
             case 'officer':
-                header('location: ' . URL . 'officer/farmerMng');
+                header('location: ' . URL . 'farmer/farmerMng');
                 break;
 
             case 'admin':

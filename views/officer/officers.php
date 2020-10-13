@@ -62,10 +62,10 @@
             <td> <?=$officer['tel'];?></td>
             <td> <?=$officer['address'];?></td>
             <td>
-                <button class="mini-button normal">View</button>
+                <a href="<?php echo URL .'user/edit/'.$officer['id']; ?>" class="mini-button normal">View</a>
             </td>
             <td>
-            <button class="mini-button danger">Remove</button> 
+                <button class="mini-button danger">Remove</button> 
             </td>
         </tr>
 <?endforeach;?>

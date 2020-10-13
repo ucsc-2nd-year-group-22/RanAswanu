@@ -168,7 +168,7 @@
             
             </div>
             <div class="col-75">
-            <input type="submit" value="Register">
+            <input type="submit" value="Update">
             </div>
         </div>
     </form>

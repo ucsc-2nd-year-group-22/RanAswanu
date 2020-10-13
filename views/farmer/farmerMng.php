@@ -172,7 +172,7 @@
                 <td><?=$officer['nic'];?> </td>
                 <td><?=$officer['tel'];?> </td>
                 <td><?=$officer['email'];?> </td>
-                <td><button class="mini-button " onclick="return confirm('Are you sure you want to delete this user?');" href="<? echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</button></td>
+                <td><button class="mini-button warning" onclick="return confirm('Are you sure you want to edit this user?');" href="<? echo URL . '/user/edit/' . $officer['id'] ;?>">Edit</button></td>
             </tr>
         <?endforeach;?>
         </table>

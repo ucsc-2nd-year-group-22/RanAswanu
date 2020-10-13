@@ -207,7 +207,7 @@ class Admin extends Controller {
         $farmerData = $this->model->farmerList();
         $data['officerData'] = $farmerData;
         $this->setActivePage('farmerMng');
-        $this->view->rendor('officer/farmerMng', $data);
+        $this->view->rendor('farmer/farmerMng', $data);
         // // This is a dummy data object for testing 
         // $cropReqData = [
         //     [

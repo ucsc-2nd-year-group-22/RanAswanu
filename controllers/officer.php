@@ -76,19 +76,12 @@ class Officer extends Controller {
     }
 
     public function farmerMng() {
-        // print_r($this->model->officerList());
-        
+       
         $farmerData = $this->model->farmerList();
         $data['officerData'] = $farmerData;
         $this->setActivePage('farmerMng');
         $this->view->rendor('farmer/farmerMng', $data);
     }
-
-    // public function officerList() {
-    //     $centerData = $this->model->centerList();
-
-    // }
-
 
     public function reports() {
         $data = [];

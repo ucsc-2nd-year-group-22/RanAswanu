@@ -57,7 +57,7 @@ class Admin extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New Officer',
+            'tabs' => [ ['label' =>'+ Register New Officer',
                           'path' => 'user/register'
                         ]        
                       ],
@@ -108,7 +108,7 @@ class Admin extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New Crop',
+            'tabs' => [ ['label' =>'+ Register New Crop',
                           'path' => 'crop/register'
                         ]            
                       ],
@@ -124,7 +124,7 @@ class Admin extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [['label' =>'Register New Col. Center',
+            'tabs' => [['label' =>'+ Register New Col. Center',
                         'path' => 'collectingcenter/register'
                         ] 
                     ],
@@ -172,7 +172,7 @@ class Admin extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New admin',
+            'tabs' => [ ['label' =>'+ Register New admin',
                           'path' => 'user/register'
                         ]           
                       ],

@@ -81,7 +81,7 @@ class Officer extends Controller {
         $farmerData = $this->model->farmerList();
         $data['officerData'] = $farmerData;
         $this->setActivePage('farmerMng');
-        $this->view->rendor('officer/farmerMng', $data);
+        $this->view->rendor('farmer/farmerMng', $data);
     }
 
     // public function officerList() {

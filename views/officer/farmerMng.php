@@ -8,7 +8,7 @@
 </div>
 
 <div id="tab1C" class="tabContainer">
-    <h2>Accepted</h2>
+    <h2>Registered Farmers</h2>
     <div class="filter-panel">
         <div class="pane1">
             <div class="left">

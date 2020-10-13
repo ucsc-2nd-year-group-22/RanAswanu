@@ -8,10 +8,10 @@ class Officer_Model extends Model {
 
 
 //retrieve all vendors
-    public function officerList() {
+    public function farmerList() {
         $st = $this->db->prepare("SELECT * FROM users WHERE role = :role");
         $st->execute(array(
-            ':role' => 'officer'
+            ':role' => 'farmer'
         ));
         // print_r($st->fetchAll());
         return $st->fetchAll();

@@ -28,7 +28,7 @@
                                 <a href="#" class="<? View::getActivePage('userMgt'); ?>">User Management</a>
                                 <div class="dropdown-content">
                                 <a href="<? echo URL; ?>admin/admins">Admins</a>
-                                    <a href="<? echo URL; ?>admin/officers">Officers</a>
+                                    <a href="<? echo URL; ?>officer/officers">Officers</a>
                                     <a href="<? echo URL; ?>admin/farmers">Farmers</a>
                                     <a href="<? echo URL; ?>vendor/vendors">Vendors</a>
                                 </div>

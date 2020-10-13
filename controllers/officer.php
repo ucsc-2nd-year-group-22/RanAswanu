@@ -97,4 +97,59 @@ class Officer extends Controller {
         $this->view->rendor('officer/register');
     }
 
+    //view list of officers by the admin
+    public function officers(){
+
+        //only for admin can execute this
+        if( Session::get('loggedIn') == false || Session::get('role') != 'admin') {
+            Session::destroy();
+            header('location: '. URL .'user/login');
+            exit;
+        }
+        // This is a dummy data object for testing 
+        $cropReqData = [
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'nic' => "874568123v"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'nic' => "874568123v"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'nic' => "874568123v"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'nic' => "874568123v"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'nic' => "874568123v"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'nic' => "874568123v"
+            ],
+        ];
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [ ['label' =>'+ Register New Officer',
+                          'path' => 'user/register'
+                        ]        
+                      ],
+            'cropReqData' => $cropReqData,
+        ];
+        
+        $this->view->rendor('officer/officers', $pageData);
+    }
+
 }

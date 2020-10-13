@@ -5,8 +5,7 @@ class Vendor extends Controller{
     function __construct() {
         parent::__construct(); 
         Session::init();
-        $logged = Session::get('loggedIn');
-        if($logged == false || Session::get('role') != 'admin') {
+        if( Session::get('loggedIn') == false || Session::get('role') != 'admin') {
             Session::destroy();
             header('location: '. URL .'user/login');
             exit;

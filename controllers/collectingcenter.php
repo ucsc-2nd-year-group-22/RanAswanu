@@ -47,6 +47,23 @@ class CollectingCenter extends Controller{
         $data['grama'] = $_POST['grama'];
 
         $this->model->update($data);
-        header('location: ' . URL . 'admin/collectingcenters');
+        header('location: ' . URL . 'collectingcenter/collectingcenters');
+    }
+
+    //list of collecting centers to view
+    public function collectingcenters(){
+
+        $centerData = $this->model->centers();
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [['label' =>'+ Register New Col. Center',
+                        'path' => 'collectingcenter/register'
+                        ] 
+                    ],
+            'centerData' => $centerData,
+        ];
+        $this->setActivePage('collectingcenters');
+        $this->view->rendor('collectingcenter/collectingcenters', $pageData);
     }
 }

@@ -67,4 +67,10 @@ class CollectingCenter extends Controller{
         $this->setActivePage('collectingcenters');
         $this->view->rendor('collectingcenter/collectingcenters', $pageData);
     }
+
+    //remove a col. center
+    public function delete($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'collectingcenter/collectingcenters');
+    }
 }

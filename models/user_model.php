@@ -53,6 +53,7 @@ class User_Model extends Model {
             ':address' => $data['address'],
             ':id' => $data['id']
         ));
+        // print_r($st);
     }
 
     public function delete($id){

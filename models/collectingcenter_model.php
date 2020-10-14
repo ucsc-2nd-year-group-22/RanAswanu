@@ -44,4 +44,12 @@ class CollectingCenter_Model extends Model {
             ':grama' => $data['grama']
         ));
     }
+
+    //delete a col. center
+    public function delete($id){
+        $st = $this->db->prepare('DELETE FROM colcenter WHERE id = :id');
+        $st->execute(array(
+            ':id' => $id
+        ));
+    }
 } 

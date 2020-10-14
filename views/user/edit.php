@@ -1,18 +1,3 @@
-<!-- 
-<h1>User Edit </h1>
-<form action="<?php echo URL; ?>user/editSave/<?php echo $this->user['id']; ?>" method="post">
-    <label for="login">Login</label><input type="text" name="login" value="<?php echo $this->user['login']; ?>"><br>
-    <label for="password">Password</label><input type="text" name="password"><br>
-    <label for="login">Role</label>
-        <select name="role" id="role">
-            <option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>admin</option>
-            <option value="farmer" <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>>Farmer</option>
-            <option value="officer" <?php if($this->user['role'] == 'officer') echo 'selected'; ?>>Officer</option>
-        </select><br>
-    <label for="submit">&nbsp</label>
-    <input type="submit" name="submit" id="submitBtn">
-</form> -->
-
 
 <div class="subHeader">
 <? if(Session::get('role')== 'admin'):?>

@@ -28,7 +28,7 @@ class CollectingCenter extends Controller{
         // TODO: Do error checking
 
         $this->model->create($data);
-        header('location: ' . URL . 'admin/collectingcenters');
+        header('location: ' . URL . 'collectingcenter/collectingcenters');
     }
 
     // route to the edit form with retrieved data

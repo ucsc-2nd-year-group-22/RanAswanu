@@ -24,39 +24,7 @@ class Admin extends Controller {
     //retrieve all registered admins ( + routing )
     public function admins(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-        ];
+        $adminData = $this->model->adminList();
 
         $pageData = [
             'role' => Session::get('role'),
@@ -64,7 +32,7 @@ class Admin extends Controller {
                           'path' => 'user/register'
                         ]           
                       ],
-            'cropReqData' => $cropReqData,
+            'adminData' => $adminData,
         ];
         
         $this->view->rendor('admin/admins', $pageData);

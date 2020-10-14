@@ -49,15 +49,15 @@
             <th>#</th>
             <th>Admin-ID</th>
             <th>Admin Name</th>
-            <th>NIC Number</th>
+            <th>Address</th>
             <th>Action</th>
         </tr>
-<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<? $i = 0; foreach($adminData as $admin) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td><?=$admin['id'];?> </td>
+            <td><?=$admin['firstname'];?> </td>
+            <td> <?=$admin['address'];?></td>
             <td>
                 <button class="mini-button normal">Accept</button> 
                 <button class="mini-button danger">Reject</button> 

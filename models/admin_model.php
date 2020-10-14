@@ -6,6 +6,15 @@ class Admin_Model extends Model {
         parent::__construct();
     }
 
+    //retrieve all admins
+    public function adminList() {
+        $st = $this->db->prepare("SELECT id, firstname, address, tel FROM users WHERE role = :role");
+        $st->execute(array(
+            ':role' => 'admin'
+        ));
+        return $st->fetchAll();
+    }
+
     //update role to officer
     public function toofficer($data){
         

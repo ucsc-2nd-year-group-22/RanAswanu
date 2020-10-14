@@ -50,7 +50,8 @@
             <th>Admin-ID</th>
             <th>Admin Name</th>
             <th>Address</th>
-            <th>Action</th>
+            <th>View</th>
+            <th>Remove</th>
         </tr>
 <? $i = 0; foreach($adminData as $admin) :; $i++;?>
         <tr>
@@ -59,8 +60,10 @@
             <td><?=$admin['firstname'];?> </td>
             <td> <?=$admin['address'];?></td>
             <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
+                <a class="mini-button normal">View</a>
+            </td>
+            <td>
+                <a class="mini-button danger">Remove</a>
             </td>
         </tr>
 <?endforeach;?>

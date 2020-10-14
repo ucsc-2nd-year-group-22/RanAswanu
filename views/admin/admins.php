@@ -14,16 +14,16 @@
     </div>
     
     <div class="pane2">
-        <!-- panel2 -->
-        <form action="#">
-            <!-- <div class="row"> -->
-                
-                <!-- <div class="search-75"> -->
-                <input type="text" id="search" name="search" placeholder="Enter for search..">
-                <!-- </div> -->
-            <!-- </div> -->
-            <input type="submit" value="Submit">
-        </form>
+        <div class="search-container">
+            <form action="#">
+                <span class="left">
+                    <input type="text" placeholder="Search.." name="search">
+                </span>
+                <span class="right">
+                    <button type="submit">Submit</button>
+                </span>
+            </form>
+        </div>
     </div>
     <div class="pane3">
         <label for="filter4">Sort by</label>

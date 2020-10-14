@@ -60,7 +60,7 @@
             <td><?=$vendor['tel'];?> </td>
             <td> <?=$vendor['address'];?></td>
             <td>
-                <a class="mini-button normal">View</a> 
+                <a href="<?php echo URL .'user/edit/'.$vendor['id']; ?>" class="mini-button normal">View</a> 
             </td>
             <td>
                 <a href="<?php echo URL .'vendor/delete/'.$vendor['id']; ?>" class="mini-button danger">Remove</a> 

@@ -124,6 +124,7 @@
             <?php if(Session::get('role') == 'admin'):?>
                 <option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
                 <option value="officer" <?php if($this->user['role'] == 'officer') echo 'selected'; ?>>Officer</option>
+                <option value="vendor" <?php if($this->user['role'] == 'vendor') echo 'selected'; ?>>Vendor</option>
             <?php elseif(Session::get('role') == 'officer'): ?>
                 <option value="farmer <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>">Farmer</option>
             <?php else: ?>
@@ -153,7 +154,11 @@
             
             </div>
             <div class="col-75">
-            <input type="submit" value="Update">
+                <?php if($this->user['role'] == 'vendor' && Session::get('role') == 'vendor'):?>
+                    <input type="submit" value="Update">
+                <?php elseif($this->user['role'] != 'vendor'): ?>
+                    <input type="submit" value="Update">
+                <? endif ?>
             </div>
         </div>
     </form>

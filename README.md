@@ -25,13 +25,9 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 
 - admin
     - index => (Useless)
-    - officers
-    - createOfficers (empty)
     - crops
     - collectingcenters [must be collectingCenters]
-    - admins
-    - vendors
-    - deleteVendor
+    - admins [ retrieve all registered admins ( + routing)]
     - toofficer [must be toOfficer]
     - toadmin [must be toAdmin]
 
@@ -66,8 +62,9 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 - vendor
     - index
     - register
-    - create
     - viewVendor
+    - delete
+    - vendors
 - farmer
     - farmerMng
 

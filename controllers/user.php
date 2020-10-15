@@ -29,7 +29,7 @@ class User extends Controller {
         $this->view->rendor('user/index');
     }
 
-    //rout to the register user
+    //route to the register user
     public function register(){
         $this->destroyActivePage();
         $this->view->rendor('user/register');

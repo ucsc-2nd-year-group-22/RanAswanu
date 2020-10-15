@@ -103,7 +103,7 @@ class User extends Controller {
                 break;
 
             case 'admin':
-                header('location: ' . URL . 'admin/farmers');
+                header('location: ' . URL . 'admin');
                 break;
         }
     }

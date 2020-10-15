@@ -65,7 +65,7 @@
                 <a href="<?php echo URL .'user/edit/'.$officer['id']; ?>" class="mini-button normal">View</a>
             </td>
             <td>
-                <button class="mini-button danger">Remove</button> 
+                <a href="<?php echo URL .'user/delete/'.$officer['id']; ?>" class="mini-button danger">Remove</a> 
             </td>
         </tr>
 <?endforeach;?>

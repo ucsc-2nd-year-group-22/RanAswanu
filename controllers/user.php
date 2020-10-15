@@ -133,15 +133,15 @@ class User extends Controller {
 
         $this->model->editSave($data);
         print_r($data);
-        switch (Session::get('role')) {
-            case 'officer':
-                header('location: ' . URL . 'farmer/farmerMng');
-                break;
+        // switch (Session::get('role')) {
+        //     case 'officer':
+        //         header('location: ' . URL . 'farmer/farmerMng');
+        //         break;
 
-            case 'admin':
-                header('location: ' . URL . 'admin/farmers');
-                break;
-        }
+        //     case 'admin':
+        //         header('location: ' . URL . 'admin/farmers');
+        //         break;
+        // }
     }
 
     //route to the user/login

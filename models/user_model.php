@@ -36,8 +36,21 @@ class User_Model extends Model {
 
     //update the user data in the database 
     public function editSave($data){
-        $st = $this->db->prepare('UPDATE users SET `login` = :login, `firstname` = :firstname, `lastname` = :lastname, `role` = :role, `nic` = :nic, `tel` = :tel, `email` = :email, `dob` = :dob, `sex` = :sex, `province` = :province, `district` = :district, `grama` = :grama, `address` = :address WHERE `id` = :id');
-        $st->execute(array(
+        // print_r($data);
+        $stmt = $this->db->prepare('UPDATE users 
+        SET `login` = :login, 
+        `firstname` = :firstname, 
+        `lastname` = :lastname, 
+        `role` = :role, `nic` = :nic, 
+        `tel` = :tel, `email` = :email, 
+        `dob` = :dob, `sex` = :sex, 
+        `province` = :province, 
+        `district` = :district, 
+        `grama` = :grama, 
+        `address` = :address 
+        WHERE `id` = :id');
+
+        $stmt->execute(array(
             ':firstname' => $data['firstname'],
             ':lastname' => $data['lastname'],
             ':login' => $data['login'],
@@ -53,7 +66,6 @@ class User_Model extends Model {
             ':address' => $data['address'],
             ':id' => $data['id']
         ));
-        // print_r($st);
     }
 
     public function delete($id){

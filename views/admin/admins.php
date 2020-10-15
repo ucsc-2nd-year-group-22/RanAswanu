@@ -60,10 +60,10 @@
             <td><?=$admin['firstname'];?> </td>
             <td> <?=$admin['address'];?></td>
             <td>
-                <a class="mini-button normal">View</a>
+                <a href="<?php echo URL .'user/edit/'.$admin['id']; ?>" class="mini-button normal">View</a>
             </td>
             <td>
-                <a class="mini-button danger">Remove</a>
+                <a href="<?php echo URL .'vendor/delete/'.$admin['id']; ?>" class="mini-button danger">Remove</a>
             </td>
         </tr>
 <?endforeach;?>

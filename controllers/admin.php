@@ -21,189 +21,22 @@ class Admin extends Controller {
         $this->view->rendor('admin/index', $data);
     }
 
-    public function officers(){
-
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'nic' => "874568123v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'nic' => "874568123v"
-            ],
-        ];
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New Officer',
-                          'path' => 'user/register'
-                        ]        
-                      ],
-            'cropReqData' => $cropReqData,
-        ];
-        
-        $this->view->rendor('officer/officers', $pageData);
-    }
-    public function createofficer(){
-
-    }
-
-    public function crops(){
-
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-        ];
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New Crop',
-                          'path' => 'crop/register'
-                        ]            
-                      ],
-            'cropReqData' => $cropReqData,
-        ];
-        
-        $this->view->rendor('crop/crops', $pageData);
-    }
-
-    public function collectingcenters(){
-
-        $centerData = $this->model->centerList();
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'tabs' => [['label' =>'Register New Col. Center',
-                        'path' => 'collectingcenter/register'
-                        ] 
-                    ],
-            'centerData' => $centerData,
-        ];
-        
-        $this->view->rendor('collectingcenter/collectingcenters', $pageData);
-    }
-
+    //retrieve all registered admins ( + routing )
     public function admins(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Kamal",
-                'nic' => "864753012v"
-            ],
-        ];
+        $adminData = $this->model->adminList();
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'Register New admin',
+            'tabs' => [ ['label' =>'+ Register New admin',
                           'path' => 'user/register'
                         ]           
                       ],
-            'cropReqData' => $cropReqData,
+            'adminData' => $adminData,
         ];
         
         $this->view->rendor('admin/admins', $pageData);
     }
-
-    //view all vendors
-    public function vendors(){
-
-        $vendorData = $this->model->vendorList();
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'tabs' => [],
-            'vendorData' => $vendorData,
-        ];
-        
-        $this->view->rendor('vendor/vendors', $pageData);
-    }
-    //remove a vendor
-    public function deleteVendor($id){
-        $this->model->delete($id);
-        header('location: ' . URL . 'admin/vendors');
-    }
-
-    
 
     //change role to officer
     public function toofficer($id){

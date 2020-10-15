@@ -25,6 +25,14 @@ class CollectingCenter_Model extends Model {
         ));
         return $st->fetch();
     }
+    
+    //retrieve all col centers
+    public function centers() {
+        $st = $this->db->prepare("SELECT id, center_name, province, district FROM colcenter");
+        $st->execute();
+        return $st->fetchAll();
+    }
+
     //update col. center
     public function update($data){
         $st = $this->db->prepare('UPDATE colcenter SET `center_name` = :center_name, `province` = :province, `district` = :district, `grama` = :grama WHERE id = :id');
@@ -34,6 +42,14 @@ class CollectingCenter_Model extends Model {
             ':province' => $data['province'],
             ':district' => $data['district'],
             ':grama' => $data['grama']
+        ));
+    }
+
+    //delete a col. center
+    public function delete($id){
+        $st = $this->db->prepare('DELETE FROM colcenter WHERE id = :id');
+        $st->execute(array(
+            ':id' => $id
         ));
     }
 } 

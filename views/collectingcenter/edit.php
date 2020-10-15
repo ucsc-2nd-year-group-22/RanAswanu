@@ -1,5 +1,5 @@
 <div class="subHeader">
-    <h1>Collecting Center Registration</h1>
+    <h1>Update Collecting Center</h1>
 </div>
 
 <!-- FORM -->

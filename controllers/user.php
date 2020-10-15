@@ -132,14 +132,14 @@ class User extends Controller {
         // TODO: Do error checking
 
         $this->model->editSave($data);
-        print_r($data);
+        // print_r($data);
         switch (Session::get('role')) {
             case 'officer':
                 header('location: ' . URL . 'farmer/farmerMng');
                 break;
 
             case 'admin':
-                header('location: ' . URL . 'admin/farmers');
+                header('location: ' . URL . 'admin/index');
                 break;
         }
     }

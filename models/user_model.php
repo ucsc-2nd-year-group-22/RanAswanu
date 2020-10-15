@@ -34,6 +34,7 @@ class User_Model extends Model {
         ));
     }
 
+    //update the user data in the database 
     public function editSave($data){
         $st = $this->db->prepare('UPDATE users SET `login` = :login, `firstname` = :firstname, `lastname` = :lastname, `role` = :role, `nic` = :nic, `tel` = :tel, `email` = :email, `dob` = :dob, `sex` = :sex, `province` = :province, `district` = :district, `grama` = :grama, `address` = :address WHERE `id` = :id');
         $st->execute(array(
@@ -53,6 +54,7 @@ class User_Model extends Model {
             ':address' => $data['address'],
             ':id' => $data['id']
         ));
+        // print_r($st);
     }
 
     public function delete($id){
@@ -62,6 +64,7 @@ class User_Model extends Model {
         ));
     }
 
+    //make user logged into the system
     public function loginto() {
         $st = $this->db->prepare("SELECT id, role, isadmin FROM users WHERE login= :login AND password = MD5(:password) ");
         $st->execute(array(
@@ -87,6 +90,7 @@ class User_Model extends Model {
         
     }
 
+    //fetching a single user
     public function userSingleList($id){
         
         $st = $this->db->prepare("SELECT * FROM users WHERE id = :id");

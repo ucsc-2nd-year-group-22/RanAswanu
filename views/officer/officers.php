@@ -23,8 +23,7 @@
                     <button type="submit">Submit</button>
                 </span>
             </form>
-            </div>
-        <div class="right">
+        </div>
     </div>
     <div class="pane3">
         <label for="filter4">Sort by</label>
@@ -50,18 +49,23 @@
             <th>#</th>
             <th>Officer-ID</th>
             <th>Officer Name</th>
-            <th>NIC Number</th>
-            <th>Action</th>
+            <th>Telephone Number</th>
+            <th>Address</th>
+            <th>View</th>
+            <th>Remove</th>
         </tr>
-<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<? $i = 0; foreach($officerData as $officer) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td><?=$officer['id'];?> </td>
+            <td><?=$officer['firstname'];?> </td>
+            <td> <?=$officer['tel'];?></td>
+            <td> <?=$officer['address'];?></td>
             <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
+                <a href="<?php echo URL .'user/edit/'.$officer['id']; ?>" class="mini-button normal">View</a>
+            </td>
+            <td>
+                <button class="mini-button danger">Remove</button> 
             </td>
         </tr>
 <?endforeach;?>

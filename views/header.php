@@ -25,17 +25,17 @@
                     <?php if(Session::get('role') == 'admin'): ?>
                         <li>
                             <div class="dropdown">
-                                <a href="#">User Management</a>
+                                <a href="#" class="<? View::getActivePage('userMgt'); ?>">User Management</a>
                                 <div class="dropdown-content">
-                                <a href="<? echo URL; ?>admin/admins">Admins</a>
-                                    <a href="<? echo URL; ?>admin/officers">Officers</a>
+                                    <a href="<? echo URL; ?>admin/admins">Admins</a>
+                                    <a href="<? echo URL; ?>officer/officers">Officers</a>
                                     <a href="<? echo URL; ?>farmer/farmerMng">Farmers</a>
-                                    <a href="<? echo URL; ?>admin/vendors">Vendors</a>
+                                    <a href="<? echo URL; ?>vendor/vendors">Vendors</a>
                                 </div>
                             </div>
                         </li>
-                        <li><a href="<? echo URL; ?>admin/crops">Crop Management</a></li>
-                        <li><a href="<? echo URL; ?>admin/collectingcenters">Collection Centers</a></li>
+                        <li><a href="<? echo URL; ?>crop/crops" class="<? View::getActivePage('crops'); ?>">Crop Management</a></li>
+                        <li><a href="<? echo URL; ?>collectingcenter/collectingcenters" class="<? View::getActivePage('collectingcenters'); ?>">Collection Centers</a></li>
                         <?php if(Session::get('isadmin') == 1): ?>
                             <li>
                                 <div class="dropdown">

@@ -14,16 +14,16 @@
     </div>
     
     <div class="pane2">
-        <!-- panel2 -->
-        <form action="#">
-            <!-- <div class="row"> -->
-                
-                <!-- <div class="search-75"> -->
-                <input type="text" id="search" name="search" placeholder="Enter for search..">
-                <!-- </div> -->
-            <!-- </div> -->
-            <input type="submit" value="Submit">
-        </form>
+        <div class="search-container">
+            <form action="#">
+                <span class="left">
+                    <input type="text" placeholder="Search.." name="search">
+                </span>
+                <span class="right">
+                    <button type="submit">Submit</button>
+                </span>
+            </form>
+        </div>
     </div>
     <div class="pane3">
         <label for="filter4">Sort by</label>
@@ -49,18 +49,21 @@
             <th>#</th>
             <th>Admin-ID</th>
             <th>Admin Name</th>
-            <th>NIC Number</th>
-            <th>Action</th>
+            <th>Address</th>
+            <th>View</th>
+            <th>Remove</th>
         </tr>
-<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<? $i = 0; foreach($adminData as $admin) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td><?=$admin['id'];?> </td>
+            <td><?=$admin['firstname'];?> </td>
+            <td> <?=$admin['address'];?></td>
             <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
+                <a class="mini-button normal">View</a>
+            </td>
+            <td>
+                <a class="mini-button danger">Remove</a>
             </td>
         </tr>
 <?endforeach;?>

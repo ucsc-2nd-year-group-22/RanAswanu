@@ -91,4 +91,30 @@ class Officer extends Controller {
         $this->view->rendor('officer/register');
     }
 
+    //view list of officers by the admin
+    public function officers(){
+
+        //only for admin can execute this
+        if( Session::get('loggedIn') == false || Session::get('role') != 'admin') {
+            Session::destroy();
+            header('location: '. URL .'user/login');
+            exit;
+        }
+        
+        $officerData = $this->model->officerList();
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [ ['label' =>'+ Register New Officer',
+                          'path' => 'user/register'
+                        ]        
+                      ],
+            'officerData' => $officerData,
+        ];
+        
+        $this->view->rendor('officer/officers', $pageData);
+    }
+
 }
+
+        

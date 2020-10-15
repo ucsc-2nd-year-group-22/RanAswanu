@@ -1,18 +1,3 @@
-<!-- 
-<h1>User Edit </h1>
-<form action="<?php echo URL; ?>user/editSave/<?php echo $this->user['id']; ?>" method="post">
-    <label for="login">Login</label><input type="text" name="login" value="<?php echo $this->user['login']; ?>"><br>
-    <label for="password">Password</label><input type="text" name="password"><br>
-    <label for="login">Role</label>
-        <select name="role" id="role">
-            <option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>admin</option>
-            <option value="farmer" <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>>Farmer</option>
-            <option value="officer" <?php if($this->user['role'] == 'officer') echo 'selected'; ?>>Officer</option>
-        </select><br>
-    <label for="submit">&nbsp</label>
-    <input type="submit" name="submit" id="submitBtn">
-</form> -->
-
 
 <div class="subHeader">
 <? if(Session::get('role')== 'admin'):?>
@@ -79,11 +64,11 @@
             <label for="sex">Gender</label>
             </div>
             <div class="col-75">
-            <select id="sex" name="sex">
-                <option value="none">None</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
+                <select id="sex" name="sex">
+                    <option value="none" <?php if($this->user['sex'] == 'none') echo 'selected'; ?>>None</option>
+                    <option value="male" <?php if($this->user['sex'] == 'male') echo 'selected'; ?>>Male</option>
+                    <option value="female" <?php if($this->user['sex'] == 'female') echo 'selected'; ?>>Female</option>
+                </select>
             </div>
         </div>
         <div class="row">
@@ -92,9 +77,9 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="province1">Province 1</option>
-                <option value="province2">Province 2</option>
-                <option value="province3">Province 3</option>
+                <option value="province1" <?php if($this->user['province'] == 'province1') echo 'selected'; ?>>Province 1</option>
+                <option value="province2" <?php if($this->user['province'] == 'province2') echo 'selected'; ?>>Province 2</option>
+                <option value="province3" <?php if($this->user['province'] == 'province3') echo 'selected'; ?>>Province 3</option>
             </select>
             </div>
         </div>
@@ -104,9 +89,9 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <option value="district1">District 1</option>
-                <option value="district2">District 2</option>
-                <option value="district3">District 3</option>
+                <option value="district1" <?php if($this->user['district'] == 'district1') echo 'selected'; ?>>District 1</option>
+                <option value="district2" <?php if($this->user['district'] == 'district2') echo 'selected'; ?>>District 2</option>
+                <option value="district3" <?php if($this->user['district'] == 'district3') echo 'selected'; ?>>District 3</option>
             </select>
             </div>
         </div>
@@ -116,9 +101,9 @@
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
-                <option value="grama1">Grama 1</option>
-                <option value="grama2">Grama 2</option>
-                <option value="grama1">Grama 3</option>
+                <option value="grama1" <?php if($this->user['grama'] == 'grama1') echo 'selected'; ?>>Grama 1</option>
+                <option value="grama2" <?php if($this->user['grama'] == 'grama2') echo 'selected'; ?>>Grama 2</option>
+                <option value="grama1" <?php if($this->user['grama'] == 'grama3') echo 'selected'; ?>>Grama 3</option>
             </select>
             </div>
         </div>
@@ -137,12 +122,13 @@
             <div class="col-75">
             <select id="role" name="role">
             <?php if(Session::get('role') == 'admin'):?>
-                <option value="admin">Admin</option>
-                <option value="officer">Officer</option>
+                <option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
+                <option value="officer" <?php if($this->user['role'] == 'officer') echo 'selected'; ?>>Officer</option>
+                <option value="vendor" <?php if($this->user['role'] == 'vendor') echo 'selected'; ?>>Vendor</option>
             <?php elseif(Session::get('role') == 'officer'): ?>
-                <option value="farmer">Farmer</option>
+                <option value="farmer <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>">Farmer</option>
             <?php else: ?>
-                <option value="vendor">Vendor</option>
+                <option value="vendor" <?php if($this->user['role'] == 'vendor') echo 'selected'; ?>>Vendor</option>
             <? endif ?>
             </select>
             </div>
@@ -168,7 +154,11 @@
             
             </div>
             <div class="col-75">
-            <input type="submit" value="Register">
+                <?php if($this->user['role'] == 'vendor' && Session::get('role') == 'vendor'):?>
+                    <input type="submit" value="Update">
+                <?php elseif($this->user['role'] != 'vendor'): ?>
+                    <input type="submit" value="Update">
+                <? endif ?>
             </div>
         </div>
     </form>

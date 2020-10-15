@@ -15,6 +15,7 @@ class CollectingCenter extends Controller{
     public function register($arg = false) {
         $this->view->rendor('collectingcenter/register');
     }
+    
     //insert into the database 
     public function create(){
         $data = array();
@@ -27,7 +28,7 @@ class CollectingCenter extends Controller{
         // TODO: Do error checking
 
         $this->model->create($data);
-        header('location: ' . URL . 'admin/collectingcenters');
+        header('location: ' . URL . 'collectingcenter/collectingcenters');
     }
 
     // route to the edit form with retrieved data
@@ -47,6 +48,29 @@ class CollectingCenter extends Controller{
         $data['grama'] = $_POST['grama'];
 
         $this->model->update($data);
-        header('location: ' . URL . 'admin/collectingcenters');
+        header('location: ' . URL . 'collectingcenter/collectingcenters');
+    }
+
+    //list of collecting centers to view
+    public function collectingcenters(){
+
+        $centerData = $this->model->centers();
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [['label' =>'+ Register New Col. Center',
+                        'path' => 'collectingcenter/register'
+                        ] 
+                    ],
+            'centerData' => $centerData,
+        ];
+        $this->setActivePage('collectingcenters');
+        $this->view->rendor('collectingcenter/collectingcenters', $pageData);
+    }
+
+    //remove a col. center
+    public function delete($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'collectingcenter/collectingcenters');
     }
 }

@@ -36,39 +36,7 @@ class Crop extends Controller{
     //route to view all crops registered in the system
     public function crops(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-        ];
+        $cropData = $this->model->centers();
 
         $pageData = [
             'role' => Session::get('role'),
@@ -76,7 +44,7 @@ class Crop extends Controller{
                           'path' => 'crop/register'
                         ]            
                       ],
-            'cropReqData' => $cropReqData,
+            'cropReqData' => $cropData,
         ];
         $this->setActivePage('crops');
         $this->view->rendor('crop/crops', $pageData);

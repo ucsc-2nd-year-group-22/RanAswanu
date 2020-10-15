@@ -59,9 +59,9 @@
 <? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td><?=$cropReqItem['crop_varient'];?> </td>
+            <td><?=$cropReqItem['harvest_per_land'];?> </td>
+            <td> <?=$cropReqItem['harvest_period'];?></td>
             <td>
                 <button class="mini-button normal">Accept</button> 
                 <button class="mini-button danger">Reject</button> 

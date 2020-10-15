@@ -30,7 +30,7 @@ class Crop_Model extends Model {
     
     //retrieve all col centers
     public function centers() {
-        $st = $this->db->prepare("SELECT id, center_name, province, district FROM colcenter");
+        $st = $this->db->prepare("SELECT * FROM crops");
         $st->execute();
         return $st->fetchAll();
     }

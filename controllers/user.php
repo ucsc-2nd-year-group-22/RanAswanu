@@ -159,6 +159,5 @@ class User extends Controller {
         Session::destroy();
         // Session::unset('loggedIn');
         header('location: '. URL .'user/login');
-        exit;
     }
 }  

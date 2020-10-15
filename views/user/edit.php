@@ -126,7 +126,7 @@
                 <option value="officer" <?php if($this->user['role'] == 'officer') echo 'selected'; ?>>Officer</option>
                 <option value="vendor" <?php if($this->user['role'] == 'vendor') echo 'selected'; ?>>Vendor</option>
             <?php elseif(Session::get('role') == 'officer'): ?>
-                <option value="farmer <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>">Farmer</option>
+                <option value="farmer" <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>>Farmer</option>
             <?php else: ?>
                 <option value="vendor" <?php if($this->user['role'] == 'vendor') echo 'selected'; ?>>Vendor</option>
             <? endif ?>

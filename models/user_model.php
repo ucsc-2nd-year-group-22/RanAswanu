@@ -41,7 +41,6 @@ class User_Model extends Model {
             ':firstname' => $data['firstname'],
             ':lastname' => $data['lastname'],
             ':login' => $data['login'],
-            // ':password' => MD5($data['password']),
             ':role' => $data['role'],
             ':nic' => $data['nic'],
             ':tel' => $data['tel'],

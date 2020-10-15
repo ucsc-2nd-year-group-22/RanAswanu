@@ -3,9 +3,11 @@
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >View</a></li>
+        <?php if(Session::get('isadmin') != 1): ?>
         <li><a id="tab2" href="#" >Edit</a></li>
         <li><a id="tab3" href="#" >Delete</a></li>
         <li><a id="tab4" href="<? URL ;?>../user/register" >Add new Farmer +</a></li>
+        <?php endif; ?>
     </ul>
 </div>
 

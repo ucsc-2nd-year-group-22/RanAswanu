@@ -93,7 +93,25 @@ class User_Model extends Model {
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             Session::set('isadmin', $data['isadmin']);
-            header('location: ../user');
+            echo Session::get('role');
+            switch (Session::get('role')) {
+                case 'officer':
+                    header('location: ' . URL . 'officer/cropReq');
+                    break;
+    
+                case 'admin':
+                    header('location: ' . URL . 'admin/admins');
+                    break;
+                
+                case 'farmer':
+                    header('location: ' . URL . 'farmer/');
+                    break;
+
+                case 'vendor':
+                    header('location: ' . URL . 'vendor');
+                    break;
+            }
+
         } else {
             // show error
             header('location: login');

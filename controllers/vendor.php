@@ -5,11 +5,7 @@ class Vendor extends Controller{
     function __construct() {
         parent::__construct(); 
         Session::init();
-        if( Session::get('loggedIn') == false || Session::get('role') != 'admin') {
-            Session::destroy();
-            header('location: '. URL .'user/login');
-            exit;
-        }
+
     }
 
     function index() {

@@ -55,27 +55,10 @@
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="address">Discription</label>
+            <label for="discription">Discription</label>
             </div>
             <div class="col-75">
-            <textarea id="address" name="address" placeholder="Enter if any..." style="height:200px"></textarea>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="role">Role</label>
-            </div>
-            <div class="col-75">
-            <select id="role" name="role">
-            <?php if(Session::get('role') == 'admin'){ ?>
-                <option value="admin">Admin</option>
-                <option value="officer">Officer</option>
-            <?php }elseif(Session::get('role') == 'officer'){ ?>
-                <option value="farmer">Farmer</option>
-            <?php }else{ ?>
-                <option value="vendor">Vendor</option>
-            <? } ?>
-            </select>
+            <textarea id="discription" name="discription" placeholder="Enter if any..." style="height:200px"></textarea>
             </div>
         </div>
         <div class="row">

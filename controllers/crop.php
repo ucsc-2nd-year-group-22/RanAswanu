@@ -11,20 +11,26 @@ class Crop extends Controller{
         $this->view->rendor('crop/crops');
     }
 
+    //route to the crop register form
     public function register($arg = false) {
         $this->view->rendor('crop/register');
     }
 
+    //get the post data and create the crop in the database
     public function create(){
         $data = array();
 
-        $data['firstname'] = $_POST['firstname'];
-        $data['lastname'] = $_POST['lastname'];
+        $data['crop_varient'] = $_POST['crop_varient'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['best_area'] = $_POST['best_area'];
+        $data['harvest_per_land'] = $_POST['harvest_per_land'];
+        $data['harvest_period'] = $_POST['harvest_period'];
+        $data['discription'] = $_POST['discription'];
 
         // TODO: Do error checking
 
         $this->model->create($data);
-        header('location: ' . URL . 'vendor');
+        header('location: ' . URL . 'crop/crops');
     }
 
     //route to view all crops registered in the system

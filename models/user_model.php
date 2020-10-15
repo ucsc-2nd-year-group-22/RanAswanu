@@ -35,12 +35,15 @@ class User_Model extends Model {
     }
 
     public function editSave($data){
-        print_r($data);
+        // print_r($data);
         // $st = $this->db->prepare('UPDATE users SET  `firstname` = :firstname, `lastname` = :lastname, `role` = :role, `nic` = :nic, `tel` = :tel, `email` = :email, `dob` = :dob, `sex` = :sex, `province` = :province, `district` = :district, `grama` = :grama, `address` = :address WHERE `id` = :id');
         $stmt = $this->db->prepare('UPDATE users SET 
                 `firstname` = :firstname, 
                 `lastname` = :lastname, 
-                `login` = :login 
+                `login` = :login,
+                `nic` = :nic,
+                `tel` = :tel,
+                `email` = :email
             WHERE `id` = :id');
         // $st->execute(array(
         //     ':firstname' => $data['firstname'],
@@ -63,7 +66,10 @@ class User_Model extends Model {
             ':firstname' => $data['firstname'],
             ':lastname' => $data['lastname'],
             ':id' => $data['id'],
-            ':login' => $data['login']
+            ':login' => $data['login'],
+            ':nic' => $data['nic'],
+            ':tel' => $data['tel'],
+            ':email' => $data['email']
         ));
     }
 

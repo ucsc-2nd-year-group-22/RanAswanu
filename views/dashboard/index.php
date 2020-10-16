@@ -48,7 +48,7 @@ window.onload = function() {
             title: "Harvest Per Land"
         },
         data: [{
-            type: "column",
+            type: "line",
             yValueFormatString: "#,##0.## tonnes",
             dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
         }]

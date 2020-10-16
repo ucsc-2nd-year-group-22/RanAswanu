@@ -29,7 +29,7 @@ class Crop_Model extends Model {
     }
     
     //retrieve all col centers
-    public function centers() {
+    public function crops() {
         $st = $this->db->prepare("SELECT * FROM crops");
         $st->execute();
         return $st->fetchAll();

@@ -36,7 +36,7 @@ class Crop extends Controller{
     //route to view all crops registered in the system
     public function crops(){
 
-        $cropData = $this->model->centers();
+        $cropData = $this->model->crops();
 
         $pageData = [
             'role' => Session::get('role'),

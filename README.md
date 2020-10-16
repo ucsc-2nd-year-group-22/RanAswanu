@@ -85,6 +85,9 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
     - index
     - register
     - create
+    - crops
+    - edit
+    - update
 
 ## Models
 
@@ -122,6 +125,13 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 - vendor_model
     - __contructor only
 
+- crop_model
+    - create
+    - singleCropList
+    - crops
+    - update
+    - delete
+
 
 ## Views
 - header.php
@@ -154,5 +164,10 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
     - index.php
     - register.php
     - view.php
+
+- crop
+    - crops.php
+    - edit.php
+    - register.php
 
 *random text*

@@ -20,8 +20,8 @@ class Crop_Model extends Model {
     }
 
     //getting single col. center
-    public function singleCenterList($id){
-        $st = $this->db->prepare("SELECT id, center_name, province, district, grama FROM colcenter WHERE id = :id");
+    public function singleCropList($id){
+        $st = $this->db->prepare("SELECT * FROM crops WHERE id = :id");
         $st->execute(array(
             ':id' => $id,
         ));
@@ -35,15 +35,18 @@ class Crop_Model extends Model {
         return $st->fetchAll();
     }
 
+    
     //update col. center
     public function update($data){
-        $st = $this->db->prepare('UPDATE colcenter SET `center_name` = :center_name, `province` = :province, `district` = :district, `grama` = :grama WHERE id = :id');
+        $st = $this->db->prepare('UPDATE crops SET `crop_varient` = :crop_varient, `crop_type` = :crop_type, `best_area` = :best_area, `harvest_per_land` = :harvest_per_land, `harvest_period` = :harvest_period, `discription` = :discription WHERE id = :id');
         $st->execute(array(
             ':id' => $data['id'],
-            ':center_name' => $data['center_name'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':grama' => $data['grama']
+            ':crop_varient' => $data['crop_varient'],
+            ':crop_type' => $data['crop_type'],
+            ':best_area' => $data['best_area'],
+            ':harvest_per_land' => $data['harvest_per_land'],
+            ':harvest_period' => $data['harvest_period'],
+            ':discription' => $data['discription'],
         ));
     }
 

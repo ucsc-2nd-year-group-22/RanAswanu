@@ -44,9 +44,32 @@ class Crop extends Controller{
                           'path' => 'crop/register'
                         ]            
                       ],
-            'cropReqData' => $cropData,
+            'cropData' => $cropData,
         ];
         $this->setActivePage('crops');
         $this->view->rendor('crop/crops', $pageData);
+    }
+
+    // route to the edit form with retrieved data
+    public function edit($id){
+        $this->view->crop = $this->model->singleCropList($id);
+        $this->view->rendor('crop/edit');
+    }
+
+    //update the database
+    public function update($id){
+
+        $data = array();
+
+        $data['id'] = $id;
+        $data['crop_varient'] = $_POST['crop_varient'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['best_area'] = $_POST['best_area'];
+        $data['harvest_per_land'] = $_POST['harvest_per_land'];
+        $data['harvest_period'] = $_POST['harvest_period'];
+        $data['discription'] = $_POST['discription'];
+
+        $this->model->update($data);
+        header('location: ' . URL . 'crop/crops');
     }
 }

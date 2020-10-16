@@ -36,6 +36,7 @@ class CollectingCenter extends Controller{
         $this->view->center = $this->model->singleCenterList($id);
         $this->view->rendor('collectingcenter/edit');
     }
+    
     //update the database
     public function update($id){
 

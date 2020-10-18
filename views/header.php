@@ -78,8 +78,8 @@
                 </ul>
             </nav>
             <? if(Session::get('loggedIn') == true): ?>
-            <div class="dropdown" >
-                <button class="header-popup-btn">My Profile</button>
+            <div class="dropdown " >
+                <button class="btn header-popup-btn">My Profile</button>
                 <div class="dropdown-content right-menu">
                     <a href="#">Profile</a>
                     <a href="#">Setting</a>

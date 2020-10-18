@@ -197,10 +197,10 @@
         </tr>
 <? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
         <tr>
-            <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['cropType'];?></td>
+            <td> <?php= $i ?></td>
+            <td><?php=$cropReqItem['farmerId'];?> </td>
+            <td><?php=$cropReqItem['farmerName'];?> </td>
+            <td> <?php=$cropReqItem['cropType'];?></td>
             <td>
                 <button class="mini-button normal">Accept</button> 
                 <button class="mini-button danger">Reject</button> 
@@ -209,7 +209,7 @@
 <?endforeach;?>
     </table>
 </div>
-<?
+<?php
 if(isset($this->js))
     echo '<script src="'.URL.'views/'.$this->js.'.js"></script>';
     ?>

@@ -10,7 +10,7 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?php = URL;?>/user/create" method="post">
+    <form action ="<?php=URL;?>/user/create" method="post">
         <div class="row">
             <div class="col-25">
             <label for="fname">First Name</label>

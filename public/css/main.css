@@ -202,18 +202,31 @@
 
     nav ul {
         all:initial;
+        display: block;
+        padding: 5px 0;
     }
     
     nav ul li {
         all:initial;
+        
     }
     
     header .nav-profile ul li{
         all:unset;
     }
     
-    header li a{
-        all:initial;
+    header nav li a{
+        /* all:initial; */
+        display: block;
+        padding: 1em .5em;
+        text-align: center;
+        border:none;
     } 
+
+    nav li .active {
+        background-color: var(--main-light-green);
+        border:none;
+        color: #fff;
+    }
 
 }

@@ -21,7 +21,7 @@ class Vendor extends Controller{
     }
 
     //view all vendors
-    public function vendors(){
+    public function manageVendors(){
 
         $vendorData = $this->model->vendorList();
 
@@ -32,13 +32,59 @@ class Vendor extends Controller{
         ];
         
         $this->setActivePage('userMgt');
-        $this->view->rendor('vendor/vendors', $pageData);
+        $this->view->rendor('vendor/manageVendors', $pageData);
     }
 
     //remove a vendor
     public function delete($id){
         $this->model->delete($id);
-        header('location: ' . URL . 'vendor/vendors');
+        header('location: ' . URL . 'vendor/manageVendors');
     }
+
+    public function sellingReq(){
+       $cropReqData = [
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'cropType' => "Carrot"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'cropType' => "Beans"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'cropType' => "Carrot"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'cropType' => "Beans"
+            ],
+            [
+                'farmerId' => 443,
+                'farmerName' => "Nimal",
+                'cropType' => "Carrot"
+            ],
+            [
+                'farmerId' => 412,
+                'farmerName' => "Madupala",
+                'cropType' => "Beans"
+            ],
+        ];
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => ['Crop Requests', 'other-tab'],
+            'cropReqData' => $cropReqData,
+        ];
+        // Session::set('activePage', 'cropReq');
+        //$this->view->js = 'officer/js/default';  //why do we need this JS file
+        $this->setActivePage('sellingReq');
+        $this->view->rendor('vendor/sellingReq', $pageData);
+    }
+
 
 }

@@ -2,15 +2,15 @@
 
 <div class="user-tabs">
     <ul>
-    <? foreach($tabs as $tab) :?>
-        <li><a href="<?php echo URL . $tab['path']?>"><?=$tab['label']?></a></li>
-    <? endforeach; ?>
+    <?php  foreach($tabs as $tab) :?>
+        <li><a href="<?php echo URL . $tab['path']?>"><?php =$tab['label']?></a></li>
+    <?php  endforeach; ?>
     </ul>
 </div>
 <div class="filter-panel">
 
     <div class="pane1">
-        <label for="filter4">Search</label>                    
+        <label for="filter4" >Search</label>                    
     </div>
 
     <div class="pane2">
@@ -54,13 +54,13 @@
             <th>View</th>
             <th>Remove</th>
         </tr>
-<? $i = 0; foreach($officerData as $officer) :; $i++;?>
+<?php  $i = 0; foreach($officerData as $officer) :; $i++;?>
         <tr>
-            <td> <?= $i ?></td>
-            <td><?=$officer['id'];?> </td>
-            <td><?=$officer['firstname'];?> </td>
-            <td> <?=$officer['tel'];?></td>
-            <td> <?=$officer['address'];?></td>
+            <td> <?php = $i ?></td>
+            <td><?php =$officer['id'];?> </td>
+            <td><?php =$officer['firstname'];?> </td>
+            <td> <?php =$officer['tel'];?></td>
+            <td> <?php =$officer['address'];?></td>
             <td>
                 <a href="<?php echo URL .'user/edit/'.$officer['id']; ?>" class="mini-button normal">View</a>
             </td>
@@ -68,7 +68,7 @@
                 <button class="mini-button danger">Remove</button> 
             </td>
         </tr>
-<?endforeach;?>
+<?php endforeach;?>
     </table>
 </div>
 

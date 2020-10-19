@@ -1,4 +1,4 @@
-<h1>Crop Requests</h1>
+<h1>Farmer's Selling Requests</h1>
 
 <div class="user-tabs">
     <ul>
@@ -202,15 +202,17 @@
             <td><?php=$cropReqItem['farmerName'];?> </td>
             <td> <?php=$cropReqItem['cropType'];?></td>
             <td>
-             
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button>
+                <button class="mini-button normal">Offer</button> 
+                <button class="mini-button normal">View Profile</button>
+                <button class="mini-button normal">Other crops</button>  
             </td>
         </tr>
 <?php endforeach;?>
     </table>
 </div>
+
+
 <?php
 if(isset($this->js))
-    echo '<script src="'.URL.'views/'.$this->js.'.js"></script>';
+    echo '<script src="'.URL.'views/'.$this->js.'.js"></script>'; // want to now what happens here
     ?>

@@ -8,14 +8,7 @@ class Vendor extends Controller{
 
     }
 
-    function index() {
-        $this->view->rendor('vendor/index');
-    }
-
-    public function register($arg = false) {
-        $this->view->rendor('vendor/register');
-    }
-
+  
     public function viewVendor(){
         $this->view->rendor('vendor/view');
     }
@@ -40,6 +33,8 @@ class Vendor extends Controller{
         $this->model->delete($id);
         header('location: ' . URL . 'vendor/manageVendors');
     }
+
+
 
     public function sellingReq(){
        $cropReqData = [
@@ -85,6 +80,20 @@ class Vendor extends Controller{
         $this->setActivePage('sellingReq');
         $this->view->rendor('vendor/sellingReq', $pageData);
     }
+
+
+    function placeaOffer(){
+        $this->view->rendor('vendor/placeaOffer');
+    }
+
+      function index() {
+        $this->view->rendor('vendor/index');
+    }
+
+    public function register($arg = false) {
+        $this->view->rendor('vendor/register');
+    }
+
 
 
 }

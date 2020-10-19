@@ -29,7 +29,7 @@
 </div>
 
 
-<?php
-if(isset($this->js))
-    echo '<script src="'.URL.'views/'.$this->js.'.js"></script>'; // want to now what happens here
+<?php 
+//if(isset($this->js))
+ //   echo '<script src="'.URL.'views/'.$this->js.'.js"></script>'; // want to now what happens here
     ?>

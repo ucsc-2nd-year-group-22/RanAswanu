@@ -86,6 +86,10 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/placeaOffer');
     }
 
+    function viewFarmer(){
+        $this->view->rendor('vendor/viewFarmer');
+    }
+
       function index() {
         $this->view->rendor('vendor/index');
     }

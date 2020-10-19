@@ -36,6 +36,16 @@ class Vendor extends Controller{
 
 
 
+    
+    public function register($arg = false) {
+        $this->view->rendor('vendor/register');
+    }
+
+    function index() {
+        $this->view->rendor('vendor/index');
+    }
+
+
     public function sellingReq(){
        $cropReqData = [
             [
@@ -87,17 +97,14 @@ class Vendor extends Controller{
     }
 
     function viewFarmer(){
-        $this->view->rendor('vendor/viewFarmer');
+
+       // $farmerdata = arrray('name'=>'kamal','telephone'=>'0713568802','email'=>'project@gmail.com','gender'=>'Male', 'Address'=>'261,gallroad,kaluthara.');
+        $this->view->rendor('vendor/viewFarmer',$farmerdata);
     }
 
-      function index() {
-        $this->view->rendor('vendor/index');
+    function otherCrops(){
+        $this->view->rendor('vendor/viewOthercrop');
     }
-
-    public function register($arg = false) {
-        $this->view->rendor('vendor/register');
-    }
-
 
 
 }

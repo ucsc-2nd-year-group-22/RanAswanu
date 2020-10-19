@@ -1,3 +1,5 @@
+<!-- this is for edit vendors, no use of role Vendor itself -->
+
 <h1>Manage Vendors</h1>
 
 <div class="user-tabs">

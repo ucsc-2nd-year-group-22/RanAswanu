@@ -16,13 +16,6 @@
 
 <div class="row">
     <div class="col-25">
-    <label for="fname">First Name :</label>
-    </div>
-    <br>
-</div>  
-
-<div class="row">
-    <div class="col-25">
     <label for="fname">Email :</label>
     </div>
     <br>

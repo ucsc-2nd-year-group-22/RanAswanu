@@ -2,7 +2,7 @@
        
 
 <div class="main-form">
-    <form action="/action_page.php"> 	
+    <form action="<?= URL;?>/farmer/cropReq" method="post">	
         <div class="row">
             <div class="col-25">
             <label for="login">Username</label>
@@ -61,6 +61,25 @@
                 <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
             </div>
         </div>  
+
+        <div class="row">
+            <div class="col-25">
+			    <label for="areasize">Expect area size to cultivate</label>
+			</div>	
+				  
+		    <div class="col-75">
+                <input type="text" placeholder="ex: 2 Acres" name="asize">
+			</div>
+        </div>
+        
+        <div class="row">
+            <div class="col-25">
+            <label for="dmgdate">Expect Date To Harvest</label>
+            </div>
+            <div class="col-75">
+            <input type="date" id="dmgdate" name="dmgdate" placeholder="Month/Date/Year ">
+            </div>
+        </div>
         
         <div class="row">                                                                             
             <div class="col-25">
@@ -79,15 +98,6 @@
         </div>
 				
 			
-		<div class="row">
-            <div class="col-25">
-			    <label for="areasize">Expect area size to cultivate</label>
-			</div>	
-				  
-		    <div class="col-75">
-                <input type="text" placeholder="Enter area size as Acres" name="asize">
-			</div>
-		</div>
 
         <div class="row">
             <div class="col-25">
@@ -123,17 +133,6 @@
 
         </div>   
 
-    
-        <div class="row">
-            <div class="col-25">
-            <label for="dmgdate">Expect Date To Harvest</label>
-            </div>
-            <div class="col-75">
-            <input type="date" id="dmgdate" name="dmgdate" placeholder="Month/Date/Year ">
-            </div>
-        </div>
-				  
-
 
         <div class="row">
             <div class="col-25"> 
@@ -141,7 +140,7 @@
             </div>
 
             <div class="col-75">
-                <textarea id="otherdetails" name="otherdetails" placeholder="Other details" style="height:200px "></textarea>
+                <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details " style="height:200px "></textarea>
             </div>
         </div>
 				

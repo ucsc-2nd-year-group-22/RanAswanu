@@ -14,4 +14,11 @@ class Farmer extends Controller {
         $this->setActivePage('farmerMng');
         $this->view->rendor('farmer/farmerMng', $data);
     }
+
+   
+
+    public function damageclaim($arg = false) {
+        $this->view->rendor('farmer/damageclaim');
+    }
+
 }

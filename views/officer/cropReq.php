@@ -2,214 +2,77 @@
 
 <div class="user-tabs">
     <ul>
-        <li><a id="tab1" href="#" class="active-tab" >All</a></li>
-        <li><a id="tab2" href="#" >Accepted</a></li>
-        <li><a id="tab3" href="#" >Rejected</a></li>
+        <li><a id="tab1" href="#" class="active-tab" >Action Need</a></li>
+        <li><a id="tab2" href="#" ><i class="fas fa-check-circle"></i>  Accepted</a></li>
+        <li><a id="tab3" href="#" ><i class="fas fa-times-circle"></i> Rejected</a></li>
     </ul>
 </div>
 
-
 <div id="tab1C" class="tabContainer">
-    <h2>All</h2>
-    <div class="filter-panel">
-        <div class="pane1">
-            <div class="left">
-                <label for="radio">Sort by</label>
-            </div>
-            <div class="right">
-                <ul>
-                    <li>
-                        <label class="container">Acending
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="container">Decending
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>                    
-            </div>
-        </div>
-        <div class="pane2">
-            <div class="search-container">
-                <form action="#">
-                    <span class="left">
-                        <input type="text" placeholder="Search.." name="search">
-                    </span>
-                    <span class="right">
-                        <button type="submit">Submit</button>
-                    </span>
-                </form>
-                </div>
-            <div class="right">
-
-            </div>
-        </div>
-        <div class="pane3">
-            <label for="filter4">Sort by</label>
-            <select id="filter4" name="filter4">
-                <option value="australia">Date</option>
-                <option value="canada">Amount</option>
-                <option value="usa">Time</option>
-            </select>                    
-        </div>
-        <div class="pane4"> 
-            <label for="filter5">Search by</label>
-            <select id="filter5" name="filter5">
-                <option value="australia">Crop</option>
-                <option value="canada">Area</option>
-                <option value="usa">Officer</option>
-            </select>                
-        </div>
+    <div class="main-table">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Farmer</th>
+                <th>Crop</th>
+                <th>Harvest Period</th>
+                <th>Area</th>
+                <th>Expected harvest</th>
+                <th>Demand status</th>
+                <th>Take Action</th>
+                <th></th>
+            </tr>
+    <?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+            <tr>
+                <td> <?=  $i ?></td>
+                <td><?= $cropReqItem['farmer'];?></a> <a href="#"> <i class="fas fa-phone-square icon-color"></i> </a> </td>
+                <td><?= $cropReqItem['crop'];?> </td>
+                <td> <?= $cropReqItem['period'];?></td>
+                <td> <?= $cropReqItem['area'];?></td>
+                <td> <?= $cropReqItem['harvest'];?></td>
+                <td> <?= $cropReqItem['demand'];?></td>
+                <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
+                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>
+                
+            </tr>
+    <?php endforeach;?>
+        </table>
     </div>
 </div>
 
 <div id="tab2C" class="tabContainer">
-    <h2>Accepted</h2>
-    <div class="filter-panel">
-        <div class="pane1">
-            <div class="left">
-                <label for="radio">Sort by</label>
-            </div>
-            <div class="right">
-                <ul>
-                    <li>
-                        <label class="container">Acending
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="container">Decending
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>                    
-            </div>
-        </div>
-        <div class="pane2">
-            <div class="search-container">
-                <form action="#">
-                    <span class="left">
-                        <input type="text" placeholder="Search.." name="search">
-                    </span>
-                    <span class="right">
-                        <button type="submit">Submit</button>
-                    </span>
-                </form>
-                </div>
-            <div class="right">
-
-            </div>
-        </div>
-        <div class="pane3">
-            <label for="filter4">Sort by</label>
-            <select id="filter4" name="filter4">
-                <option value="australia">Date</option>
-                <option value="canada">Amount</option>
-                <option value="usa">Time</option>
-            </select>                    
-        </div>
-        <div class="pane4"> 
-            <label for="filter5">Search by</label>
-            <select id="filter5" name="filter5">
-                <option value="australia">Crop</option>
-                <option value="canada">Area</option>
-                <option value="usa">Officer</option>
-            </select>                
-        </div>
+    <div class="main-table">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Farmer</th>
+                <th>Crop</th>
+                <th>Harvest Period</th>
+                <th>Area</th>
+                <th>Expected harvest</th>
+                <th>Demand status</th>
+                <th>Date/Time</th>
+            </tr>
+    <?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+            <tr>
+                <td> <?=  $i ?></td>
+                <td><?= $cropReqItem['farmer'];?></a> <a href="#"> <i class="fas fa-phone-square icon-color"></i> </a> </td>
+                <td><?= $cropReqItem['crop'];?> </td>
+                <td> <?= $cropReqItem['period'];?></td>
+                <td> <?= $cropReqItem['area'];?></td>
+                <td> <?= $cropReqItem['harvest'];?></td>
+                <td> <?= $cropReqItem['demand'];?></td>
+                <td> <?= $cropReqItem['dateTime'];?></td>                              
+            </tr>
+    <?php endforeach;?>
+        </table>
     </div>
 </div>
+
 
 <div id="tab3C" class="tabContainer">
-    <h2>Rejected</h2>
-    <div class="filter-panel">
-        <div class="pane1">
-            <div class="left">
-                <label for="radio">Sort by</label>
-            </div>
-            <div class="right">
-                <ul>
-                    <li>
-                        <label class="container">Acending
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="container">Decending
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>                    
-            </div>
-        </div>
-        <div class="pane2">
-            <div class="search-container">
-                <form action="#">
-                    <span class="left">
-                        <input type="text" placeholder="Search.." name="search">
-                    </span>
-                    <span class="right">
-                        <button type="submit">Submit</button>
-                    </span>
-                </form>
-                </div>
-            <div class="right">
-
-            </div>
-        </div>
-        <div class="pane3">
-            <label for="filter4">Sort by</label>
-            <select id="filter4" name="filter4">
-                <option value="australia">Date</option>
-                <option value="canada">Amount</option>
-                <option value="usa">Time</option>
-            </select>                    
-        </div>
-        <div class="pane4"> 
-            <label for="filter5">Search by</label>
-            <select id="filter5" name="filter5">
-                <option value="australia">Crop</option>
-                <option value="canada">Area</option>
-                <option value="usa">Officer</option>
-            </select>                
-        </div>
+    <div class="banner">
+        <h4> No rejected crop requests found</h4>
+        <h1><i class="far fa-times-circle icon-color"></i><h1>
     </div>
 </div>
-
-
-
-
-<div class="main-table">
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Farmer-ID</th>
-            <th>Farmer Name</th>
-            <th>Crop Type</th>
-            <th>Action</th>
-        </tr>
-<?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
-        <tr>
-            <td> <?=  $i ?></td>
-            <td><?= $cropReqItem['farmerId'];?> </td>
-            <td><?= $cropReqItem['farmerName'];?> </td>
-            <td> <?= $cropReqItem['cropType'];?></td>
-            <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
-            </td>
-        </tr>
-<?php endforeach;?>
-    </table>
-</div>
-<?php
-if(isset($this->js))
-    echo '<script src="'.URL.'views/'.$this->js.'.js"></script>';
-    ?>

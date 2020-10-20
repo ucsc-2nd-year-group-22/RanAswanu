@@ -5,7 +5,7 @@
         <li><a id="tab1" href="#" class="active-tab" >View</a></li>
         <li><a id="tab2" href="#" >Edit</a></li>
         <li><a id="tab3" href="#" >Delete</a></li>
-        <li><a id="tab4" href="<? URL ;?>../user/register" >Add new Farmer +</a></li>
+        <li><a id="tab4" href="<?php URL ;?>../user/register" >Add new Farmer +</a></li>
     </ul>
 </div>
 
@@ -76,17 +76,17 @@
                     <th>Cotact</th>
                     <th>email</th>
                 </tr>
-            <? $i = 0; foreach($officerData as $officer) :; $i++;?>
+            <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
                 <tr>
-                    <td> <?= $i ?></td>
-                    <td><?=$officer['id'];?> </td>
-                    <td><?=$officer['firstname'];?> </td>
-                    <td><?=$officer['lastname'];?> </td>
-                    <td><?=$officer['nic'];?> </td>
-                    <td><?=$officer['tel'];?> </td>
-                    <td><?=$officer['email'];?> </td>
+                    <td> <?=  $i ?></td>
+                    <td><?= $officer['id'];?> </td>
+                    <td><?= $officer['firstname'];?> </td>
+                    <td><?= $officer['lastname'];?> </td>
+                    <td><?= $officer['nic'];?> </td>
+                    <td><?= $officer['tel'];?> </td>
+                    <td><?= $officer['email'];?> </td>
                 </tr>
-            <?endforeach;?>
+            <?php endforeach;?>
             </table>
         </div>
     </div>
@@ -163,18 +163,18 @@
                 <th>email</th>
                 <th>Action</th>
             </tr>
-        <? $i = 0; foreach($officerData as $officer) :; $i++;?>
+        <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
             <tr>
-                <td> <?= $i ?></td>
-                <td><?=$officer['id'];?> </td>
-                <td><?=$officer['firstname'];?> </td>
-                <td><?=$officer['lastname'];?> </td>
-                <td><?=$officer['nic'];?> </td>
-                <td><?=$officer['tel'];?> </td>
-                <td><?=$officer['email'];?> </td>
-                <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<? echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>
+                <td> <?=  $i ?></td>
+                <td><?= $officer['id'];?> </td>
+                <td><?= $officer['firstname'];?> </td>
+                <td><?= $officer['lastname'];?> </td>
+                <td><?= $officer['nic'];?> </td>
+                <td><?= $officer['tel'];?> </td>
+                <td><?= $officer['email'];?> </td>
+                <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>
             </tr>
-        <?endforeach;?>
+        <?php endforeach;?>
         </table>
     </div>
 
@@ -250,18 +250,18 @@
                 <th>email</th>
                 <th>Action</th>
             </tr>
-        <? $i = 0; foreach($officerData as $officer) :; $i++;?>
+        <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
             <tr>
-                <td> <?= $i ?></td>
-                <td><?=$officer['id'];?> </td>
-                <td><?=$officer['firstname'];?> </td>
-                <td><?=$officer['lastname'];?> </td>
-                <td><?=$officer['nic'];?> </td>
-                <td><?=$officer['tel'];?> </td>
-                <td><?=$officer['email'];?> </td>
-                <td><a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<? echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a></td>
+                <td> <?=  $i ?></td>
+                <td><?= $officer['id'];?> </td>
+                <td><?= $officer['firstname'];?> </td>
+                <td><?= $officer['lastname'];?> </td>
+                <td><?= $officer['nic'];?> </td>
+                <td><?= $officer['tel'];?> </td>
+                <td><?= $officer['email'];?> </td>
+                <td><a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a></td>
             </tr>
-        <?endforeach;?>
+        <?php endforeach;?>
         </table>
     </div>
 

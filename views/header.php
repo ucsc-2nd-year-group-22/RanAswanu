@@ -16,26 +16,26 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                    <? if(Session::get('loggedIn')==false): ?>
-                    <li><a href="<?php echo URL; ?>" class="<? View::getActivePage('homepage'); ?>">Home</a></li>
-                    <? endif; ?>
-                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<? View::getActivePage('dashboard'); ?>">Dashboard</a></li>
+                    <?php if(Session::get('loggedIn')==false): ?>
+                    <li><a href="<?php echo URL; ?>" class="<?php View::getActivePage('homepage'); ?>">Home</a></li>
+                    <?php endif; ?>
+                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<?php View::getActivePage('dashboard'); ?>">Dashboard</a></li>
 
                     <!-- Admin configurations for the navigation bar =============================================================== -->
                     <?php if(Session::get('role') == 'admin'): ?>
                         <li>
                             <div class="dropdown">
-                                <a href="#" class="<? View::getActivePage('userMgt'); ?>">User Management</a>
+                                <a href="#" class="<?php View::getActivePage('userMgt'); ?>">User Management</a>
                                 <div class="dropdown-content">
-                                    <a href="<? echo URL; ?>admin/admins">Admins</a>
-                                    <a href="<? echo URL; ?>officer/officers">Officers</a>
-                                    <a href="<? echo URL; ?>farmer/farmerMng">Farmers</a>
-                                    <a href="<? echo URL; ?>vendor/vendors">Vendors</a>
+                                    <a href="<?php echo URL; ?>admin/admins">Admins</a>
+                                    <a href="<?php echo URL; ?>officer/officers">Officers</a>
+                                    <a href="<?php echo URL; ?>farmer/farmerMng">Farmers</a>
+                                    <a href="<?php echo URL; ?>vendor/vendors">Vendors</a>
                                 </div>
                             </div>
                         </li>
-                        <li><a href="<? echo URL; ?>crop/crops" class="<? View::getActivePage('crops'); ?>">Crop Management</a></li>
-                        <li><a href="<? echo URL; ?>collectingcenter/collectingcenters" class="<? View::getActivePage('collectingcenters'); ?>">Collection Centers</a></li>
+                        <li><a href="<?php echo URL; ?>crop/crops" class="<?php View::getActivePage('crops'); ?>">Crop Management</a></li>
+                        <li><a href="<?php echo URL; ?>collectingcenter/collectingcenters" class="<?php View::getActivePage('collectingcenters'); ?>">Collection Centers</a></li>
                         <?php if(Session::get('isadmin') == 1): ?>
                             <li>
                                 <div class="dropdown">
@@ -51,13 +51,13 @@
                         <li><a href="#">Notifications</a></li>
 
                     <!-- Officer configurations for the navigation bar =============================================================== -->
-                    <? elseif(Session::get('role') == 'officer'): ?>
+                    <?php elseif(Session::get('role') == 'officer'): ?>
 
-                        <li><a href="<? echo URL; ?>officer/cropReq" class="<? View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
-                        <li><a href="<? echo URL; ?>officer/damageClaims" class="<? View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
-                        <li><a href="<? echo URL; ?>farmer/farmerMng" class="<? View::getActivePage('farmerMng'); ?>">Farmers</a></li>
-                        <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
-                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li>
+                        <li><a href="<?php echo URL; ?>officer/cropReq" class="<?php View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<?php echo URL; ?>officer/damageClaims" class="<?php View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/farmerMng" class="<?php View::getActivePage('farmerMng'); ?>">Farmers</a></li>
+                        <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
 
                         <!-- for real admins act as officers ===== -->
                         <?php if(Session::get('isadmin') == 1): ?>   
@@ -71,24 +71,24 @@
                                 </div>
                             </li>
                         <?php endif; ?>
-                        <!-- <li><a href="<? echo URL; ?>officer/reports" class="<? View::getActivePage('reports'); ?>">Reports</a></li>
-                        <li><a href="<? echo URL; ?>officer/notifications" class="<? View::getActivePage('notifications'); ?>">Notifications</a></li> -->
+                        <!-- <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
-                    <? endif ?>
+                    <?php endif ?>
                 </ul>
             </nav>
-            <? if(Session::get('loggedIn') == true): ?>
+            <?php if(Session::get('loggedIn') == true): ?>
             <div class="dropdown" >
                 <button class="header-popup-btn">My Profile</button>
                 <div class="dropdown-content right-menu">
                     <a href="#">Profile</a>
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>
-                    <? if(Session::get('loggedIn') == true): ?>
+                    <?php if(Session::get('loggedIn') == true): ?>
                         <a href="<?= URL?>user/logout">Log out</a>
-                    <? endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
-            <? endif;?>
+            <?php endif;?>
         </header>
         <div class="content">

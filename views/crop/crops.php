@@ -2,9 +2,9 @@
 
 <div class="user-tabs">
     <ul>
-    <? foreach($tabs as $tab) :?>
-        <li><a href="<?php echo URL . $tab['path']?>"><?=$tab['label']?></a></li>
-    <? endforeach; ?>
+    <?php foreach($tabs as $tab) :?>
+        <li><a href="<?php echo URL . $tab['path']?>"><?= $tab['label']?></a></li>
+    <?php endforeach; ?>
     </ul>
 </div>
 <div class="filter-panel">
@@ -56,17 +56,17 @@
             <th>Kg Per m<sup>2</sup></th>
             <th>Action</th>
         </tr>
-<? $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
         <tr>
-            <td> <?= $i ?></td>
-            <td><?=$cropReqItem['farmerId'];?> </td>
-            <td><?=$cropReqItem['farmerName'];?> </td>
-            <td> <?=$cropReqItem['nic'];?></td>
+            <td> <?=  $i ?></td>
+            <td><?= $cropReqItem['farmerId'];?> </td>
+            <td><?= $cropReqItem['farmerName'];?> </td>
+            <td> <?= $cropReqItem['nic'];?></td>
             <td>
                 <button class="mini-button normal">Accept</button> 
                 <button class="mini-button danger">Reject</button> 
             </td>
         </tr>
-<?endforeach;?>
+<?php endforeach;?>
     </table>
 </div>

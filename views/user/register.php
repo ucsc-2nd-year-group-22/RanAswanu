@@ -153,7 +153,7 @@
             
             </div>
             <div class="col-75">
-            <input type="submit" value="Register">
+            <button type="submit"><i class="fas fa-handshake"></i> Register </button>
             </div>
         </div>
     </form>

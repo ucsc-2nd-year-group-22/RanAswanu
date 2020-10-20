@@ -2,10 +2,10 @@
 
 <div class="user-tabs">
     <ul>
-        <li><a id="tab1" href="#" class="active-tab" >View</a></li>
-        <li><a id="tab2" href="#" >Edit</a></li>
-        <li><a id="tab3" href="#" >Delete</a></li>
-        <li><a id="tab4" href="<?php URL ;?>../user/register" >Add new Farmer +</a></li>
+        <li><a id="tab1" href="#" class="active-tab" ><i class="fas fa-users"></i> View farmers</a></li>
+        <li><a id="tab2" href="#" ><i class="fas fa-user-edit"></i> Update</a></li>
+        <li><a id="tab3" href="#" ><i class="fas fa-user-times"></i> Delete</a></li>
+        <li><a id="tab4" href="<?php URL ;?>../user/register" ><i class="fas fa-user-plus"></i> New farmer</a></li>
     </ul>
 </div>
 

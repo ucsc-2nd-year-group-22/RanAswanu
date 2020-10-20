@@ -135,7 +135,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="login">User Name</label>
+            <label for="login">Login</label>
             </div>
             <div class="col-75">
             <input type="text" id="login" name="login" value="<?=$this->user['login']; ?>">

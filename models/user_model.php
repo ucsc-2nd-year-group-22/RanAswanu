@@ -53,18 +53,12 @@ class User_Model extends Model {
         $stmt->execute(array(
             ':firstname' => $data['firstname'],
             ':lastname' => $data['lastname'],
+            ':id' => $data['id'],
             ':login' => $data['login'],
             ':role' => $data['role'],
             ':nic' => $data['nic'],
             ':tel' => $data['tel'],
-            ':email' => $data['email'],
-            ':dob' => $data['dob'],
-            ':sex' => $data['sex'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':grama' => $data['grama'],
-            ':address' => $data['address'],
-            ':id' => $data['id']
+            ':email' => $data['email']
         ));
     }
 

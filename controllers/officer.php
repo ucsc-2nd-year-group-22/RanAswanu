@@ -33,6 +33,7 @@ class Officer extends Controller {
                 'area' => "Udawalawe-north",
                 'harvest' => "1.2 MT",
                 'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
                 'farmer' => "Nimal Siripala",
@@ -41,6 +42,7 @@ class Officer extends Controller {
                 'area' => "Udawalawe-north",
                 'harvest' => "1.2 MT",
                 'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
                 'farmer' => "Nimal Siripala",
@@ -49,6 +51,7 @@ class Officer extends Controller {
                 'area' => "Udawalawe-north",
                 'harvest' => "1.2 MT",
                 'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
                 'farmer' => "Nimal Siripala",
@@ -57,6 +60,7 @@ class Officer extends Controller {
                 'area' => "Udawalawe-north",
                 'harvest' => "1.2 MT",
                 'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
 
         ];

@@ -39,3 +39,39 @@
         </table>
     </div>
 </div>
+
+<div id="tab2C" class="tabContainer">
+    <div class="main-table">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Farmer</th>
+                <th>Crop</th>
+                <th>Harvest Period</th>
+                <th>Area</th>
+                <th>Expected harvest</th>
+                <th>Demand status</th>
+                <th>Date/Time</th>
+            </tr>
+    <?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+            <tr>
+                <td> <?=  $i ?></td>
+                <td><?= $cropReqItem['farmer'];?> </td>
+                <td><?= $cropReqItem['crop'];?> </td>
+                <td> <?= $cropReqItem['period'];?></td>
+                <td> <?= $cropReqItem['area'];?></td>
+                <td> <?= $cropReqItem['harvest'];?></td>
+                <td> <?= $cropReqItem['demand'];?></td>
+                <td> <?= $cropReqItem['dateTime'];?></td>                              
+            </tr>
+    <?php endforeach;?>
+        </table>
+    </div>
+</div>
+
+
+<div id="tab3C" class="tabContainer">
+    <div class="banner">
+        <h4> No rejected crop requests found</h4>
+    </div>
+</div>

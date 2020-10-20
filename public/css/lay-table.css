@@ -1,7 +1,6 @@
 /* Styles related to the table section (Ex: Managing things/ 1. Manage employees, 2.Manage crops) */
 .user-tabs li {
     display: inline;
-
 }
 
 .user-tabs li a {

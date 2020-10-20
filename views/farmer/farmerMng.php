@@ -29,7 +29,7 @@
                                 <input type="radio" name="radio">
                                 <span class="checkmark"></span>
                             </label>
-                        </li>
+                        </li>   
                     </ul>                    
                 </div>
             </div>

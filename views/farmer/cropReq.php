@@ -3,6 +3,65 @@
 
 <div class="main-form">
     <form action="/action_page.php"> 	
+        <div class="row">
+            <div class="col-25">
+            <label for="login">Username</label>
+            </div>
+            <div class="col-75">
+            <input type="text" id="login" name="login" placeholder="ex: wasantha123">
+            </div>
+        </div>
+
+       
+        <div class="row">
+            <div class="col-25">
+            <label for="province">Province</label>
+            </div>
+            <div class="col-75">
+            <select id="province" name="province">
+                <option value="province1">Province 1</option>
+                <option value="province2">Province 2</option>
+                <option value="province3">Province 3</option>
+            </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+            <label for="district">District</label>
+            </div>
+            <div class="col-75">
+            <select id="district" name="district">
+                <option value="district1">District 1</option>
+                <option value="district2">District 2</option>
+                <option value="district3">District 3</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+            <label for="grama">Gramasewa Division</label>
+            </div>
+
+            <div class="col-75">
+            <select id="grama" name="grama">
+                <option value="grama1">Grama 1</option>
+                <option value="grama2">Grama 2</option>
+                <option value="grama1">Grama 3</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+            <label for="address">Address of the land</label>
+            </div>
+
+            <div class="col-75">
+                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
+            </div>
+        </div>  
+        
         <div class="row">                                                                             
             <div class="col-25">
                 <label for="selectCrop">Crop type:</label>
@@ -63,36 +122,6 @@
             </div>
 
         </div>   
-
-
-        <div class="row">                                                                          
-            <div class="col-25">
-                <label for="selectArea">Select Your District:</label>
-            </div>
-
-            <div class="col-75">
-                <select id="selectDistrict" name="selectDistrict">
-				<option value ="" disabled selected>select District</option>
-				<option value="Colombo">Colombo</option>
-				<option value="Gampaha">Gampaha</option>					
-                <option value="Kaluthara">Kaluthara</option>
-				<option value="Hambanthota">Hambanthota</option>
-                <option value="Kandy">Kandy</option>
-                </select>
-            </div>
-        </div>
-				
-
-        <div class="row">
-            <div class="col-25">
-                <label for="description">Address of the land</label>
-            </div>
-
-            <div class="col-75">
-                <textarea id="laddress" name="laddress" placeholder="Enter your address of land" style="height:150px "></textarea>
-            </div>
-        </div>
-
 
     
         <div class="row">

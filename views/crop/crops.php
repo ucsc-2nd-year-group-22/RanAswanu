@@ -2,9 +2,9 @@
 
 <div class="user-tabs">
     <ul>
-    <? foreach($tabs as $tab) :?>
-        <li><a href="<?php echo URL . $tab['path']?>"><?=$tab['label']?></a></li>
-    <? endforeach; ?>
+    <?php foreach($tabs as $tab) :?>
+        <li><a href="<?php echo URL . $tab['path']?>"><?= $tab['label']?></a></li>
+    <?php endforeach; ?>
     </ul>
 </div>
 <div class="filter-panel">
@@ -51,7 +51,8 @@
             <th>View</th>
             <th>Remove</th>
         </tr>
-<? $i = 0; foreach($cropData as $cropItem) :; $i++;?>
+
+<?php $i = 0; foreach($cropData as $cropItem) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
             <td><?=$cropItem['crop_varient'];?> </td>
@@ -64,6 +65,6 @@
                 <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" class="mini-button danger">Remove</a> 
             </td>
         </tr>
-<?endforeach;?>
+<?php endforeach;?>
     </table>
 </div>

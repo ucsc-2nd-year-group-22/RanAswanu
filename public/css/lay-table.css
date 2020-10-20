@@ -1,7 +1,6 @@
 /* Styles related to the table section (Ex: Managing things/ 1. Manage employees, 2.Manage crops) */
 .user-tabs li {
     display: inline;
-
 }
 
 .user-tabs li a {
@@ -193,8 +192,8 @@
     background-color: #ccc;
 }
 
-.container input:checked ~ .checkmark {
-    background-color: #2196F3;
+.container input:checked{
+    background-color: #ec8209;
 }
 
 .checkmark:after {
@@ -220,3 +219,6 @@
     margin-right: 15px;
 }
 
+.main-form .row .col-75 input[type=checkbox] {
+    margin:10px 0 15px 0;
+}

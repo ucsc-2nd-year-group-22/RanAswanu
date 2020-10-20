@@ -116,18 +116,6 @@
      line-height: 1.8em;
  }
  
-/* .login a{
-    color: var(--main-link-color);
-    text-decoration: none;
-    border-bottom: 1px solid var(--main-link-color);
-    transition: .3s;
-}
-
- .content a:hover {
-    color: var(--main-theme-color);
-    border-bottom: 1px solid var(--main-theme-color);
-} */
-
 .danger {
      background-color: var(--danger);
 }
@@ -146,4 +134,31 @@
 
 .gray {
     background-color: var(--gray);
+}
+
+.banner {
+    padding:20px;
+    width:100%;
+    background-color: #FFF;
+    text-align: center;
+}
+
+.icon-color {
+    color: var(--main-dark-color);
+}
+
+.notification {
+    width:100%;
+    padding:0 5px;
+    background-color: #fff;
+    margin:5px 0;
+}
+
+.notification dd {
+    display: inline-block;
+    padding:10px;
+}
+
+.notification:nth-child(2n-1) {
+    background-color: rgb(248, 248, 248);
 }

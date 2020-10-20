@@ -58,7 +58,7 @@
             <label for="discription">Discription</label>
             </div>
             <div class="col-75">
-            <textarea id="discription" name="discription" placeholder="Enter if any..." style="height:200px"></textarea>
+                <textarea id="discription" name="discription" placeholder="Enter if any..." style="height:200px"></textarea>
             </div>
         </div>
         <div class="row">

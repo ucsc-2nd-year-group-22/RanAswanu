@@ -3,8 +3,8 @@
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >Action Need</a></li>
-        <li><a id="tab2" href="#" >Accepted</a></li>
-        <li><a id="tab3" href="#" >Rejected</a></li>
+        <li><a id="tab2" href="#" ><i class="fas fa-check-circle"></i>  Accepted</a></li>
+        <li><a id="tab3" href="#" ><i class="fas fa-times-circle"></i> Rejected</a></li>
     </ul>
 </div>
 
@@ -31,8 +31,8 @@
                 <td> <?= $cropReqItem['area'];?></td>
                 <td> <?= $cropReqItem['harvest'];?></td>
                 <td> <?= $cropReqItem['demand'];?></td>
-                <td><button class="mini-button normal">Accept</button> </td>
-                <td>    <button class="mini-button danger">Reject</button> </td>
+                <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
+                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>
                 
             </tr>
     <?php endforeach;?>

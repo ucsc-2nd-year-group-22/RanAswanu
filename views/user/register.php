@@ -1,11 +1,11 @@
 <div class="subHeader">
-<? if(Session::get('role')== 'admin'):?>
+<?php if(Session::get('role')== 'admin'):?>
     <h1>Admin & Officer Registration</h1>
-<? elseif(Session::get('role') == 'officer'): ?>
+<?php elseif(Session::get('role') == 'officer'): ?>
     <h1>Farmer Registration</h1>
-<? else: ?>
+<?php else: ?>
     <h1>Vendor Registration</h1>
-<? endif ?>
+<?php endif ?>
 </div>
 
 <!-- FORM -->
@@ -128,7 +128,7 @@
                 <option value="farmer">Farmer</option>
             <?php else: ?>
                 <option value="vendor">Vendor</option>
-            <? endif ?>
+            <?php endif ?>
             </select>
             </div>
         </div>

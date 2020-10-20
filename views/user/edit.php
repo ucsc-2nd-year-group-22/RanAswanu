@@ -1,22 +1,22 @@
 
 <div class="subHeader">
-<? if(Session::get('role')== 'admin'):?>
+<?php if(Session::get('role')== 'admin'):?>
     <h1>Admin & Officer Edit</h1>
-<? elseif(Session::get('role') == 'officer'): ?>
+<?php elseif(Session::get('role') == 'officer'): ?>
     <h1>Edit Farmer</h1>
-<? else: ?>
+<?php else: ?>
     <h1>Edit vendor</h1>
-<? endif ?>
+<?php endif ?>
 </div>
 
 <div class="main-form">
-    <form action="<?= URL;?>user/editSave/<?php echo $this->user['id']; ?>" method="post">
+    <form action="<?=URL;?>user/editSave/<?php echo $this->user['id']; ?>" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">First Name</label>
             </div>
             <div class="col-75">
-                <input type="text" id="fname" name="firstname" value="<?= $this->user['firstname']; ?>">
+                <input type="text" id="fname" name="firstname" value="<?=$this->user['firstname']; ?>">
             </div>
         </div>
         <div class="row">
@@ -24,7 +24,7 @@
             <label for="lname">Last Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="lname" name="lastname"  value="<?= $this->user['lastname']; ?>" ">
+            <input type="text" id="lname" name="lastname"  value="<?=$this->user['lastname']; ?>" ">
             </div>
         </div>
         <div class="row">
@@ -32,7 +32,7 @@
             <label for="nic">NIC Number</label>
             </div>
             <div class="col-75">
-            <input type="text" id="nic" name="nic" value="<?= $this->user['nic']; ?>">
+            <input type="text" id="nic" name="nic" value="<?=$this->user['nic']; ?>">
             </div>
         </div>
         <div class="row">
@@ -40,7 +40,7 @@
             <label for="tel">Telephone Number</label>
             </div>
             <div class="col-75">
-            <input type="text" id="tel" name="tel" value="<?= $this->user['tel']; ?>">
+            <input type="text" id="tel" name="tel" value="<?=$this->user['tel']; ?>">
             </div>
         </div>
         <div class="row">
@@ -48,7 +48,7 @@
             <label for="email">Email Address</label>
             </div>
             <div class="col-75">
-            <input type="email" id="email" name="email" value="<?= $this->user['email']; ?>">
+            <input type="email" id="email" name="email" value="<?=$this->user['email']; ?>">
             </div>
         </div>
         <div class="row">
@@ -56,7 +56,7 @@
             <label for="dob">Birthday</label>
             </div>
             <div class="col-75">
-            <input type="date" id="dob" name="dob" value="<?= $this->user['dob']; ?>">
+            <input type="date" id="dob" name="dob" value="<?=$this->user['dob']; ?>">
             </div>
         </div>
         <div class="row">
@@ -112,7 +112,7 @@
             <label for="address">Address</label>
             </div>
             <div class="col-75">
-                <input type="text" id="address" name="address" value="<?= $this->user['address']; ?>">
+                <input type="text" id="address" name="address" value="<?=$this->user['address']; ?>">
             </div>
         </div>
         <div class="row">
@@ -129,7 +129,7 @@
                 <option value="farmer" <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>>Farmer</option>
             <?php else: ?>
                 <option value="vendor" <?php if($this->user['role'] == 'vendor') echo 'selected'; ?>>Vendor</option>
-            <? endif ?>
+            <?php endif ?>
             </select>
             </div>
         </div>
@@ -138,7 +138,7 @@
             <label for="login">User Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="login" name="login" value="<?= $this->user['login']; ?>">
+            <input type="text" id="login" name="login" value="<?=$this->user['login']; ?>">
             </div>
         </div>
         <!-- <div class="row">
@@ -158,7 +158,7 @@
                     <input type="submit" value="Update">
                 <?php elseif($this->user['role'] != 'vendor'): ?>
                     <input type="submit" value="Update">
-                <? endif ?>
+                <?php endif ?>
             </div>
         </div>
     </form>

@@ -79,7 +79,7 @@
             </nav>
             <?php if(Session::get('loggedIn') == true): ?>
             <div class="dropdown" >
-                <button class="header-popup-btn">  My Profile</button>
+                <button class="header-popup-btn"><?php echo substr(Session::get('firstname'),0, 5); echo " ..."; ?></button>
                 <div class="dropdown-content right-menu">
                     <a href="#"><i class="fas fa-user-circle"></i> View my profile</a>
                     <a href="#"><i class="fas fa-cog"></i> My Settings</a>

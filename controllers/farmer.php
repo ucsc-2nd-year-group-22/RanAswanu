@@ -16,9 +16,12 @@ class Farmer extends Controller {
     }
 
    
-
     public function damageclaim($arg = false) {
         $this->view->rendor('farmer/damageclaim');
     }
+
+    public function cropReq($arg = false) {
+        $this->view->rendor('farmer/cropReq');
+    }    
 
 }

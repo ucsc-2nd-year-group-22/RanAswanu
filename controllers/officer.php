@@ -27,40 +27,46 @@ class Officer extends Controller {
     public function cropReq() {
         $cropReqData = [
             [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'cropType' => "Carrot"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'cropType' => "Beans"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'cropType' => "Carrot"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'cropType' => "Beans"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
+                'dateTime' => "10-05-2020 | 10.00 AM"
             ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'cropType' => "Carrot"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'cropType' => "Beans"
-            ],
+
         ];
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => ['Crop Requests', 'other-tab'],
             'cropReqData' => $cropReqData,
         ];
         // Session::set('activePage', 'cropReq');
@@ -70,7 +76,30 @@ class Officer extends Controller {
     }
 
     public function damageClaims() {
-        $data = [];
+
+        $dmgClaimData = [
+            [
+                'farmer' => "Suneetha Madawala",
+                'crops' => "Pumpkin, Carrot",
+                'area' => "Horowpathana-south",
+                'damageAmt' => "2 hectares",
+            ],
+            [
+                'farmer' => "Suneetha Madawala",
+                'crops' => "Pumpkin, Carrot",
+                'area' => "Horowpathana-south",
+                'damageAmt' => "2 hectares",
+            ],
+            [
+                'farmer' => "Suneetha Madawala",
+                'crops' => "Pumpkin, Carrot",
+                'area' => "Horowpathana-south",
+                'damageAmt' => "2 hectares",
+            ]
+        ];
+        $data = [
+            'dmgClaimData' => $dmgClaimData,
+        ];
         $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
     }

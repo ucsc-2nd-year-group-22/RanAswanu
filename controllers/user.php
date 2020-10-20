@@ -83,16 +83,7 @@ class User extends Controller {
     public function edit($id){
         $this->view->user = $this->model->userSingleList($id);
         $this->view->rendor('user/edit');
-            
-        // switch (Session::get('role')) {
-        //     case 'officer':
-        //         header('location: ' . URL . 'officer/farmerMng');
-        //         break;
 
-        //     case 'admin':
-        //         header('location: ' . URL . 'admin/farmers');
-        //         break;
-        // }
     }
 
     public function delete($id) {
@@ -132,7 +123,7 @@ class User extends Controller {
         // TODO: Do error checking
 
         $this->model->editSave($data);
-        print_r($data);
+        // print_r($data);
         switch (Session::get('role')) {
             case 'officer':
                 header('location: ' . URL . 'farmer/farmerMng');

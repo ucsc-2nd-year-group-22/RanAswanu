@@ -2,9 +2,9 @@
 
 <div class="user-tabs">
     <ul>
-    <? foreach($tabs as $tab) :?>
+    <?php foreach($tabs as $tab) :?>
         <li><a href="<?php echo URL . $tab['path']?>"><?=$tab['label']?></a></li>
-    <? endforeach; ?>
+    <?php endforeach; ?>
     </ul>
 </div>
 <div class="filter-panel">
@@ -53,7 +53,7 @@
             <th>View</th>
             <th>Remove</th>
         </tr>
-<? $i = 0; foreach($adminData as $admin) :; $i++;?>
+<?php $i = 0; foreach($adminData as $admin) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
             <td><?=$admin['id'];?> </td>
@@ -66,6 +66,6 @@
                 <a class="mini-button danger">Remove</a>
             </td>
         </tr>
-<?endforeach;?>
+<?php endforeach;?>
     </table>
 </div>

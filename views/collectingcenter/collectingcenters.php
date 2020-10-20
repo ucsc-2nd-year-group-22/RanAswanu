@@ -2,9 +2,9 @@
 
 <div class="user-tabs">
     <ul>
-    <? foreach($tabs as $tab) :?>
+    <?php foreach($tabs as $tab) :?>
         <li><a href="<?php echo URL . $tab['path']?>"><?=$tab['label']?></a></li>
-    <? endforeach; ?>
+    <?php endforeach; ?>
     </ul>
 </div>
 <div class="filter-panel">
@@ -52,7 +52,7 @@
             <th>View Col. Center</th>
             <th>Remove Col. Center</th>
         </tr>
-<? $i = 0; foreach($centerData as $center) :; $i++;?>
+<?php $i = 0; foreach($centerData as $center) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
             <td><?=$center['center_name'];?> </td>
@@ -65,6 +65,6 @@
                 <a href="<?php echo URL .'collectingcenter/delete/'.$center['id']; ?>" class="mini-button danger">Remove</a> 
             </td>
         </tr>
-<?endforeach;?>
+<?php endforeach;?>
     </table>
 </div>

@@ -67,14 +67,14 @@
             </div>
             <div class="col-75">
             <select id="role" name="role">
-            <?php if(Session::get('role') == 'admin'){ ?>
+            <?php if(Session::get('role') == 'admin'): ?>
                 <option value="admin">Admin</option>
                 <option value="officer">Officer</option>
-            <?php }elseif(Session::get('role') == 'officer'){ ?>
+            <?php elseif(Session::get('role') == 'officer'): ?>
                 <option value="farmer">Farmer</option>
-            <?php }else{ ?>
+            <?php else : ?>
                 <option value="vendor">Vendor</option>
-            <? } ?>
+            <?php endif; ?>
             </select>
             </div>
         </div>

@@ -85,7 +85,7 @@
                     <a href="#">Setting</a>
                     <a href="#">Help & Support</a>
                     <?php if(Session::get('loggedIn') == true): ?>
-                        <a href="<?php= URL?>user/logout">Log out</a>
+                        <a href="<?= URL?>user/logout">Log out</a>
                     <?php endif; ?>
                 </div>
             </div>

@@ -76,7 +76,30 @@ class Officer extends Controller {
     }
 
     public function damageClaims() {
-        $data = [];
+
+        $dmgClaimData = [
+            [
+                'farmer' => "Suneetha Madawala",
+                'crops' => "Pumpkin, Carrot",
+                'area' => "Horowpathana-south",
+                'damageAmt' => "2 hectares",
+            ],
+            [
+                'farmer' => "Suneetha Madawala",
+                'crops' => "Pumpkin, Carrot",
+                'area' => "Horowpathana-south",
+                'damageAmt' => "2 hectares",
+            ],
+            [
+                'farmer' => "Suneetha Madawala",
+                'crops' => "Pumpkin, Carrot",
+                'area' => "Horowpathana-south",
+                'damageAmt' => "2 hectares",
+            ]
+        ];
+        $data = [
+            'dmgClaimData' => $dmgClaimData,
+        ];
         $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
     }

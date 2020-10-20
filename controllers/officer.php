@@ -27,40 +27,42 @@ class Officer extends Controller {
     public function cropReq() {
         $cropReqData = [
             [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'cropType' => "Carrot"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
             ],
             [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'cropType' => "Beans"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
             ],
             [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'cropType' => "Carrot"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
             ],
             [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'cropType' => "Beans"
+                'farmer' => "Nimal Siripala",
+                'crop' => "Potatoe-CG1",
+                'period' => "7 weeks",
+                'area' => "Udawalawe-north",
+                'harvest' => "1.2 MT",
+                'demand' => "Below",
             ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Nimal",
-                'cropType' => "Carrot"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Madupala",
-                'cropType' => "Beans"
-            ],
+
         ];
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => ['Crop Requests', 'other-tab'],
             'cropReqData' => $cropReqData,
         ];
         // Session::set('activePage', 'cropReq');

@@ -22,6 +22,12 @@ class Farmer extends Controller {
 
     public function cropReq($arg = false) {
         $this->view->rendor('farmer/cropReq');
-    }    
+    }
+    
+    public function sellyourcrops($arg = false) {
+        $this->view->rendor('farmer/sellyourcrops');
+    }
+    
+    
 
 }

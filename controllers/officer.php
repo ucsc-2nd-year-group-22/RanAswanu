@@ -16,6 +16,7 @@ class Officer extends Controller {
             'role' => $role
         );
         if(($role=='officer'|| 'admin') && $logged==true)
+
             $this->view->rendor('officer/index', $data);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";

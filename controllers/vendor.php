@@ -41,4 +41,49 @@ class Vendor extends Controller{
         header('location: ' . URL . 'vendor/vendors');
     }
 
+    //MY FUNCTIONS
+    public function placeaOffer()
+    {
+        $this->view->rendor('vendor/placeaOffer');
+    }
+
+    public function viewFarmer()
+    {
+
+       // $farmerData = ['name'=>'kamal','telephone'=>'0713568802', 'address'=>'261,gallroad,kaluthara.'];
+
+        $this->view->rendor('farmer/viewFarmer');
+    }
+
+    public function viewCrops()
+    {
+        $this->view->rendor('farmer/viewCrops');
+    }
+
+    public function sellingReq()
+    {
+         /*$cropReqData = [
+            [
+                'name' => "Suneetha Madawala",
+                'id' => "Pumpkin, Carrot",
+                'type' => "Horowpathana-south",
+               
+            ],
+            [
+                'name' => "Suneetha Madawala",
+                'id' => "Pumpkin, Carrot",
+                'type' => "Horowpathana-south",
+               
+            ],
+            [
+                'name' => "Suneetha Madawala",
+                'id' => "Pumpkin, Carrot",
+                'type' => "Horowpathana-south",
+               
+            ],
+        ];*/
+
+        $this->view->rendor('vendor/sellingReq');
+    }
+
 }

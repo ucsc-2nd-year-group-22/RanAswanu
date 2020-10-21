@@ -74,7 +74,18 @@
                         <!-- <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
                         <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
+
+
+                    <!-- Vendor configurations for the navigation bar =============================================================== -->
+                    <?php elseif(Session::get('role') == 'vendor'): ?>
+
+                        <li><a href="<?php echo URL; ?>vendor/sellingReq" class="<?php View::getActivePage('sellingReq'); ?>">Crop Requests</a></li>
+
+
                     <?php endif ?>
+
+
+
                 </ul>
             </nav>
             <?php if(Session::get('loggedIn') == true): ?>

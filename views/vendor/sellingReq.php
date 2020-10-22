@@ -1,5 +1,4 @@
 <h1>Farmer's Selling Requests</h1>
-
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >All</a></li>
@@ -195,12 +194,12 @@
             <th>Crop Type</th>
             <th>Action</th>
         </tr>
-<!--<?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+<?php $i = 0; foreach($sellingReq as $dt) :; $i++;?>
         <tr>
-            <td> <?php= $i ?></td>
-            <td><?php=$cropReqItem['farmerId'];?> </td>
-            <td><?php=$cropReqItem['farmerName'];?> </td>
-            <td> <?php=$cropReqItem['cropType'];?></td>
+            <td> <?= $i ?></td>
+            <td><?= $dt['id'];?> </td>
+            <td><?= $dt['name'];?> </td>
+            <td> <?=$dt['crop'];?></td>
             <td>
                 <button class="mini-button normal">Offer</button> 
                 <button class="mini-button normal">View Profile</button>
@@ -210,7 +209,7 @@
 <?php endforeach;?>
     </table>
 </div>
--->
+
 
 <?php
 if(isset($this->js))

@@ -60,30 +60,32 @@ class Vendor extends Controller{
         $this->view->rendor('farmer/viewCrops');
     }
 
-    public function sellingReq()
-    {
-         /*$cropReqData = [
-            [
-                'name' => "Suneetha Madawala",
-                'id' => "Pumpkin, Carrot",
-                'type' => "Horowpathana-south",
-               
-            ],
-            [
-                'name' => "Suneetha Madawala",
-                'id' => "Pumpkin, Carrot",
-                'type' => "Horowpathana-south",
-               
-            ],
-            [
-                'name' => "Suneetha Madawala",
-                'id' => "Pumpkin, Carrot",
-                'type' => "Horowpathana-south",
-               
-            ],
-        ];*/
+   
 
-        $this->view->rendor('vendor/sellingReq');
+    public function sellingReq() {
+
+        $sellingReq = [
+            [
+                'id' => "12",
+                'name' => "Kamal",
+                'crop' => "Apple",
+            ],
+            [
+               'id' => "12",
+                'name' => "Kamal",
+                'crop' => "Apple",
+            ],
+            [
+               'id' => "12",
+                'name' => "Kamal",
+                'crop' => "Apple",
+            ]
+        ];
+        $data = [
+            'sellingReq' => $sellingReq, 'id' => '10'
+        ];
+       
+        $this->view->rendor('vendor/sellingReq', $data);
     }
 
 }

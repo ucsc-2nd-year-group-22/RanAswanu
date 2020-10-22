@@ -82,8 +82,8 @@ class User extends Controller {
     //fetch individual user
     public function edit($id){
         if(Session::get('id') != $id){
-            if(Session::get('isadmin') == 1){
-                $this->view->user = $this->model->userSingleList($id);
+            $this->view->user = $this->model->userSingleList($id);
+            if(Session::get('isadmin') == 1 || ($this->view->user['role'] == 'farmer' && Session::get('role') == 'officer')){
                 $this->view->rendor('user/edit');
             }else{
                 $this->logout();

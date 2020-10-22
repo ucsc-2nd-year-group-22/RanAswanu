@@ -48,7 +48,7 @@
                             </li>
                         <?php endif; ?>
                         <li><a href="#">Reports</a></li>
-                        <li><a href="#">Notifications</a></li>
+                        <li><a href="<?php echo URL; ?>admin/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
 
                     <!-- Officer configurations for the navigation bar =============================================================== -->
                     <?php elseif(Session::get('role') == 'officer'): ?>

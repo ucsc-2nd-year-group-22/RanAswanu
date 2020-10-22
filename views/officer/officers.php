@@ -51,8 +51,8 @@
             <th>Officer Name</th>
             <th>Telephone Number</th>
             <th>Address</th>
-            <th>View</th>
-            <th>Remove</th>
+            <th><i class="fas fa-users"></i> View</th>
+            <th><i class="fas fa-user-times"></i> Remove</th>
         </tr>
 <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
         <tr>

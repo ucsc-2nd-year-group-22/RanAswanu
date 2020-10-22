@@ -60,4 +60,11 @@ class Admin extends Controller {
         Session::set('role', 'admin');
         header('location: ' . URL . 'user');
     }
+
+    //route to notifications
+    public function notifications() {
+        $data = [];
+        $this->setActivePage('notifications');
+        $this->view->rendor('admin/notifications', $data);
+    }
 }

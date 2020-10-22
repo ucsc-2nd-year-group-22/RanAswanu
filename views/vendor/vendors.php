@@ -50,8 +50,8 @@
             <th>Vendor Name</th>
             <th>Telephone</th>
             <th>Address</th>
-            <th>View User</th>
-            <th>Remove User</th>
+            <th><i class="fas fa-users"></i> View User</th>
+            <th><i class="fas fa-user-times"></i> Remove User</th>
         </tr>
 <? $i = 0; foreach($vendorData as $vendor) :; $i++;?>
         <tr>

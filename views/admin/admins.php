@@ -50,8 +50,8 @@
             <th>Admin-ID</th>
             <th>Admin Name</th>
             <th>Address</th>
-            <th>View</th>
-            <th>Remove</th>
+            <th><i class="fas fa-users"></i> View</th>
+            <th><i class="fas fa-user-times"></i> Remove</th>
         </tr>
 <?php $i = 0; foreach($adminData as $admin) :; $i++;?>
         <tr>

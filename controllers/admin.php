@@ -18,7 +18,7 @@ class Admin extends Controller {
             'role' => $role
         );
         
-        $this->view->rendor('admin/index', $data);
+        $this->view->rendor('dashboard/index', $data);
     }
 
     //retrieve all registered admins ( + routing )
@@ -28,7 +28,7 @@ class Admin extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'+ Register New admin',
+            'tabs' => [ ['label' =>'<i class="fas fa-user-plus"></i> Register New admin',
                           'path' => 'user/register'
                         ]           
                       ],

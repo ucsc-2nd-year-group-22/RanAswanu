@@ -59,10 +59,10 @@
             <td><?=$cropItem['harvest_per_land'];?> </td>
             <td> <?=$cropItem['harvest_period'];?></td>
             <td>
-                <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal">View</a> 
+                <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal"><i class="fas fa-eye"></i></a> 
             </td>
             <td>
-                <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" class="mini-button danger">Remove</a> 
+                <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" class="mini-button danger"><i class="fas fa-trash"></i></a> 
             </td>
         </tr>
 <?php endforeach;?>

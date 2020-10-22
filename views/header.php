@@ -76,8 +76,8 @@
 
                     <!-- Vendor configurations for the navigation bar =============================================================== -->
                     <?php elseif(Session::get('role') == 'vendor'): ?>
-
-                        <li><a href="<?php echo URL; ?>vendor/sellingReq" class="<?php View::getActivePage('cropReq'); ?>">Selling Requests</a></li>
+                        <li><a href="<?php echo URL; ?>vendor/index" class="<?php View::getActivePage('index'); ?>">Timeline</a></li>
+                        <li><a href="<?php echo URL; ?>vendor/sellingReq" class="<?php View::getActivePage('sellingReq'); ?>">Selling Requests</a></li>
 
                 <?php endif ?>
 

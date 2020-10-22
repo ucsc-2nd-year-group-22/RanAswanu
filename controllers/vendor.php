@@ -9,7 +9,9 @@ class Vendor extends Controller{
     }
 
     function index() {
+        $this->setActivePage('index');
         $this->view->rendor('vendor/index');
+
     }
 
     public function register($arg = false) {
@@ -82,9 +84,9 @@ class Vendor extends Controller{
             ]
         ];
         $data = [
-            'sellingReq' => $sellingReq, 'id' => '10'
+            'sellingReq' => $sellingReq
         ];
-       
+        $this->setActivePage('sellingReq');
         $this->view->rendor('vendor/sellingReq', $data);
     }
 

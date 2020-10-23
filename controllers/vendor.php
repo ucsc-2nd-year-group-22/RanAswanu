@@ -52,14 +52,28 @@ class Vendor extends Controller{
     public function viewFarmer()
     {
 
-       // $farmerData = ['name'=>'kamal','telephone'=>'0713568802', 'address'=>'261,gallroad,kaluthara.'];
-
-        $this->view->rendor('farmer/viewFarmer');
+        $farmerData = ['name'=>'kamal','gender'=>'male', 'email'=>'ranja@ymail.com','telephone'=>'0713568802', 'address'=>'261,gallroad,kaluthara.'];
+        $data = ['Fdata'=>$farmerData] ;
+        $this->view->rendor('farmer/viewFarmer',$data);
     }
 
     public function viewCrops()
     {
-        $this->view->rendor('farmer/viewCrops');
+
+        $crop =  [[
+                'name' => "Orange",
+                'type' => "MICH-Y1",
+                'ammount' => "12",
+            ],
+            [
+                'name' => "Orange",
+                'type' => "MICH-Y1",
+                'ammount' => "12",
+            ],
+        ];
+
+        $Cropdata = ['Cdata'=>$crop];
+        $this->view->rendor('farmer/viewCrops',$Cropdata);
     }
 
    
@@ -84,7 +98,7 @@ class Vendor extends Controller{
             ]
         ];
         $data = [
-            'sellingReq' => $sellingReq
+            'Req' => $sellingReq
         ];
         $this->setActivePage('sellingReq');
         $this->view->rendor('vendor/sellingReq', $data);

@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-25">
     <label for="fname">First Name :</label>
-   <!-- <td><?php echo $farmerData['name'];?> </td> -->
+    <?php echo $Fdata['name'];?>
     </div>
     <br>
 </div>  
@@ -13,6 +13,7 @@
 <div class="row">
     <div class="col-25">
     <label for="fname">Gender :</label>
+    <?php echo $Fdata['gender'];?>
     </div>
     <br>
 </div>  
@@ -20,6 +21,7 @@
 <div class="row">
     <div class="col-25">
     <label for="fname">Email :</label>
+    <?php echo $Fdata['email'];?>
     </div>
     <br>
 </div>  
@@ -27,6 +29,7 @@
 <div class="row">
     <div class="col-25">
     <label for="fname">Address :</label>
+    <?php echo $Fdata['address'];?>
     </div>
     <br>
 </div>  
@@ -34,6 +37,7 @@
 <div class="row">
     <div class="col-25">
     <label for="fname">Telephone :</label>
+    <?php echo $Fdata['telephone'];?>
     </div>
     <br>
 </div>  
@@ -44,6 +48,7 @@
 <div class="row">
         <div class="col-75">
         <input type="submit" value="Back">
+      
         </div>
 </div>
 

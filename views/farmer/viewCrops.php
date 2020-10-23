@@ -1,7 +1,7 @@
 <!-- Thishan made this to show other crops of farmer, to vendor -->
 <h1>Other Crops</h1>
 
-<?php echo $data['id']; ?>
+<!--<?php echo $data['id']; ?> -->
 
 <div id="tab1C" class="tabContainer">
     <h2>All</h2>
@@ -52,14 +52,14 @@
             <th>Crop Ammount</th>
             <th>Action</th>
         </tr>
-<?php $i = 0; foreach ($data as $st) :; $i++;?>
+<?php $i = 0; foreach ($Cdata as $st) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?= $st['farmer'];?> </td>
-            <td><?= $st['crops'];?> </td>
-            <td> <?= $st['area'];?></td>
+            <td><?= $st['name'];?> </td>
+            <td><?= $st['type'];?> </td>
+            <td> <?= $st['ammount'];?></td>
             <td>
-                <button class="mini-button normal">Offer</button>  
+                <a href="<?php echo URL; ?>vendor/placeaOffer" class="mini-button normal">Offer</a>   
             </td>
         </tr>
 <?php endforeach;?>

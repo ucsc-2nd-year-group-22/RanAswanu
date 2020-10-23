@@ -201,7 +201,8 @@
             <td><?= $dt['name'];?> </td>
             <td> <?=$dt['crop'];?></td>
             <td>
-                <button class="mini-button normal">Offer</button> 
+                <a href="<?php echo URL; ?>vendor/placeaOffer" class="mini-button normal">Offer</a> 
+
                 <button class="mini-button normal">View Profile</button>
                 <button class="mini-button normal">Other crops</button>  
             </td>

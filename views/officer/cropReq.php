@@ -12,30 +12,36 @@
     <div class="pane1">
 
         <form class="search-bar">
-            <label>Choooose: </label>
+            <label>Search crop requests by : </label>
             <select placeholder="Search ...">
-                <option>ddd</option>
-                    <option>ddddd</option>
+                    <option>Demand status</option>
+                    <option>Farmer name</option>
+                    <option>Crop</option>
                 </select>
             <input type="text" placeholder="Search ...">
-            <button type="submit">Ok</button>
+            <button type="submit"><i class="fas fa-search"></i></button>
         </form>
 
     </div>
     <div class="pane2">
         <form class="normal-select">
-            <label>Choooose: </label>
+            <label>Sort crop requests by : </label>
             <select placeholder="other">
-                <option>111</option>
+                    <option>Date</option>
+                    <option>Demand status</option>
+                    <option>Farmer name</option>
+                    <option>Crop</option>
                 <option>111</option>
             </select>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
         </form>
     </div>
     <div class="pane3">
-        three
+         <label>Empty pane</label>
     </div>
     <div class="pane4">
-        four
+    <label>Empty pane</label>
     </div>
 </div> 
 

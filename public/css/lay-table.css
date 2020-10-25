@@ -72,6 +72,7 @@
             background:#fff;
             margin-bottom: 8px;
             box-shadow: 0 0 5px #ccc;
+            box-sizing: border-box;
         }
     
         .pane1, .pane2, .pane3, .pane4 {
@@ -96,38 +97,56 @@
             /* background: #ff8686; */
             grid-area: pane4;
         }
-        .panel-container label {
+        .panel-container form label {
             width:100%;
             float:left;
             font-size: 0.8em;
             font-weight: bold;
+            padding: 5px 0;
         }
 
-        
-        .panel-container form.search-bar input {
-            width:75%;
+        .panel-container form button {
             margin: 5px 0;
-            float:left;
             font-size: 0.8em;
+            border:2px solid var(--filter-button);
             padding: 5px;
+            background-color: var(--filter-button);
+            border-radius: 0;
+        }
+
+        .panel-container form button:hover {
+            background-color: var(--main-light-green);
+            border:2px solid var(--main-light-green);
         }
         
-        .panel-container form.search-bar select {
+        .panel-container form input {
+            margin: 5px 0;
+            font-size: 0.8em;
+            padding: 5px;
+            border-radius: 0;
+        }
+
+        .panel-container form select {
             width:100%;
             margin: 5px 0;
             float:left;
             font-size: 0.8em;
             padding: 5px;
-            
+        }
+
+        .panel-container form.search-bar input {
+            width:75%;
+            float:left;
         }
         
         .panel-container form.search-bar button {
             width:25%;
-            margin: 5px 0;
-            float:right;
-            font-size: 0.8em;
-            border:2px solid var(--main-theme-color);
-            padding: 5px;
+            float:right; 
+        }
+
+        .panel-container form button.half {
+            width:50%;
+            float:left;
         }
 
 

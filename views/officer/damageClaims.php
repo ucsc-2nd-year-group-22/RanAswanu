@@ -1,5 +1,4 @@
 <h1>Damage Claims</h1>
-
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >Action Need</a></li>

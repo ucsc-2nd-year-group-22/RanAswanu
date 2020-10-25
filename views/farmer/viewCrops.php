@@ -1,8 +1,7 @@
 <!-- Thishan made this to show other crops of farmer, to vendor -->
-
 <h1>Other Crops</h1>
 
-
+<!--<?php echo $data['id']; ?> -->
 
 <div id="tab1C" class="tabContainer">
     <h2>All</h2>
@@ -18,7 +17,8 @@
                         <button type="submit">Submit</button>
                     </span>
                 </form>
-                </div>
+            </div>
+
             <div class="right">
 
             </div>
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<!--
+
 <div class="main-table">
     <table>
         <tr>
@@ -52,14 +52,14 @@
             <th>Crop Ammount</th>
             <th>Action</th>
         </tr>
-<?php $i = 0; foreach ($cropReqData as $cropReqItem) :; $i++;?>
+<?php $i = 0; foreach ($Cdata as $st) :; $i++;?>
         <tr>
-            <td> <?php= $i ?></td>
-            <td><?php=$cropReqItem['farmerId'];?> </td>
-            <td><?php=$cropReqItem['farmerName'];?> </td>
-            <td> <?php=$cropReqItem['cropType'];?></td>
+            <td> <?= $i ?></td>
+            <td><?= $st['name'];?> </td>
+            <td><?= $st['type'];?> </td>
+            <td> <?= $st['ammount'];?></td>
             <td>
-                <button class="mini-button normal">Offer</button>  
+                <a href="<?php echo URL; ?>vendor/placeaOffer" class="mini-button normal">Offer</a>   
             </td>
         </tr>
 <?php endforeach;?>
@@ -71,5 +71,3 @@
 //if(isset($this->js))
 //    echo '<script src="'.URL.'views/'.$this->js.'.js"></script>'; // want to now what happens here
     ?>
-
- -->   

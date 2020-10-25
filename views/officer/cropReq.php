@@ -8,6 +8,38 @@
     </ul>
 </div>
 
+<div class="panel-container">
+    <div class="pane1">
+
+        <form class="search-bar">
+            <label>Choooose: </label>
+            <select placeholder="Search ...">
+                <option>ddd</option>
+                    <option>ddddd</option>
+                </select>
+            <input type="text" placeholder="Search ...">
+            <button type="submit">Ok</button>
+        </form>
+
+    </div>
+    <div class="pane2">
+        <form class="normal-select">
+            <label>Choooose: </label>
+            <select placeholder="other">
+                <option>111</option>
+                <option>111</option>
+            </select>
+        </form>
+    </div>
+    <div class="pane3">
+        three
+    </div>
+    <div class="pane4">
+        four
+    </div>
+</div> 
+
+
 <div id="tab1C" class="tabContainer">
     <div class="main-table">
         <table>

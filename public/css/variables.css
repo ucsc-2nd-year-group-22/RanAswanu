@@ -10,6 +10,8 @@
     --main-layout-bg-color:#eee;
     --main-link-color: rgb(6, 122, 255);
     --main-font: 'Quicksand', sans-serif;
+    --large-shadow: 0 2px 10px #ccc;
+    --small-shadow:0 0 5px #ccc;
 
 /* Color COdes */
     --danger: rgb(200, 78, 78);

@@ -10,11 +10,14 @@
     --main-layout-bg-color:#eee;
     --main-link-color: rgb(6, 122, 255);
     --main-font: 'Quicksand', sans-serif;
+    --large-shadow: 0 2px 10px #ccc;
+    --small-shadow:0 2px 5px #ccc;
 
 /* Color COdes */
     --danger: rgb(200, 78, 78);
     --warning: rgb(233, 159, 0);
     --success: var(--main-light-green);
     --info: rgb(23, 117, 224);
-    --gray: rgb(153, 153, 153);
+    --gray: #DDD;
+    --filter-button :  #6D6D6D;
 }

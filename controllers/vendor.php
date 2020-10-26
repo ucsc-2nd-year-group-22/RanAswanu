@@ -9,7 +9,9 @@ class Vendor extends Controller{
     }
 
     function index() {
+        $this->setActivePage('index');
         $this->view->rendor('vendor/index');
+
     }
 
     public function register($arg = false) {
@@ -50,40 +52,56 @@ class Vendor extends Controller{
     public function viewFarmer()
     {
 
-       // $farmerData = ['name'=>'kamal','telephone'=>'0713568802', 'address'=>'261,gallroad,kaluthara.'];
-
-        $this->view->rendor('farmer/viewFarmer');
+        $farmerData = ['name'=>'kamal','gender'=>'male', 'email'=>'ranja@ymail.com','telephone'=>'0713568802', 'address'=>'261,gallroad,kaluthara.'];
+        $data = ['Fdata'=>$farmerData] ;
+        $this->view->rendor('farmer/viewFarmer',$data);
     }
 
     public function viewCrops()
     {
-        $this->view->rendor('farmer/viewCrops');
+
+        $crop =  [[
+                'name' => "Orange",
+                'type' => "MICH-Y1",
+                'ammount' => "12",
+            ],
+            [
+                'name' => "Orange",
+                'type' => "MICH-Y1",
+                'ammount' => "12",
+            ],
+        ];
+
+        $Cropdata = ['Cdata'=>$crop];
+        $this->view->rendor('farmer/viewCrops',$Cropdata);
     }
 
-    public function sellingReq()
-    {
-         /*$cropReqData = [
-            [
-                'name' => "Suneetha Madawala",
-                'id' => "Pumpkin, Carrot",
-                'type' => "Horowpathana-south",
-               
-            ],
-            [
-                'name' => "Suneetha Madawala",
-                'id' => "Pumpkin, Carrot",
-                'type' => "Horowpathana-south",
-               
-            ],
-            [
-                'name' => "Suneetha Madawala",
-                'id' => "Pumpkin, Carrot",
-                'type' => "Horowpathana-south",
-               
-            ],
-        ];*/
+   
 
-        $this->view->rendor('vendor/sellingReq');
+    public function sellingReq() {
+
+        $sellingReq = [
+            [
+                'id' => "12",
+                'name' => "Kamal",
+                'crop' => "Apple",
+            ],
+            [
+               'id' => "12",
+                'name' => "Kamal",
+                'crop' => "Apple",
+            ],
+            [
+               'id' => "12",
+                'name' => "Kamal",
+                'crop' => "Apple",
+            ]
+        ];
+        $data = [
+            'Req' => $sellingReq
+        ];
+        $this->setActivePage('sellingReq');
+        $this->view->rendor('vendor/sellingReq', $data);
     }
 
 }

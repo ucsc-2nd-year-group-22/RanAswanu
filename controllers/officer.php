@@ -99,8 +99,7 @@ class Officer extends Controller {
             ]
         ];
         $data = [
-            'dmgClaimData' => $dmgClaimData,
-        ];
+            'dmgClaimData' => $dmgClaimData ];
         $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
     }

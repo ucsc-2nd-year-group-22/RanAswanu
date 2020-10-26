@@ -5,7 +5,8 @@
  @import "variables.css"; 
  @import "header-drop-down.css"; 
  @import "form-controllers.css"; 
- @import "lay-table.css";
+ @import "tabs-table.css";
+ @import "filter-panes.css";
  @import "login-style.css";
  
  *{
@@ -38,17 +39,17 @@
  }
  
  header {
-     display:grid;
-     grid-template-columns: 150px 1fr 100px;
-     grid-template-rows: 1fr;
-     grid-template-areas:
-     "logo nav btn";
-     justify-content: space-between;
-     align-items: center;
-     background-color:var(--main-bg-color);
-     grid-area: header;
-     padding:0 5rem;
-     box-shadow:0 2px 10px #ccc;
+    display:grid;
+    grid-template-columns: 150px 1fr 100px;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "logo nav btn";
+    justify-content: space-between;
+    align-items: center;
+    background-color:var(--main-bg-color);
+    grid-area: header;
+    padding:0 5rem;
+    box-shadow:0 2px 10px #ccc;
  }
  
  .logo {

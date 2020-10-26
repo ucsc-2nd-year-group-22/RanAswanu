@@ -1,5 +1,4 @@
 <h1>Damage Claims</h1>
-
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >Action Need</a></li>
@@ -7,6 +6,47 @@
         <li><a id="tab3" href="#" ><i class="fas fa-times-circle"></i> Rejected</a></li>
     </ul>
 </div>
+
+<div class="panel-container">
+    <div class="pane1">
+
+        <form class="search-bar">
+            <label>Search crop requests by : </label>
+            <select placeholder="Search ...">
+                    <option>Demand status</option>
+                    <option>Farmer name</option>
+                    <option>Crop</option>
+                </select>
+            <input type="text" placeholder="Search ...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+    </div>
+    <div class="pane2">
+        <form class="normal-select">
+            <label>Sort crop requests by : </label>
+            <select placeholder="other">
+                    <option>Date</option>
+                    <option>Demand status</option>
+                    <option>Farmer name</option>
+                    <option>Crop</option>
+                <option>111</option>
+            </select>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+        </form>
+    </div>
+
+    <!-- Comment pane 3 & 4 If they are empty -->
+
+    <div class="pane3">
+         <label>Empty pane</label>
+    </div>
+    <div class="pane4">
+        <label>Empty pane</label>
+    </div>
+</div> 
+
 
 <div id="tab1C" class="tabContainer">
     <div class="main-table">

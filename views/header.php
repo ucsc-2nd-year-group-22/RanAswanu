@@ -8,6 +8,7 @@
     <script src="<?php echo URL;?>public/js/custom.js"></script>
     <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Ran Aswanu Hvst Mgt Sys</title>
 </head>
 <body>
@@ -16,13 +17,13 @@
             <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
             <nav>
                 <ul>
-                    <?php if(Session::get('loggedIn')==false): ?>
-                    <li><a href="<?php echo URL; ?>" class="<?php View::getActivePage('homepage'); ?>">Home</a></li>
-                    <?php endif; ?>
-                    <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<?php View::getActivePage('dashboard'); ?>">Dashboard</a></li>
+                <?php if(Session::get('loggedIn')==false): ?>
+                <li><a href="<?php echo URL; ?>" class="<?php View::getActivePage('homepage'); ?>">Home</a></li>
+                <?php endif; ?>
+                <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<?php View::getActivePage('dashboard'); ?>">Dashboard</a></li>
 
-                    <!-- Admin configurations for the navigation bar =============================================================== -->
-                    <?php if(Session::get('role') == 'admin'): ?>
+                <!-- Admin configurations for the navigation bar =============================================================== -->
+                <?php if(Session::get('role') == 'admin'): ?>
                         <li>
                             <div class="dropdown">
                                 <a href="#" class="<?php View::getActivePage('userMgt'); ?>">User Management</a>
@@ -74,7 +75,15 @@
                         <!-- <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
                         <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
-                    <?php endif ?>
+                    <!-- Vendor configurations for the navigation bar =============================================================== -->
+                    <?php elseif(Session::get('role') == 'vendor'): ?>
+                        <li><a href="<?php echo URL; ?>vendor/index" class="<?php View::getActivePage('index'); ?>">Timeline</a></li>
+                        <li><a href="<?php echo URL; ?>vendor/sellingReq" class="<?php View::getActivePage('sellingReq'); ?>">Selling Requests</a></li>
+
+                <?php endif ?>
+
+
+
                 </ul>
             </nav>
             <?php if(Session::get('loggedIn') == true): ?>

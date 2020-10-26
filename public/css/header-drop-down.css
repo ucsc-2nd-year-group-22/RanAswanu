@@ -15,12 +15,13 @@
     z-index: 1;
     border-radius: 5px;
     margin-top: 20px;
-    right:15px;
+
   }
 
 .dropdown-content.right-menu {
   margin-top:0px;
   font-weight: bold;
+  right:15px;
 }
 
 .dropdown-content.right-menu a:hover{

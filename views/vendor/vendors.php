@@ -2,9 +2,9 @@
 
 <div class="user-tabs">
     <ul>
-    <? foreach($tabs as $tab) :?>
-        <li><a href="<?php echo URL . $tab['path']?>"><?=$tab['label']?></a></li>
-    <? endforeach; ?>
+    <?php foreach($tabs as $tab) :?>
+        <li><a href="<?php echo URL . $tab['path']?>"><?php=$tab['label']?></a></li>
+    <?php endforeach; ?>
     </ul>
 </div>
 <div class="filter-panel">
@@ -53,12 +53,12 @@
             <th><i class="fas fa-users"></i> View User</th>
             <th><i class="fas fa-user-times"></i> Remove User</th>
         </tr>
-<? $i = 0; foreach($vendorData as $vendor) :; $i++;?>
+<?php $i = 0; foreach($vendorData as $vendor) :; $i++;?>
         <tr>
-            <td> <?= $i ?></td>
-            <td><?=$vendor['firstname'];?> </td>
-            <td><?=$vendor['tel'];?> </td>
-            <td> <?=$vendor['address'];?></td>
+            <td> <?php= $i ?></td>
+            <td><?php=$vendor['firstname'];?> </td>
+            <td><?php=$vendor['tel'];?> </td>
+            <td> <?php=$vendor['address'];?></td>
             <td>
                 <a href="<?php echo URL .'user/edit/'.$vendor['id']; ?>" class="mini-button normal">View</a> 
             </td>
@@ -66,6 +66,6 @@
                 <a href="<?php echo URL .'vendor/delete/'.$vendor['id']; ?>" class="mini-button danger">Remove</a> 
             </td>
         </tr>
-<?endforeach;?>
+<?php endforeach;?>
     </table>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 class Farmer extends Controller {
-
+    
     public function __construct() {
         parent::__construct();
         Session::init();

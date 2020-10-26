@@ -3,7 +3,7 @@
 <div class="user-tabs">
     <ul>
     <?php foreach($tabs as $tab) :?>
-        <li><a href="<?php echo URL . $tab['path']?>"><?php=$tab['label']?></a></li>
+        <li><a href="<?php echo URL . $tab['path']?>"><?php $tab['label']?></a></li>
     <?php endforeach; ?>
     </ul>
 </div>
@@ -55,10 +55,10 @@
         </tr>
 <?php $i = 0; foreach($vendorData as $vendor) :; $i++;?>
         <tr>
-            <td> <?php= $i ?></td>
-            <td><?php=$vendor['firstname'];?> </td>
-            <td><?php=$vendor['tel'];?> </td>
-            <td> <?php=$vendor['address'];?></td>
+            <td> <?php echo $i ?></td>
+            <td><?php echo $vendor['firstname'];?> </td>
+            <td><?php echo $vendor['tel'];?> </td>
+            <td> <?php echo $vendor['address'];?></td>
             <td>
                 <a href="<?php echo URL .'user/edit/'.$vendor['id']; ?>" class="mini-button normal">View</a> 
             </td>

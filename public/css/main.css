@@ -5,7 +5,8 @@
  @import "variables.css"; 
  @import "header-drop-down.css"; 
  @import "form-controllers.css"; 
- @import "lay-table.css";
+ @import "tabs-table.css";
+ @import "filter-panes.css";
  @import "login-style.css";
  
  *{

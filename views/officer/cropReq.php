@@ -37,12 +37,15 @@
             <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
         </form>
     </div>
-    <!-- <div class="pane3">
+
+    <!-- Comment pane 3 & 4 If they are empty -->
+
+    <div class="pane3">
          <label>Empty pane</label>
     </div>
     <div class="pane4">
-    <label>Empty pane</label>
-    </div> -->
+        <label>Empty pane</label>
+    </div>
 </div> 
 
 

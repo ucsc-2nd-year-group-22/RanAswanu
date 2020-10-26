@@ -37,12 +37,12 @@
             <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
         </form>
     </div>
-    <div class="pane3">
+    <!-- <div class="pane3">
          <label>Empty pane</label>
     </div>
     <div class="pane4">
     <label>Empty pane</label>
-    </div>
+    </div> -->
 </div> 
 
 

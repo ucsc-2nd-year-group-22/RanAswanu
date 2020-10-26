@@ -22,7 +22,7 @@
  .main-grid {
      display: grid;
      grid-template-columns: 1fr 80% 1fr;
-     grid-template-rows: 100px 8fr 50px;
+     grid-template-rows: auto 8fr 50px;
      grid-template-areas:
      "header header header"
      ". content ."
@@ -41,7 +41,7 @@
  header {
     display:grid;
     grid-template-columns: 150px 1fr 100px;
-    grid-template-rows: 1fr;
+    grid-template-rows: 2fr;
     grid-template-areas:
     "logo nav btn";
     justify-content: space-between;
@@ -50,6 +50,7 @@
     grid-area: header;
     padding:0 5rem;
     box-shadow:0 2px 10px #ccc;
+    min-height: 100px;
  }
  
  .logo {
@@ -68,13 +69,13 @@
  
  /* Navigation bar ---------------------------------- */
  
- nav ul {
+ header nav ul {
      list-style-type: none;
      grid-area: nav;
      margin-left: 20px;
  }
  
- nav ul li {
+ header nav ul li {
      display: inline-block;
  }
  
@@ -208,7 +209,7 @@
 
     header {
         all:initial;
-        display:inline-grid;
+        display:grid;
         grid-template-columns: 3fr 1fr;
         grid-template-rows: 1fr auto;
         padding: 10px;

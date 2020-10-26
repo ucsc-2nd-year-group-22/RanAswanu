@@ -8,7 +8,7 @@
 
 .user-tabs li a {
     color:var(--main-font-color);
-    padding: 10px;
+    padding: 10px 15px;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1em;
@@ -38,6 +38,8 @@
 .tabContainer h2 {
     padding: 0 0 15px 0;
 }
+
+/* Mobile ------------------------------------------------- */
 
 @media only screen and (max-width:600px) {
 

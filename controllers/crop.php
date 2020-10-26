@@ -11,58 +11,32 @@ class Crop extends Controller{
         $this->view->rendor('crop/crops');
     }
 
+    //route to the crop register form
     public function register($arg = false) {
         $this->view->rendor('crop/register');
     }
 
+    //get the post data and create the crop in the database
     public function create(){
         $data = array();
 
-        $data['firstname'] = $_POST['firstname'];
-        $data['lastname'] = $_POST['lastname'];
+        $data['crop_varient'] = $_POST['crop_varient'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['best_area'] = $_POST['best_area'];
+        $data['harvest_per_land'] = $_POST['harvest_per_land'];
+        $data['harvest_period'] = $_POST['harvest_period'];
+        $data['discription'] = $_POST['discription'];
 
         // TODO: Do error checking
 
         $this->model->create($data);
-        header('location: ' . URL . 'vendor');
+        header('location: ' . URL . 'crop/crops');
     }
 
     //route to view all crops registered in the system
     public function crops(){
 
-        // This is a dummy data object for testing 
-        $cropReqData = [
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 443,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-            [
-                'farmerId' => 412,
-                'farmerName' => "Carrot",
-                'nic' => "2"
-            ],
-        ];
+        $cropData = $this->model->crops();
 
         $pageData = [
             'role' => Session::get('role'),
@@ -70,9 +44,32 @@ class Crop extends Controller{
                           'path' => 'crop/register'
                         ]            
                       ],
-            'cropReqData' => $cropReqData,
+            'cropData' => $cropData,
         ];
         $this->setActivePage('crops');
         $this->view->rendor('crop/crops', $pageData);
+    }
+
+    // route to the edit form with retrieved data
+    public function edit($id){
+        $this->view->crop = $this->model->singleCropList($id);
+        $this->view->rendor('crop/edit');
+    }
+
+    //update the database
+    public function update($id){
+
+        $data = array();
+
+        $data['id'] = $id;
+        $data['crop_varient'] = $_POST['crop_varient'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['best_area'] = $_POST['best_area'];
+        $data['harvest_per_land'] = $_POST['harvest_per_land'];
+        $data['harvest_period'] = $_POST['harvest_period'];
+        $data['discription'] = $_POST['discription'];
+
+        $this->model->update($data);
+        header('location: ' . URL . 'crop/crops');
     }
 }

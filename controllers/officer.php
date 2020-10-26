@@ -134,7 +134,7 @@ class Officer extends Controller {
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'+ Register New Officer',
+            'tabs' => [ ['label' =>'<i class="fas fa-user-plus"></i> Register New Officer',
                           'path' => 'user/register'
                         ]        
                       ],

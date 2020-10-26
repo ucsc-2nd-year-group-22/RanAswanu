@@ -95,7 +95,7 @@ class User_Model extends Model {
                     break;
     
                 case 'admin':
-                    header('location: ' . URL . 'admin/admins');
+                    header('location: ' . URL . 'admin/');
                     break;
                 
                 case 'farmer':

@@ -1,11 +1,11 @@
 
 <div class="subHeader">
 <?php if(Session::get('role')== 'admin'):?>
-    <h1>Admin & Officer Edit</h1>
+    <h1><i class="fas fa-user-edit"></i> Admin & Officer Edit</h1>
 <?php elseif(Session::get('role') == 'officer'): ?>
-    <h1>Edit Farmer</h1>
+    <h1><i class="fas fa-user-edit"></i> Edit Farmer</h1>
 <?php else: ?>
-    <h1>Edit vendor</h1>
+    <h1><i class="fas fa-user-edit"></i> Edit vendor</h1>
 <?php endif ?>
 </div>
 

@@ -50,8 +50,8 @@
             <th>Admin-ID</th>
             <th>Admin Name</th>
             <th>Address</th>
-            <th>View</th>
-            <th>Remove</th>
+            <th><i class="fas fa-users"></i> View</th>
+            <th><i class="fas fa-user-times"></i> Remove</th>
         </tr>
 <?php $i = 0; foreach($adminData as $admin) :; $i++;?>
         <tr>
@@ -60,10 +60,10 @@
             <td><?=$admin['firstname'];?> </td>
             <td> <?=$admin['address'];?></td>
             <td>
-                <a class="mini-button normal">View</a>
+                <a href="<?php echo URL .'user/edit/'.$admin['id']; ?>" class="mini-button normal">View</a>
             </td>
             <td>
-                <a class="mini-button danger">Remove</a>
+                <a href="<?php echo URL .'vendor/delete/'.$admin['id']; ?>" class="mini-button danger">Remove</a>
             </td>
         </tr>
 <?php endforeach;?>

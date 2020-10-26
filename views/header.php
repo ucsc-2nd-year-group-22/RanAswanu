@@ -49,7 +49,7 @@
                             </li>
                         <?php endif; ?>
                         <li><a href="#">Reports</a></li>
-                        <li><a href="#">Notifications</a></li>
+                        <li><a href="<?php echo URL; ?>admin/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
 
                     <!-- Officer configurations for the navigation bar =============================================================== -->
                     <?php elseif(Session::get('role') == 'officer'): ?>
@@ -90,7 +90,7 @@
             <div class="dropdown" >
                 <button class="header-popup-btn"><?php echo substr(Session::get('firstname'),0, 5); echo " ..."; ?></button>
                 <div class="dropdown-content right-menu">
-                    <a href="#"><i class="fas fa-user-circle"></i> View my profile</a>
+                    <a href="<?php echo URL . 'user/edit/' . Session::get('id') ?>"><i class="fas fa-user-circle"></i> View my profile</a>
                     <a href="#"><i class="fas fa-cog"></i> My Settings</a>
                     <a href="#"><i class="fas fa-question-circle"></i> Help & Support</a>
                     <?php if(Session::get('loggedIn') == true): ?>

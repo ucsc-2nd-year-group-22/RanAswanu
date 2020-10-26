@@ -9,25 +9,19 @@
 </div>
 <div class="filter-panel">
     <div class="pane1">
-        <ul>
-            <li id="sortByLbl">
-                <label for="radio">Sort by</label></li>
-            <li>
-                <label class="container">Acending
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </li>
-            <li>
-                <label class="container">Decending
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </li>
-        </ul>                    
+        <!-- <h4>Search</h4>                     -->
     </div>
     <div class="pane2">
-        <!-- panel2                     -->
+        <div class="search-container">
+            <form action="#">
+                <span class="left">
+                    <input type="text" placeholder="Search.." name="search">
+                </span>
+                <span class="right">
+                    <button type="submit">Submit</button>
+                </span>
+            </form>
+        </div>
     </div>
     <div class="pane3">
         <label for="filter4">Sort by</label>
@@ -51,20 +45,24 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Crop-ID</th>
-            <th>Crop Name</th>
+            <th>Crop-Varient</th>
             <th>Kg Per m<sup>2</sup></th>
-            <th>Action</th>
+            <th>Harvest Period (Days)</th>
+            <th>View</th>
+            <th>Remove</th>
         </tr>
-<?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
+
+<?php $i = 0; foreach($cropData as $cropItem) :; $i++;?>
         <tr>
-            <td> <?=  $i ?></td>
-            <td><?= $cropReqItem['farmerId'];?> </td>
-            <td><?= $cropReqItem['farmerName'];?> </td>
-            <td> <?= $cropReqItem['nic'];?></td>
+            <td> <?= $i ?></td>
+            <td><?=$cropItem['crop_varient'];?> </td>
+            <td><?=$cropItem['harvest_per_land'];?> </td>
+            <td> <?=$cropItem['harvest_period'];?></td>
             <td>
-                <button class="mini-button normal">Accept</button> 
-                <button class="mini-button danger">Reject</button> 
+                <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal"><i class="fas fa-eye"></i></a> 
+            </td>
+            <td>
+                <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" class="mini-button danger"><i class="fas fa-trash"></i></a> 
             </td>
         </tr>
 <?php endforeach;?>

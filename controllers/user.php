@@ -29,7 +29,7 @@ class User extends Controller {
         $this->view->rendor('user/index');
     }
 
-    //rout to the register user
+    //route to the register user
     public function register(){
         $this->destroyActivePage();
         $this->view->rendor('user/register');
@@ -81,9 +81,18 @@ class User extends Controller {
     
     //fetch individual user
     public function edit($id){
-        $this->view->user = $this->model->userSingleList($id);
-        $this->view->rendor('user/edit');
-
+        if(Session::get('id') != $id){
+            $this->view->user = $this->model->userSingleList($id);
+            if(Session::get('isadmin') == 1 || ($this->view->user['role'] == 'farmer' && Session::get('role') == 'officer')){
+                $this->view->rendor('user/edit');
+            }else{
+                $this->logout();
+            }
+        }else{
+            $this->view->user = $this->model->userSingleList($id);
+            $this->view->rendor('user/edit');
+        }
+        
     }
 
     public function delete($id) {
@@ -94,7 +103,7 @@ class User extends Controller {
                 break;
 
             case 'admin':
-                header('location: ' . URL . 'admin/farmers');
+                header('location: ' . URL . 'admin');
                 break;
         }
     }

@@ -25,13 +25,9 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 
 - admin
     - index => (Useless)
-    - officers
-    - createOfficers (empty)
     - crops
     - collectingcenters [must be collectingCenters]
-    - admins
-    - vendors
-    - deleteVendor
+    - admins [ retrieve all registered admins ( + routing)]
     - toofficer [must be toOfficer]
     - toadmin [must be toAdmin]
 
@@ -66,8 +62,9 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 - vendor
     - index
     - register
-    - create
     - viewVendor
+    - delete
+    - vendors
 - farmer
     - farmerMng
 
@@ -88,6 +85,9 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
     - index
     - register
     - create
+    - crops
+    - edit
+    - update
 
 ## Models
 
@@ -125,6 +125,13 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
 - vendor_model
     - __contructor only
 
+- crop_model
+    - create
+    - singleCropList
+    - crops
+    - update
+    - delete
+
 
 ## Views
 - header.php
@@ -157,5 +164,10 @@ GitHub has replaced their keyword 'master' with 'main'. Then the master branch w
     - index.php
     - register.php
     - view.php
+
+- crop
+    - crops.php
+    - edit.php
+    - register.php
 
 *random text*

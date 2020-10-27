@@ -7,6 +7,22 @@ class Farmer extends Controller {
         Session::init();
     }
 
+    public function index() {
+        $logged = Session::get('loggedIn');
+        $role = Session::get('role');
+        $data = array(
+            'role' => $role
+        );
+        if(($role=='farmer'|| 'admin') && $logged==true)
+
+            $this->view->rendor('farmer/index', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
+            
+    }
+
     public function farmerMng() {
        
         $farmerData = $this->model->farmerList();

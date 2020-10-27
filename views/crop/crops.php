@@ -3,7 +3,7 @@
 <div class="user-tabs">
     <ul>
     <?php foreach($tabs as $tab) :?>
-        <li><a href="<?php echo URL . $tab['path']?>"><?php=$tab['label']?></a></li>
+        <li><a href="<?php echo URL . $tab['path']?>"><?php  echo $tab['label']?></a></li>
     <?php endforeach; ?>
     </ul>
 </div>
@@ -58,10 +58,10 @@
         </tr>
 <?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
         <tr>
-            <td> <?php= $i ?></td>
-            <td><?php=$cropReqItem['farmerId'];?> </td>
-            <td><?php=$cropReqItem['farmerName'];?> </td>
-            <td> <?php=$cropReqItem['nic'];?></td>
+            <td> <?php echo $i ?></td>
+            <td><?php echo  $cropReqItem['farmerId'];?> </td>
+            <td><?php echo $cropReqItem['farmerName'];?> </td>
+            <td> <?php echo $cropReqItem['nic'];?></td>
             <td>
                 <button class="mini-button normal">Accept</button> 
                 <button class="mini-button danger">Reject</button> 

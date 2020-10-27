@@ -141,6 +141,13 @@ class User extends Controller {
             case 'admin':
                 header('location: ' . URL . 'admin/index');
                 break;
+            
+            case 'vendor':
+                header('location: ' . URL . 'vendor/index');
+                break;
+
+            case 'farmer':
+                header('location: ' . URL . 'farmer/index');
         }
     }
 
@@ -160,4 +167,19 @@ class User extends Controller {
         // Session::unset('loggedIn');
         header('location: '. URL .'user/login');
     }
+
+    function viewUser($id) {
+
+        $userData = $this->model->userSingleList($id);
+        $data['userData'] = $userData;
+        $data['role'] = $userData['role'];
+        $data['id'] = $userData['id'];
+        $data['loggedIn'] = Session::get('loggedIn');
+
+        $this->view->rendor('user/profile', $data);
+    }
+
+
+
+    // End of user class controller
 }  

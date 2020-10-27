@@ -8,7 +8,7 @@
 
 
 <div class="main-form">
-    <form action="<?= URL;?>/user/edit" method="post">
+    <form action="<?php if ($role == Session::get('role')) echo URL . "user/edit/" . Session::get('id')?>" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">First Name</label>

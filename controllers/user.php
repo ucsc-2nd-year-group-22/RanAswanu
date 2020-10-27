@@ -81,16 +81,18 @@ class User extends Controller {
     
     //fetch individual user
     public function edit($id){
+
+        $data['id'] = $id;
         if(Session::get('id') != $id){
             $this->view->user = $this->model->userSingleList($id);
             if(Session::get('isadmin') == 1 || ($this->view->user['role'] == 'farmer' && Session::get('role') == 'officer')){
-                $this->view->rendor('user/edit');
+                $this->view->rendor('user/edit', $data);
             }else{
                 $this->logout();
             }
         }else{
             $this->view->user = $this->model->userSingleList($id);
-            $this->view->rendor('user/edit');
+            $this->view->rendor('user/edit', $data);
         }
         
     }

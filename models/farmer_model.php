@@ -1,112 +1,84 @@
-<?php
+<?php 
 
-class Farmer extends Controller {
-
+class Farmer_Model extends Model {
+    
     public function __construct() {
         parent::__construct();
-        Session::init();
     }
 
-    public function farmerMng() {
-       
-        $farmerData = $this->model->farmerList();
-        $data['officerData'] = $farmerData;
-        $this->setActivePage('farmerMng');
-        $this->view->rendor('farmer/farmerMng', $data);
+    public function farmerList() {
+        $st = $this->db->prepare("SELECT * FROM users WHERE role = :role");
+        $st->execute(array(
+            ':role' => 'farmer'
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetchAll();
+    }
+    
+
+    public function create($data)
+    {
+        $st = $this->db->prepare("INSERT INTO farmers ('username' , 'dmgdate' , 'province' , 'district' , 'gramasewa' , 'address' , 'estdmgarea' , 'waydmg' , 'details') VALUES ( :username , :dmgdate , :province , :district , :gramasewa , :address , :estdmgarea , :waydmg , :details)");
+        $st-> execute(array(
+            ':username' => $_POST['username'],
+            ':dmgdate' => $_POST['dmgdate'],
+            ':provice' => $_POST['provice'],
+            ':dmgdate' => $_POST['province'],
+            ':district' => $_POST['district'],
+            ':gramasewa' => $_POST['gramasewa'],
+            ':address' => $_POST['address'],
+            ':estdmgarea' => $_POST['estdmgarea'],
+            ':waydmg' => $_POST['waydmg'],
+            ':details' => $_POST['details'],
+
+
+        ));
+    }
+
+
+    public function sellcrops($data)
+    {
+        $st=$this->db->prepare("INSERT INTO farmers('username' , 'provice' , 'district' , 'selectcrop' , 'state' ,  'cropVariety' , 'exprice' , 'weight' , 'display') VALUES ( :username , :province , :district , :selectcrop ,:state , :cropVariety , :exprice , :weight , :display)");
+        $st->execute(array(
+            ':username' => $_POST['username'],
+            ':province' => $_POST['province'],
+            ':district' => $_POST['district'],
+            ':selectCrop' => $_POST['selectCrop'],
+            ':state' => $_POST['state'],
+            ':cropVariety' => $_POST['cropVariety'],
+            ':exprice' => $_POST['exprice'],
+            ':weight' => $_POST['weight'],
+            ':display'=> $_POST['display'],
+            
+
+        ));
+    }
+
+    public function cropRequest($data)
+    {
+        $st=$this->db->prepare("INSERT INTO farmers('username' , 'province' , 'district' , 'gramasewa' , 'address' , 'areasize' , 'Expdate' , 'croptype' , 'selectCrop' , 'cropVariety' , 'otherdetails' , 'conditions') VALUES ( :username , :province , :district , :gramasewa , :address , :areasize , :Expdate , :croptype , :selectCrop , :cropVariety , :otherdetails , :conditions)");
+        $st->execute(array(           
+            ':username' => $_POST['username'],
+            ':province' => $_POST['province'],
+            ':district' => $_POST['district'],
+            ':gramasewa' => $_POST['gramasewa'],
+            ':address' => $_POST['address'],
+            ':areasize' => $_POST['areasize'],
+            ':Expdate' => $_POST['Expdate'],
+            ':croptype' => $_POST['croptype'],
+            ':selectCrop' => $_POST['selectCrop'],
+            ':cropVariety' => $_POST['cropVariety'],
+            ':otherdetails' => $_POST['otherdetails'],
+            ':conditions' => $_POST['conditions'],
+
+        ));
     }
 
    
-    public function damageclaim($arg = false) {
-        $this->view->rendor('farmer/damageclaim');
-    }
 
-    public function cropReq($arg = false) {
-        $this->view->rendor('farmer/cropReq');
-    }
-    
-    public function sellyourcrops($arg = false) {
-        $this->view->rendor('farmer/sellyourcrops');
-    }
-   
-    public function vendOffers($arg = false) {
-        $this->view->rendor('farmer/vendOffers');
-    }
 
-    //instert damage claim information to the database
-    public function create()
-    {
-        $data=array();
 
-        $data['username'] = $_POST['username'];
-        $data['dmgdate'] = $_POST['dmgdate'];
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['gramasewa'] = $_POST['gramasewa'];
-        $data['address'] = $_POST['address'];
-        $data['estdmgarea'] = $_POST['estdmgarea'];
-        $data['waydmg'] = $_POST['waydmg'];
-        $data['details'] = $_POST['details'];
-       
-    }
-
+        
     
     
-     //insterting crop details of farmers' which expect to sell
-   public function sellcrops()
-    {
-        $data=array();
-
-        $data['username'] = $_POST['username'];
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['selectCrop'] = $_POST['selectCrop'];
-        $data['state'] = $_POST['state'];
-        $data['cropVariety'] = $_POST['cropVariety'];
-        $data['exprice'] = $_POST['exprice'];
-        $data['weight'] = $_POST['weight'];
-        $data['display'] = $_POST['display'];
-    }
-
-    
-    public function cropRequest()
-    {
-        $data=array();
-
-        $data['username'] = $_POST['username'];
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['gramasewa'] = $_POST['gramasewa'];
-        $data['address'] = $_POST['address'];
-        $data['areasize'] = $_POST['areasize'];
-        $data['Expdate'] = $_POST['Expdate'];
-        $data['croptype'] = $_POST['croptype'];
-        $data['selectCrop'] = $_POST['selectCrop'];
-        $data['cropVariety'] = $_POST['cropVariety'];
-        $data['otherdetails'] = $_POST['otherdetails'];
-        $data['conditions'] = $_POST['conditions'];
-
-
-
-    }
-
- /*  public function vendOffers()
-    {
-        $venderoffersdata= [
-            [
-
-
-            ]
-
-            [
-
-            ]
-
-
-        ];
-    }
-
-
-  */  
-    
-
 }

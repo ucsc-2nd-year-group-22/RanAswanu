@@ -1,0 +1,20 @@
+
+
+#chartContainer{
+    height: 370px; 
+    width: 40%; 
+    margin-right: 5px; 
+    float:left;
+}
+
+#chartContainer1{
+    height: 370px; 
+    width: 60%; 
+    margin: auto; 
+}
+
+#chartContainer2{
+    height: 370px; 
+    width: 100%; 
+    margin: 5px; 
+}

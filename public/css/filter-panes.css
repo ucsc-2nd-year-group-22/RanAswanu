@@ -89,6 +89,8 @@
 }
 
 
+/* Tab -------------------------------------------------------- */
+
 @media only screen and (max-width:1024px) {
     
     .panel-container {
@@ -101,6 +103,8 @@
     }
     
 }
+
+/* Moblie -------------------------------------------------------- */
 
 @media only screen and (max-width:600px) {
     

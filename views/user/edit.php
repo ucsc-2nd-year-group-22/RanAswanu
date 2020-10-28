@@ -138,7 +138,7 @@
             <label for="login">Login</label>
             </div>
             <div class="col-75">
-            <input type="text" id="login" name="login" value="<?=$this->user['login']; ?>">
+            <input type="text" id="login" name="login" value="<?php echo $this->user['login']; ?>">
             </div>
         </div>
         <!-- <div class="row">

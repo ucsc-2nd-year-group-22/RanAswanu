@@ -36,30 +36,40 @@ class User_Model extends Model {
 
     //update the user data in the database 
     public function editSave($data){
-        // print_r($data);
-        $stmt = $this->db->prepare('UPDATE users 
-        SET `login` = :login, 
-        `firstname` = :firstname, 
-        `lastname` = :lastname, 
-        `role` = :role, `nic` = :nic, 
-        `tel` = :tel, `email` = :email, 
-        `dob` = :dob, `sex` = :sex, 
-        `province` = :province, 
-        `district` = :district, 
-        `grama` = :grama, 
-        `address` = :address 
-        WHERE `id` = :id');
+        print_r($data);
+        $stmt = $this->db->prepare("UPDATE users SET 
+            `firstname` = :firstname, 
+            `lastname` = :lastname,
+            `login` = :login,
+            `nic` = :nic,
+            `tel` = :tel,
+            `email` = :email,
+            `dob` = :dob,
+            `sex` = :sex,
+            `province` = :province,
+            `district` = :district,
+            `grama` = :grama,
+            `address` = :address,
+            `role` = :role
+        WHERE `id` = :id");
 
         $stmt->execute(array(
             ':firstname' => $data['firstname'],
             ':lastname' => $data['lastname'],
-            ':id' => $data['id'],
             ':login' => $data['login'],
-            ':role' => $data['role'],
             ':nic' => $data['nic'],
             ':tel' => $data['tel'],
-            ':email' => $data['email']
+            ':email' => $data['email'],
+            ':dob' => $data['dob'],
+            ':sex' => $data['sex'],
+            ':province' => $data['province'],
+            ':district' => $data['district'],
+            ':grama' => $data['grama'],
+            ':address' => $data['address'],
+            ':role' => $data['role'],
+            ':id' => $data['id']
         ));
+
     }
 
     public function delete($id){

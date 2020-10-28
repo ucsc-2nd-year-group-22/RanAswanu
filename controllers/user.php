@@ -113,6 +113,7 @@ class User extends Controller {
         $data = array();
         $data['firstname'] = $_POST['firstname'];
         $data['lastname'] = $_POST['lastname'];
+        $data['login'] = $_POST['login'];
         $data['nic'] = $_POST['nic'];
         $data['tel'] = $_POST['tel'];
         $data['email'] = $_POST['email'];
@@ -123,7 +124,6 @@ class User extends Controller {
         $data['grama'] = $_POST['grama'];
         $data['address'] = $_POST['address'];
         $data['role'] = $_POST['role'];
-        $data['login'] = $_POST['login'];
         $data['id'] = $id;
         // $data['password'] = MD5($_POST['password']);
 

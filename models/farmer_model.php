@@ -36,19 +36,20 @@ class Farmer_Model extends Model {
     }
 
 
-    public function sellcrops($data)
+    public function sellurcrops($data)
     {
-        $st=$this->db->prepare("INSERT INTO sellcrops('username' , 'provice' , 'district' , 'selectcrop' , 'state' ,  'cropVariety' , 'exprice' , 'weight' , 'display') VALUES ( :username , :province , :district , :selectcrop ,:state , :cropVariety , :exprice , :weight , :display)");
+        $st=$this->db->prepare("INSERT INTO sellcrops (`username` , `province` , `district`, `croptype` , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`) VALUES ( :username , :province , :district , :croptype ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display)");
         $st->execute(array(
-            ':username' => $_POST'username'],
-            ':province' => $_POST['province'],
-            ':district' => $_POST['district'],
-            ':selectCrop' => $_POST['selectCrop'],
-            ':state' => $_POST['state'],
-            ':cropVariety' => $_POST['cropVariety'],
-            ':exprice' => $_POST['exprice'],
-            ':weight' => $_POST['weight'],
-            ':display'=> $_POST['display']
+            ':username' => $data['username'],
+            ':province' =>$data['province'],
+            ':district' => $data['district'],
+            ':croptype' =>$data['croptype'],
+            ':state' =>$data['state'],
+            ':selectCrop' =>$data['selectCrop'],
+            ':cropVariety' => $data['cropVariety'],
+            ':exprice' => $data ['exprice'],
+            ':weight' => $data['weight'],
+            ':display'=> $data['display']
             
 
         ));
@@ -58,18 +59,18 @@ class Farmer_Model extends Model {
     {
         $st=$this->db->prepare("INSERT INTO croprequest('username' , 'province' , 'district' , 'gramasewa' , 'address' , 'areasize' , 'Expdate' , 'croptype' , 'selectCrop' , 'cropVariety' , 'otherdetails' , 'conditions') VALUES ( :username , :province , :district , :gramasewa , :address , :areasize , :Expdate , :croptype , :selectCrop , :cropVariety , :otherdetails , :conditions)");
         $st->execute(array(           
-            ':username' => $_POST['username'],
-            ':province' => $_POST['province'],
-            ':district' => $_POST['district'],
-            ':gramasewa' => $_POST['gramasewa'],
-            ':address' => $_POST['address'],
-            ':areasize' => $_POST['areasize'],
-            ':Expdate' => $_POST['Expdate'],
-            ':croptype' => $_POST['croptype'],
-            ':selectCrop' => $_POST['selectCrop'],
-            ':cropVariety' => $_POST['cropVariety'],
-            ':otherdetails' => $_POST['otherdetails'],
-            ':conditions' => $_POST['conditions'],
+            ':username' => $data['username'],
+            ':province' => $data['province'],
+            ':district' => $data['district'],
+            ':gramasewa' => $data['gramasewa'],
+            ':address' => $data['address'],
+            ':areasize' => $data['areasize'],
+            ':Expdate' => $data['Expdate'],
+            ':croptype' => $data['croptype'],
+            ':selectCrop' => $data['selectCrop'],
+            ':cropVariety' => $data['cropVariety'],
+            ':otherdetails' => $data['otherdetails'],
+            ':conditions' => $data['conditions']
 
         ));
     }

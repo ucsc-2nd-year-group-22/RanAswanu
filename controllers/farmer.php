@@ -74,19 +74,24 @@ class Farmer extends Controller {
     
     
      //insterting crop details of farmers' which expect to sell
-   public function sellcrops()
+   public function sellurcrops()
     {
         $data=array();
 
         $data['username'] = $_POST['username'];
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
-        $data['selectCrop'] = $_POST['selectCrop'];
+        $data['croptype'] = $_POST['croptype'];
         $data['state'] = $_POST['state'];
+        $data['selectCrop'] = $_POST['selectCrop'];
         $data['cropVariety'] = $_POST['cropVariety'];
         $data['exprice'] = $_POST['exprice'];
         $data['weight'] = $_POST['weight'];
         $data['display'] = $_POST['display'];
+        
+        $this->model->sellurcrops($data);
+        header('location: ' . URL . 'farmer/sellyourcrops');
+
     }
 
     

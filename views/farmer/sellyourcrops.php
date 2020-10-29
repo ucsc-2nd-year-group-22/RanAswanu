@@ -2,13 +2,13 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/sellcrops" method="post">
+    <form action="<?= URL;?>/farmer/sellurcrops" method="post">
         <div class="row">
             <div class="col-25">
             <label for="username">Username</label>
             </div>
             <div class="col-75">
-            <input type="text" id="login" name="login" placeholder="ex: wasantha123">
+            <input type="text" id="username" name="username" placeholder="ex: wasantha123">
             </div>
         </div>
     
@@ -43,15 +43,15 @@
         
         <div class="row">                                                                             
             <div class="col-25">
-                <label for="selectCrop">Crop type:</label>
+                <label for="croptype">Crop type:</label>
             </div>
 
             <div class="col-75">
-                <select id="selectCrop" name="selectCrop">
-				<label for="type">Type</label>
-                <input type="radio" id="Vegatable" name="Type" >
+                <select id="croptype" name="croptype">
+			<!--<label for="type">Type</label>    -->
+                <input type="radio" id="Vegatable" name="croptype" >
                 <label for="vegatable">Vegatable</label><br>
-                <input type="radio" id="Fruit" name="Type" >
+                <input type="radio" id="Fruit" name="croptype" >
                 <label for="fruit">Fruit</label><br><br> 
                 </select>
             </div>
@@ -63,11 +63,11 @@
             </div>
 
             <div class="col-75">
-                <select id="selectCrop" name="selectCrop">
-				<label for="type">Type</label>
-                <input type="radio" id="Beforehvt" name="Type" >
+                <select id="state" name="state">
+			<!--	<label for="type">Type</label>   -->
+                <input type="radio" id="Beforehvt" name="state" >
                 <label for="aftharvest">After Harvest</label><br>
-                <input type="radio" id="Afterhvt" name="Type" >
+                <input type="radio" id="Afterhvt" name="state" >
                 <label for="bfrharvest">Before Harvest</label><br><br> 
                 </select>
             </div>

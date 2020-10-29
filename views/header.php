@@ -75,15 +75,23 @@
                         <!-- <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
                         <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
-                    <!-- Vendor configurations for the navigation bar =============================================================== -->
-                    <?php elseif(Session::get('role') == 'vendor'): ?>
+                    
+                     <!-- Vendor configurations for the navigation bar =============================================================== -->
+                     <?php elseif(Session::get('role') == 'vendor'): ?>
                         <li><a href="<?php echo URL; ?>vendor/index" class="<?php View::getActivePage('index'); ?>">Timeline</a></li>
-                        <li><a href="<?php echo URL; ?>vendor/sellingReq" class="<?php View::getActivePage('sellingReq'); ?>">Selling Requests</a></li>
-
-                <?php endif ?>
+                        <li><a href="<?php echo URL; ?>vendor/sellingReq" class="<?php View::getActivePage('sellingReq'); ?>">Selling Requests</a></li>    
 
 
 
+                     <!--Farmer configurations for the navigation bar =============================================================== -->    
+                    <?php elseif(Session::get('role') == 'farmer'): ?>
+                        <li><a href="<?php echo URL; ?>farmer/cropReq" class="<?php View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/damageClaim" class="<?php View::getActivePage('damageClaim'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/sellyourcrops" class="<?php View::getActivePage('sellyourcrops'); ?>">Sell Your Crops</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/vendOffers" class="<?php View::getActivePage('vendOffers'); ?>">Vendor Offers</a></li>
+
+                     <?php endif ?>  
+                        
                 </ul>
             </nav>
             <?php if(Session::get('loggedIn') == true): ?>

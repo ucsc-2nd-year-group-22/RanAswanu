@@ -36,6 +36,8 @@ class Farmer extends Controller {
         $this->view->rendor('farmer/damageclaim');
     }
 
+
+
     public function cropReq($arg = false) {
         $this->view->rendor('farmer/cropReq');
     }
@@ -49,8 +51,9 @@ class Farmer extends Controller {
     }
 
     //instert damage claim information to the database
-    public function create()
+    public function creates()
     {
+        
         $data=array();
 
         $data['username'] = $_POST['username'];
@@ -62,6 +65,9 @@ class Farmer extends Controller {
         $data['estdmgarea'] = $_POST['estdmgarea'];
         $data['waydmg'] = $_POST['waydmg'];
         $data['details'] = $_POST['details'];
+
+        $this->model->creates($data);
+        header('location: ' . URL . 'farmer/damageclaim');
        
     }
 

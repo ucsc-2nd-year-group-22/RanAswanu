@@ -3,7 +3,7 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/create" method="post">
+    <form action="<?= URL;?>/farmer/creates" method="post">
         <div class="row">
             <div class="col-25">
             <label for="username">Username</label>

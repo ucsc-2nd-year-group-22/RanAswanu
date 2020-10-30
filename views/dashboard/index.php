@@ -116,9 +116,21 @@ catch(\PDOException $ex){
 
 <script>
 window.onload = function() {
+
+    CanvasJS.addColorSet("greenShades",
+                [//colorSet Array
+
+                "#2aaa26",
+                "#5cca58",
+                "#046801",
+                "#3CB371",
+                "#90EE90"                
+                ]);
  
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
+        exportEnabled: true,
+        colorSet: "greenShades",
         theme: "light2",
         title:{
             text: "Registered crops"

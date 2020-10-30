@@ -48,11 +48,8 @@
 
             <div class="col-75">
                 <select id="croptype" name="croptype">
-			<!--<label for="type">Type</label>    -->
-                <input type="radio" id="Vegatable" name="croptype" >
-                <label for="vegatable">Vegatable</label><br>
-                <input type="radio" id="Fruit" name="croptype" >
-                <label for="fruit">Fruit</label><br><br> 
+                   <option value="vegetables">Vegetables</option>
+                   <option value="fruits">Fruits</option>                
                 </select>
             </div>
         </div>
@@ -64,11 +61,13 @@
 
             <div class="col-75">
                 <select id="state" name="state">
-			<!--	<label for="type">Type</label>   -->
+                    <option value="after hvst"> After Harvest</option>
+                    <option value="before hvst">Before Harvest</option>
+			<!--	<label for="type">Type</label>   
                 <input type="radio" id="Beforehvt" name="state" >
                 <label for="aftharvest">After Harvest</label><br>
                 <input type="radio" id="Afterhvt" name="state" >
-                <label for="bfrharvest">Before Harvest</label><br><br> 
+                <label for="bfrharvest">Before Harvest</label><br><br>   -->
                 </select>
             </div>
         </div>

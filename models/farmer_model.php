@@ -57,7 +57,7 @@ class Farmer_Model extends Model {
 
     public function cropRequest($data)
     {
-        $st=$this->db->prepare("INSERT INTO croprequest('username' , 'province' , 'district' , 'gramasewa' , 'address' , 'areasize' , 'Expdate' , 'croptype' , 'selectCrop' , 'cropVariety' , 'otherdetails' , 'conditions') VALUES ( :username , :province , :district , :gramasewa , :address , :areasize , :Expdate , :croptype , :selectCrop , :cropVariety , :otherdetails , :conditions)");
+        $st=$this->db->prepare("INSERT INTO croprequest(`username` , `province` , `district` , `gramasewa` , `address` , `areasize` , `exptdate` , `croptype` , `selectCrop` , `cropVariety` , `otherdetails`) VALUES ( :username , :province , :district , :gramasewa , :address , :areasize , :exptdate , :croptype , :selectCrop , :cropVariety , :otherdetails)");
         $st->execute(array(           
             ':username' => $data['username'],
             ':province' => $data['province'],
@@ -65,12 +65,12 @@ class Farmer_Model extends Model {
             ':gramasewa' => $data['gramasewa'],
             ':address' => $data['address'],
             ':areasize' => $data['areasize'],
-            ':Expdate' => $data['Expdate'],
+            ':exptdate' => $data['exptdate'],
             ':croptype' => $data['croptype'],
             ':selectCrop' => $data['selectCrop'],
             ':cropVariety' => $data['cropVariety'],
-            ':otherdetails' => $data['otherdetails'],
-            ':conditions' => $data['conditions']
+            ':otherdetails' => $data['otherdetails']
+       //     ':conditions' => $data['conditions']
 
         ));
     }

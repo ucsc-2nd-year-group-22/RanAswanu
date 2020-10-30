@@ -94,7 +94,7 @@ class Farmer extends Controller {
 
     }
 
-    
+       //inserting crop request details
     public function cropRequest()
     {
         $data=array();
@@ -105,12 +105,15 @@ class Farmer extends Controller {
         $data['gramasewa'] = $_POST['gramasewa'];
         $data['address'] = $_POST['address'];
         $data['areasize'] = $_POST['areasize'];
-        $data['Expdate'] = $_POST['Expdate'];
+        $data['exptdate'] = $_POST['exptdate'];
         $data['croptype'] = $_POST['croptype'];
         $data['selectCrop'] = $_POST['selectCrop'];
         $data['cropVariety'] = $_POST['cropVariety'];
         $data['otherdetails'] = $_POST['otherdetails'];
-        $data['conditions'] = $_POST['conditions'];
+      //  $data['conditions'] = $_POST['conditions'];
+
+      $this->model->cropRequest($data);
+      header('location: ' . URL . 'farmer/cropReq');
 
 
 

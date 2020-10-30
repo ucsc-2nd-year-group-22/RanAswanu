@@ -144,6 +144,29 @@ class Officer extends Controller {
         $this->view->rendor('officer/officers', $pageData);
     }
 
+    public function sendmail() {
+
+        $mailbody = '
+            <div class="" style="background:#ccc; font-size:1.2em; padding:10px; font-family:sans-serif;">
+            <h2>Hellooo user.. welcome here</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor scelerisque est a consequat. Duis et massa nec nunc mattis feugiat sit amet porttitor purus. Fusce ultricies vitae augue eget pharetra. Morbi sed diam mattis, pellentesque ligula scelerisque, semper mauris. Cras tempus pretium odio, et ullamcorper turpis ultricies sed. Maecenas a sodales risus. In consequat malesuada sapien vel bibendum. Maecenas accumsan justo ut ultrices tincidunt. Integer faucibus quam ac nisi mattis, eu convallis dui condimentum. Phasellus iaculis magna in enim iaculis, eget fermentum velit condimentum. Cras a pretium tortor, sed consequat tellus. Nullam nisi erat, mollis at nisl vitae, euismod convallis lorem. Donec facilisis ipsum sit amet odio iaculis auctor.
+
+            </p>
+        </div>
+
+        ';
+
+        $mailInfo = [
+            'body' => $mailbody,
+            'subject' => 'Welcome to Ran Aswanu',
+            'address' => 'dimuthudhanushka8@gmail.com',
+        ];
+
+        $mymail = new Email();
+        $mymail->sendmail($mailInfo);
+
+    }
+
 }
 
         

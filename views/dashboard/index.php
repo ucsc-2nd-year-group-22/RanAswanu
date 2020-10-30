@@ -167,6 +167,7 @@ window.onload = function() {
     var chart2 = new CanvasJS.Chart("chartContainer2", {
         animationEnabled: true,
         theme: "light3",
+        dataPointMaxWidth: 90,
         title:{
             text: "Crop Distribution"
         },

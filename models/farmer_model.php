@@ -57,7 +57,7 @@ class Farmer_Model extends Model {
 
     public function cropRequest($data)
     {
-        $st=$this->db->prepare("INSERT INTO croprequest(`username` , `province` , `district` , `gramasewa` , `address` , `areasize` , `exptdate` , `croptype` , `selectCrop` , `cropVariety` , `otherdetails`) VALUES ( :username , :province , :district , :gramasewa , :address , :areasize , :exptdate , :croptype , :selectCrop , :cropVariety , :otherdetails)");
+        $st=$this->db->prepare("INSERT INTO croprequest (`username` , `province` , `district` , `gramasewa` , `address` , `areasize` , `exptdate` , `croptype` , `selectCrop` , `cropVariety` , `otherdetails`) VALUES ( :username , :province , :district , :gramasewa , :address , :areasize , :exptdate , :croptype , :selectCrop , :cropVariety , :otherdetails)");
         $st->execute(array(           
             ':username' => $data['username'],
             ':province' => $data['province'],

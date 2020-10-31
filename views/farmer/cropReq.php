@@ -2,7 +2,7 @@
        
 
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/cropReq" method="post">	
+    <form action="<?= URL;?>/farmer/cropRequest" method="post">	
         <div class="row">
             <div class="col-25">
             <label for="username">Username</label>

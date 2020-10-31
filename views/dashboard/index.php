@@ -149,6 +149,7 @@ window.onload = function() {
 
     var chart1 = new CanvasJS.Chart("chartContainer1", {
         animationEnabled: true,
+        exportEnabled: true,
         theme: "light5",
         title:{
             text: "Registered Data"
@@ -166,6 +167,7 @@ window.onload = function() {
 
     var chart2 = new CanvasJS.Chart("chartContainer2", {
         animationEnabled: true,
+        exportEnabled: true,
         theme: "light3",
         dataPointMaxWidth: 90,
         title:{
@@ -187,6 +189,7 @@ window.onload = function() {
 
     var chart3 = new CanvasJS.Chart("chartContainer3", {
         animationEnabled: true,
+        exportEnabled: true,
         theme: "light3",
         title:{
             text: "Crop Distribution"

@@ -124,7 +124,7 @@
             <label for="role">Role</label>
             </div>
             <div class="col-75">
-            <select id="role" name="role">
+            <select id="role" name="role" <?php if(Session::get('isadmin') == 0) echo 'disabled' ?>>
             <?php if(Session::get('role') == 'admin'):?>
                 <option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
                 <option value="officer" <?php if($this->user['role'] == 'officer') echo 'selected'; ?>>Officer</option>

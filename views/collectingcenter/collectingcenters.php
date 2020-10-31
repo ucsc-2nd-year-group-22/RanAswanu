@@ -66,10 +66,10 @@
             <td><?=$center['province'];?> </td>
             <td> <?=$center['district'];?></td>
             <td>
-                <a href="<?php echo URL .'collectingcenter/edit/'.$center['id']; ?>" class="mini-button normal"><i class="fas fa-eye"></i></a> 
+                <a href="<?php echo URL .'collectingcenter/edit/'.$center['id']; ?>" class="mini-button normal"><i class="fas fa-eye"> View</i></a> 
             </td>
             <td>
-                <a href="<?php echo URL .'collectingcenter/delete/'.$center['id']; ?>" class="mini-button danger"><i class="fas fa-trash"></i></a> 
+                <a href="<?php echo URL .'collectingcenter/delete/'.$center['id']; ?>" class="mini-button danger"><i class="fas fa-trash"> Remove</i></a> 
             </td>
         </tr>
 <?php endforeach;?>

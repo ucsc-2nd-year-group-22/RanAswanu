@@ -56,7 +56,7 @@
         <table>
             <tr>
                 <th>#</th>
-                <th>Officer-ID</th>
+                <th style="text-align:center;" >View Profile</th>
                 <th>First Name</th>
                 <th>Last name</th>
                 <th>Action</th>
@@ -66,7 +66,7 @@
         <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $officer['id'];?> </td>
+                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $officer['id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
                 <td><?= $officer['firstname'];?> </td>
                 <td><?= $officer['lastname'];?> </td>
                 <td><?= $officer['nic'];?> </td>

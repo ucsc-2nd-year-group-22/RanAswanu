@@ -3,7 +3,11 @@
 <?php if(Session::get('role')== 'admin'):?>
     <h1><i class="fas fa-user-edit"></i> Admin & Officer Edit</h1>
 <?php elseif(Session::get('role') == 'officer'): ?>
-    <h1><i class="fas fa-user-edit"></i> Edit Farmer</h1>
+    <?php if(Session::get('id') == $id): ?>
+        <h1><i class="fas fa-user-edit"></i> Edit My Profile</h1>
+    <?php else:?>
+        <h1><i class="fas fa-user-edit"></i> Edit Farmer</h1>
+    <?php endif;?>
 <?php else: ?>
     <h1><i class="fas fa-user-edit"></i> Edit vendor</h1>
 <?php endif ?>

@@ -17,18 +17,22 @@ class Farmer extends Controller {
 
    
     public function damageclaim($arg = false) {
+        $this->setActivePage('damageclaim');
         $this->view->rendor('farmer/damageclaim');
     }
 
     public function cropReq($arg = false) {
+        $this->setActivePage('cropReq');
         $this->view->rendor('farmer/cropReq');
     }
     
     public function sellyourcrops($arg = false) {
+        $this->setActivePage('sellyourcrops');
         $this->view->rendor('farmer/sellyourcrops');
     }
    
     public function vendOffers($arg = false) {
+        $this->setActivePage('vendOffers');
         $this->view->rendor('farmer/vendOffers');
     }
 

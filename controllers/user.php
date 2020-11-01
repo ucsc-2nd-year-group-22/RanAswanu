@@ -181,7 +181,20 @@ class User extends Controller {
         $this->view->rendor('user/profile', $data);
     }
 
+    function resetPw() {
+        $data = [];
+        $this->view->rendor('user/resetPw', $data);
+    }
 
+    function resetRq() {
+        if(isset($_POST['resetRqSubmit'])) {    // User should access this section only using the form, not fro the url
+            
+            
+            
+        } else {
+            header("Location: ".URL."user/login");
+        }
+    }
 
     // End of user class controller
 }  

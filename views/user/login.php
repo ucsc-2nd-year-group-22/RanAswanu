@@ -1,14 +1,3 @@
-<!-- <h1>Login</h1>
-<form action="loginusr" method="POST">
-    <label>Login</label>
-    <input type="text" name="login">
-    <br>
-    <label>Password</label>
-    <input type="password" name="password">
-    <br>
-    <input type="submit">
-</form> -->
-
 <div class="subHeader">
         <h1 class="login-header">Welcome</h1>
     </div>
@@ -28,7 +17,7 @@
             <input type="checkbox" checked="checked" name="remember"> Remember me
           </div>
           <div class="col-half-right">
-            <a href="#">Forgot Password ?</a>
+            <a href="<?= URL ?>user/resetPw">Forgot Password ?</a>
           </div>
         </div>
 

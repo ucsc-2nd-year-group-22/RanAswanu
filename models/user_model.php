@@ -133,4 +133,15 @@ class User_Model extends Model {
         ));
         return $st->fetch();
     }
+
+    public function deleteOldTokens($email) {
+
+        $sql = "DELETE FROM pwdReset WHERE pwdResetEmail = :email";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(array(
+            ':email' => $email
+        ));
+
+    }
+
 } 

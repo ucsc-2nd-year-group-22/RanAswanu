@@ -189,8 +189,23 @@ class User extends Controller {
     function resetRq() {
         if(isset($_POST['resetRqSubmit'])) {    // User should access this section only using the form, not fro the url
             
+            // Avoid timing attacks by not using the same token
+            $selector = bin2hex(random_bytes(8));
+
+            // use for authentication
+            $token = random_bytes(32);      // Longer the safer :)
+
+            $url = URL . "user/newPw/$selector/".bin2hex($token);
             
-            
+            // U => Toadys date in seconds since 1970
+            $expires = date("U") + 1800;        // 1 hour
+
+            $userEmail = $_POST['email'];
+
+            $this->model->deleteOldTokens($userEmail);
+
+            echo $userEmail;
+
         } else {
             header("Location: ".URL."user/login");
         }

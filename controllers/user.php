@@ -196,19 +196,24 @@ class User extends Controller {
             $token = random_bytes(32);      // Longer the safer :)
 
             $url = URL . "user/newPw/$selector/".bin2hex($token);
-            
+            echo $url;
             // U => Toadys date in seconds since 1970
             $expires = date("U") + 1800;        // 1 hour
 
             $userEmail = $_POST['email'];
 
             $this->model->deleteOldTokens($userEmail);
-
-            echo $userEmail;
+            // $this->model->insertNewToken();
 
         } else {
             header("Location: ".URL."user/login");
         }
+    }
+
+    function newPw($selector, $token) {
+        
+        echo $selector . '<br>' . $token;
+
     }
 
     // End of user class controller

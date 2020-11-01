@@ -144,8 +144,34 @@ class User_Model extends Model {
         if(!$stmt) {
             echo "errror";
         } else {
-            echo "nice";
+            // echo "nice";
         }
+
+    }
+
+    public function insertNewToken($email, $selector, $hashedToken, $expires) {
+
+        echo "<hr>$email /$selector/ $hashedToken /$expires/ <br>";
+
+        // $sql = "INSERT INTO 
+        // pwdReset (`pwdResetEmail`, `pwdResetSelector`, `pwdResetToken`, `pwdResetExpires`) 
+        // Values(:pwdResetEmail, :pwdResetSelector, :pwdResetToken, :pwdResetExpires)";
+        // $stmt = $this->db->prepare($sql);
+        // $stmt->execute(array(
+        //     ':pwdResetEmail' => $email,
+        //     ':pwdResetSelector'=> $selector,
+        //     ':pwdResetToken' => $hashedToken,
+        //     ':pwdResetExpires' => $expires
+        // ));
+
+        $sql = "INSERT INTO pwdReset (`pwdResetEmail`, `pwdResetSelector`, `pwdResetToken`, `pwdResetExpires`) Values(:pwdResetEmail, :pwdResetSelector, :pwdResetToken, :pwdResetExpires)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(array(
+            ':pwdResetEmail' => $email,
+            ':pwdResetSelector'=> $selector,
+            ':pwdResetToken' => $hashedToken,
+            ':pwdResetExpires' => $expires
+        ));
 
     }
 

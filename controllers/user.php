@@ -203,7 +203,8 @@ class User extends Controller {
             $userEmail = $_POST['email'];
 
             $this->model->deleteOldTokens($userEmail);
-            // $this->model->insertNewToken();
+            $hashedToken = password_hash($token, PASSWORD_DEFAULT);
+            $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
         } else {
             header("Location: ".URL."user/login");

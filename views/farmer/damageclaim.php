@@ -3,13 +3,13 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/claim" method="post">
+    <form action="<?= URL;?>/farmer/create" method="post">
         <div class="row">
             <div class="col-25">
             <label for="login">Username</label>
             </div>
             <div class="col-75">
-            <input type="text" id="login" name="login" placeholder="ex: wasantha123">
+            <input type="text" id="login" name="username" placeholder="ex: wasantha123">
             </div>
         </div>
      
@@ -48,10 +48,10 @@
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="grama">Gramasewa Division</label>
+            <label for="gramasewa">Gramasewa Division</label>
             </div>
             <div class="col-75">
-            <select id="grama" name="grama">
+            <select id="gramasewa" name="gramasewa">
                 <option value="grama1">Grama 1</option>
                 <option value="grama2">Grama 2</option>
                 <option value="grama1">Grama 3</option>
@@ -69,10 +69,10 @@
         
         <div class="row">
             <div class="col-25">
-            <label for="dmgarea">Estimated Damage Area</label>
+            <label for="estdmgarea">Estimated Damage Area</label>
             </div>
             <div class="col-75">
-            <input type="text" id="login" name="login" placeholder="ex: 3 acres">
+            <input type="text" id="estdmgarea" name="estdmgarea" placeholder="ex: 3 acres">
             </div>
         </div>
 
@@ -81,16 +81,16 @@
             <label for="waydmg">Way Of Damage</label>
             </div>
             <div class="col-75">
-            <textarea id="address" name="address" placeholder="Enter the way that damage is happend" style="height:200px"></textarea>
+            <textarea id="waydmg" name="waydmg" placeholder="Enter the way that damage is happend" style="height:200px"></textarea>
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-            <label for="address">Details Of Damaged Crops</label>
+            <label for="details">Details Of Damaged Crops</label>
             </div>
             <div class="col-75">
-            <textarea id="address" name="address" placeholder="crop type   -   area   -   crop amount" style="height:200px"></textarea>
+            <textarea id="details" name="details" placeholder="crop type   -   area   -   crop amount" style="height:200px"></textarea>
             </div>
         </div>
      

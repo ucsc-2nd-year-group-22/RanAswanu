@@ -8,6 +8,7 @@
  @import "tabs-table.css";
  @import "filter-panes.css";
  @import "login-style.css";
+ @import "dashboard.css";
  
  *{
      padding:0;

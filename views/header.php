@@ -80,6 +80,12 @@
                         <li><a href="<?php echo URL; ?>vendor/index" class="<?php View::getActivePage('index'); ?>">Timeline</a></li>
                         <li><a href="<?php echo URL; ?>vendor/sellingReq" class="<?php View::getActivePage('sellingReq'); ?>">Selling Requests</a></li>
 
+                    <?php elseif ((Session::get('role') == 'farmer')): ?>
+                        <li><a href="<?php echo URL; ?>farmer/sellyourcrops" class="<?php View::getActivePage('sellyourcrops'); ?>">Sell Crops</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/vendOffers" class="<?php View::getActivePage('vendOffers'); ?>">Vendor Offers</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/damageclaim" class="<?php View::getActivePage('damageclaim'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/cropReq" class="<?php View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+
                 <?php endif ?>
 
 

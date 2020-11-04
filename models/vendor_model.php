@@ -22,4 +22,18 @@ class Vendor_Model extends Model {
             ':id' => $id
         ));
     }
+
+    //Thishan's functions
+    //show details of farmers
+    public function farmerDetail($id){
+        
+        $st = $this->db->prepare("SELECT   firstname, id, sex, email, address, tel FROM users WHERE id = :id");
+        $st->execute(array(
+            ':id' => $id,
+        ));
+        return $st->fetch();
+    }
+
+
+
 } 

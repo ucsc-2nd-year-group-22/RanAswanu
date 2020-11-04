@@ -1,4 +1,4 @@
-<h1>Farmer's Selling Requests</h1>
+ <h1>Farmer's Selling Requests</h1>
 <!--<?php echo $sellingReq['name'];?>-->
 <div class="user-tabs">
     <ul>
@@ -202,11 +202,16 @@
             <td><?= $dt['name'];?> </td>
             <td> <?=$dt['crop'];?></td>
             <td>
-                <a href="<?php echo URL; ?>vendor/placeaOffer" class="mini-button normal">Offer</a> 
-                <a href="<?php echo URL; ?>vendor/viewFarmer" class="mini-button normal">View Profile</a>
-                <a href="<?php echo URL; ?>vendor/viewCrops" class="mini-button normal">Other crops</a>
-            
+                <a href="<?php echo URL. 'vendor/placeaOffer'?>" class="mini-button normal">Offer</a>  
             </td>
+            <td>
+                  <a  class="mini-button normal" href="<?php echo URL . 'vendor/viewFarmer/'. $dt['id'] ;?>">View Profile</a>  
+            </td>    
+              <td>
+                   <a href="<?php echo URL; ?>vendor/viewCrops" class="mini-button normal">Other crops</a>
+              </td>
+              
+        
         </tr>
 <?php endforeach;?>
     </table>

@@ -49,11 +49,10 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/placeaOffer');
     }
 
-    public function viewFarmer()
+    public function viewFarmer($id)
     {
-
-        $farmerData = ['name'=>'kamal','gender'=>'male', 'email'=>'ranja@ymail.com','telephone'=>'0713568802', 'address'=>'261,gallroad,kaluthara.'];
-        $data = ['Fdata'=>$farmerData] ;
+        $farmerData = $this->model->farmerDetail($id);
+        $data['Fdata'] = $farmerData ;
         $this->view->rendor('farmer/viewFarmer',$data);
     }
 
@@ -87,19 +86,19 @@ class Vendor extends Controller{
                 'crop' => "Apple",
             ],
             [
-               'id' => "12",
+               'id' => "13",
                 'name' => "Kamal",
                 'crop' => "Apple",
             ],
             [
-               'id' => "12",
+               'id' => "14",
                 'name' => "Kamal",
                 'crop' => "Apple",
             ]
         ];
-        $data = [
-            'Req' => $sellingReq
-        ];
+
+        $data = ['Req' => $sellingReq];
+
         $this->setActivePage('sellingReq');
         $this->view->rendor('vendor/sellingReq', $data);
     }

@@ -37,7 +37,7 @@ class Auth extends Controller {
             $token = random_bytes(32);      // Longer the safer :)
 
             $url = URL . "auth/createNewPw/$selector/".bin2hex($token);
-            echo "<a href='$url'>$url</a>";
+            // echo "<a href='$url'>$url</a>";
 
             // U => Toadys date in seconds since 1970
             $expires = date("U") + 1800;        // 1 hour
@@ -47,9 +47,19 @@ class Auth extends Controller {
             $hashedToken = password_hash($token, PASSWORD_DEFAULT);
             $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
-            // send mail with url
+            // Send the link to the mail
+            $mailbody = "<a href='$url'>$url</a>";
+            $mailInfo = [
+                'body' => $mailbody,
+                'subject' => 'Ran Aswanu | Password Recovery',
+                'address' => $userEmail,
+            ];
+    
+            $mymail = new Email();
+            $mymail->sendmail($mailInfo);
+    
 
-            // header("Location: ".URL."user/resetPw?reset=success");
+            header("Location: ".URL."auth/resetPw?reset=success");
 
         } else {
             header("Location: ".URL."user/login");

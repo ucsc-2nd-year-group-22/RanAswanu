@@ -1,3 +1,11 @@
+
+<?php if(Session::get('alert')): ?>
+  <div class="alert-box">
+    <p><?php echo Session::get('alert'); ?> </p>
+  </div>
+<?php Session::unset('alert'); ?>
+<?php endif; ?>
+
 <div class="subHeader">
         <h1 class="login-header">Welcome</h1>
     </div>

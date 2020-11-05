@@ -87,7 +87,7 @@ class Auth_Model extends Model {
         ));
 
         if($stmt->rowCount() == 1) {
-            echo "<br>success";
+            // echo "<br>success";
 
         }
 

@@ -187,6 +187,11 @@
     font-family:sans-serif;
 }
 
+.popup-alert {
+    background-color: #fff;
+    
+}
+
 /* Tab  -------------------------------------------------------- */
 
 @media only screen and (max-width:1024px) {

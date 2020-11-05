@@ -78,9 +78,9 @@ class Auth extends Controller {
             if(ctype_xdigit($selector) !== false && ctype_xdigit($token) !== false) {
                 $data['validator'] = $token;
                 $data['selector'] = $selector;
-                echo Session::get('email');
+                // echo Session::get('email');
                 $this->view->rendor('auth/createNewPw', $data);
-                Session::destroy();
+                Session::unset('email');
             }          
         }   
     }
@@ -121,11 +121,13 @@ class Auth extends Controller {
                 echo "Eroooor";
                 exit();
             } elseif ($tokenCheck === true) {
-                echo "hoy $email";
+                // echo "hoy $email";
                 $userData = $this->model->checkEmail($email);
                 $userId = $userData['id'];
                 // print_r($userData);
                 $this->model->updatePw($userId, $pwd);
+                Session::set('alert', 'Your password has been reset!');
+                header("Location:".URL."user/login");
             } 
 
 

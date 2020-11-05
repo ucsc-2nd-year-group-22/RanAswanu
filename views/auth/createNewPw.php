@@ -1,5 +1,5 @@
 <h2> Create New Password </h2>
-<?php echo $selector . '<br>' . $validator . '<br>'; ?>
+<!-- <?php echo $selector . '<br>' . $validator . '<br>'; ?> -->
 <!-- This is not good. Better to use sessions or jquery for the validation -->
 <!-- alert box -->
 <?php if(isset($_GET['newpw'])) {
@@ -30,7 +30,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="fname">Email address</label>
+                <label for="fname">Repeat password</label>
             </div>
             <div class="col-75">
                 <input type="password" name="pwdRepeat" placeholder="Type your new password again here">

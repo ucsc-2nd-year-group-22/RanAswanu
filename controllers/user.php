@@ -243,15 +243,20 @@ class User extends Controller {
                 // handle epmty pwd
                 header("Location:".URL."user/createNewPw/$selector/$validator?newpw=empty");
                 exit();
-                echo 'empty';
+
             } else if ($pwd != $pwdRepeat) {
                 // handle conflicting pwds
                 header("Location:".URL."user/createNewPw/$selector/$validator?newpw=notsame");
                 exit();
-                echo 'pwd not same';
-            } else {
-                echo "hey";
-            }
+            } 
+
+            $currentDate = date("U");
+
+            $data = $this->model->getPwSelector($selector, $validator);
+            // echo $data['pwdResetEmail'] . '<br>';
+            // echo $data['pwdResetSelector']. '<br>';
+            // echo $data['pwdReset']. '<br>';
+            // echo $data['pwdResetExpires']. '<br>';
 
         } else {
             header("Location :".URL);

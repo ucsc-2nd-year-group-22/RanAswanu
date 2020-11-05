@@ -164,4 +164,32 @@ class User_Model extends Model {
 
     }
 
+    function getPwSelector($selector, $validator) {
+
+        $sql = "SELECT * FROM `pwdReset` WHERE `pwdResetSelector` = :pwdResetSelector";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(array(
+            ':pwdResetSelector' => $selector,
+        ));
+
+        $result = $stmt->fetch();
+        
+        if(!$stmt) {
+            return 0;
+        } else {
+            $tokenBin = hex2bin($validator);
+            $tokenCheck = password_verify($tokenBin, $result['pwdReset'] );
+
+            if($tokenCheck === false) {
+                echo "Eroooor";
+                exit();
+            } elseif ($tokenCheck === true) {
+                echo "Hurray";
+            }
+
+        }
+
+
+    }
+
 } 

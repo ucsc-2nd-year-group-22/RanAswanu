@@ -150,7 +150,7 @@ window.onload = function() {
     var chart1 = new CanvasJS.Chart("chartContainer1", {
         animationEnabled: true,
         exportEnabled: true,
-        theme: "light5",
+        theme: "light2",
         title:{
             text: "Registered Data"
         },

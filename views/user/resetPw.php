@@ -1,7 +1,23 @@
 <h2> Reset Password </h2>
 
+<?php if(isset($_GET['reset'])): ?>
+<div class="alert-box">
+
+    <?php if($_GET['reset'] == "success"): ?>
+        <?php echo '<p class="danger-alert"> check your eamil</p>'; ?>
+    <?php endif; ?>
+    <?php if($_GET['reset'] == "empty"): ?>
+        <?php echo '<p class="danger-alert"> Empty email !</p>'; ?>
+    <?php endif; ?>
+    <?php if($_GET['reset'] == "invalid"): ?>
+        <?php echo '<p class="danger-alert"> Invalid Email </p>'; ?>
+    <?php endif; ?>
+
+</div>
+<?endif; ?>
+
 <div class="main-form">
-    <form action="<?=URL;?>user/checkemail" method="post">
+    <form action="<?=URL;?>user/resetRq" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">Email address</label>
@@ -19,11 +35,4 @@
             </div>
         </div>
     </form>
-    <?php 
-        if(isset($_GET['reset'])) {
-            if($_GET['reset'] == "success") {
-                echo '<p> check your eamil</p>';
-            }
-        }
-    ?>
 </div>

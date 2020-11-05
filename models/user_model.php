@@ -140,7 +140,7 @@ class User_Model extends Model {
         $stmt->execute(array(
             ':email' => $email,
         ));
-        return $stmt->fetch();
+        return $stmt->rowCount();
     }
 
     public function deleteOldTokens($email) {

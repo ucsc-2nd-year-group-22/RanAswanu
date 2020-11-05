@@ -200,7 +200,20 @@ class User extends Controller {
 
     function resetRq() {
         if(isset($_POST['resetRqSubmit'])) {    // User should access this section only using the form, not from the url
+           
+            $userEmail = $_POST['email'];
+            if(!($userEmail)) {
+                header("Location:".URL."user/resetPw?reset=empty");
+                exit(0);
+            }
+            $mailCheck = $this->model->checkEmail($userEmail);
+
+            if($mailCheck != 1) {
+                header("Location:".URL."user/resetPw?reset=invalid");
+                exit(0);
+            }
             
+
             // Avoid timing attacks by not using the same token
             $selector = bin2hex(random_bytes(8));
 
@@ -212,15 +225,14 @@ class User extends Controller {
             // U => Toadys date in seconds since 1970
             $expires = date("U") + 1800;        // 1 hour
 
-            $userEmail = $_POST['email'];
 
             $this->model->deleteOldTokens($userEmail);
             $hashedToken = password_hash($token, PASSWORD_DEFAULT);
             $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
-            // send mail with url
+            // // send mail with url
 
-            // header("Location: ".URL."user/resetPw?reset=success");
+            // // header("Location: ".URL."user/resetPw?reset=success");
 
         } else {
             header("Location: ".URL."user/login");

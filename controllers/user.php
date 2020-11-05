@@ -206,6 +206,9 @@ class User extends Controller {
             $hashedToken = password_hash($token, PASSWORD_DEFAULT);
             $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
+            // send mail with url
+            header("Location: ".URL."user/resetPw?reset=success");
+
         } else {
             header("Location: ".URL."user/login");
         }

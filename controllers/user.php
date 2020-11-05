@@ -216,9 +216,48 @@ class User extends Controller {
     }
 
     function createNewPw($selector, $token) {
-        echo $selector . '<br>' . $token;
+
+        if(empty($selector) || empty($token)) {
+            echo "Could not validate your request !";
+        } else {
+            // check whether selector, token are proper hexadecimal format
+            if(ctype_xdigit($selector) !== false && ctype_xdigit($token) !== false) {
+                $data['validator'] = $token;
+                $data['selector'] = $selector;
+                $this->view->rendor('user/createNewPw', $data);
+            }          
+        }   
+    }
+
+    function submitNewPw() {
         $data = [];
-        $this->view->rendor('user/createNewPw', $data);
+
+        if(isset($_POST['resetPwSubmit'])) {
+
+            $selector = $_POST['selector'];
+            $validator = $_POST['token'];
+            $pwd = $_POST['pwd'];
+            $pwdRepeat = $_POST['pwdRepeat'];
+
+            if(empty($pwd) || empty($pwdRepeat)) {
+                // handle epmty pwd
+                header("Location:".URL."user/createNewPw/$selector/$validator?newpw=empty");
+                exit();
+                echo 'empty';
+            } else if ($pwd != $pwdRepeat) {
+                // handle conflicting pwds
+                header("Location:".URL."user/createNewPw/$selector/$validator?newpw=notsame");
+                exit();
+                echo 'pwd not same';
+            } else {
+                echo "hey";
+            }
+
+        } else {
+            header("Location :".URL);
+        }
+
+        // $this->view->rendor('user/resetPw', $data);
     }
 
     // End of user class controller

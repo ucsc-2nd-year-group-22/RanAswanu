@@ -12,174 +12,114 @@
 <div id="tab1C" class="tabContainer">
     <h2>All</h2>
     <div class="filter-panel">
-        <div class="pane1">
-            <div class="left">
-                <label for="radio">Sort by</label>
-            </div>
-            <div class="right">
-                <ul>
-                    <li>
-                        <label class="container">Acending
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="container">Decending
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>                    
-            </div>
-        </div>
-        <div class="pane2">
-            <div class="search-container">
-                <form action="#">
-                    <span class="left">
-                        <input type="text" placeholder="Search.." name="search">
-                    </span>
-                    <span class="right">
-                        <button type="submit">Submit</button>
-                    </span>
-                </form>
-                </div>
-            <div class="right">
 
-            </div>
+    <div class="panel-container">
+        <div class="pane1">
+
+        <form class="search-bar">
+            <label>Search Farmer's Selling Requests By : </label>
+            <select placeholder="Search ...">
+                    <option>Farmer-ID</option>
+                    <option>Farmer Name</option>
+                    <option>Crop Type</option>
+                </select>
+            <input type="text" placeholder="Search ...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+        </div> 
+           <div class="pane2">
+        <form class="normal-select">
+            <label>Sort crop requests by : </label>
+            <select placeholder="other">
+                    <option>Date</option>
+                    <option>Ammount</option>
+                    <option>Time</option>
+                    <option>Crop</option>
+                <option>111</option>
+            </select>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+        </form>
         </div>
-        <div class="pane3">
-            <label for="filter4">Sort by</label>
-            <select id="filter4" name="filter4">
-                <option value="australia">Date</option>
-                <option value="canada">Amount</option>
-                <option value="usa">Time</option>
-            </select>                    
-        </div>
-        <div class="pane4"> 
-            <label for="filter5">Search by</label>
-            <select id="filter5" name="filter5">
-                <option value="australia">Crop</option>
-                <option value="canada">Area</option>
-                <option value="usa">Officer</option>
-            </select>                
-        </div>
+    </div>
+
     </div>
 </div>
 
 <div id="tab2C" class="tabContainer">
-    <h2>Accepted</h2>
+   <h2>Accecepted</h2>
     <div class="filter-panel">
-        <div class="pane1">
-            <div class="left">
-                <label for="radio">Sort by</label>
-            </div>
-            <div class="right">
-                <ul>
-                    <li>
-                        <label class="container">Acending
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="container">Decending
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>                    
-            </div>
-        </div>
-        <div class="pane2">
-            <div class="search-container">
-                <form action="#">
-                    <span class="left">
-                        <input type="text" placeholder="Search.." name="search">
-                    </span>
-                    <span class="right">
-                        <button type="submit">Submit</button>
-                    </span>
-                </form>
-                </div>
-            <div class="right">
 
-            </div>
+    <div class="panel-container">
+        <div class="pane1">
+
+        <form class="search-bar">
+            <label>Search Farmer's Selling Requests By : </label>
+            <select placeholder="Search ...">
+                    <option>Farmer-ID</option>
+                    <option>Farmer Name</option>
+                    <option>Crop Type</option>
+                </select>
+            <input type="text" placeholder="Search ...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+        </div> 
+           <div class="pane2">
+        <form class="normal-select">
+            <label>Sort crop requests by : </label>
+            <select placeholder="other">
+                    <option>Date</option>
+                    <option>Ammount</option>
+                    <option>Time</option>
+                    <option>Crop</option>
+                <option>111</option>
+            </select>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+        </form>
         </div>
-        <div class="pane3">
-            <label for="filter4">Sort by</label>
-            <select id="filter4" name="filter4">
-                <option value="australia">Date</option>
-                <option value="canada">Amount</option>
-                <option value="usa">Time</option>
-            </select>                    
-        </div>
-        <div class="pane4"> 
-            <label for="filter5">Search by</label>
-            <select id="filter5" name="filter5">
-                <option value="australia">Crop</option>
-                <option value="canada">Area</option>
-                <option value="usa">Officer</option>
-            </select>                
-        </div>
+    </div>
+
     </div>
 </div>
 
 <div id="tab3C" class="tabContainer">
     <h2>Rejected</h2>
     <div class="filter-panel">
-        <div class="pane1">
-            <div class="left">
-                <label for="radio">Sort by</label>
-            </div>
-            <div class="right">
-                <ul>
-                    <li>
-                        <label class="container">Acending
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="container">Decending
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>                    
-            </div>
-        </div>
-        <div class="pane2">
-            <div class="search-container">
-                <form action="#">
-                    <span class="left">
-                        <input type="text" placeholder="Search.." name="search">
-                    </span>
-                    <span class="right">
-                        <button type="submit">Submit</button>
-                    </span>
-                </form>
-                </div>
-            <div class="right">
 
-            </div>
+    <div class="panel-container">
+        <div class="pane1">
+
+        <form class="search-bar">
+            <label>Search Farmer's Selling Requests By : </label>
+            <select placeholder="Search ...">
+                    <option>Farmer-ID</option>
+                    <option>Farmer Name</option>
+                    <option>Crop Type</option>
+                </select>
+            <input type="text" placeholder="Search ...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+        </div> 
+           <div class="pane2">
+        <form class="normal-select">
+            <label>Sort crop requests by : </label>
+            <select placeholder="other">
+                    <option>Date</option>
+                    <option>Ammount</option>
+                    <option>Time</option>
+                    <option>Crop</option>
+                <option>111</option>
+            </select>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+        </form>
         </div>
-        <div class="pane3">
-            <label for="filter4">Sort by</label>
-            <select id="filter4" name="filter4">
-                <option value="australia">Date</option>
-                <option value="canada">Amount</option>
-                <option value="usa">Time</option>
-            </select>                    
-        </div>
-        <div class="pane4"> 
-            <label for="filter5">Search by</label>
-            <select id="filter5" name="filter5">
-                <option value="australia">Crop</option>
-                <option value="canada">Area</option>
-                <option value="usa">Officer</option>
-            </select>                
-        </div>
+    </div>
+
     </div>
 </div>
 
@@ -193,7 +133,11 @@
             <th>Farmer-ID</th>
             <th>Farmer Name</th>
             <th>Crop Type</th>
+            <th>Ammount</th>
+            <th>Date</th>
             <th>Action</th>
+            <th>Farmer's Profile</th>
+            <th>Other Crops</th>
         </tr>
 <?php $i = 0; foreach($Req as $dt) :; $i++;?>
         <tr>
@@ -201,6 +145,8 @@
             <td><?= $dt['id'];?> </td>
             <td><?= $dt['name'];?> </td>
             <td> <?=$dt['crop'];?></td>
+            <td> <?=$dt['ammount'];?></td>
+            <td> <?=$dt['date'];?></td>
             <td>
                 <a href="<?php echo URL. 'vendor/placeaOffer'?>" class="mini-button normal">Offer</a>  
             </td>

@@ -36,7 +36,7 @@ class User_Model extends Model {
 
     //update the user data in the database 
     public function editSave($data){
-        print_r($data);
+        // print_r($data);
         $stmt = $this->db->prepare("UPDATE users SET 
             `firstname` = :firstname, 
             `lastname` = :lastname,
@@ -140,7 +140,13 @@ class User_Model extends Model {
         $stmt->execute(array(
             ':email' => $email,
         ));
-        return $stmt->rowCount();
+
+        if($stmt->rowCount() == 0) {
+            return 0;
+        } else {
+            return $stmt->fetch(); 
+        }
+
     }
 
     public function deleteOldTokens($email) {
@@ -182,22 +188,28 @@ class User_Model extends Model {
         ));
 
         $result = $stmt->fetch();
+        // print_r($result);
+
         
-        if(!$stmt) {
+
+        if($stmt->rowCount() == 0) {
             return 0;
         } else {
-            $tokenBin = hex2bin($validator);
-            $tokenCheck = password_verify($tokenBin, $result['pwdReset'] );
-
-            if($tokenCheck === false) {
-                echo "Eroooor";
-                exit();
-            } elseif ($tokenCheck === true) {
-                echo "Hurray";
-            }
-
+            return $result;
         }
+    }
 
+    function updatePw($userId) {
+
+        $sql = "UPDATE users SET `password` = :firstname WHERE `id` = :id;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(array(
+            ':password' => MD5($password)
+        ));
+
+        if($stmt->rowCount() == 1) {
+            echo "success";
+        }
 
     }
 

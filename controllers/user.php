@@ -181,17 +181,17 @@ class User extends Controller {
         $this->view->rendor('user/profile', $data);
     }
 
-    function checkEmail() {
-        $usrEmail = $_POST['email'];
-        $mailCheck = $this->model->checkEmail($usrEmail);
-        if(!$mailCheck) {
-            echo "0";
-        } else {
-            echo "1 <br>";
-        }
-        print_r($mailCheck);
+    // function checkEmail() {
+    //     $usrEmail = $_POST['email'];
+    //     $mailCheck = $this->model->checkEmail($usrEmail);
+    //     if(!$mailCheck) {
+    //         echo "0";
+    //     } else {
+    //         echo "1 <br>";
+    //     }
+    //     // print_r($mailCheck);
 
-    }
+    // }
 
     function resetPw() {
         $data = [];
@@ -202,17 +202,18 @@ class User extends Controller {
         if(isset($_POST['resetRqSubmit'])) {    // User should access this section only using the form, not from the url
            
             $userEmail = $_POST['email'];
+            
             if(!($userEmail)) {
                 header("Location:".URL."user/resetPw?reset=empty");
                 exit(0);
             }
             $mailCheck = $this->model->checkEmail($userEmail);
 
-            if($mailCheck != 1) {
+            if($mailCheck == 0) {
                 header("Location:".URL."user/resetPw?reset=invalid");
                 exit(0);
             }
-            
+            Session::set('email', $userEmail);
 
             // Avoid timing attacks by not using the same token
             $selector = bin2hex(random_bytes(8));
@@ -221,6 +222,7 @@ class User extends Controller {
             $token = random_bytes(32);      // Longer the safer :)
 
             $url = URL . "user/createNewPw/$selector/".bin2hex($token);
+            echo "<a href='$url'>$url</a>";
             echo $url;
             // U => Toadys date in seconds since 1970
             $expires = date("U") + 1800;        // 1 hour
@@ -248,7 +250,9 @@ class User extends Controller {
             if(ctype_xdigit($selector) !== false && ctype_xdigit($token) !== false) {
                 $data['validator'] = $token;
                 $data['selector'] = $selector;
+                echo Session::get('email');
                 $this->view->rendor('user/createNewPw', $data);
+                Session::destroy();
             }          
         }   
     }
@@ -260,6 +264,7 @@ class User extends Controller {
 
             $selector = $_POST['selector'];
             $validator = $_POST['token'];
+            $email = $_POST['email'];
             $pwd = $_POST['pwd'];
             $pwdRepeat = $_POST['pwdRepeat'];
 
@@ -276,7 +281,25 @@ class User extends Controller {
 
             $currentDate = date("U");
 
-            $data = $this->model->getPwSelector($selector, $validator);
+
+
+            $resetResult = $this->model->getPwSelector($selector, $validator);
+            if($resetResult == 0) {
+                exit(0);
+            }
+
+            $tokenBin = hex2bin($validator);
+            $tokenCheck = password_verify($tokenBin, $resetResult['pwdReset'] );
+
+            if($tokenCheck === false) { // wrong credentials
+                echo "Eroooor";
+                exit();
+            } elseif ($tokenCheck === true) {
+                echo "hoy $email";
+                $userId = $resetResult['id'];
+                $this->model->updatePw($userId, $pwd);
+            } 
+
             // echo $data['pwdResetEmail'] . '<br>';
             // echo $data['pwdResetSelector']. '<br>';
             // echo $data['pwdReset']. '<br>';

@@ -1,6 +1,7 @@
 <h2> Create New Password </h2>
 <?php echo $selector . '<br>' . $validator . '<br>'; ?>
-
+<!-- This is not good. Better to use sessions or jquery for the validation -->
+<!-- alert box -->
 <?php if(isset($_GET['newpw'])) {
     if($_GET['newpw']=='empty') {
         echo "empty pw";
@@ -10,12 +11,13 @@
     }
 }
 ?>
-
+<!-- end of alert box -->
 <div class="main-form">
     <form action="<?=URL;?>user/submitNewPw" method="post">
     <!-- Hidden fields  -->
         <input type="hidden" name="selector" value="<?php echo $selector ?>">
         <input type="hidden" name="token" value="<?php echo $validator ?>">
+        <input type="hidden" name="email" value="<?php echo Session::get('email') ?>">
     <!-- ------- -->
 
         <div class="row">

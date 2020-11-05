@@ -1,5 +1,7 @@
 <h2> Reset Password </h2>
 
+<!-- This is not good. Better to use sessions or jquery for the validation -->
+<!-- alert box -->
 <?php if(isset($_GET['reset'])): ?>
 <div class="alert-box">
 
@@ -15,6 +17,7 @@
 
 </div>
 <?endif; ?>
+<!-- end of alert -->
 
 <div class="main-form">
     <form action="<?=URL;?>user/resetRq" method="post">

@@ -195,7 +195,7 @@ class User extends Controller {
             // use for authentication
             $token = random_bytes(32);      // Longer the safer :)
 
-            $url = URL . "user/newPw/$selector/".bin2hex($token);
+            $url = URL . "user/createNewPw/$selector/".bin2hex($token);
             echo $url;
             // U => Toadys date in seconds since 1970
             $expires = date("U") + 1800;        // 1 hour
@@ -207,17 +207,18 @@ class User extends Controller {
             $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
             // send mail with url
-            header("Location: ".URL."user/resetPw?reset=success");
+
+            // header("Location: ".URL."user/resetPw?reset=success");
 
         } else {
             header("Location: ".URL."user/login");
         }
     }
 
-    function newPw($selector, $token) {
-        
+    function createNewPw($selector, $token) {
         echo $selector . '<br>' . $token;
-
+        $data = [];
+        $this->view->rendor('user/createNewPw', $data);
     }
 
     // End of user class controller

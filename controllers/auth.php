@@ -48,17 +48,20 @@ class Auth extends Controller {
             $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
             // Send the link to the mail
-            $mailbody = "<a href='$url'>$url</a>";
+            $mailbody = "<div style='background:#eee;font-size:1.2em;padding:10px;font-family:sans-serif;'>";
+            $mailbody .= "<p>We recievied a password reset request. The link to reset your password is below. If you did not make this request you can ignore this email.<p>";
+            $mailbody .= "<a href='$url'>$url</a>";
+            $mailbody .= "</div>";
             $mailInfo = [
                 'body' => $mailbody,
-                'subject' => 'Ran Aswanu | Password Recovery',
+                'subject' => 'Reset your password for Ran Aswanu',
                 'address' => $userEmail,
             ];
     
             $mymail = new Email();
             $mymail->sendmail($mailInfo);
     
-
+            
             header("Location: ".URL."auth/resetPw?reset=success");
 
         } else {

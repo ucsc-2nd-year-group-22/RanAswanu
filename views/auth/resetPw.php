@@ -6,13 +6,13 @@
 <div class="alert-box">
 
     <?php if($_GET['reset'] == "success"): ?>
-        <?php echo '<p class="danger-alert"> check your eamil</p>'; ?>
+        <?php echo '<p class="danger-alert"> Check your inbox. A verification link has been sent to your e-mail.</p>'; ?>
     <?php endif; ?>
     <?php if($_GET['reset'] == "empty"): ?>
         <?php echo '<p class="danger-alert"> Empty email !</p>'; ?>
     <?php endif; ?>
     <?php if($_GET['reset'] == "invalid"): ?>
-        <?php echo '<p class="danger-alert"> Invalid Email </p>'; ?>
+        <?php echo '<p class="danger-alert">Sorry ! The e-mail address you entered is not in our system. Please check your e-mail address. </p>'; ?>
     <?php endif; ?>
 
 </div>
@@ -38,7 +38,7 @@
             
             </div>
             <div class="col-75">
-               <button type="submit" name="resetRqSubmit"> Reset </button>
+               <button type="submit" name="resetRqSubmit"> Recieve New Password By Mail </button>
             </div>
         </div>
     </form>

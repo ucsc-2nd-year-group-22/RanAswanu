@@ -296,7 +296,9 @@ class User extends Controller {
                 exit();
             } elseif ($tokenCheck === true) {
                 echo "hoy $email";
-                $userId = $resetResult['id'];
+                $userData = $this->model->checkEmail($email);
+                $userId = $userData['id'];
+                // print_r($userData);
                 $this->model->updatePw($userId, $pwd);
             } 
 

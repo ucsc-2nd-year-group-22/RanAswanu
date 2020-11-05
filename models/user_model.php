@@ -199,12 +199,13 @@ class User_Model extends Model {
         }
     }
 
-    function updatePw($userId) {
+    function updatePw($userId, $password) {
 
-        $sql = "UPDATE users SET `password` = :firstname WHERE `id` = :id;";
+        $sql = "UPDATE users SET `password` = :password WHERE `id` = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
-            ':password' => MD5($password)
+            ':password' => MD5($password),
+            ':id' => $userId
         ));
 
         if($stmt->rowCount() == 1) {

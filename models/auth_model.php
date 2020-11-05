@@ -54,11 +54,12 @@ class Auth_Model extends Model {
     }
 
     function getPwSelector($selector, $validator) {
-
-        $sql = "SELECT * FROM `pwdReset` WHERE `pwdResetSelector` = :pwdResetSelector";
+        $currentDate = date("U");
+        $sql = "SELECT * FROM `pwdReset` WHERE `pwdResetSelector` = :pwdResetSelector AND `pwdResetExpires` >= :currentDate ";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
             ':pwdResetSelector' => $selector,
+            ':currentDate' => $currentDate
         ));
 
         $result = $stmt->fetch();
@@ -74,8 +75,11 @@ class Auth_Model extends Model {
     }
 
     function updatePw($userId, $password) {
-
+        
         $sql = "UPDATE users SET `password` = :password WHERE `id` = :id";
+        
+        // $sql = "UPDATE `users` INNER JOIN `pwdReset` on `users.email` = `pwdReset.pwdResetEmail` SET `users.password` = :password WHERE `users.id` = :id AND `pwdReset.pwdResetExpires` >= :currentDate;";
+        
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
             ':password' => MD5($password),
@@ -83,7 +87,8 @@ class Auth_Model extends Model {
         ));
 
         if($stmt->rowCount() == 1) {
-            echo "success";
+            echo "<br>success";
+
         }
 
     }

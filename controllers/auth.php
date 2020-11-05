@@ -38,7 +38,7 @@ class Auth extends Controller {
 
             $url = URL . "auth/createNewPw/$selector/".bin2hex($token);
             echo "<a href='$url'>$url</a>";
-            echo $url;
+
             // U => Toadys date in seconds since 1970
             $expires = date("U") + 1800;        // 1 hour
 
@@ -47,9 +47,9 @@ class Auth extends Controller {
             $hashedToken = password_hash($token, PASSWORD_DEFAULT);
             $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
-            // // send mail with url
+            // send mail with url
 
-            // // header("Location: ".URL."user/resetPw?reset=success");
+            // header("Location: ".URL."user/resetPw?reset=success");
 
         } else {
             header("Location: ".URL."user/login");
@@ -93,8 +93,6 @@ class Auth extends Controller {
                 header("Location:".URL."auth/createNewPw/$selector/$validator?newpw=notsame");
                 exit();
             } 
-
-            $currentDate = date("U");
 
 
 

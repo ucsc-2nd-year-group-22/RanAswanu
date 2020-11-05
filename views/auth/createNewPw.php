@@ -13,7 +13,7 @@
 ?>
 <!-- end of alert box -->
 <div class="main-form">
-    <form action="<?=URL;?>user/submitNewPw" method="post">
+    <form action="<?=URL;?>auth/submitNewPw" method="post">
     <!-- Hidden fields  -->
         <input type="hidden" name="selector" value="<?php echo $selector ?>">
         <input type="hidden" name="token" value="<?php echo $validator ?>">

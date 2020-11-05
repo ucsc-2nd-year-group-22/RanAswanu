@@ -20,7 +20,7 @@
 <!-- end of alert -->
 
 <div class="main-form">
-    <form action="<?=URL;?>user/resetRq" method="post">
+    <form action="<?=URL;?>auth/resetRq" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">Email address</label>

@@ -17,7 +17,7 @@
             <input type="checkbox" checked="checked" name="remember"> Remember me
           </div>
           <div class="col-half-right">
-            <a href="<?= URL ?>user/resetPw">Forgot Password ?</a>
+            <a href="<?= URL ?>auth/resetPw">Forgot Password ?</a>
           </div>
         </div>
 

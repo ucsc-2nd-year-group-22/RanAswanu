@@ -136,7 +136,7 @@ class User_Model extends Model {
 
     public function deleteOldTokens($email) {
         
-        $sql = "DELETE FROM pwdReset WHERE pwdResetEmail = :email";
+        $sql = "DELETE FROM pwdReset WHERE pwdResetEmail = :email;";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
             ':email' => $email
@@ -153,18 +153,7 @@ class User_Model extends Model {
 
         echo "<hr>$email /$selector/ $hashedToken /$expires/ <br>";
 
-        // $sql = "INSERT INTO 
-        // pwdReset (`pwdResetEmail`, `pwdResetSelector`, `pwdResetToken`, `pwdResetExpires`) 
-        // Values(:pwdResetEmail, :pwdResetSelector, :pwdResetToken, :pwdResetExpires)";
-        // $stmt = $this->db->prepare($sql);
-        // $stmt->execute(array(
-        //     ':pwdResetEmail' => $email,
-        //     ':pwdResetSelector'=> $selector,
-        //     ':pwdResetToken' => $hashedToken,
-        //     ':pwdResetExpires' => $expires
-        // ));
-
-        $sql = "INSERT INTO pwdReset (`pwdResetEmail`, `pwdResetSelector`, `pwdResetToken`, `pwdResetExpires`) Values(:pwdResetEmail, :pwdResetSelector, :pwdResetToken, :pwdResetExpires)";
+        $sql = "INSERT INTO `pwdReset`(`pwdResetEmail`, `pwdResetSelector`, `pwdReset`, `pwdResetExpires`) VALUES (:pwdResetEmail, :pwdResetSelector, :pwdResetToken, :pwdResetExpires);";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
             ':pwdResetEmail' => $email,

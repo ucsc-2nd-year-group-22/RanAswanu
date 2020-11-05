@@ -187,7 +187,7 @@ class User extends Controller {
     }
 
     function resetRq() {
-        if(isset($_POST['resetRqSubmit'])) {    // User should access this section only using the form, not fro the url
+        if(isset($_POST['resetRqSubmit'])) {    // User should access this section only using the form, not from the url
             
             // Avoid timing attacks by not using the same token
             $selector = bin2hex(random_bytes(8));

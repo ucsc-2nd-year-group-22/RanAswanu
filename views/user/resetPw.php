@@ -1,7 +1,7 @@
 <h2> Reset Password </h2>
 
 <div class="main-form">
-    <form action="<?=URL;?>user/resetRq" method="post">
+    <form action="<?=URL;?>user/checkemail" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">Email address</label>

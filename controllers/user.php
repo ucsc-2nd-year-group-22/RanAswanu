@@ -181,6 +181,18 @@ class User extends Controller {
         $this->view->rendor('user/profile', $data);
     }
 
+    function checkEmail() {
+        $usrEmail = $_POST['email'];
+        $mailCheck = $this->model->checkEmail($usrEmail);
+        if(!$mailCheck) {
+            echo "0";
+        } else {
+            echo "1 <br>";
+        }
+        print_r($mailCheck);
+
+    }
+
     function resetPw() {
         $data = [];
         $this->view->rendor('user/resetPw', $data);

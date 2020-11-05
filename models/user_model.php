@@ -134,6 +134,15 @@ class User_Model extends Model {
         return $st->fetch();
     }
 
+    public function checkEmail($email) {
+        $sql = "SELECT * FROM `users` WHERE `email` = :email;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(array(
+            ':email' => $email,
+        ));
+        return $stmt->fetch();
+    }
+
     public function deleteOldTokens($email) {
         
         $sql = "DELETE FROM pwdReset WHERE pwdResetEmail = :email;";

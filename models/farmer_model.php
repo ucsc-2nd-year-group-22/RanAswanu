@@ -16,6 +16,7 @@ class Farmer_Model extends Model {
     }
     
 
+<<<<<<< HEAD
     public function creates($data)
     {
 
@@ -81,5 +82,23 @@ class Farmer_Model extends Model {
 
         
     
+=======
+    public function create($data)
+    {
+        $st = $this->db->prepare("INSERT INTO farmers ('username' , 'dmgdate' , 'province' , 'district' , 'gramasewa' , 'address' , 'estdmgarea' , 'waydmg' , 'details') VALUES ( :username , :dmgdate , :province , :district , :gramasewa , :address , :estdmgarea , :waydmg , :details)");
+        $st= execute(array(
+            ':username' => $_POST['username'],
+            ':dmgdate' => $_POST['province'],
+            ':district' => $_POST['district'],
+            ':gramasewa' => $_POST['gramasewa'],
+            ':address' => $_POST['address'],
+            ':estdmgarea' => $_POST['estdmgarea'],
+            ':waydmg' => $_POST['waydmg'],
+            ':details' => $_POST['details'],
+
+
+        ));
+    }
+>>>>>>> 7d98a3239aebcea78e048622e92cf8de47fb3411
     
 }

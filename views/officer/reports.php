@@ -7,7 +7,7 @@
 </div> -->
 
 <div class="main-form">
-    <form action="<?= URL;?>/user/create" method="post">
+    <form action="#" method="post">
         <div class="row">
             <div class="col-25">
             <label for="province">Select report type</label>
@@ -63,3 +63,7 @@
     </form>
 </div>
 
+
+<form action="<?= URL;?>officer/sendmail" method="post">
+    <button type="submit">Send</button>
+</form>

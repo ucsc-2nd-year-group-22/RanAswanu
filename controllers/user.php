@@ -183,6 +183,9 @@ class User extends Controller {
     }
 
 
+////////////////////////////////////////////////
+// Moved authentication functions to another module
+
 
     // End of user class controller
 }  

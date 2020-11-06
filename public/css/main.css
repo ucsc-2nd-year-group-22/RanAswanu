@@ -9,6 +9,7 @@
  @import "filter-panes.css";
  @import "login-style.css";
  @import "dashboard.css";
+ @import "index.css";
  
  *{
      padding:0;
@@ -118,6 +119,11 @@
  
  p {
      line-height: 1.8em;
+ }
+
+ .btn a {
+     text-decoration: none;
+     text-align: center;
  }
  
 .danger {

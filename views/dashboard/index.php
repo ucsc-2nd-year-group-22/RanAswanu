@@ -150,7 +150,7 @@ window.onload = function() {
     var chart1 = new CanvasJS.Chart("chartContainer1", {
         animationEnabled: true,
         exportEnabled: true,
-        theme: "light5",
+        theme: "light2",
         title:{
             text: "Registered Data"
         },
@@ -213,10 +213,11 @@ window.onload = function() {
 
 <div class="charts">
     <div id="chartContainer"></div>
-    <div id="chartContainer1"></div>
+    <div id="chartContainer1"></div>    
 </div>
 
 <div id="chartContainer2"></div>
 <div id="chartContainer3"></div>
 
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="http://localhost/mvc-ui-embeded/views/dashboard/js/default.js"></script>
+<!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->

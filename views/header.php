@@ -104,6 +104,8 @@
                     <?php endif; ?>
                 </div>
             </div>
+            <?php else: ?>
+            <a style="text-decoration: none;" class="header-popup-btn" href="<?php echo URL . 'user/login' ?>">Login</a>
             <?php endif;?>
         </header>
         <div class="content">

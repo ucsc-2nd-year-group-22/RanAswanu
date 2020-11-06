@@ -78,35 +78,14 @@ class Vendor extends Controller{
    
 
     public function sellingReq() {
-
-        $sellingReq = [
-            [
-                'id' => "12",
-                'name' => "Kamal",
-                'crop' => "Apple",
-                'ammount'=> "50",
-                'date'=>'2020-10-23'
-            ],
-            [
-               'id' => "13",
-                'name' => "Kamal",
-                'crop' => "Apple",
-                'ammount'=> "50",
-                'date'=>'2020-10-23'
-            ],
-            [
-               'id' => "14",
-                'name' => "Kamal",
-                'crop' => "Apple",
-                'ammount'=> "50",
-                'date'=>'2020-10-23'
-            ]
-        ];
-
-        $data = ['Req' => $sellingReq];
+         $sellData = $this->model->cropDetails();
+        $data['Req'] = $sellData;
+        
 
         $this->setActivePage('sellingReq');
         $this->view->rendor('vendor/sellingReq', $data);
+
+
     }
 
 }

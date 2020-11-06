@@ -130,32 +130,34 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Farmer-ID</th>
-            <th>Farmer Name</th>
+            <th>ID</th>
+          <!--  <th>Farmer </th> -->
             <th>Crop Type</th>
-            <th>Ammount</th>
+            <th>Weight</th>
+            <th>Price</th>
+            <th>District</th>
             <th>Date</th>
             <th>Action</th>
-            <th>Farmer's Profile</th>
-            <th>Other Crops</th>
+            <th>Profile</th>
+            
         </tr>
 <?php $i = 0; foreach($Req as $dt) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?= $dt['id'];?> </td>
-            <td><?= $dt['name'];?> </td>
+            <td><?= $dt['fid'];?> </td>
+           <!-- <td><?= $dt['name'];?> </td> --> 
             <td> <?=$dt['crop'];?></td>
-            <td> <?=$dt['ammount'];?></td>
+            <td> <?=$dt['weight'];?></td>
+             <td> <?=$dt['price'];?></td>
+              <td> <?=$dt['district'];?></td>
             <td> <?=$dt['date'];?></td>
             <td>
                 <a href="<?php echo URL. 'vendor/placeaOffer'?>" class="mini-button normal">Offer</a>  
             </td>
             <td>
-                  <a  class="mini-button normal" href="<?php echo URL . 'vendor/viewFarmer/'. $dt['id'] ;?>">View Profile</a>  
+                  <a  class="mini-button normal" href="<?php echo URL . 'vendor/viewFarmer/'. $dt['fid'] ;?>">View Profile</a>  
             </td>    
-              <td>
-                   <a href="<?php echo URL; ?>vendor/viewCrops" class="mini-button normal">Other crops</a>
-              </td>
+             
               
         
         </tr>

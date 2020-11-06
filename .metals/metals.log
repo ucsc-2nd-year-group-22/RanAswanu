@@ -1,0 +1,4 @@
+2020.11.04 13:25:42 INFO  started: Metals version 0.9.4 in workspace 'C:\xampp\htdocs\mvc-ui-embeded' for client vscode.
+2020.11.04 13:25:44 INFO  time: initialize in 1.33s
+2020.11.04 13:25:45 WARN  no build tool detected in workspace 'C:\xampp\htdocs\mvc-ui-embeded'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.04 13:43:34 INFO  shutting down Metals

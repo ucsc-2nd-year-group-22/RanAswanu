@@ -4,7 +4,7 @@
 <!-- FORM -->
 <div class="main-form">
     <form action="<?= URL;?>/farmer/creates" method="post">
-     
+        
      
         <div class="row">
             <div class="col-25">
@@ -65,7 +65,7 @@
             <label for="estdmgarea">Estimated Damage Area</label>
             </div>
             <div class="col-75">
-            <input type="text" id="estdmgarea" name="estdmgarea" placeholder="ex: 3 acres">
+            <input type="number" id="estdmgarea" name="estdmgarea" placeholder="ex: 3 acres">
             </div>
         </div>
 

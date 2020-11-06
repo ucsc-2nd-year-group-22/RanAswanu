@@ -3,7 +3,6 @@
 <!-- FORM -->
 <div class="main-form">
     <form action="<?= URL;?>/farmer/sellurcrops" method="post">
-     
     
         
         <div class="row">
@@ -34,18 +33,6 @@
         </div>
 
         
-        <div class="row">                                                                             
-            <div class="col-25">
-                <label for="croptype">Crop type:</label>
-            </div>
-
-            <div class="col-75">
-                <select id="croptype" name="croptype">
-                   <option value="vegetables">Vegetables</option>
-                   <option value="fruits">Fruits</option>                
-                </select>
-            </div>
-        </div>
 
         <div class="row">                                                                             
             <div class="col-25">

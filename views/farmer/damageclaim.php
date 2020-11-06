@@ -3,15 +3,8 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/create" method="post">
-        <div class="row">
-            <div class="col-25">
-            <label for="login">Username</label>
-            </div>
-            <div class="col-75">
-            <input type="text" id="login" name="username" placeholder="ex: wasantha123">
-            </div>
-        </div>
+    <form action="<?= URL;?>/farmer/creates" method="post">
+     
      
         <div class="row">
             <div class="col-25">

@@ -2,16 +2,8 @@
        
 
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/cropReq" method="post">	
-        <div class="row">
-            <div class="col-25">
-            <label for="login">Username</label>
-            </div>
-            <div class="col-75">
-            <input type="text" id="login" name="login" placeholder="ex: wasantha123">
-            </div>
-        </div>
-
+    <form action="<?= URL;?>/farmer/cropRequest" method="post">	
+        
        
         <div class="row">
             <div class="col-25">
@@ -41,11 +33,11 @@
 
         <div class="row">
             <div class="col-25">
-            <label for="grama">Gramasewa Division</label>
+            <label for="gramasewa">Gramasewa Division</label>
             </div>
 
             <div class="col-75">
-            <select id="grama" name="grama">
+            <select id="gramasewa" name="gramasewa">
                 <option value="grama1">Grama 1</option>
                 <option value="grama2">Grama 2</option>
                 <option value="grama1">Grama 3</option>
@@ -69,32 +61,36 @@
 			</div>	
 				  
 		    <div class="col-75">
-                <input type="text" placeholder="ex: 2 Acres" name="asize">
+                <input type="text" placeholder="ex: 2 Acres" name="areasize">
 			</div>
         </div>
         
         <div class="row">
             <div class="col-25">
-            <label for="dmgdate">Expect Date To Harvest</label>
+            <label for="exptdate">Expect Date To Harvest</label>
             </div>
             <div class="col-75">
-            <input type="date" id="dmgdate" name="dmgdate" placeholder="Month/Date/Year ">
+            <input type="date" id="exptdate" name="exptdate" placeholder="Month/Date/Year ">
             </div>
         </div>
         
         <div class="row">                                                                             
             <div class="col-25">
-                <label for="selectCrop">Crop type:</label>
+                <label for="croptype">Crop type:</label>
             </div>
 
             <div class="col-75">
-                <select id="selectCrop" name="selectCrop">
+                <select id="croptype" name="croptype">
+                   <option value="vegetables">Vegetables</option>
+                   <option value="fruits">Fruits</option>                
+                </select>
+              <!--  <select id="croptype" name="croptype">
 				<label for="type">Type</label>
                 <input type="radio" id="Vegatable" name="Type" >
                 <label for="vegatable">Vegatable</label><br>
                 <input type="radio" id="Fruit" name="Type" >
-                <label for="fruit">Fruit</label><br><br> 
-                </select>
+                <label for="fruit">Fruit</label><br><br>   
+                </select>   -->
             </div>
         </div>
 				
@@ -137,16 +133,15 @@
 
         <div class="row">
             <div class="col-25"> 
-                <label for="description">Other details:</label>
+                <label for="otherdetails">Other details:</label>
             </div>
-
             <div class="col-75">
                 <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details " style="height:200px "></textarea>
             </div>
         </div>
 				
 			 
-        <div class="row">
+  <!--      <div class="row">
             <div class="col-25">   
                 <label for="conditions">I Agree to Terms & conditions:</label>
             </div>   
@@ -159,7 +154,7 @@
                     
                 </select>
             </div>
-        </div>
+        </div>      -->
         
 
         <div class="row">

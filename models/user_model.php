@@ -36,7 +36,7 @@ class User_Model extends Model {
 
     //update the user data in the database 
     public function editSave($data){
-        print_r($data);
+        // print_r($data);
         $stmt = $this->db->prepare("UPDATE users SET 
             `firstname` = :firstname, 
             `lastname` = :lastname,
@@ -109,7 +109,7 @@ class User_Model extends Model {
                     break;
                 
                 case 'farmer':
-                    header('location: ' . URL . 'farmer/sellyourcrops');
+                    header('location: ' . URL . 'farmer/');
                     break;
 
                 case 'vendor':
@@ -133,4 +133,5 @@ class User_Model extends Model {
         ));
         return $st->fetch();
     }
+
 } 

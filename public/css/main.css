@@ -9,6 +9,7 @@
  @import "filter-panes.css";
  @import "login-style.css";
  @import "dashboard.css";
+ @import "index.css";
  
  *{
      padding:0;
@@ -119,6 +120,11 @@
  p {
      line-height: 1.8em;
  }
+
+ .btn a {
+     text-decoration: none;
+     text-align: center;
+ }
  
 .danger {
      background-color: var(--danger);
@@ -167,6 +173,31 @@
     background-color: rgb(248, 248, 248);
 }
 
+.alert-box {
+    width:100%;
+    padding:5px 10px;
+    background-color: #fff;
+    margin:0 0 10px 0;
+    box-shadow: var(--small-shadow);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.danger-alert {
+    color:red;
+}
+
+.mail-body {
+    background:var(--main-layout-bg-color);
+    font-size:1.2em; 
+    padding:10px; 
+    font-family:sans-serif;
+}
+
+.popup-alert {
+    background-color: #fff;
+    
+}
 
 /* Tab  -------------------------------------------------------- */
 

@@ -135,6 +135,7 @@ class User extends Controller {
 
         $this->model->editSave($data);
         // print_r($data);
+
         switch (Session::get('role')) {
             case 'officer':
                 header('location: ' . URL . 'farmer/farmerMng');
@@ -181,6 +182,9 @@ class User extends Controller {
         $this->view->rendor('user/profile', $data);
     }
 
+
+////////////////////////////////////////////////
+// Moved authentication functions to another module
 
 
     // End of user class controller

@@ -9,8 +9,10 @@ class Vendor extends Controller{
     }
 
     function index() {
-        $this->setActivePage('index');
-        $this->view->rendor('vendor/index');
+        $sellData = $this->model->cropDetails();
+        $data['Req'] = $sellData;
+        $this->setActivePage('sellingReq');
+        $this->view->rendor('vendor/sellingReq', $data);
 
     }
 
@@ -76,16 +78,13 @@ class Vendor extends Controller{
     }
 
    
-
+/*
     public function sellingReq() {
          $sellData = $this->model->cropDetails();
         $data['Req'] = $sellData;
-        
-
         $this->setActivePage('sellingReq');
         $this->view->rendor('vendor/sellingReq', $data);
 
-
-    }
+    } */
 
 }

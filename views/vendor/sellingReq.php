@@ -1,10 +1,10 @@
- <h1>Farmer's Selling Requests</h1>
+
 <!--<?php echo $sellingReq['name'];?>-->
 <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab" >All</a></li>
-        <li><a id="tab2" href="#" >Accepted</a></li>
-        <li><a id="tab3" href="#" >Rejected</a></li>
+        <li><a id="tab2" href="#" >My Offers</a></li>
+   
     </ul>
 </div>
 
@@ -13,49 +13,56 @@
     <h2>All</h2>
     <div class="filter-panel">
 
-    <div class="panel-container">
-        <div class="pane1">
+        <div class="panel-container">
+            <div class="pane1">
 
-        <form class="search-bar">
-            <label>Search Farmer's Selling Requests By : </label>
-            <select placeholder="Search ...">
-                    <option>Farmer-ID</option>
-                    <option>Farmer Name</option>
-                    <option>Crop Type</option>
+            <form class="search-bar">
+                <label>Search Crop By : </label>
+                <select >
+                        <option>Farmer-ID</option>
+                        <option>Farmer Name</option>
+                        <option>Crop Type</option>
                 </select>
-            <input type="text" placeholder="Search ...">
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
+                <input type="text" placeholder="Search ...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
 
-        </div> 
-           <div class="pane2">
-        <form class="normal-select">
-            <label>Sort crop requests by : </label>
-            <select placeholder="other">
-                    <option>Date</option>
-                    <option>Ammount</option>
-                    <option>Time</option>
-                    <option>Crop</option>
-                <option>111</option>
-            </select>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
-        </form>
+            </div> 
+            <div class="pane2">
+            <form class="normal-select">
+                <label>Sort Crop By : </label>
+                <select placeholder="other">
+                        <option>Date</option>
+                        <option>Weight</option>
+                </select>
+                <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+                <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+            </form>
+            </div>
+
+             <div class="pane3">
+
+                <form class="search-bar">
+                    <label>Select District : </label>
+                    <input type="text" placeholder="Search ...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+
+             </div> 
         </div>
-    </div>
 
     </div>
 </div>
 
 <div id="tab2C" class="tabContainer">
-   <h2>Accecepted</h2>
+   <h2>Offers Sent</h2>
     <div class="filter-panel">
 
     <div class="panel-container">
         <div class="pane1">
 
         <form class="search-bar">
-            <label>Search Farmer's Selling Requests By : </label>
+            <label>Search Crop By : </label>
             <select placeholder="Search ...">
                     <option>Farmer-ID</option>
                     <option>Farmer Name</option>
@@ -68,13 +75,10 @@
         </div> 
            <div class="pane2">
         <form class="normal-select">
-            <label>Sort crop requests by : </label>
+            <label>Sort Crop By : </label>
             <select placeholder="other">
                     <option>Date</option>
-                    <option>Ammount</option>
-                    <option>Time</option>
-                    <option>Crop</option>
-                <option>111</option>
+                    <option>Weight</option>
             </select>
             <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
             <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
@@ -84,46 +88,6 @@
 
     </div>
 </div>
-
-<div id="tab3C" class="tabContainer">
-    <h2>Rejected</h2>
-    <div class="filter-panel">
-
-    <div class="panel-container">
-        <div class="pane1">
-
-        <form class="search-bar">
-            <label>Search Farmer's Selling Requests By : </label>
-            <select placeholder="Search ...">
-                    <option>Farmer-ID</option>
-                    <option>Farmer Name</option>
-                    <option>Crop Type</option>
-                </select>
-            <input type="text" placeholder="Search ...">
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
-
-        </div> 
-           <div class="pane2">
-        <form class="normal-select">
-            <label>Sort crop requests by : </label>
-            <select placeholder="other">
-                    <option>Date</option>
-                    <option>Ammount</option>
-                    <option>Time</option>
-                    <option>Crop</option>
-                <option>111</option>
-            </select>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
-        </form>
-        </div>
-    </div>
-
-    </div>
-</div>
-
-
 
 
 <div class="main-table">

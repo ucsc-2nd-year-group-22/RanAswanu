@@ -8,37 +8,44 @@
     </ul>
 </div>
 <div class="filter-panel">
+<div class="panel-container">
     <div class="pane1">
-        <!-- <label for="filter4">Search</label>                     -->
-    </div>
-    
-    <div class="pane2">
-        <div class="search-container">
-            <form action="#">
-                <span class="left">
-                    <input type="text" placeholder="Search.." name="search">
-                </span>
-                <span class="right">
-                    <button type="submit">Submit</button>
-                </span>
+
+        <form class="search-bar">
+            <label>Search crop requests by : </label>
+            <select placeholder="Search ...">
+                    <option>Demand status</option>
+                    <option>Farmer name</option>
+                    <option>Crop</option>
+                </select>
+            <input type="text" placeholder="Search ...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+        </div>
+        <div class="pane2">
+            <form class="normal-select">
+                <label>Sort crop requests by : </label>
+                <select placeholder="other">
+                        <option>Date</option>
+                        <option>Demand status</option>
+                        <option>Farmer name</option>
+                        <option>Crop</option>
+                    <option>111</option>
+                </select>
+                <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+                <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
             </form>
         </div>
-    </div>
-    <div class="pane3">
-        <label for="filter4">Sort by</label>
-        <select id="filter4" name="filter4">
-            <option value="australia">Date</option>
-            <option value="canada">Amount</option>
-            <option value="usa">Time</option>
-        </select>                    
-    </div>
-    <div class="pane4"> 
-        <label for="filter5">Search by</label>
-        <select id="filter5" name="filter5">
-            <option value="australia">Crop</option>
-            <option value="canada">Area</option>
-            <option value="usa">Officer</option>
-        </select>                
+
+        <!-- Comment pane 3 & 4 If they are empty -->
+
+        <div class="pane3">
+            <label>Empty pane</label>
+        </div>
+        <div class="pane4">
+            <label>Empty pane</label>
+        </div>
     </div>
 </div>
 
@@ -59,10 +66,10 @@
             <td><?=$center['province'];?> </td>
             <td> <?=$center['district'];?></td>
             <td>
-                <a href="<?php echo URL .'collectingcenter/edit/'.$center['id']; ?>" class="mini-button normal"><i class="fas fa-eye"></i></a> 
+                <a href="<?php echo URL .'collectingcenter/edit/'.$center['id']; ?>" class="mini-button normal"><i class="fas fa-eye"> View</i></a> 
             </td>
             <td>
-                <a href="<?php echo URL .'collectingcenter/delete/'.$center['id']; ?>" class="mini-button danger"><i class="fas fa-trash"></i></a> 
+                <a href="<?php echo URL .'collectingcenter/delete/'.$center['id']; ?>" class="mini-button danger"><i class="fas fa-trash"> Remove</i></a> 
             </td>
         </tr>
 <?php endforeach;?>

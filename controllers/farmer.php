@@ -1,7 +1,7 @@
 <?php
 
 class Farmer extends Controller {
-
+    
     public function __construct() {
         parent::__construct();
         Session::init();
@@ -33,27 +33,46 @@ class Farmer extends Controller {
 
    
     public function damageclaim($arg = false) {
+        $this->setActivePage('damageclaim');
         $this->view->rendor('farmer/damageclaim');
     }
 
+<<<<<<< HEAD
 
 
     public function cropReq($arg = false) {
+=======
+    public function cropReq($arg = false) {
+        $this->setActivePage('cropReq');
+>>>>>>> 7d98a3239aebcea78e048622e92cf8de47fb3411
         $this->view->rendor('farmer/cropReq');
     }
     
     public function sellyourcrops($arg = false) {
+<<<<<<< HEAD
+=======
+        $this->setActivePage('sellyourcrops');
+>>>>>>> 7d98a3239aebcea78e048622e92cf8de47fb3411
         $this->view->rendor('farmer/sellyourcrops');
     }
    
     public function vendOffers($arg = false) {
+<<<<<<< HEAD
+=======
+        $this->setActivePage('vendOffers');
+>>>>>>> 7d98a3239aebcea78e048622e92cf8de47fb3411
         $this->view->rendor('farmer/vendOffers');
     }
 
     //instert damage claim information to the database
+<<<<<<< HEAD
     public function creates()
     {
         
+=======
+    public function create()
+    {
+>>>>>>> 7d98a3239aebcea78e048622e92cf8de47fb3411
         $data=array();
 
         $data['username'] = $_POST['username'];
@@ -65,14 +84,18 @@ class Farmer extends Controller {
         $data['estdmgarea'] = $_POST['estdmgarea'];
         $data['waydmg'] = $_POST['waydmg'];
         $data['details'] = $_POST['details'];
+<<<<<<< HEAD
 
         $this->model->creates($data);
         header('location: ' . URL . 'farmer/damageclaim');
+=======
+>>>>>>> 7d98a3239aebcea78e048622e92cf8de47fb3411
        
     }
 
     
     
+<<<<<<< HEAD
      //insterting crop details of farmers' which expect to sell
    public function sellurcrops()
     {
@@ -138,5 +161,7 @@ class Farmer extends Controller {
 
   */  
     
+=======
+>>>>>>> 7d98a3239aebcea78e048622e92cf8de47fb3411
 
 }

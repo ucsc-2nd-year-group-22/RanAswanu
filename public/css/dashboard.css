@@ -1,0 +1,27 @@
+.charts{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+#chartContainer{
+    height: 370px; 
+    width: 100%; 
+}
+
+#chartContainer1{
+    height: 370px; 
+    width: 100%;  
+}
+
+#chartContainer2{
+    height: 370px; 
+    width: 100%; 
+    margin-top: 5px; 
+}
+
+#chartContainer3{
+    height: 370px; 
+    width: 100%; 
+    margin-top: 5px; 
+}

@@ -14,6 +14,9 @@
     <?php if($_GET['reset'] == "invalid"): ?>
         <?php echo '<p class="danger-alert">Sorry ! The e-mail address you entered is not in our system. Please check your e-mail address. </p>'; ?>
     <?php endif; ?>
+    <?php if($_GET['reset'] == "timeout"): ?>
+        <?php echo '<p class="danger-alert">Sorry ! Link has been expired. Please request again. </p>'; ?>
+    <?php endif; ?>
 
 </div>
 <?endif; ?>

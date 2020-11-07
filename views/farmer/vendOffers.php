@@ -14,9 +14,9 @@
         <form class="search-bar">
             <label>Search crop requests by : </label>
             <select placeholder="Search ...">
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
+                    <option>Vendor name</option>
+                    <option>Crop Type</option>
+                    <option>District</option>
                 </select>
             <input type="text" placeholder="Search ...">
             <button type="submit"><i class="fas fa-search"></i></button>
@@ -28,10 +28,9 @@
             <label>Sort crop requests by : </label>
             <select placeholder="other">
                     <option>Date</option>
-                    <option>Price</option>
-                    <option>Vendor Name</option>
-                    <option>Crop</option>
-                <option>111</option>
+                    <option>Vendor name</option>
+                    <option>Crop Type</option>
+                    <option>District</option>
             </select>
             <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
             <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
@@ -56,7 +55,7 @@
                 <th>#</th>
                 <th>Vender Name</th>
                 <th>Crop Type</th>
-                <th>Price</th>
+                <th>Price per Kg</th>
                 <th>District</th>
                 <th>dateTime</th>
                 <th>Take Action</th>

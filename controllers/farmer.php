@@ -154,8 +154,8 @@ class Farmer extends Controller {
             'vendername' => "Nimal Siripala",
             'croptype' => "Potatoe-CG1",
           //  'weight' => "7 weeks",
-            'price' => "Udawalawe-north",
-            'district' => "1.2 MT",
+            'price' => "34",
+            'district' => "Colombo",
             'dateTime' => "10-05-2020 | 10.00 AM",
             
         ],

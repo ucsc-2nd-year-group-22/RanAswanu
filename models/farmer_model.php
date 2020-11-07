@@ -19,9 +19,9 @@ class Farmer_Model extends Model {
     public function creates($data)
     {
 
-    $st = $this->db->prepare("INSERT INTO dmgclaim (`username` , `dmgdate` , `province` , `district` , `gramasewa` , `address` , `estdmgarea` , `waydmg` , `details`) VALUES ( :username , :dmgdate , :province , :district , :gramasewa , :address , :estdmgarea , :waydmg , :details)");
+    $st = $this->db->prepare("INSERT INTO dmgclaim ( `dmgdate` , `province` , `district` , `gramasewa` , `address` , `estdmgarea` , `waydmg` , `details`) VALUES ( :dmgdate , :province , :district , :gramasewa , :address , :estdmgarea , :waydmg , :details)");
         $st-> execute(array(
-            ':username' => $data['username'],
+            
             ':dmgdate' => $data['dmgdate'],
             ':province' => $data['province'],
             ':district' => $data['district'],
@@ -38,9 +38,9 @@ class Farmer_Model extends Model {
 
     public function sellurcrops($data)
     {
-        $st=$this->db->prepare("INSERT INTO sellcrops (`username` , `province` , `district`, `croptype` , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`) VALUES ( :username , :province , :district , :croptype ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display)");
+        $st=$this->db->prepare("INSERT INTO sellcrops ( `province` , `district`, `croptype` , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`) VALUES (  :province , :district , :croptype ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display)");
         $st->execute(array(
-            ':username' => $data['username'],
+    
             ':province' =>$data['province'],
             ':district' => $data['district'],
             ':croptype' =>$data['croptype'],
@@ -57,9 +57,9 @@ class Farmer_Model extends Model {
 
     public function cropRequest($data)
     {
-        $st=$this->db->prepare("INSERT INTO croprequest (`username` , `province` , `district` , `gramasewa` , `address` , `areasize` , `exptdate` , `croptype` , `selectCrop` , `cropVariety` , `otherdetails`) VALUES ( :username , :province , :district , :gramasewa , :address , :areasize , :exptdate , :croptype , :selectCrop , :cropVariety , :otherdetails)");
+        $st=$this->db->prepare("INSERT INTO croprequest ( `province` , `district` , `gramasewa` , `address` , `areasize` , `exptdate` , `croptype` , `selectCrop` , `cropVariety` , `otherdetails`) VALUES (  :province , :district , :gramasewa , :address , :areasize , :exptdate , :croptype , :selectCrop , :cropVariety , :otherdetails)");
         $st->execute(array(           
-            ':username' => $data['username'],
+            
             ':province' => $data['province'],
             ':district' => $data['district'],
             ':gramasewa' => $data['gramasewa'],

@@ -46,9 +46,19 @@ class Farmer extends Controller {
         $this->view->rendor('farmer/sellyourcrops');
     }
    
-    public function vendOffers($arg = false) {
+  /*  public function vendOffers($arg = false) {
         $this->view->rendor('farmer/vendOffers');
     }
+
+*/
+
+    //new
+    public function damageclaimif($arg = false){
+        $this->view->rendor('farmer/damageclaimif');
+    }
+
+
+
 
     //instert damage claim information to the database
     public function creates()
@@ -56,7 +66,7 @@ class Farmer extends Controller {
         
         $data=array();
 
-        $data['username'] = $_POST['username'];
+        
         $data['dmgdate'] = $_POST['dmgdate'];
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
@@ -78,7 +88,7 @@ class Farmer extends Controller {
     {
         $data=array();
 
-        $data['username'] = $_POST['username'];
+        
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
         $data['croptype'] = $_POST['croptype'];
@@ -99,7 +109,6 @@ class Farmer extends Controller {
     {
         $data=array();
 
-        $data['username'] = $_POST['username'];
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
         $data['gramasewa'] = $_POST['gramasewa'];
@@ -137,6 +146,61 @@ class Farmer extends Controller {
 
 
   */  
-    
+
+
+  public function vendOffers() {
+    $verdoffersData= [
+        [
+            'vendername' => "Nimal Siripala",
+            'croptype' => "Potatoe-CG1",
+          //  'weight' => "7 weeks",
+            'price' => "Udawalawe-north",
+            'district' => "1.2 MT",
+            'dateTime' => "10-05-2020 | 10.00 AM",
+            
+        ],
+
+
+    /*    [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],*/
+
+    ];
+
+    $pageData = [
+        'role' => Session::get('role'),
+        'verdoffersData' => $verdoffersData,
+    ];
+    // Session::set('activePage', 'cropReq');
+    $this->view->js = 'officer/js/default';
+    $this->setActivePage('vendOffers');
+    $this->view->rendor('farmer/vendOffers', $pageData);
+}
+
+  
 
 }

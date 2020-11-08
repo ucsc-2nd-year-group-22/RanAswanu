@@ -59,18 +59,19 @@
                 <th>Damaged date</th>
                 <th>District</th>
                 <th>Address</th>
-                <th>Approval</th>         <!--accept / reject / pending -->
-                <th>Action</th>           <!-- view submited form / delete form -->
+                <th>Approval</th>        <!--accept / reject / pending -->
+                <th>Take Action</th>           <!-- view submited form / delete form -->
             </tr>
-        <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
+        <?php $i = 0; foreach($damageclaimData as $officer) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $officer['id'];?> </td>
-                <td><?= $officer['firstname'];?> </td>
-                <td><?= $officer['lastname'];?> </td>
-                <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
-                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>
-                <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>
+                <td><?= $officer['dmgdate'];?> </td>
+                <td><?= $officer['district'];?> </td>
+                <td><?= $officer['address'];?> </td>
+                <td><?= $officer['approval'];?> </td>
+               <!-- <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td> -->
+                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>
+            <!--    <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>   -->
             </tr>
         <?php endforeach;?>
         </table>

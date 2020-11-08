@@ -1,6 +1,7 @@
 <h1>Damage claim form</h1>
 
 
+
 <!-- FORM -->
 <div class="main-form">
     <form action="<?= URL;?>/farmer/creates" method="post">

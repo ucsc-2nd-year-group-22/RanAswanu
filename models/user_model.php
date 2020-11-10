@@ -109,7 +109,7 @@ class User_Model extends Model {
                     break;
                 
                 case 'farmer':
-                    header('location: ' . URL . 'farmer/');
+                    header('location: ' . URL . 'farmer/sellyourcrops');
                     break;
 
                 case 'vendor':

@@ -157,10 +157,10 @@
         </table>
     </div> -->
 
-</div>
+<!-- </div> -->
 
 <!-- Tab 2 Delete -->
-<div id="tab3C" class="tabContainer">
+<!-- <div id="tab3C" class="tabContainer">
     <h2>Carefull ! You are going to delete farmers</h2>
     
     <div class="panel-container">
@@ -191,21 +191,21 @@
             <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
             <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
         </form>
-    </div>
+    </div> -->
 
     <!-- Comment pane 3 & 4 If they are empty -->
 
-    <div class="pane3">
+    <!-- <div class="pane3">
          <label>Empty pane</label>
     </div>
     <div class="pane4">
         <label>Empty pane</label>
     </div>
 
-</div> 
+</div>  -->
       
    <!-- Table -->
-    <div class="main-table">
+    <!-- <div class="main-table">
         <table>
             <tr>
                 <th>#</th>
@@ -230,6 +230,6 @@
             </tr>
         <?php endforeach;?>
         </table>
-    </div>
+    </div> -->
 
-</div>
+<!-- </div> -->

@@ -111,6 +111,9 @@ class Auth extends Controller {
 
             $resetResult = $this->model->getPwSelector($selector, $validator);
             if($resetResult == 0) {
+                echo 'not valid';
+                // header("Location :".URL."auth/resetPw?reset=timeout");
+                header("Location:".URL."auth/resetPw?reset=timeout");
                 exit(0);
             }
 

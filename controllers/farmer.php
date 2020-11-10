@@ -54,14 +54,6 @@ class Farmer extends Controller {
 
 
 
-    //new
-    public function cropReqif($arg = false){
-        $this->view->rendor('farmer/cropReqif');
-    }
-
-   
-
-
     //instert damage claim information to the database
     public function creates()
     {
@@ -190,7 +182,7 @@ class Farmer extends Controller {
     $damageclaimData= [
         [
             'dmgdate' => "10-05-2020",
-            'district' => "Potatoe-CG1",
+            'district' => "Kandy",
           //  'weight' => "7 weeks",
             'address' => "12,kandy rd,Kandy", 
             'approval'=>"pending",          
@@ -292,6 +284,62 @@ public function sellyourcropsif() {
     $this->setActivePage('sellyourcropsif');
     $this->view->rendor('farmer/sellyourcropsif', $pageData);
 }
+
+
+public function cropReqif() {
+    $cropReqifData= [
+        [
+            
+            'district' => "Kandy",
+            'address' => "12,kandy rd,Kandy",
+          //  'weight' => "7 weeks",
+            'areasize' => "20", 
+            'expectdate'=>"10-05-2020",
+            'croptype' =>"Potatoe-CG1"          
+        ],
+
+
+    /*    [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],*/
+
+    ];
+
+    $pageData = [
+        'role' => Session::get('role'),
+        'cropReqifData' => $cropReqifData,
+    ];
+    // Session::set('activePage', 'cropReq');
+    $this->view->js = 'officer/js/default';
+    $this->setActivePage('cropReqif');
+    $this->view->rendor('farmer/cropReqif', $pageData);
+}
+
+
 
 
 }

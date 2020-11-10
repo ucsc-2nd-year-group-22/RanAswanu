@@ -71,7 +71,7 @@ class Farmer extends Controller {
         $data['details'] = $_POST['details'];
 
         $this->model->creates($data);
-        header('location: ' . URL . 'farmer/damageclaim');
+        header('location: ' . URL . 'farmer/damageclaimif');
        
     }
 
@@ -93,7 +93,7 @@ class Farmer extends Controller {
         $data['display'] = $_POST['display'];
         
         $this->model->sellurcrops($data);
-        header('location: ' . URL . 'farmer/sellyourcrops');
+        header('location: ' . URL . 'farmer/sellyourcropsif');
 
     }
 
@@ -115,7 +115,7 @@ class Farmer extends Controller {
       //  $data['conditions'] = $_POST['conditions'];
 
       $this->model->cropRequest($data);
-      header('location: ' . URL . 'farmer/cropReq');
+      header('location: ' . URL . 'farmer/cropReqif');
 
 
 
@@ -137,33 +137,7 @@ class Farmer extends Controller {
         ],
 
 
-    /*    [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],*/
+    
 
     ];
 
@@ -189,33 +163,7 @@ class Farmer extends Controller {
         ],
 
 
-    /*    [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],*/
+   
 
     ];
 
@@ -245,33 +193,7 @@ public function sellyourcropsif() {
         ],
 
 
-    /*    [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],*/
+    
 
     ];
 
@@ -299,33 +221,7 @@ public function cropReqif() {
         ],
 
 
-    /*    [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],
-        [
-            'farmer' => "Nimal Siripala",
-            'crop' => "Potatoe-CG1",
-            'period' => "7 weeks",
-            'area' => "Udawalawe-north",
-            'harvest' => "1.2 MT",
-            'demand' => "Below",
-            'dateTime' => "10-05-2020 | 10.00 AM"
-        ],*/
+   
 
     ];
 

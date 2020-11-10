@@ -38,12 +38,12 @@ class Farmer_Model extends Model {
 
     public function sellurcrops($data)
     {
-        $st=$this->db->prepare("INSERT INTO sellcrops ( `province` , `district`, `croptype` , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`) VALUES (  :province , :district , :croptype ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display)");
-        $st->execute(array(
+    
+    $st=$this->db->prepare("INSERT INTO sellcrops ( `province` , `district' , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`) VALUES (  :province , :district  ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display)");
+        $st-> execute(array(
     
             ':province' =>$data['province'],
             ':district' => $data['district'],
-            ':croptype' =>$data['croptype'],
             ':state' =>$data['state'],
             ':selectCrop' =>$data['selectCrop'],
             ':cropVariety' => $data['cropVariety'],

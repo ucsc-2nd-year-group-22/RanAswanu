@@ -52,12 +52,14 @@ class Farmer extends Controller {
 
 */
 
+
+
     //new
-    public function damageclaimif($arg = false){
-        $this->view->rendor('farmer/damageclaimif');
+    public function cropReqif($arg = false){
+        $this->view->rendor('farmer/cropReqif');
     }
 
-
+   
 
 
     //instert damage claim information to the database
@@ -91,7 +93,6 @@ class Farmer extends Controller {
         
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
-        $data['croptype'] = $_POST['croptype'];
         $data['state'] = $_POST['state'];
         $data['selectCrop'] = $_POST['selectCrop'];
         $data['cropVariety'] = $_POST['cropVariety'];
@@ -128,24 +129,7 @@ class Farmer extends Controller {
 
     }
 
- /*  public function vendOffers()
-    {
-        $venderoffersdata= [
-            [
-
-
-            ]
-
-            [
-
-            ]
-
-
-        ];
-    }
-
-
-  */  
+ 
 
 
   public function vendOffers() {
@@ -201,6 +185,113 @@ class Farmer extends Controller {
     $this->view->rendor('farmer/vendOffers', $pageData);
 }
 
+
+ public function damageclaimif() {
+    $damageclaimData= [
+        [
+            'dmgdate' => "10-05-2020",
+            'district' => "Potatoe-CG1",
+          //  'weight' => "7 weeks",
+            'address' => "12,kandy rd,Kandy", 
+            'approval'=>"pending",          
+        ],
+
+
+    /*    [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],*/
+
+    ];
+
+    $pageData = [
+        'role' => Session::get('role'),
+        'damageclaimData' => $damageclaimData,
+    ];
+    // Session::set('activePage', 'cropReq');
+    $this->view->js = 'officer/js/default';
+    $this->setActivePage('damageclaimif');
+    $this->view->rendor('farmer/damageclaimif', $pageData);
+}
+
   
+
+
+public function sellyourcropsif() {
+    $sellurcropsData= [
+        [
+            
+            'district' => "Colombo",
+            'state' => "After Harvest",
+          //  'weight' => "7 weeks",
+            'croptype' => "Potatoe-CG1", 
+            'exptprice'=>"45",
+            'totalweight' =>"560"          
+        ],
+
+
+    /*    [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],
+        [
+            'farmer' => "Nimal Siripala",
+            'crop' => "Potatoe-CG1",
+            'period' => "7 weeks",
+            'area' => "Udawalawe-north",
+            'harvest' => "1.2 MT",
+            'demand' => "Below",
+            'dateTime' => "10-05-2020 | 10.00 AM"
+        ],*/
+
+    ];
+
+    $pageData = [
+        'role' => Session::get('role'),
+        'sellurcropsData' => $sellurcropsData,
+    ];
+    // Session::set('activePage', 'cropReq');
+    $this->view->js = 'officer/js/default';
+    $this->setActivePage('sellyourcropsif');
+    $this->view->rendor('farmer/sellyourcropsif', $pageData);
+}
+
 
 }

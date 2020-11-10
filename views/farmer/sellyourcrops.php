@@ -11,6 +11,7 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
+            <option value ="" disabled selected>select province</option>
                 <option value="province1">Province 1</option>
                 <option value="province2">Province 2</option>
                 <option value="province3">Province 3</option>
@@ -25,6 +26,7 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
+            <option value ="" disabled selected>select district</option>
                 <option value="district1">District 1</option>
                 <option value="district2">District 2</option>
                 <option value="district3">District 3</option>
@@ -41,6 +43,7 @@
 
             <div class="col-75">
                 <select id="state" name="state">
+                <option value ="" disabled selected>select state</option>
                     <option value="after hvst"> After Harvest</option>
                     <option value="before hvst">Before Harvest</option>
 			<!--	<label for="type">Type</label>   
@@ -90,19 +93,19 @@
         
         <div class="row">
             <div class="col-25">
-            <label for="exprice">Expect price (Per kg)</label>
+            <label for="exprice">Expecting minimum price (Per kg) -Rs</label>
             </div>
             <div class="col-75">
-            <input type="text" id="exprice" name="exprice" placeholder="ex:Rs 40">
+            <input type="number" id="exprice" name="exprice" placeholder="ex:Rs 40">
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-            <label for="weight">Total Weight (Or Expect)</label>
+            <label for="weight">Total Weight (Or Expect) -Kg</label>
             </div>
             <div class="col-75">
-            <input type="text" id="weight" name="weight" placeholder="ex: 500 Kg">
+            <input type="number" id="weight" name="weight" placeholder="ex: 500 Kg">
             </div>
         </div>
 

@@ -22,6 +22,7 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
+            <option value ="" disabled selected>select province</option>
                 <option value="province1">Province 1</option>
                 <option value="province2">Province 2</option>
                 <option value="province3">Province 3</option>
@@ -34,6 +35,7 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
+            <option value ="" disabled selected>select district</option>
                 <option value="district1">District 1</option>
                 <option value="district2">District 2</option>
                 <option value="district3">District 3</option>
@@ -46,6 +48,7 @@
             </div>
             <div class="col-75">
             <select id="gramasewa" name="gramasewa">
+            <option value ="" disabled selected>select gramasewa division</option>
                 <option value="grama1">Grama 1</option>
                 <option value="grama2">Grama 2</option>
                 <option value="grama1">Grama 3</option>
@@ -63,7 +66,7 @@
         
         <div class="row">
             <div class="col-25">
-            <label for="estdmgarea">Estimated Damage Area</label>
+            <label for="estdmgarea">Estimated Damage Area -Acres</label>
             </div>
             <div class="col-75">
             <input type="number" id="estdmgarea" name="estdmgarea" placeholder="ex: 3 acres">

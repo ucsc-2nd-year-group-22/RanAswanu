@@ -70,14 +70,16 @@
                 <option value="Onion">Onion</option>
                 </select>
             </div>
+
+            
         </div>
 				
 				
             
         <div class="row">
             <div class="col-25">
-                <label for="cropVariety">Select Crop Variety:</label>                                     
-            </div>
+        <!--        <label for="cropVariety">Select Crop Variety:</label>       -->                               
+            </div>  
 
             <div class="col-75">
                 <select id="cropVariety" name="cropVariety">

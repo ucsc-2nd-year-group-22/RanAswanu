@@ -119,7 +119,7 @@
             
         <div class="row">
             <div class="col-25">
-                <label for="cropVariety">Select Crop Variety:</label>                                     
+        <!--        <label for="cropVariety">Select Crop Variety:</label>       -->                                
             </div>
 
             <div class="col-75">

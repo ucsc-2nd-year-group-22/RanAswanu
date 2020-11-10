@@ -13,6 +13,48 @@
     </ul>
 </div>
 
+
+
+
+
+<div class="panel-container">
+    <div class="pane1">
+
+        <form class="search-bar">
+            <label>Search crop requests by : </label>
+            <select placeholder="Search ...">
+                    <option>State</option>
+                    <option>Crop Type</option>
+                    <option>District</option>
+                </select>
+            <input type="text" placeholder="Search ...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+    </div>
+    <div class="pane2">
+        <form class="normal-select">
+            <label>Sort crop requests by : </label>
+            <select placeholder="other">
+                    <option>Date</option>
+                    <option>Crop Type</option>
+                    <option>District</option>
+            </select>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+        </form>
+    </div>
+
+    <!-- Comment pane 3 & 4 If they are empty -->
+
+ <!--   <div class="pane3">
+         <label>Empty pane</label>
+    </div>
+    <div class="pane4">
+        <label>Empty pane</label>
+    </div>    -->
+</div> 
+
 <!--
 <div class="tabContainer" id="tab1C">
     <h2>View all reegistered farmers</h2>
@@ -49,28 +91,32 @@
      
 </div> 
 
- -->
+        -->
 
    <!-- Table -->
    <div class="main-table">
         <table>
             <tr>
                 <th>#</th>
-                <th>Damaged date</th>
                 <th>District</th>
                 <th>Address</th>
-                <th>Approval</th>         <!--accept / reject / pending -->
-                <th>Action</th>           <!-- view submited form / delete form -->
+                <th>Area Size</th>
+                <th>Expect Date to Cultivate</th>
+                <th>Crop Type</th>
+            <!--    <th>Approval</th>         accept / reject / pending -->
+                <th>Take Action</th>           <!-- view submited form / delete form -->
             </tr>
-        <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
+        <?php $i = 0; foreach($cropReqifData as $officer) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $officer['id'];?> </td>
-                <td><?= $officer['firstname'];?> </td>
-                <td><?= $officer['lastname'];?> </td>
-                <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
-                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>
-                <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>
+                <td><?= $officer['district'];?> </td>
+                <td><?= $officer['address'];?> </td>
+                <td><?= $officer['areasize'];?> </td>
+                <td><?= $officer['expectdate'];?> </td>
+                <td><?= $officer['croptype'];?> </td>
+                <!-- <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td> -->
+                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>
+            <!--    <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>   -->
             </tr>
         <?php endforeach;?>
         </table>

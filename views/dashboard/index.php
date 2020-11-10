@@ -219,5 +219,4 @@ window.onload = function() {
 <div id="chartContainer2"></div>
 <div id="chartContainer3"></div>
 
-<script src="http://localhost/mvc-ui-embeded/views/dashboard/js/default.js"></script>
-<!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+<script src="<?php echo URL; ?>/views/dashboard/js/default.js"></script>

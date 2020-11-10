@@ -119,6 +119,7 @@ class User_Model extends Model {
 
         } else {
             // show error
+            Session::set('alert', 'Username of password is incorrect !');
             header('location: login');
         }
         

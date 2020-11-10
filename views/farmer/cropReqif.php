@@ -23,7 +23,7 @@
         <form class="search-bar">
             <label>Search crop requests by : </label>
             <select placeholder="Search ...">
-                    <option>State</option>
+                    <option>Date</option>
                     <option>Crop Type</option>
                     <option>District</option>
                 </select>

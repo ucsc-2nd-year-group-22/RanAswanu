@@ -141,11 +141,27 @@ class Auth extends Controller {
         // $this->view->rendor('user/resetPw', $data);
     }
 
-    function updatePwLogged($userId) {
+    function getNewPwLogged($userId) {
 
-        $data = [];
-        $this->view->rendor('auth/updatePwLogged', $data);
+        $data['id'] = $userId;
+        $this->view->rendor('auth/getNewPwLogged', $data);
 
+    }
+
+    function updatePwLogged() {
+        echo "Update<hr>";
+       
+        if(isset($_POST['updatePw'])) {
+            
+            $oldPw = $_POST['oldPw'];
+            $newPw = $_POST['newPw'];
+            $newPwRepeat = $_POST['newPwRepeat'];
+            
+            $res = $this->model->checkUserPw($oldPw);
+           
+            echo $res;
+           
+        }
     }
 
 }

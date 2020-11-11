@@ -140,4 +140,12 @@ class Auth extends Controller {
 
         // $this->view->rendor('user/resetPw', $data);
     }
+
+    function updatePwLogged($userId) {
+
+        $data = [];
+        $this->view->rendor('auth/updatePwLogged', $data);
+
+    }
+
 }

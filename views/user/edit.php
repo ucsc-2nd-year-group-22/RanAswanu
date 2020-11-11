@@ -33,6 +33,24 @@
         </div>
         <div class="row">
             <div class="col-25">
+            <label for="login">Username</label>
+            </div>
+            <div class="col-75">
+            <input type="text" id="login" name="login" value="<?php echo $this->user['login']; ?>">
+            </div>
+        </div>
+        <?php if(Session::get('id') == $id): ?>
+        <div class="row">
+            <div class="col-25">
+            <label for="login">Passowrd</label>
+            </div>
+            <div class="col-75">
+            <a class="mini-button" href="<?php echo URL . 'user/updatePwLogged/' . $id ;?>">Update password</a>
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="row">
+            <div class="col-25">
             <label for="nic">NIC Number</label>
             </div>
             <div class="col-75">
@@ -137,14 +155,7 @@
             </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="login">Login</label>
-            </div>
-            <div class="col-75">
-            <input type="text" id="login" name="login" value="<?php echo $this->user['login']; ?>">
-            </div>
-        </div>
+        
         <!-- <div class="row">
             <div class="col-25">
             <label for="password">Password</label>

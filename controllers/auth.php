@@ -157,9 +157,22 @@ class Auth extends Controller {
             $newPw = $_POST['newPw'];
             $newPwRepeat = $_POST['newPwRepeat'];
             
+            // Check old password
             $res = $this->model->checkUserPw($oldPw);
-           
-            echo $res;
+            if($res != 1) {
+                Session::set('alert', 'Inavlid Password, Please enter your correct old password again !');
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                exit(0);
+            }
+
+            // check newPw == newPwRepeat
+            if($newPw != $oldPw) {
+                Session::set('alert', 'New password not match, Try again !');
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                exit(0);
+            }
+
+            // All good
            
         }
     }

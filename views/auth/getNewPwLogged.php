@@ -1,3 +1,11 @@
+<!-- Show error if set -->
+<?php if(Session::get('alert')): ?>
+  <div class="alert-box">
+    <p class="danger-alert"><?php echo Session::get('alert'); ?> </p>
+  </div>
+<?php Session::unset('alert'); ?>
+<?php endif; ?>
+
 <div class="main-form">
     <form action="<?=URL;?>auth/updatePwlogged" method="post">
         <div class="row">

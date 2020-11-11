@@ -1,3 +1,5 @@
+
+
 <h1><i class="fas fa-address-card"></i> <?php if ($role == Session::get('role'))
      echo "My Profile";
      else echo "View Profile";?></h1>

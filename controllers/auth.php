@@ -166,13 +166,24 @@ class Auth extends Controller {
             }
 
             // check newPw == newPwRepeat
-            if($newPw != $oldPw) {
+            if($newPw != $newPwRepeat) {
                 Session::set('alert', 'New password not match, Try again !');
                 header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
                 exit(0);
             }
 
             // All good
+            $updateRes = $this->model->updatePwLogged($newPw, Session::get('id'));
+            
+            if($updateRes == 1) {
+                Session::set('alert', 'Your password has been successfully updated !');
+                header("Location:".URL."user/viewUser/".Session::get('id'));
+                exit(0);
+            } else {
+                Session::set('alert', 'Password not updated ! Unidentified error happend!');
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                exit(0);
+            }
            
         }
     }

@@ -107,5 +107,18 @@ class Auth_Model extends Model {
 
     }
 
+    function updatePwLogged($newPw, $id) {
+
+        $st = $this->db->prepare("UPDATE users SET password = MD5(:password) WHERE id = :id");
+        $st->execute(array(
+            ':password' => $newPw,
+            ':id' => $id
+        ));
+        $count = $st->rowCount();
+
+        return $count;
+
+    }
+
 
 }

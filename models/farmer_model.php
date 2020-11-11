@@ -16,6 +16,16 @@ class Farmer_Model extends Model {
     }
     
 
+    public function damageclaimList(){
+        $st = $this->db->prepare("SELECT * FROM dmgclaim  ");
+        $st->execute(array(
+            ':dmgid' => 'dmgid'
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetchAll();
+
+    }
+
     public function creates($data)
     {
 

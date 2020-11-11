@@ -69,7 +69,7 @@
             <label for="estdmgarea">Estimated Damage Area -Acres</label>
             </div>
             <div class="col-75">
-            <input type="number" id="estdmgarea" name="estdmgarea" placeholder="ex: 3 acres">
+            <input type="number" id="estdmgarea" name="estdmgarea" placeholder="ex: 3 acres"  max="100">
             </div>
         </div>
 

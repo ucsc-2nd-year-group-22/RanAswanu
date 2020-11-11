@@ -56,6 +56,20 @@ class Crop extends Controller{
         $this->view->rendor('crop/edit');
     }
 
+    //routing to crop varients configuration
+    public function varients($id){
+
+        $varientData = $this->model->cropVarients($id);
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [],
+            'varientData' => $varientData,
+        ];
+        // $this->setActivePage('crops');
+        $this->view->rendor('crop/varients', $pageData);
+    }
+
     //update the database
     public function update($id){
 

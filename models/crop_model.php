@@ -50,6 +50,16 @@ class Crop_Model extends Model {
         ));
     }
 
+    //get crop varients
+    public function cropVarients($id){
+        $st = $this->db->prepare("SELECT * FROM crop_varient WHERE crop_id = :id");
+        $st->execute(array(
+            ':id' => $id,
+        ));
+        return $st->fetchAll();
+        // print_r($st->fetchAll());
+    }
+
     //delete a col. center
     public function delete($id){
         $st = $this->db->prepare('DELETE FROM colcenter WHERE id = :id');

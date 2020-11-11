@@ -7,13 +7,13 @@
     <form action="<?= URL;?>/crop/create" method="post">
         <div class="row">
             <div class="col-25">
-            <label for="crop_varient">Crop Varient</label>
+            <label for="crop_name">Crop Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="crop_varient" name="crop_varient" placeholder="Crop varient..">
+            <input type="text" id="crop_name" name="crop_name" placeholder="Crop name..">
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
             <label for="crop_type">Crop Type</label>
             </div>
@@ -24,7 +24,7 @@
                 <option value="type3">Type 3</option>
             </select>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-25">
             <label for="best_area">Best Area</label>

@@ -56,6 +56,8 @@
             <th>Crop-Varient</th>
             <th>Kg Per m<sup>2</sup></th>
             <th>Harvest Period (Days)</th>
+            <th>Crop Varients</th>
+            <th>Config. Varients</th>
             <th>View</th>
             <th>Remove</th>
         </tr>
@@ -66,6 +68,16 @@
             <td><?=$cropItem['crop_varient'];?> </td>
             <td><?=$cropItem['harvest_per_land'];?> </td>
             <td> <?=$cropItem['harvest_period'];?></td>
+            <td>
+                <select id="best_area" name="best_area">
+                    <option value="area1">Varient 1</option>
+                    <option value="area2">Varient 2</option>
+                    <option value="area3">Varient 3</option>
+                </select>
+            </td>
+            <td>
+                <a href="<?php echo URL .'crop/varients/'.$cropItem['id']; ?>" class="mini-button normal"><i class="fas fa-eye"> Config</i></a> 
+            </td>
             <td>
                 <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal"><i class="fas fa-eye"> View</i></a> 
             </td>

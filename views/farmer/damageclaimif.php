@@ -69,8 +69,13 @@
                 <td><?= $dmgclaim['district'];?> </td>
                 <td><?= $dmgclaim['address'];?> </td>
                 <td><?= $dmgclaim['approval'];?> </td>
+                <td>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'damageclaim/edit/' . $dmgclaim['dmgid'] ;?>">Edit</a>
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . '/damageclaim/delete/' . $dmgclaim['dmgid'] ;?>">Delete</a>
+                </td>
+
                <!-- <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td> -->
-                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>
+            <!--    <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td> -->
             <!--    <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>   -->
             </tr>
         <?php endforeach;?>

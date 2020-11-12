@@ -87,6 +87,15 @@ class Farmer_Model extends Model {
         ));
     }
 
+    //delete dmgclaim data
+    public function delete($dmgid){
+        $st = $this->db->prepare("DELETE FROM dmgclaim WHERE dmgid = :dmgid ");
+        $st->execute(array(
+            ':dmgid' => $dmgid
+        ));
+       
+    }
+
    
 
 

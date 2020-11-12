@@ -241,6 +241,11 @@ public function cropReqif() {
     $this->view->rendor('farmer/cropReqif', $pageData);
 }
 
+//remove damage claim data
+public function delete($dmgid){
+    $this->model->delete($dmgid);
+    header('location: ' . URL . 'farmer/damageclaimif');
+}
 
 
 

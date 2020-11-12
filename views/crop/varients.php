@@ -43,7 +43,7 @@
 <?php } else { ?>
 
 <div class="banner">
-    <h4> No rejected crop requests found</h4>
+    <h4> No varitents found</h4>
     <h1><i class="far fa-times-circle icon-color"></i><h1>
 </div>
 

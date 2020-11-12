@@ -149,5 +149,8 @@
     </form>
 </div>
 
+<p style="width:100%; background:#fff; padding:20px; margin-top:10px; text-align:center;">
+    Please note that some changes may take effect when you login to the system next time
+</p>
 
 

@@ -106,14 +106,18 @@
             <!--    <th>Approval</th>         accept / reject / pending -->
                 <th>Take Action</th>           <!-- view submited form / delete form -->
             </tr>
-        <?php $i = 0; foreach($cropReqifData as $cropreq) :; $i++;?>
+        <?php $i = 0; foreach($cropRequestData as $cropreq) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
                 <td><?= $cropreq['district'];?> </td>
                 <td><?= $cropreq['address'];?> </td>
                 <td><?= $cropreq['areasize'];?> </td>
-                <td><?= $cropreq['expectdate'];?> </td>
-                <td><?= $cropreq['croptype'];?> </td>
+                <td><?= $cropreq['exptdate'];?> </td>
+
+                <td><?= $cropreq['selectCrop'];?> -
+                    <?= $cropreq['cropVariety'];?>  
+                </td>
+
                 <!-- <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td> -->
                 <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>
             <!--    <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>   -->

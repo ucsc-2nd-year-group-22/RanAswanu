@@ -35,12 +35,23 @@ class Farmer extends Controller {
     public function damageclaim($arg = false) {
         $this->view->rendor('farmer/damageclaim');
     }
-
+     
+    //display damageclaim
     public function damageclaimif($arg = false) {
         $dmgclaimData = $this->model->damageclaimList();
         $data['damageclaimData'] = $dmgclaimData;
         $this->setActivePage('damageclaimif');
         $this->view->rendor('farmer/damageclaimif', $data);
+    }
+    
+    //Display croprequest
+    public function cropReqif($arg = false) {
+        $cropReqifData= $this->model->cropReqList();  
+        $data['cropRequestData'] = $cropReqifData;
+        $this->setActivePage('cropReqif');
+        $this->view->rendor('farmer/cropReqif', $data);
+
+
     }
 
 
@@ -213,7 +224,7 @@ public function sellyourcropsif() {
     $this->view->rendor('farmer/sellyourcropsif', $pageData);
 }
 
-
+/*
 public function cropReqif() {
     $cropReqifData= [
         [
@@ -240,6 +251,9 @@ public function cropReqif() {
     $this->setActivePage('cropReqif');
     $this->view->rendor('farmer/cropReqif', $pageData);
 }
+
+*/
+
 
 //remove damage claim data
 public function delete($dmgid){

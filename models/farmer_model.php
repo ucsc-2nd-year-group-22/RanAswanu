@@ -15,7 +15,7 @@ class Farmer_Model extends Model {
         return $st->fetchAll();
     }
     
-
+    //Display damageclaim
     public function damageclaimList(){
         $st = $this->db->prepare("SELECT * FROM dmgclaim  ");
         $st->execute(array(
@@ -25,6 +25,19 @@ class Farmer_Model extends Model {
         return $st->fetchAll();
 
     }
+
+    //Display croprequest
+    public function cropReqList(){
+        $st = $this->db->prepare("SELECT * FROM croprequest  ");
+        $st->execute(array(
+            ':cropreqid' => 'cropreqid'
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetchAll();
+
+    }
+
+
 
     public function creates($data)
     {

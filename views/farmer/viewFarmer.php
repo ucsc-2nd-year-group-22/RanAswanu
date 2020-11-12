@@ -5,15 +5,23 @@
 <div class="row">
     <div class="col-25">
     <label for="fname">First Name :</label>
-    <?php echo $Fdata['name'];?>
+    <?php echo $Fdata['firstname'];?> 
     </div>
     <br>
-</div>  
+</div>
+
+<div class="row">
+    <div class="col-25">
+    <label for="fname">ID :</label>
+    <?php echo $Fdata['id'];?>
+    </div>
+    <br>
+</div>    
 
 <div class="row">
     <div class="col-25">
     <label for="fname">Gender :</label>
-    <?php echo $Fdata['gender'];?>
+    <?php echo $Fdata['sex'];?>
     </div>
     <br>
 </div>  
@@ -37,7 +45,7 @@
 <div class="row">
     <div class="col-25">
     <label for="fname">Telephone :</label>
-    <?php echo $Fdata['telephone'];?>
+    <?php echo $Fdata['tel'];?>
     </div>
     <br>
 </div>  

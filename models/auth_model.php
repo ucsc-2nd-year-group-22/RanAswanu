@@ -93,5 +93,32 @@ class Auth_Model extends Model {
 
     }
 
+    function checkUserPw($pwd) {
+        $userId = Session::get('id');
+        $st = $this->db->prepare("SELECT id FROM users WHERE password = MD5(:password) AND id = :id ");
+        $st->execute(array(
+            'id' => $userId,
+            ':password' => $pwd
+        ));
+        $data = $st->fetch();
+        $count = $st->rowCount();
+
+        return $count;
+
+    }
+
+    function updatePwLogged($newPw, $id) {
+
+        $st = $this->db->prepare("UPDATE users SET password = MD5(:password) WHERE id = :id");
+        $st->execute(array(
+            ':password' => $newPw,
+            ':id' => $id
+        ));
+        $count = $st->rowCount();
+
+        return $count;
+
+    }
+
 
 }

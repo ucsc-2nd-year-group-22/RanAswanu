@@ -102,7 +102,7 @@
             <th>District</th>
             <th>Date</th>
             <th>Action</th>
-            <th>Profile</th>
+            <th>View Profile</th>
             
         </tr>
 <?php $i = 0; foreach($Req as $dt) :; $i++;?>
@@ -118,7 +118,7 @@
             <td>
                 <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['adid']?>" class="mini-button normal">Offer</a>  
             </td>
-            <td style="text-align:center;">
+            <td style="text-align:left;">
                 <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $dt['fid'] ;?>"> 
                     <i class="fas fa-address-card"></i>
                 </a>

@@ -1,0 +1,7 @@
+.error p {
+    padding: 0.5rem;
+    border: 0.04rem solid red;
+    border-radius: .4rem;
+    box-shadow: 2px 2px 10px #ccc;
+    margin: .3rem;
+}

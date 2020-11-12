@@ -13,6 +13,8 @@ class User extends Controller {
         //     header('location: '. URL);
         //     exit;
         // }
+
+        $this->view->js = array('user/js/default.js');
     }
 
     public function index() {

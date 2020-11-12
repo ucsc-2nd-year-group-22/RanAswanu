@@ -114,6 +114,21 @@
                 <button type="submit"><i class="fas fa-user-edit"></i> Edit My Profile </button>
             </div>
         </div>
+        
+        <?php endif;?>
+
+        <?php if(Session::get('role') == 'officer' && $role == 'farmer'): ?>
+        <div class="row">
+            <div class="col-25">
+            
+            </div>
+            <div class="col-75">
+                <a class="mini-button" href="<?php echo URL . 'user/edit/' . $id ;?>">Update farmer</a>
+            </div>
+        </div>
         <?php endif;?>
     </form>
 </div>
+
+
+

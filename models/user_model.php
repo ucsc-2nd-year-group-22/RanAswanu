@@ -109,7 +109,7 @@ class User_Model extends Model {
                     break;
                 
                 case 'farmer':
-                    header('location: ' . URL . 'farmer/');
+                    header('location: ' . URL . 'farmer/sellyourcrops');
                     break;
 
                 case 'vendor':
@@ -119,6 +119,7 @@ class User_Model extends Model {
 
         } else {
             // show error
+            Session::set('alert', 'Username or password is incorrect !');
             header('location: login');
         }
         

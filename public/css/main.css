@@ -174,13 +174,17 @@
 }
 
 .alert-box {
-    width:100%;
+    width:80%;
     padding:5px 10px;
     background-color: #fff;
-    margin:0 0 10px 0;
-    box-shadow: var(--small-shadow);
+    /* margin:0 0 10px 0; */
+    box-shadow: 1px 2px 30px gray;
     text-align: center;
     border-radius: 5px;
+    position: absolute;
+    top:20px;
+    /* left:0; */
+    z-index: 1000;
 }
 
 .danger-alert {

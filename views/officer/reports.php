@@ -62,8 +62,16 @@
         </div>
     </form>
 </div>
+<div class="main-form">
 
-
-<form action="<?= URL;?>officer/sendmail" method="post">
-    <button type="submit">Send</button>
-</form>
+    <form action="<?= URL;?>officer/sendmail" method="post">
+        <div class="row">
+            <div class="col-25">
+            
+            </div>
+            <div class="col-75">
+            <button type="Submit">Email report</button>
+            </div>
+        </div>
+    </form>
+</div>

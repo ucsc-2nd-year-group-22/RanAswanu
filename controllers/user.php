@@ -178,7 +178,7 @@ class User extends Controller {
         $data['role'] = $userData['role'];
         $data['id'] = $userData['id'];
         $data['loggedIn'] = Session::get('loggedIn');
-
+        $this->destroyActivePage();
         $this->view->rendor('user/profile', $data);
     }
 

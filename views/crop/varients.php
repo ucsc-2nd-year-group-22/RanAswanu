@@ -19,6 +19,9 @@
 
 
 <!-- Varients List -->
+
+<?php if(sizeof($varientData) > 0){ ?>
+
 <div class="main-table">
     <table>
         <tr>
@@ -36,3 +39,12 @@
 <?php endforeach;?>
     </table>
 </div>
+
+<?php } else { ?>
+
+<div class="banner">
+    <h4> No rejected crop requests found</h4>
+    <h1><i class="far fa-times-circle icon-color"></i><h1>
+</div>
+
+<?php } ?>

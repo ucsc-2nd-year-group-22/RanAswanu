@@ -58,6 +58,11 @@ class Vendor extends Controller{
         $this->view->rendor('farmer/viewFarmer',$data);
     }
 
+    public function myProfile()
+    {
+        
+    }
+
     public function viewCrops()
     {
 
@@ -78,13 +83,6 @@ class Vendor extends Controller{
     }
 
    
-/*
-    public function sellingReq() {
-         $sellData = $this->model->cropDetails();
-        $data['Req'] = $sellData;
-        $this->setActivePage('sellingReq');
-        $this->view->rendor('vendor/sellingReq', $data);
 
-    } */
 
 }

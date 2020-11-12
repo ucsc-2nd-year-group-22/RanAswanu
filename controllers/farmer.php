@@ -278,6 +278,13 @@ public function deletesellcrops($cropsid){
     header('location: ' . URL . 'farmer/sellyourcropsif');
 }
 
+//remove crop request data
+public function deletecropreq($cropreqid){
+    $this->model->deletecropreq($cropreqid);
+    header('location: ' . URL . 'farmer/cropReqif');
+}
+
+
 
 
 

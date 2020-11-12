@@ -128,6 +128,15 @@ class Farmer_Model extends Model {
        
     }
 
+    //delete cropreq data
+    public function deletecropreq($cropreqid){
+        $st = $this->db->prepare("DELETE FROM croprequest WHERE cropreqid = :cropreqid ");
+        $st->execute(array(
+            ':cropreqid' => $cropreqid
+        ));
+
+    }
+
 
 
    

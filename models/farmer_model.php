@@ -30,7 +30,7 @@ class Farmer_Model extends Model {
     public function cropReqList(){
         $st = $this->db->prepare("SELECT * FROM croprequest  ");
         $st->execute(array(
-            ':id' => 'id'
+            ':cropreqid' => 'cropreqid'
         ));
         // print_r($st->fetchAll());
         return $st->fetchAll();
@@ -40,7 +40,7 @@ class Farmer_Model extends Model {
     public function sellcropsList(){
         $st = $this->db->prepare("SELECT * FROM sellcrops  ");
         $st->execute(array(
-            ':cropreqid' => 'cropreqid'
+            ':cropsid' => 'cropsid'
         ));
         // print_r($st->fetchAll());
         return $st->fetchAll();
@@ -111,13 +111,24 @@ class Farmer_Model extends Model {
     }
 
     //delete dmgclaim data
-    public function delete($dmgid){
+    public function deletedmg($dmgid){
         $st = $this->db->prepare("DELETE FROM dmgclaim WHERE dmgid = :dmgid ");
         $st->execute(array(
             ':dmgid' => $dmgid
         ));
        
     }
+    
+    //delete sellcrops data
+    public function deletesellcrops($cropsid){
+        $st = $this->db->prepare("DELETE FROM sellcrops WHERE cropsid = :cropsid ");
+        $st->execute(array(
+            ':cropsid' => $cropsid
+        ));
+       
+    }
+
+
 
    
 

@@ -267,10 +267,18 @@ public function cropReqif() {
 
 
 //remove damage claim data
-public function delete($dmgid){
-    $this->model->delete($dmgid);
+public function deletedmg($dmgid){
+    $this->model->deletedmg($dmgid);
     header('location: ' . URL . 'farmer/damageclaimif');
 }
+
+//remove sellcrops data
+public function deletesellcrops($cropsid){
+    $this->model->deletesellcrops($cropsid);
+    header('location: ' . URL . 'farmer/sellyourcropsif');
+}
+
+
 
 
 

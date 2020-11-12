@@ -64,7 +64,7 @@
 			</div>	
 				  
 		    <div class="col-75">
-                <input type="number" placeholder="ex: 2 Acres" name="areasize">
+                <input type="number" placeholder="ex: 2 Acres" name="areasize" max="100">
 			</div>
         </div>
         

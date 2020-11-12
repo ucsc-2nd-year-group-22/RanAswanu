@@ -136,22 +136,29 @@ class User extends Controller {
         $this->model->editSave($data);
         // print_r($data);
 
-        switch (Session::get('role')) {
-            case 'officer':
-                header('location: ' . URL . 'farmer/farmerMng');
-                break;
-
-            case 'admin':
-                header('location: ' . URL . 'admin/index');
-                break;
+        if($id == Session::get('id')) {
+            header('location: ' . URL . 'user/viewUser/' . $id);
+        } else {
             
-            case 'vendor':
-                header('location: ' . URL . 'vendor/index');
-                break;
+            switch (Session::get('role')) {
+                case 'officer':
+                    header('location: ' . URL . 'farmer/farmerMng');
+                    break;
+    
+                case 'admin':
+                    header('location: ' . URL . 'admin/index');
+                    break;
+                
+                case 'vendor':
+                    header('location: ' . URL . 'vendor/index');
+                    break;
+    
+                case 'farmer':
+                    header('location: ' . URL . 'farmer/index');
+            }
 
-            case 'farmer':
-                header('location: ' . URL . 'farmer/index');
         }
+
     }
 
     //route to the user/login

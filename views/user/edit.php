@@ -144,7 +144,7 @@
             <div class="col-75">
             <select id="role" name="role" >
             <?php if(Session::get('id') == $id): ?>
-                <option value="<?php Session::get('role'); echo 'selected'; ?>"><?php echo Session::get('role');?></option>
+                <option value="<?php echo Session::get('role');?>"><?php echo Session::get('role');?></option>
             <?php else:?>
                 <?php if(Session::get('role') == 'admin'):?>
                     <option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
@@ -154,7 +154,7 @@
                     <option value="farmer" <?php if($this->user['role'] == 'farmer') echo 'selected'; ?>>Farmer</option>
                 <?php else: ?>
                     <option value="vendor" <?php if($this->user['role'] == 'vendor') echo 'selected'; ?>>Vendor</option>
-                <?php endif ?>
+                <?php endif; ?>
             <?php endif; ?>
             </select>
             </div>

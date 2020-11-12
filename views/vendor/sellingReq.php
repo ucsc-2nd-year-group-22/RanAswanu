@@ -112,18 +112,18 @@
            <!-- <td><?= $dt['name'];?> </td> --> 
             <td> <?=$dt['crop'];?></td>
             <td> <?=$dt['weight'];?></td>
-             <td> <?=$dt['price'];?></td>
-              <td> <?=$dt['district'];?></td>
+            <td> <?=$dt['price'];?></td>
+            <td> <?=$dt['district'];?></td>
             <td> <?=$dt['date'];?></td>
             <td>
                 <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['adid']?>" class="mini-button normal">Offer</a>  
             </td>
-            <td>
-                  <a  class="mini-button normal" href="<?php echo URL . 'vendor/viewFarmer/'. $dt['fid'] ;?>">View Profile</a>  
-            </td>    
-             
-              
-        
+            <td style="text-align:center;">
+                <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $dt['fid'] ;?>"> 
+                    <i class="fas fa-address-card"></i>
+                </a>
+            </td>     
+    
         </tr>
 <?php endforeach;?>
     </table>

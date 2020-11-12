@@ -1,3 +1,43 @@
 .homecontainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "halfleft halfleft halfright halfright"
+    "wide wide wide wide"
+    "quater1 quater2 quater3 quater4";
+    background-color:var(--main-layout-bg-color);
+}
 
+.homecontainer div {
+    background-color:#fff;
+    margin:5px;
+}
+
+.halfleft {
+    grid-area: halfleft;
+}
+
+.halfright {
+    grid-area: halfright;
+}
+
+.wide {
+    grid-area: wide;
+}
+
+.quater1 {
+    grid-area: quater1;
+}
+
+.quater2 {
+    grid-area: quater2;
+}
+
+.quater3 {
+    grid-area: quater3;
+}
+
+.quater4 {
+    grid-area: quater4;
 }

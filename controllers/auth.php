@@ -140,4 +140,52 @@ class Auth extends Controller {
 
         // $this->view->rendor('user/resetPw', $data);
     }
+
+    function getNewPwLogged($userId) {
+
+        $data['id'] = $userId;
+        $this->view->rendor('auth/getNewPwLogged', $data);
+
+    }
+
+    function updatePwLogged() {
+        echo "Update<hr>";
+       
+        if(isset($_POST['updatePw'])) {
+            
+            $oldPw = $_POST['oldPw'];
+            $newPw = $_POST['newPw'];
+            $newPwRepeat = $_POST['newPwRepeat'];
+            
+            // Check old password
+            $res = $this->model->checkUserPw($oldPw);
+            if($res != 1) {
+                Session::set('alert', 'Inavlid Password, Please enter your correct old password again !');
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                exit(0);
+            }
+
+            // check newPw == newPwRepeat
+            if($newPw != $newPwRepeat) {
+                Session::set('alert', 'New password not match, Try again !');
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                exit(0);
+            }
+
+            // All good
+            $updateRes = $this->model->updatePwLogged($newPw, Session::get('id'));
+            
+            if($updateRes == 1) {
+                Session::set('alert', 'Your password has been successfully updated !');
+                header("Location:".URL."user/viewUser/".Session::get('id'));
+                exit(0);
+            } else {
+                Session::set('alert', 'Password not updated ! Unidentified error happend!');
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                exit(0);
+            }
+           
+        }
+    }
+
 }

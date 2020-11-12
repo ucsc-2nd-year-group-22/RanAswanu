@@ -41,6 +41,15 @@ class Vendor_Model extends Model {
         return $st->fetchAll();
     }
 
-
+    public function setOffer($data)
+    {
+        $st = $this->db->prepare("INSERT INTO request (`adid`, `vid`, `amount`) VALUES (:adid, :vid, :amount)");
+        $st->execute(array(
+            ':adid' => $data['Adid'],
+            ':vid' => $data['Vid'],
+            ':amount' => $data['Ammount']
+        ));
+    }
+    
 
 } 

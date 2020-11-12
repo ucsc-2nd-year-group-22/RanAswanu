@@ -49,15 +49,18 @@ class Vendor extends Controller{
     //MY FUNCTIONS
     public function placeaOffer($id)
     {
+        
         $data['adid']= $id;
         $this->view->rendor('vendor/placeaOffer',$data);
     }
 
     public function offer($adid)
     {
-        // echo Session::get('id');
-        // echo $adid;
-        // echo $_POST['ammount'];
+        $data['Vid'] = Session::get('id');
+        $data['Adid'] =  $adid;
+        $data['Ammount'] =  $_POST['ammount'];
+        $this->model-> setOffer($data);
+        header('location: ' . URL . 'vendor/index');
     }
 
 

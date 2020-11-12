@@ -30,6 +30,16 @@ class Farmer_Model extends Model {
     public function cropReqList(){
         $st = $this->db->prepare("SELECT * FROM croprequest  ");
         $st->execute(array(
+            ':id' => 'id'
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetchAll();
+
+    }
+
+    public function sellcropsList(){
+        $st = $this->db->prepare("SELECT * FROM sellcrops  ");
+        $st->execute(array(
             ':cropreqid' => 'cropreqid'
         ));
         // print_r($st->fetchAll());

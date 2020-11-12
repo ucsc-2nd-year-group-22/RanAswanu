@@ -98,7 +98,7 @@
             <label for="exprice">Expecting minimum price (Per kg) -Rs</label>
             </div>
             <div class="col-75">
-            <input type="number" id="exprice" name="exprice" placeholder="ex:Rs 40">
+            <input type="number" id="exprice" name="exprice" placeholder="ex: 40" min="10" max="1000">
             </div>
         </div>
 
@@ -107,7 +107,7 @@
             <label for="weight">Total Weight (Or Expect) -Kg</label>
             </div>
             <div class="col-75">
-            <input type="number" id="weight" name="weight" placeholder="ex: 500 Kg">
+            <input type="number" id="weight" name="weight" placeholder="ex: 500" min="50" max="10000">
             </div>
         </div>
 

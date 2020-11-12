@@ -50,9 +50,19 @@ class Farmer extends Controller {
         $data['cropRequestData'] = $cropReqifData;
         $this->setActivePage('cropReqif');
         $this->view->rendor('farmer/cropReqif', $data);
-
+        
 
     }
+
+    //Display sellyourcrops
+    public function sellyourcropsif() {
+        $sellcropsData=$this->model->sellcropsList();
+        $data['sellurcropsData'] = $sellcropsData;
+        $this->setActivePage('sellyourcropsif');
+        $this->view->rendor('farmer/sellyourcropsif', $data);
+     
+
+    }    
 
 
     public function cropReq($arg = false) {
@@ -196,7 +206,7 @@ class Farmer extends Controller {
 
   */
 
-
+/*
 public function sellyourcropsif() {
     $sellurcropsData= [
         [
@@ -223,6 +233,7 @@ public function sellyourcropsif() {
     $this->setActivePage('sellyourcropsif');
     $this->view->rendor('farmer/sellyourcropsif', $pageData);
 }
+*/
 
 /*
 public function cropReqif() {

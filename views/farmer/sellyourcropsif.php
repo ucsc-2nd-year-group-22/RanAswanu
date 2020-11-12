@@ -113,9 +113,11 @@
                 <td> <?=  $i ?></td>
                 <td><?= $sellurcrops['district'];?> </td>
                 <td><?= $sellurcrops['state'];?> </td>
-                <td><?= $sellurcrops['croptype'];?> </td>
-                <td><?= $sellurcrops['exptprice'];?> </td>
-                <td><?= $sellurcrops['totalweight'];?> </td>
+                <td><?= $sellurcrops['selectCrop'];?> -
+                    <?= $sellurcrops['cropVariety'];?>  
+                </td>
+                <td><?= $sellurcrops['exprice'];?> </td>
+                <td><?= $sellurcrops['weight'];?> </td>
                 <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>
         <!--        <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
                 <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>

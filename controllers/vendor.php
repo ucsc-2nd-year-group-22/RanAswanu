@@ -20,9 +20,10 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/register');
     }
 
-    public function viewVendor(){
-        $this->view->rendor('vendor/view');
-    }
+    /*public function viewVendor($id){
+        $data['adid']= $id;
+        $this->view->rendor('vendor/view',$data);
+    }*/
 
     //view all vendors
     public function vendors(){
@@ -46,10 +47,20 @@ class Vendor extends Controller{
     }
 
     //MY FUNCTIONS
-    public function placeaOffer()
+    public function placeaOffer($id)
     {
-        $this->view->rendor('vendor/placeaOffer');
+        $data['adid']= $id;
+        $this->view->rendor('vendor/placeaOffer',$data);
     }
+
+    public function offer($adid)
+    {
+        // echo Session::get('id');
+        // echo $adid;
+        // echo $_POST['ammount'];
+    }
+
+
 
     public function viewFarmer($id)
     {

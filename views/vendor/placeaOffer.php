@@ -8,25 +8,27 @@
 
 
 <div class="main-form">
-
-<div class="row">
+    <!-- <form action="<?=URL;?>vendor/offer/. $adid ;?>" method="post"> -->
+        <form action="<?= URL . '/vendor/offer/' . $adid; ?>" method="post">
+        <div class="row">
             <div class="col-25">
-            <label for="amount">Enter your ammount</label>
+                <label for="fname">First Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="amount" name="amount" placeholder="ammount in rupees">
+                <input type="number"  name="ammount" >
             </div>
         </div>
-</div>    
-
- 
-<div class="row">
-        <div class="col-25">
-        </div>
-        <div class="col-75">
-        <input type="submit" value="Enter">
-        </div>
+        <div class="row">
+            <div class="col-25">
+            </div>
+            <div class="col-75">
+            <input type="submit" value="Enter">
+            </div>
+        </div> 
+    </form>    
 </div>
+ 
+
 
 
 <?php 

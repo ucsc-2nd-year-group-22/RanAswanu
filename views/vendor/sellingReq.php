@@ -116,7 +116,7 @@
               <td> <?=$dt['district'];?></td>
             <td> <?=$dt['date'];?></td>
             <td>
-                <a href="<?php echo URL. 'vendor/placeaOffer'?>" class="mini-button normal">Offer</a>  
+                <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['adid']?>" class="mini-button normal">Offer</a>  
             </td>
             <td>
                   <a  class="mini-button normal" href="<?php echo URL . 'vendor/viewFarmer/'. $dt['fid'] ;?>">View Profile</a>  

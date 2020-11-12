@@ -9,8 +9,10 @@ class Vendor extends Controller{
     }
 
     function index() {
-        $this->setActivePage('index');
-        $this->view->rendor('vendor/index');
+        $sellData = $this->model->cropDetails();
+        $data['Req'] = $sellData;
+        $this->setActivePage('sellingReq');
+        $this->view->rendor('vendor/sellingReq', $data);
 
     }
 
@@ -49,11 +51,10 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/placeaOffer');
     }
 
-    public function viewFarmer()
+    public function viewFarmer($id)
     {
-
-        $farmerData = ['name'=>'kamal','gender'=>'male', 'email'=>'ranja@ymail.com','telephone'=>'0713568802', 'address'=>'261,gallroad,kaluthara.'];
-        $data = ['Fdata'=>$farmerData] ;
+        $farmerData = $this->model->farmerDetail($id);
+        $data['Fdata'] = $farmerData ;
         $this->view->rendor('farmer/viewFarmer',$data);
     }
 
@@ -77,31 +78,13 @@ class Vendor extends Controller{
     }
 
    
-
+/*
     public function sellingReq() {
-
-        $sellingReq = [
-            [
-                'id' => "12",
-                'name' => "Kamal",
-                'crop' => "Apple",
-            ],
-            [
-               'id' => "12",
-                'name' => "Kamal",
-                'crop' => "Apple",
-            ],
-            [
-               'id' => "12",
-                'name' => "Kamal",
-                'crop' => "Apple",
-            ]
-        ];
-        $data = [
-            'Req' => $sellingReq
-        ];
+         $sellData = $this->model->cropDetails();
+        $data['Req'] = $sellData;
         $this->setActivePage('sellingReq');
         $this->view->rendor('vendor/sellingReq', $data);
-    }
+
+    } */
 
 }

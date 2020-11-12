@@ -40,12 +40,12 @@
 
     <!-- Comment pane 3 & 4 If they are empty -->
 
-    <div class="pane3">
+    <!-- <div class="pane3">
          <label>Empty pane</label>
     </div>
     <div class="pane4">
         <label>Empty pane</label>
-    </div>
+    </div> -->
 </div> 
 
 
@@ -112,8 +112,10 @@
 
 
 <div id="tab3C" class="tabContainer">
-    <div class="banner">
+    <div class="banner" style="height:40vh;">
         <h4> No rejected crop requests found</h4>
         <h1><i class="far fa-times-circle icon-color"></i><h1>
+        
     </div>
+
 </div>

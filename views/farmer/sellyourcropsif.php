@@ -118,7 +118,12 @@
                 </td>
                 <td><?= $sellurcrops['exprice'];?> </td>
                 <td><?= $sellurcrops['weight'];?> </td>
-                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>
+                <td>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this sellcrops data?');" href="<?php echo URL . 'farmer/edit/' . $sellurcrops['cropsid'] ;?>">Edit</a>
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this sellcrops data?');" href="<?php echo URL . '/farmer/deletesellcrops/' . $sellurcrops['cropsid'] ;?>">Delete</a>
+                </td>
+
+        <!--        <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>   -->
         <!--        <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
                 <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>
                 <td><a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Edit</a></td>   -->

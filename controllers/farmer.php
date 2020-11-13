@@ -308,14 +308,14 @@ public function updatedmgclaim($data){
     header('location: ' . URL . 'farmer/damageclaim');
     }
 
-// route to the edit form with retrieved data
+// route to the edit croprequest form with retrieved data
 public function editcropReq($cropreqid){
     $data['cropreqid']=$cropreqid;
     $this->view->farmer = $this->model->cropRequestList($cropreqid);
     $this->view->rendor('farmer/editcropReq',$data);
 }
 
-//update the database
+//update the database(cropreq)
 public function updatecropReq($cropreqid){
 
     $data = array();
@@ -346,6 +346,40 @@ public function updatecropReq($cropreqid){
     
     $this->model->updatecropReq($data);
     header('location: ' . URL . 'farmer/cropReqif');
+}
+
+// route to the edit sellurcrops form with retrieved data
+public function editsellyourcrops($cropsid){
+    $data['cropsid']=$cropsid;
+    $this->view->farmer = $this->model->sellurcropsList($cropsid);
+    $this->view->rendor('farmer/editsellyourcrops',$data);
+    
+}
+
+//update the database(cropreq)
+public function updatesellyourcrops($cropsid){
+
+    $data = array();
+
+
+
+
+  //  $data['province'] =$_POST['province'];
+    $data['district'] = $_POST['district'];
+  //  $data['state'] =$_POST['state'];
+   // $data['selectCrop'] =$_POST['selectCrop'];
+  //  $data['cropVariety'] = $_POST['cropVariety'];
+  //  $data['exprice'] = $_POST ['exprice'];
+  //  $data['weight'] = $_POST['weight'];
+  //  $data['display']= $_POST['display'];
+    $data['cropsid']=$cropsid;
+
+    
+
+
+    
+    $this->model->updatesellyourcrops($data);
+    header('location: ' . URL . 'farmer/sellyourcropsif');
 }
 
 

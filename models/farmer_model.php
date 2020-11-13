@@ -36,6 +36,17 @@ class Farmer_Model extends Model {
         return $st->fetchAll();
 
     }
+    
+    //Edit croprequest
+    public function cropRequestList($cropreqid){
+        $st = $this->db->prepare("SELECT * FROM croprequest WHERE cropreqid =:cropreqid ");
+        $st->execute(array(
+            ':cropreqid' => $cropreqid,
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetch();
+
+    }
 
     public function sellcropsList(){
         $st = $this->db->prepare("SELECT * FROM sellcrops  ");
@@ -110,7 +121,7 @@ class Farmer_Model extends Model {
         ));
     }
 
-    //delete dmgclaim data
+    //deleting dmgclaim data
     public function deletedmg($dmgid){
         $st = $this->db->prepare("DELETE FROM dmgclaim WHERE dmgid = :dmgid ");
         $st->execute(array(
@@ -119,7 +130,7 @@ class Farmer_Model extends Model {
        
     }
     
-    //delete sellcrops data
+    //deleting sellcrops data
     public function deletesellcrops($cropsid){
         $st = $this->db->prepare("DELETE FROM sellcrops WHERE cropsid = :cropsid ");
         $st->execute(array(
@@ -128,13 +139,44 @@ class Farmer_Model extends Model {
        
     }
 
-    //delete cropreq data
+    //deleting cropreq data
     public function deletecropreq($cropreqid){
         $st = $this->db->prepare("DELETE FROM croprequest WHERE cropreqid = :cropreqid ");
         $st->execute(array(
             ':cropreqid' => $cropreqid
         ));
 
+    }
+
+    //update damage claim data
+    public function updatedmgclaim($data){
+      //  $st = $this->db->prepare('UPDATE dmgclaim SET `province` = :province, `district` = :district, `grama` = :grama, `address`=:address WHERE dmgid = :dmgid');
+      $st = $this->db->prepare("UPDATE dmgclaim SET  `district` = :district,  `address`=:address WHERE `dmgid` = :dmgid");
+        $st->execute(array(
+           // ':dmgid' => $data['dmgid'],
+            //':province' => $data['province'],
+            ':district' => $data['district'],
+            //':grama' => $data['grama'],
+            ':address' => $data['address'],
+        ));
+    }
+
+
+    //update cropreq
+    public function updatecropReq($data){
+        $st = $this->db->prepare("UPDATE croprequest SET `district` = :district, `address` = :address, `areasize` = :areasize, `exptdate` = :exptdate, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety WHERE `cropreqid` = :cropreqid");
+        $st->execute(array(
+           // ':id' => $data['id'],
+           // ':cropreqid' =>$data['cropreqid'],
+            ':district' => $data['district'],
+            ':address' => $data['address'],
+            ':areasize' => $data['areasize'],
+            ':exptdate' => $data['exptdate'],
+            ':selectCrop' => $data['selectCrop'],
+            ':cropVariety' => $data['cropVariety'],
+            ':cropreqid' =>$data['cropreqid']
+           
+        ));
     }
 
 

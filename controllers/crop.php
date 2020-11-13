@@ -75,8 +75,7 @@ class Crop extends Controller{
         $data = array();
 
         $data['id'] = $id;
-        $data['crop_varient'] = $_POST['crop_varient'];
-        $data['crop_type'] = $_POST['crop_type'];
+        $data['crop_name'] = $_POST['crop_name'];
         $data['best_area'] = $_POST['best_area'];
         $data['harvest_per_land'] = $_POST['harvest_per_land'];
         $data['harvest_period'] = $_POST['harvest_period'];

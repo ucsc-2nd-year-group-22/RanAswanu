@@ -13,7 +13,7 @@
                 <input value="<?php echo $this->crop['crop_name']; ?>" type="text" id="crop_name" name="crop_name" placeholder="Crop name..">
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
                 <label for="crop_varient">Crop Varients</label>
             </div>
@@ -24,7 +24,7 @@
                     <option value="varient3" <?php if($this->crop['crop_varient'] == 'varient3') echo 'selected'; ?>>Varient 3</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-25">
                 <label for="best_area">Best Area</label>

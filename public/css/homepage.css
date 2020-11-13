@@ -4,8 +4,8 @@
     grid-template-rows: repeat(3, auto);
     grid-template-areas:
     "halfleft halfleft halfright halfright"
-    "quater1 quater2 quater3 quater4"
-    "wide wide wide wide";
+    "wide wide wide wide"
+    "quater1 quater2 quater3 quater4";
     background-color:var(--main-layout-bg-color);
     grid-gap: 10px;
 }
@@ -15,7 +15,7 @@
 }
 
 .homecontainer div.halfleft, .homecontainer div.halfright {
-    background-color: yellow;
+    box-shadow: var(--small-shadow);
 }
 
 .homecontainer div.quater1,
@@ -24,6 +24,7 @@
 .homecontainer div.quater4 {
     background-color: #fff;
     min-height: 200px;
+    box-shadow: var(--small-shadow);
 }
 
 .halfleft {

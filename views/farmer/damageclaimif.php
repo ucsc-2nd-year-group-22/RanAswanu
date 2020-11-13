@@ -81,7 +81,7 @@
                 <td><?= $dmgclaim['details'];?></td>
                 <td><?= $dmgclaim['approval'];?> </td>
                 <td>
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . '/farmer/editdmgclaim/' . $dmgclaim['dmgid'] ;?>">Edit</a>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this damage claim data?');" href="<?php echo URL . '/farmer/editdmgclaim/' . $dmgclaim['dmgid'] ;?>">Edit</a>
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this damageclaim data?');" href="<?php echo URL . '/farmer/deletedmg/' . $dmgclaim['dmgid'] ;?>">Delete</a>
                 </td>
 

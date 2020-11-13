@@ -57,6 +57,17 @@ class Farmer_Model extends Model {
         return $st->fetchAll();
 
     }
+    
+    //edit sellyourcrops
+    public function sellurcropsList($cropsid){
+        $st = $this->db->prepare("SELECT * FROM sellcrops WHERE cropsid=:cropsid");
+        $st->execute(array(
+            ':cropsid' => $cropsid,
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetch();
+
+    }
 
 
 
@@ -181,28 +192,26 @@ class Farmer_Model extends Model {
 
         ));
     }
-   /* public function updatecropReq($data){
-        $st = $this->db->prepare("UPDATE croprequest SET `province`=:province,  `district` = :district, `gramasewa` = :gramasewa, `address` = :address, `areasize` = :areasize, `exptdate` = :exptdate, `selectCrop`, = :selectCrop, `cropVariety` = :cropVariety, `otherdetails` =:otherdetails WHERE `cropreqid` = :cropreqid");
+
+    //update sellcrops
+    public function updatesellyourcrops($data){
+       // $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district ,`state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `display` = :display, `otherdetails`=:otherdetails WHERE `cropsid` = :cropsid");
+        $st = $this->db->prepare("UPDATE sellcrops SET  `district` = :district WHERE `cropsid` = :cropsid");
         $st->execute(array(
-          
-        
-
-
-            
-            ':province' => $data['province'],
+            //':province' =>$data['province'],
             ':district' => $data['district'],
-            ':gramasewa' => $data['gramasewa'],
-            ':address' => $data['address'],
-            ':areasize' => $data['areasize'],
-            ':exptdate' => $data['exptdate'],
-           // ':croptype' => $data['croptype'],
-            ':selectCrop' => $data['selectCrop'],
-            ':cropVariety' => $data['cropVariety'],
-            ':otherdetails' => $data['otherdetails'],
-            ':cropreqid' =>$data['cropreqid']
-   
-           
-        ));*/
+           // ':state' =>$data['state'],
+           // ':selectCrop' =>$data['selectCrop'],
+           // ':cropVariety' => $data['cropVariety'],
+           // ':exprice' => $data ['exprice'],
+           // ':weight' => $data['weight'],
+           // ':display'=> $data['display'],
+            ':cropsid' =>$data['cropsid']
+
+
+        ));
+    }
+    
 }
 
 

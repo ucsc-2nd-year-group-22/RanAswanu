@@ -44,30 +44,30 @@
     </div>
 
     <!-- Comment pane 3 & 4 If they are empty -->
-
+<!-- 
     <div class="pane3">
          <label>Empty pane</label>
     </div>
     <div class="pane4">
         <label>Empty pane</label>
-    </div>
+    </div> -->
 </div> 
     <div class="main-table">
         <table>
             <tr>
                 <th>#</th>
                 <th style="text-align:center;" >View Profile</th>
-                <th>First Name</th>
+                <th>First ame</th>
                 <th>Last name</th>
-                <th>Action</th>
-                <th>Cotact</th>
-                <th>email</th>
+                <th>NIC</th>
+                <th>Contact No.</th>
+                <th>Email address</th>
                 <th>Action</th>
             </tr>
         <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $officer['id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
+                <td style="text-align:center;"><a  style="font-size:1.5em;color:var(--main-theme-color);" href="<?php echo URL . 'user/viewUser/' . $officer['id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
                 <td><?= $officer['firstname'];?> </td>
                 <td><?= $officer['lastname'];?> </td>
                 <td><?= $officer['nic'];?> </td>

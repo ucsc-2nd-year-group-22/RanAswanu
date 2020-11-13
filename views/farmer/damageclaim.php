@@ -28,9 +28,20 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="province1">Province 1</option>
-                <option value="province2">Province 2</option>
-                <option value="province3">Province 3</option>
+            <?php $provinces = [
+                    'Nothern',
+                    'North Western',
+                    'Western',
+                    'North Central',
+                    'Central',
+                    'Sabaragamuwa',
+                    'Eastern',
+                    'Uva',
+                    'Southern'
+                ]; ?>
+                <?php foreach ($provinces as $provinceItem): ?>
+                    <option value="<?= $provinceItem?>" > <?= $provinceItem?> </option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -40,9 +51,27 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <option value="district1">District 1</option>
-                <option value="district2">District 2</option>
-                <option value="district3">District 3</option>
+            <?php $districts = [
+                    'Kalutara',
+                    'Anuradhapura',
+                    'Polonnaruwa',
+                    'Gampaha',
+                    'Matale',
+                    'Kandy',
+                    'NuwaraEliya',
+                    'Kegalle',
+                    'Ratnapura',
+                    'Hambantota',
+                    'Matara',
+                    'Galle',
+                    'Trincomalee',
+                    'Jaffna',
+                    'Kurunegala'
+                ]; ?>
+
+                <?php foreach ($districts as $districtItem): ?>
+                    <option value="<?= $districtItem?>" > <?= $districtItem?> </option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -52,9 +81,21 @@
             </div>
             <div class="col-75">
             <select id="gramasewa" name="gramasewa">
-                <option value="grama1">Grama 1</option>
-                <option value="grama2">Grama 2</option>
-                <option value="grama1">Grama 3</option>
+            <?php $gramas = [
+                   'Kurudupoththa',
+                   'Parakandeniya',
+                   'Mahiyanganaya',
+                   'Udawela',
+                   'Kahatagasdeigiliya',
+                   'Horowpathana',
+                   'Ambewela',
+                   'Haten',
+                   'Kalmune'
+                ]; ?>
+
+                <?php foreach ($gramas as $gramaItem): ?>
+                    <option value="<?= $gramaItem?>" > <?= $gramaItem?></option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>

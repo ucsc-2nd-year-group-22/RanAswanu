@@ -77,7 +77,6 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-
                 <?php $provinces = [
                     'Nothern',
                     'North Western',
@@ -92,8 +91,6 @@
                 <?php foreach ($provinces as $provinceItem): ?>
                     <option value="<?= $provinceItem?>" > <?= $provinceItem?> </option>
                 <?php endforeach; ?>
-
-
             </select>
             </div>
         </div>

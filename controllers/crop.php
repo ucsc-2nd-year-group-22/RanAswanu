@@ -84,4 +84,10 @@ class Crop extends Controller{
         $this->model->update($data);
         header('location: ' . URL . 'crop/crops');
     }
+
+    //remove a crop
+    public function delete($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'crop/crops');
+    }
 }

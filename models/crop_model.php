@@ -58,9 +58,9 @@ class Crop_Model extends Model {
         // print_r($st->fetchAll());
     }
 
-    //delete a col. center
+    //delete a crop
     public function delete($id){
-        $st = $this->db->prepare('DELETE FROM colcenter WHERE id = :id');
+        $st = $this->db->prepare('DELETE FROM crops WHERE id = :id');
         $st->execute(array(
             ':id' => $id
         ));

@@ -285,28 +285,9 @@ public function deletecropreq($cropreqid){
 }
 
 
- //  routing (dmgclaim data)
- public function editdmgclaim($dmgid){
-    $this->view->farmer = $this->model->damageclaimList($dmgid);
-    $this->view->rendor('farmer/editdmgclaim');
-}
 
 
 
-//update the database
-public function updatedmgclaim($data){
-
-    $data = array();
-
-  // $data['dmgid'] = $dmgid;
-   // $data['province'] = $_POST['province'];
-    $data['district'] = $_POST['district'];
-    //$data['grama'] = $_POST['grama'];
-    $data['address'] =$_POST['address'];
-
-    $this->model->updatedmgclaim($data);
-    header('location: ' . URL . 'farmer/damageclaim');
-    }
 
 // route to the edit croprequest form with retrieved data
 public function editcropReq($cropreqid){
@@ -381,6 +362,50 @@ public function updatesellyourcrops($cropsid){
     $this->model->updatesellyourcrops($data);
     header('location: ' . URL . 'farmer/sellyourcropsif');
 }
+
+
+// route to the edit dmgclaim form with retrieved data
+public function editdmgclaim($dmgid){
+    $data['dmgid']=$dmgid;
+    $this->view->farmer = $this->model-> dmgclaimList($dmgid);
+    $this->view->rendor('farmer/editdmgclaim',$data);
+}
+
+    //update the database(dmgclaim)
+public function updatedmgclaim($dmgid){
+
+    $data = array();
+
+
+   /* $data['province'] =$_POST['province'];
+    $data['district'] = $_POST['district'];
+    $data['state'] =$_POST['state'];
+    $data['selectCrop'] =$_POST['selectCrop'];
+    $data['cropVariety'] = $_POST['cropVariety'];
+    $data['exprice'] = $_POST ['exprice'];
+    $data['weight'] = $_POST['weight'];
+  //  $data['display']= $_POST['display']; */
+        //$data['dmgid']=$dmgid;
+
+
+        $data['dmgdate'] = $_POST['dmgdate'];
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['gramasewa'] = $_POST['gramasewa'];
+        $data['address'] = $_POST['address'];
+        $data['estdmgarea'] = $_POST['estdmgarea'];
+        $data['waydmg'] = $_POST['waydmg'];
+        $data['details'] = $_POST['details'];
+        $data['dmgid'] =$dmgid;
+        
+
+
+
+    
+    $this->model->updatedmgclaim($data);
+    header('location: ' . URL . 'farmer/damageclaimif');
+}
+
 
 
 

@@ -57,8 +57,11 @@
             <tr>
                 <th>#</th>
                 <th>Damaged date</th>
-                <th>District</th>
+                <th>Location</th>
                 <th>Address</th>
+                <th>Estimated Damage Area(Acres)</th>
+                <th>Way Of Damage</th>
+                <th>Details</th>
                 <th>Approval</th>        <!--accept / reject / pending -->
                 <th>Take Action</th>           <!-- view submited form / delete form -->
             </tr>
@@ -66,11 +69,19 @@
             <tr>
                 <td> <?=  $i ?></td>
                 <td><?= $dmgclaim['dmgdate'];?> </td>
-                <td><?= $dmgclaim['district'];?> </td>
+
+                <td><?= $dmgclaim['province'];?>->
+                    <?= $dmgclaim['district'];?>->
+                    <?= $dmgclaim['gramasewa'];?>
+                </td>
+
                 <td><?= $dmgclaim['address'];?> </td>
+                <td><?= $dmgclaim['estdmgarea'];?></td>
+                <td><?= $dmgclaim['waydmg'];?></td>
+                <td><?= $dmgclaim['details'];?></td>
                 <td><?= $dmgclaim['approval'];?> </td>
                 <td>
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'farmer/edit/' . $dmgclaim['dmgid'] ;?>">Edit</a>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . '/farmer/editdmgclaim/' . $dmgclaim['dmgid'] ;?>">Edit</a>
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this damageclaim data?');" href="<?php echo URL . '/farmer/deletedmg/' . $dmgclaim['dmgid'] ;?>">Delete</a>
                 </td>
 

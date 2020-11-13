@@ -55,12 +55,19 @@ class Crop_Model extends Model {
             ':id' => $id,
         ));
         return $st->fetchAll();
-        // print_r($st->fetchAll());
     }
 
     //delete a crop
     public function delete($id){
         $st = $this->db->prepare('DELETE FROM crops WHERE id = :id');
+        $st->execute(array(
+            ':id' => $id
+        ));
+    }
+
+    //delete crop varient
+    public function deleteVarient($id){
+        $st = $this->db->prepare('DELETE FROM crop_varient WHERE id = :id');
         $st->execute(array(
             ':id' => $id
         ));

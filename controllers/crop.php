@@ -37,6 +37,11 @@ class Crop extends Controller{
 
         $cropData = $this->model->crops();
 
+        $varientData = [];
+        foreach($cropData as $crop){
+            $varientData += $this->model->cropVarients($crop['id']);
+        } 
+
         $pageData = [
             'role' => Session::get('role'),
             'tabs' => [ ['label' =>'+ Register New Crop',
@@ -44,8 +49,10 @@ class Crop extends Controller{
                         ]            
                       ],
             'cropData' => $cropData,
+            'allVarients' => $varientData,
         ];
         $this->setActivePage('crops');
+        // print_r($varientData);
         $this->view->rendor('crop/crops', $pageData);
     }
 
@@ -88,6 +95,12 @@ class Crop extends Controller{
     //remove a crop
     public function delete($id){
         $this->model->delete($id);
+        header('location: ' . URL . 'crop/crops');
+    }
+
+    //remove crop varient
+    public function deleteVarient($id){
+        $this->model->deleteVarient($id);
         header('location: ' . URL . 'crop/crops');
     }
 }

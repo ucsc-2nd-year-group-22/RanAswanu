@@ -33,7 +33,7 @@
         <tr>
             <td> <?php echo $varientItem['varient_name']; ?> </td>
             <td>
-                <a href="<?php echo URL .'crop/delete/'.$varientItem['id']; ?>" class="mini-button danger"><i class="fas fa-trash"> Remove</i></a> 
+                <a href="<?php echo URL .'crop/deleteVarient/'.$varientItem['id']; ?>" class="mini-button danger"><i class="fas fa-trash"> Remove</i></a> 
             </td>
         </tr>
 <?php endforeach;?>

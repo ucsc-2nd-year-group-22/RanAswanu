@@ -98,20 +98,21 @@
         <table>
             <tr>
                 <th>#</th>
-                <th>District</th>
+                <th>Location</th>
                 <th>State</th>
                 <th>Crop Type</th>
                 <th>Expect minimum Price(Rs/kg)</th>
                 <th>Total weight(Kg)</th>
                 <th>Take Action</th>           <!-- view submited form / delete form -->
-                <!--            <th>Approval</th>         accept / reject / pending -->
-               <!-- <th>Action</th>            view submited form / delete form -->
+                
             </tr>
 
         <?php $i = 0; foreach($sellurcropsData as $sellurcrops) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $sellurcrops['district'];?> </td>
+                <td><?= $sellurcrops['province'];?>->
+                    <?= $sellurcrops['district'];?> 
+                </td>
                 <td><?= $sellurcrops['state'];?> </td>
                 <td><?= $sellurcrops['selectCrop'];?> -
                     <?= $sellurcrops['cropVariety'];?>  
@@ -119,7 +120,7 @@
                 <td><?= $sellurcrops['exprice'];?> </td>
                 <td><?= $sellurcrops['weight'];?> </td>
                 <td>
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this sellcrops data?');" href="<?php echo URL . 'farmer/edit/' . $sellurcrops['cropsid'] ;?>">Edit</a>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to edit this sellcrops data?');" href="<?php echo URL . 'farmer/editsellyourcrops/' . $sellurcrops['cropsid'] ;?>">Edit</a>
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this sellcrops data?');" href="<?php echo URL . '/farmer/deletesellcrops/' . $sellurcrops['cropsid'] ;?>">Delete</a>
                 </td>
 

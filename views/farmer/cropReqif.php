@@ -98,18 +98,24 @@
         <table>
             <tr>
                 <th>#</th>
-                <th>District</th>
+                <th>Area</th>
+            <!--    <th>District</th>  -->
                 <th>Address</th>
                 <th>Area Size</th>
-                <th>Expect Date to Cultivate</th>
+                <th>Expecting Date to Cultivate</th>
                 <th>Crop Type</th>
-            <!--    <th>Approval</th>         accept / reject / pending -->
+                <th>Other Details</th>
                 <th>Take Action</th>           <!-- view submited form / delete form -->
             </tr>
         <?php $i = 0; foreach($cropRequestData as $cropreq) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $cropreq['district'];?> </td>
+
+                <td><?= $cropreq['province'];?>->
+                    <?= $cropreq['district'];?>->
+                    <?= $cropreq['gramasewa'];?>  
+                </td>
+
                 <td><?= $cropreq['address'];?> </td>
                 <td><?= $cropreq['areasize'];?> </td>
                 <td><?= $cropreq['exptdate'];?> </td>
@@ -117,6 +123,8 @@
                 <td><?= $cropreq['selectCrop'];?> -
                     <?= $cropreq['cropVariety'];?>  
                 </td>
+
+                <td><?= $cropreq['otherdetails'];?> </td>
 
                 <td>
                    <!-- <a href="<?php echo URL .'farmer/editcropReq/'.$cropreq['cropreqid']; ?>" class="mini-button normal"><i class="fas fa-eye"> View</i></a>   -->

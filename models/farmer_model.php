@@ -164,20 +164,46 @@ class Farmer_Model extends Model {
 
     //update cropreq
     public function updatecropReq($data){
-        $st = $this->db->prepare("UPDATE croprequest SET `district` = :district, `address` = :address, `areasize` = :areasize, `exptdate` = :exptdate, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety WHERE `cropreqid` = :cropreqid");
+        $st = $this->db->prepare("UPDATE croprequest SET `province`=:province, `district` = :district,`gramasewa`=:gramasewa, `address` = :address, `areasize` = :areasize, `exptdate` = :exptdate, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `otherdetails`=:otherdetails WHERE `cropreqid` = :cropreqid");
         $st->execute(array(
            // ':id' => $data['id'],
            // ':cropreqid' =>$data['cropreqid'],
+           ':province' => $data['province'],
             ':district' => $data['district'],
+            ':gramasewa' => $data['gramasewa'],
             ':address' => $data['address'],
             ':areasize' => $data['areasize'],
             ':exptdate' => $data['exptdate'],
             ':selectCrop' => $data['selectCrop'],
             ':cropVariety' => $data['cropVariety'],
+            ':otherdetails' => $data['otherdetails'],
             ':cropreqid' =>$data['cropreqid']
-           
+
         ));
     }
+   /* public function updatecropReq($data){
+        $st = $this->db->prepare("UPDATE croprequest SET `province`=:province,  `district` = :district, `gramasewa` = :gramasewa, `address` = :address, `areasize` = :areasize, `exptdate` = :exptdate, `selectCrop`, = :selectCrop, `cropVariety` = :cropVariety, `otherdetails` =:otherdetails WHERE `cropreqid` = :cropreqid");
+        $st->execute(array(
+          
+        
+
+
+            
+            ':province' => $data['province'],
+            ':district' => $data['district'],
+            ':gramasewa' => $data['gramasewa'],
+            ':address' => $data['address'],
+            ':areasize' => $data['areasize'],
+            ':exptdate' => $data['exptdate'],
+           // ':croptype' => $data['croptype'],
+            ':selectCrop' => $data['selectCrop'],
+            ':cropVariety' => $data['cropVariety'],
+            ':otherdetails' => $data['otherdetails'],
+            ':cropreqid' =>$data['cropreqid']
+   
+           
+        ));*/
+}
 
 
 
@@ -188,4 +214,3 @@ class Farmer_Model extends Model {
         
     
     
-}

@@ -53,7 +53,7 @@
     <table>
         <tr>
             <th>#</th>
-            <th>Crop-Varient</th>
+            <th>Crop-Name</th>
             <th>Kg Per m<sup>2</sup></th>
             <th>Harvest Period (Days)</th>
             <th>Crop Varients</th>
@@ -65,7 +65,7 @@
 <?php $i = 0; foreach($cropData as $cropItem) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$cropItem['crop_varient'];?> </td>
+            <td><?=$cropItem['crop_name'];?> </td>
             <td><?=$cropItem['harvest_per_land'];?> </td>
             <td> <?=$cropItem['harvest_period'];?></td>
             <td>

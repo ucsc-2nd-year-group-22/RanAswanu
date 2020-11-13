@@ -17,7 +17,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select crop_varient as label, harvest_per_land as y from crops'); 
+    $handle = $link->prepare('select crop_name as label, harvest_per_land as y from crops'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         
@@ -201,7 +201,7 @@ window.onload = function() {
             title: "Crop Name"
         },
         data: [{
-            type: "spline",
+            type: "bar",
             yValueFormatString: "#,##0.## tonnes",
             dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
         }]

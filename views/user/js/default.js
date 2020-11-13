@@ -32,6 +32,20 @@ function CheckPassword() {
         validateErrors.push("Invalid Telephone Number");
     }
 
+    //pwd validation for vendors
+    let role  = document.getElementById("role");
+    let password = document.getElementById("password");
+    if(role.value == 'vendor'){
+        var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    
+        if(!password.value.match(passw)){
+            validateErrors.push("Password must include at least Uppsercase, Lowercase and Special Character!");
+        }
+        if(password.value.length < 6){
+            validateErrors.push("Password should include at least 6 characters!")
+        }
+    }
+
     validateErrors.forEach(error => {                           //view errors
         var tag = document.createElement("p");
         var text = document.createTextNode(error);

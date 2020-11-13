@@ -81,7 +81,6 @@
                 <option value="North Western">North Western</option>
                 <option value="Western">Western</option>
                 <option value="North Central">North Central	</option>
-                <option value="North Western">North Western</option>
                 <option value="Central">Central</option>
                 <option value="Sabaragamuwa">Sabaragamuwa</option>
                 <option value="Eastern">Eastern</option>

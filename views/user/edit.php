@@ -99,9 +99,15 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="province1" <?php if($this->user['province'] == 'province1') echo 'selected'; ?>>Province 1</option>
-                <option value="province2" <?php if($this->user['province'] == 'province2') echo 'selected'; ?>>Province 2</option>
-                <option value="province3" <?php if($this->user['province'] == 'province3') echo 'selected'; ?>>Province 3</option>
+                <option value="Nothern"         <?php if($this->user['province'] == 'Nothern') echo 'selected'; ?> >Nothern</option>
+                <option value="North Western"   <?php if($this->user['province'] == 'North Western') echo 'selected'; ?> >North Western</option>
+                <option value="Western"         <?php if($this->user['province'] == 'Western') echo 'selected'; ?> >Western</option>
+                <option value="North Central"   <?php if($this->user['province'] == 'North Central') echo 'selected'; ?> >North Central	</option>
+                <option value="Central"         <?php if($this->user['province'] == 'Central') echo 'selected'; ?> >Central</option>
+                <option value="Sabaragamuwa"    <?php if($this->user['province'] == 'Sabaragamuwa') echo 'selected'; ?> >Sabaragamuwa</option>
+                <option value="Eastern"         <?php if($this->user['province'] == 'Eastern') echo 'selected'; ?> >Eastern</option>
+                <option value="Uva"             <?php if($this->user['province'] == 'Uva') echo 'selected'; ?> >Uva</option>
+                <option value="Southern"        <?php if($this->user['province'] == 'Southern') echo 'selected'; ?> >Southern</option>
             </select>
             </div>
         </div>

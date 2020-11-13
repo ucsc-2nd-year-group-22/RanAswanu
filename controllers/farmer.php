@@ -377,17 +377,6 @@ public function updatedmgclaim($dmgid){
     $data = array();
 
 
-   /* $data['province'] =$_POST['province'];
-    $data['district'] = $_POST['district'];
-    $data['state'] =$_POST['state'];
-    $data['selectCrop'] =$_POST['selectCrop'];
-    $data['cropVariety'] = $_POST['cropVariety'];
-    $data['exprice'] = $_POST ['exprice'];
-    $data['weight'] = $_POST['weight'];
-  //  $data['display']= $_POST['display']; */
-        //$data['dmgid']=$dmgid;
-
-
         $data['dmgdate'] = $_POST['dmgdate'];
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];

@@ -77,15 +77,23 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="Nothern">Nothern</option>
-                <option value="North Western">North Western</option>
-                <option value="Western">Western</option>
-                <option value="North Central">North Central	</option>
-                <option value="Central">Central</option>
-                <option value="Sabaragamuwa">Sabaragamuwa</option>
-                <option value="Eastern">Eastern</option>
-                <option value="Uva">Uva</option>
-                <option value="Southern">Southern</option>
+
+                <?php $provinces = [
+                    'Nothern',
+                    'North Western',
+                    'Western',
+                    'North Central',
+                    'Central',
+                    'Sabaragamuwa',
+                    'Eastern',
+                    'Uva',
+                    'Southern'
+                ]; ?>
+                <?php foreach ($provinces as $provinceItem): ?>
+                    <option value="<?= $provinceItem?>" > <?= $provinceItem?> </option>
+                <?php endforeach; ?>
+
+
             </select>
             </div>
         </div>
@@ -95,22 +103,27 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <option value="Kalutara">Kalutara</option>
-                <option value="Anuradhapura">Anuradhapura</option>
-                <option value="Polonnaruwa">Polonnaruwa</option>
-                <option value="Gampaha">Gampaha</option>
-                <option value="Matale">Matale</option>
-                <option value="Kandy">Kandy</option>
-                <option value="Nuwara Eliya">Nuwara Eliya</option>
-                <option value="Kegalle">Kegalle</option>
-                <option value="Ratnapura">Ratnapura</option>
-                <option value="Hambantota">Hambantota</option>
-                <option value="Matara">Matara</option>
-                <option value="Galle">Galle</option>
-                <option value="Trincomalee">Trincomalee</option>
-                <option value="Jaffna">Jaffna</option>
-                <option value="Kurunegala">Kurunegala</option>
-                
+                <?php $districts = [
+                    'Kalutara',
+                    'Anuradhapura',
+                    'Polonnaruwa',
+                    'Gampaha',
+                    'Matale',
+                    'Kandy',
+                    'NuwaraEliya',
+                    'Kegalle',
+                    'Ratnapura',
+                    'Hambantota',
+                    'Matara',
+                    'Galle',
+                    'Trincomalee',
+                    'Jaffna',
+                    'Kurunegala'
+                ]; ?>
+
+                <?php foreach ($districts as $districtItem): ?>
+                    <option value="<?= $districtItem?>" > <?= $districtItem?> </option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -120,16 +133,21 @@
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
-                <option value="Kurudupoththa">Kurudupoththa</option>
-                <option value="Parakandeniya">Parakandeniya</option>
-                <option value="Mahiyanganaya">Mahiyanganaya</option>
-                <option value="Udawela">Udawela</option>
-                <option value="Kahatagasdeigiliya">Kahatagasdeigiliya</option>
-                <option value="Horowpathana">Horowpathana</option>
-                <option value="Ambewela">Ambewela</option>
-                <option value="Haten">Haten</option>
-                <option value="Kalmune">Kalmune</option>
+                <?php $gramas = [
+                   'Kurudupoththa',
+                   'Parakandeniya',
+                   'Mahiyanganaya',
+                   'Udawela',
+                   'Kahatagasdeigiliya',
+                   'Horowpathana',
+                   'Ambewela',
+                   'Haten',
+                   'Kalmune'
+                ]; ?>
 
+                <?php foreach ($gramas as $gramaItem): ?>
+                    <option value="<?= $gramaItem?>" > <?= $gramaItem?></option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>

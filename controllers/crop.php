@@ -71,6 +71,7 @@ class Crop extends Controller{
             'role' => Session::get('role'),
             'tabs' => [],
             'varientData' => $varientData,
+            'cropId' => $id,
         ];
         // $this->setActivePage('crops');
         $this->view->rendor('crop/varients', $pageData);
@@ -102,5 +103,17 @@ class Crop extends Controller{
     public function deleteVarient($id){
         $this->model->deleteVarient($id);
         header('location: ' . URL . 'crop/crops');
+    }
+
+    //add crop varient
+    public function addVarient($id){
+
+        $data = array();
+
+        $data['id'] = $id;
+        $data['crop_name'] = $_POST['crop_name'];
+        $this->model->addVarient($data);
+        
+        $this->varients($id);
     }
 }

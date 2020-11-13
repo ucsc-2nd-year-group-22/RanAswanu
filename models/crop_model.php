@@ -72,4 +72,13 @@ class Crop_Model extends Model {
             ':id' => $id
         ));
     }
+
+    //create varients
+    public function addVarient($data){
+        $st = $this->db->prepare("INSERT INTO crop_varient (`varient_name`, `crop_id`) VALUES (:crop_name, :id)");
+        $st->execute(array(
+            ':id' => $data['id'],
+            ':crop_name' => $data['crop_name'],
+        ));
+    }
 } 

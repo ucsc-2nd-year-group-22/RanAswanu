@@ -4,14 +4,14 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/crop/addVarient/<?php echo $this->crop['id'] ?>" method="post">
+    <form action="<?= URL;?>crop/addVarient/<?php echo $cropId ?>" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="crop_name">Crop Name</label>
             </div>
             <div class="col-75">
                 <input type="text" id="crop_name" name="crop_name" placeholder="Crop name..">
-                <input type="submit" class="btn" value="Insert  ">
+                <input type="submit" class="btn">
             </div>
         </div>
     </form>

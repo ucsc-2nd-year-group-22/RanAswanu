@@ -43,7 +43,7 @@
             <option value ="" disabled selected>select gramasewa division</option>
                 <option value="grama1">Grama 1</option>
                 <option value="grama2">Grama 2</option>
-                <option value="grama1">Grama 3</option>
+                <option value="grama3">Grama 3</option>
             </select>
             </div>
         </div>

@@ -320,21 +320,27 @@ public function updatecropReq($cropreqid){
 
     $data = array();
 
-   /* $data['id'] = $id;
-    $data['crop_varient'] = $_POST['crop_varient'];
-    $data['crop_type'] = $_POST['crop_type'];
-    $data['best_area'] = $_POST['best_area'];
-    $data['harvest_per_land'] = $_POST['harvest_per_land'];
-    $data['harvest_period'] = $_POST['harvest_period'];
-    $data['discription'] = $_POST['discription'];  */
+  
 
-    //$data['cropreqid']=$cropreqid;
+   /* $data['district'] = $_POST['district'];
+    $data['address'] = $_POST['address'];
+    $data['areasize'] = $_POST['areasize'];
+    $data['exptdate'] = $_POST['exptdate'];                
+    $data['selectCrop'] = $_POST['selectCrop'];
+    $data['cropVariety'] = $_POST['cropVariety'];
+    $data['cropreqid']=$cropreqid;  */
+  
+
+    $data['province'] = $_POST['province'];
     $data['district'] = $_POST['district'];
+    $data['gramasewa'] = $_POST['gramasewa'];
     $data['address'] = $_POST['address'];
     $data['areasize'] = $_POST['areasize'];
     $data['exptdate'] = $_POST['exptdate'];
+   // $data['croptype'] = $_POST['croptype'];
     $data['selectCrop'] = $_POST['selectCrop'];
     $data['cropVariety'] = $_POST['cropVariety'];
+    $data['otherdetails'] = $_POST['otherdetails'];
     $data['cropreqid']=$cropreqid;
 
     

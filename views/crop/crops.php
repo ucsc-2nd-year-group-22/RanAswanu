@@ -70,11 +70,13 @@
             <td> <?=$cropItem['harvest_period'];?></td>
             <td>
                 <select id="best_area" name="best_area">
-                    <?php $j = 1; foreach($allVarients as $varient) { ?>
-                        <?php if($varient['crop_id'] == $cropItem['id']) {?>
-                            <option value="area1"><?php echo $varient['varient_name'] ?></option>
-                        <?php $j++; } ?>
-                    <?php } ?>
+                    <?php $j = 0; foreach($allVarients as $varient) { ?>
+                        <?php if($varient[0]['crop_id'] == $cropItem['id']) {?>
+                            <?php foreach($varient as $cropVarient){ ?>
+                                <option value="area1"><?php echo $cropVarient['varient_name'] ?></option>
+                            <?php } ?>
+                        <?php } ?>
+                    <?php $j++; } ?>
                 </select>
             </td>
             <td>

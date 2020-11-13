@@ -36,10 +36,11 @@ class Crop extends Controller{
     public function crops(){
 
         $cropData = $this->model->crops();
-
+        
         $varientData = [];
         foreach($cropData as $crop){
-            $varientData += $this->model->cropVarients($crop['id']);
+            // print_r($this->model->cropVarients($crop['id']));
+            array_push($varientData, $this->model->cropVarients($crop['id']));
         } 
 
         $pageData = [
@@ -52,7 +53,7 @@ class Crop extends Controller{
             'allVarients' => $varientData,
         ];
         $this->setActivePage('crops');
-        // print_r($varientData);
+        // print_r($varientData);      
         $this->view->rendor('crop/crops', $pageData);
     }
 
@@ -113,7 +114,7 @@ class Crop extends Controller{
         $data['id'] = $id;
         $data['crop_name'] = $_POST['crop_name'];
         $this->model->addVarient($data);
-        
+
         $this->varients($id);
     }
 }

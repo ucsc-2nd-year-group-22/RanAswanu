@@ -196,15 +196,15 @@ class Farmer_Model extends Model {
     //update sellcrops
     public function updatesellyourcrops($data){
        // $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district ,`state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `display` = :display, `otherdetails`=:otherdetails WHERE `cropsid` = :cropsid");
-        $st = $this->db->prepare("UPDATE sellcrops SET  `district` = :district WHERE `cropsid` = :cropsid");
+        $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district, `state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight WHERE `cropsid` = :cropsid");
         $st->execute(array(
-            //':province' =>$data['province'],
+            ':province' =>$data['province'],
             ':district' => $data['district'],
-           // ':state' =>$data['state'],
-           // ':selectCrop' =>$data['selectCrop'],
-           // ':cropVariety' => $data['cropVariety'],
-           // ':exprice' => $data ['exprice'],
-           // ':weight' => $data['weight'],
+            ':state' =>$data['state'],
+            ':selectCrop' =>$data['selectCrop'],
+            ':cropVariety' => $data['cropVariety'],
+            ':exprice' => $data ['exprice'],
+            ':weight' => $data['weight'],
            // ':display'=> $data['display'],
             ':cropsid' =>$data['cropsid']
 

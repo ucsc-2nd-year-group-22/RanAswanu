@@ -74,4 +74,10 @@ class Admin extends Controller {
         $this->setActivePage('reports');
         $this->view->rendor('admin/reports', $data);
     }
+
+    //remove a admin
+    public function delete($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'admin/admins');
+    }
 }

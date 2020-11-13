@@ -26,6 +26,17 @@ class Farmer_Model extends Model {
 
     }
 
+    //edit damageclaim
+    public function dmgclaimList($dmgid){
+        $st = $this->db->prepare("SELECT * FROM dmgclaim WHERE dmgid=:dmgid");
+        $st->execute(array(
+            ':dmgid' => $dmgid,
+        ));
+        // print_r($st->fetchAll());
+        return $st->fetch();
+
+    }
+
     //Display croprequest
     public function cropReqList(){
         $st = $this->db->prepare("SELECT * FROM croprequest  ");
@@ -159,19 +170,7 @@ class Farmer_Model extends Model {
 
     }
 
-    //update damage claim data
-    public function updatedmgclaim($data){
-      //  $st = $this->db->prepare('UPDATE dmgclaim SET `province` = :province, `district` = :district, `grama` = :grama, `address`=:address WHERE dmgid = :dmgid');
-      $st = $this->db->prepare("UPDATE dmgclaim SET  `district` = :district,  `address`=:address WHERE `dmgid` = :dmgid");
-        $st->execute(array(
-           // ':dmgid' => $data['dmgid'],
-            //':province' => $data['province'],
-            ':district' => $data['district'],
-            //':grama' => $data['grama'],
-            ':address' => $data['address'],
-        ));
-    }
-
+    
 
     //update cropreq
     public function updatecropReq($data){
@@ -211,6 +210,27 @@ class Farmer_Model extends Model {
 
         ));
     }
+
+
+    //update dmgclaim
+    public function updatedmgclaim($data){
+        // $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district ,`state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `display` = :display, `otherdetails`=:otherdetails WHERE `cropsid` = :cropsid");
+         $st = $this->db->prepare("UPDATE dmgclaim SET `dmgdate`=:dmgdate, `province`=:province, `district` = :district, `gramasewa`=:gramasewa, `address`=:address, `estdmgarea`=:estdmgarea, `waydmg`=:waydmg, `details`=:details  WHERE `dmgid` = :dmgid");
+         $st->execute(array(
+           
+            ':dmgdate' => $data['dmgdate'],
+            ':province' => $data['province'],
+            ':district' => $data['district'],
+            ':gramasewa' => $data['gramasewa'],
+            ':address' => $data['address'],
+            ':estdmgarea' => $data['estdmgarea'],
+            ':waydmg' => $data['waydmg'],
+            ':details' => $data['details'],
+            ':dmgid' =>$data['dmgid']
+            
+ 
+         ));
+     }
     
 }
 

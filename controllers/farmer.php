@@ -285,6 +285,63 @@ public function deletecropreq($cropreqid){
 }
 
 
+ //  routing (dmgclaim data)
+ public function editdmgclaim($dmgid){
+    $this->view->farmer = $this->model->damageclaimList($dmgid);
+    $this->view->rendor('farmer/editdmgclaim');
+}
+
+
+
+//update the database
+public function updatedmgclaim($data){
+
+    $data = array();
+
+  // $data['dmgid'] = $dmgid;
+   // $data['province'] = $_POST['province'];
+    $data['district'] = $_POST['district'];
+    //$data['grama'] = $_POST['grama'];
+    $data['address'] =$_POST['address'];
+
+    $this->model->updatedmgclaim($data);
+    header('location: ' . URL . 'farmer/damageclaim');
+    }
+
+// route to the edit form with retrieved data
+public function editcropReq($cropreqid){
+    $data['cropreqid']=$cropreqid;
+    $this->view->farmer = $this->model->cropRequestList($cropreqid);
+    $this->view->rendor('farmer/editcropReq',$data);
+}
+
+//update the database
+public function updatecropReq($cropreqid){
+
+    $data = array();
+
+   /* $data['id'] = $id;
+    $data['crop_varient'] = $_POST['crop_varient'];
+    $data['crop_type'] = $_POST['crop_type'];
+    $data['best_area'] = $_POST['best_area'];
+    $data['harvest_per_land'] = $_POST['harvest_per_land'];
+    $data['harvest_period'] = $_POST['harvest_period'];
+    $data['discription'] = $_POST['discription'];  */
+
+    //$data['cropreqid']=$cropreqid;
+    $data['district'] = $_POST['district'];
+    $data['address'] = $_POST['address'];
+    $data['areasize'] = $_POST['areasize'];
+    $data['exptdate'] = $_POST['exptdate'];
+    $data['selectCrop'] = $_POST['selectCrop'];
+    $data['cropVariety'] = $_POST['cropVariety'];
+    $data['cropreqid']=$cropreqid;
+
+    
+    $this->model->updatecropReq($data);
+    header('location: ' . URL . 'farmer/cropReqif');
+}
+
 
 
 

@@ -77,9 +77,16 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="province1">Province 1</option>
-                <option value="province2">Province 2</option>
-                <option value="province3">Province 3</option>
+                <option value="Nothern">Nothern</option>
+                <option value="North Western">North Western</option>
+                <option value="Western">Western</option>
+                <option value="North Central">North Central	</option>
+                <option value="North Western">North Western</option>
+                <option value="Central">Central</option>
+                <option value="Sabaragamuwa">Sabaragamuwa</option>
+                <option value="Eastern">Eastern</option>
+                <option value="Uva">Uva</option>
+                <option value="Southern">Southern</option>
             </select>
             </div>
         </div>
@@ -89,9 +96,22 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <option value="district1">District 1</option>
-                <option value="district2">District 2</option>
-                <option value="district3">District 3</option>
+                <option value="Kalutara">Kalutara</option>
+                <option value="Anuradhapura">Anuradhapura</option>
+                <option value="Polonnaruwa">Polonnaruwa</option>
+                <option value="Gampaha">Gampaha</option>
+                <option value="Matale">Matale</option>
+                <option value="Kandy">Kandy</option>
+                <option value="Nuwara Eliya">Nuwara Eliya</option>
+                <option value="Kegalle">Kegalle</option>
+                <option value="Ratnapura">Ratnapura</option>
+                <option value="Hambantota">Hambantota</option>
+                <option value="Matara">Matara</option>
+                <option value="Galle">Galle</option>
+                <option value="Trincomalee">Trincomalee</option>
+                <option value="Jaffna">Jaffna</option>
+                <option value="Kurunegala">Kurunegala</option>
+                
             </select>
             </div>
         </div>
@@ -101,9 +121,16 @@
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
-                <option value="grama1">Grama 1</option>
-                <option value="grama2">Grama 2</option>
-                <option value="grama1">Grama 3</option>
+                <option value="Kurudupoththa">Kurudupoththa</option>
+                <option value="Parakandeniya">Parakandeniya</option>
+                <option value="Mahiyanganaya">Mahiyanganaya</option>
+                <option value="Udawela">Udawela</option>
+                <option value="Kahatagasdeigiliya">Kahatagasdeigiliya</option>
+                <option value="Horowpathana">Horowpathana</option>
+                <option value="Ambewela">Ambewela</option>
+                <option value="Haten">Haten</option>
+                <option value="Kalmune">Kalmune</option>
+
             </select>
             </div>
         </div>
@@ -115,6 +142,7 @@
                 <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
             </div>
         </div>
+        
         <div class="row">
             <div class="col-25">
             <label for="role">Role</label>
@@ -127,11 +155,12 @@
             <?php elseif(Session::get('role') == 'officer'): ?>
                 <option value="farmer">Farmer</option>
             <?php else: ?>
-                <option value="vendor">Vendor</option>
+                <option value="vendor" >Vendor</option>
             <?php endif ?>
             </select>
             </div>
         </div>
+
         <div class="row">
             <div class="col-25">
             <label for="login">User Name</label>
@@ -142,7 +171,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="password">Last Name</label>
+            <label for="password">Password</label>
             </div>
             <div class="col-75">
             <input type="password" id="password" name="password" placeholder="ex: w@$@nth!">

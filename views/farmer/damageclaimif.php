@@ -53,15 +53,17 @@
 
    <!-- Table -->
    <div class="main-table">
-        <table>
+   
+        <table> 
+          
             <tr>
                 <th>#</th>
                 <th>Damaged date</th>
                 <th>Location</th>
                 <th>Address</th>
-                <th>Estimated Damage Area(Acres)</th>
-                <th>Way Of Damage</th>
-                <th>Details</th>
+                <th>Damage Area(Acres)</th>
+               <!-- <th>Way Of Damage</th>  -->
+               <!-- <th>Details</th>  -->
                 <th>Approval</th>        <!--accept / reject / pending -->
                 <th>Take Action</th>           <!-- view submited form / delete form -->
             </tr>
@@ -70,19 +72,20 @@
                 <td> <?=  $i ?></td>
                 <td><?= $dmgclaim['dmgdate'];?> </td>
 
-                <td><?= $dmgclaim['province'];?>->
+                <td ><?= $dmgclaim['province'];?>->
                     <?= $dmgclaim['district'];?>->
                     <?= $dmgclaim['gramasewa'];?>
                 </td>
 
-                <td><?= $dmgclaim['address'];?> </td>
+                <td ><?= $dmgclaim['address'];?> </td>
                 <td><?= $dmgclaim['estdmgarea'];?></td>
-                <td><?= $dmgclaim['waydmg'];?></td>
-                <td><?= $dmgclaim['details'];?></td>
+               <!-- <td ><?= $dmgclaim['waydmg'];?></td>  -->
+               <!-- <td><?= $dmgclaim['details'];?></td>  -->
                 <td><?= $dmgclaim['approval'];?> </td>
-                <td>
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this damage claim data?');" href="<?php echo URL . '/farmer/editdmgclaim/' . $dmgclaim['dmgid'] ;?>">Edit</a>
-                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this damageclaim data?');" href="<?php echo URL . '/farmer/deletedmg/' . $dmgclaim['dmgid'] ;?>">Delete</a>
+               <td width="15%">  
+                  
+                    <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to update this damage claim data?');" href="<?php echo URL . '/farmer/editdmgclaim/' . $dmgclaim['dmgid'] ;?>"><i class="fas fa-edit"></i>Edit</a>
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this damageclaim data?');" href="<?php echo URL . '/farmer/deletedmg/' . $dmgclaim['dmgid'] ;?>"><i class="fa fa-trash"></i>Delete</a>   
                 </td>
 
                <!-- <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td> -->

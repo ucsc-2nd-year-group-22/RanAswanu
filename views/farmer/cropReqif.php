@@ -98,7 +98,7 @@
         <table>
             <tr>
                 <th>#</th>
-                <th>Area</th>
+                <th>Location</th>
             <!--    <th>District</th>  -->
                 <th>Address</th>
                 <th>Area Size</th>

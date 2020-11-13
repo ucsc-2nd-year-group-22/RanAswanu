@@ -2,7 +2,7 @@
 
 <div class="user-tabs">
     <ul>
-        <li><a id="tab1" href="#" class="active-tab" >Action Need</a></li>
+    <li><a id="tab1" href="#" class="active-tab" ><i class="fas fa-exclamation-triangle"></i> Take action</a></li>
         <li><a id="tab2" href="#" ><i class="fas fa-check-circle"></i>  Accepted</a></li>
         <li><a id="tab3" href="#" ><i class="fas fa-times-circle"></i> Rejected</a></li>
     </ul>
@@ -61,19 +61,20 @@
                 <th>Expected harvest</th>
                 <th>Demand status</th>
                 <th>Take Action</th>
-                <th></th>
             </tr>
     <?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $cropReqItem['farmer'];?></a> <a href="#"> <i class="fas fa-phone-square icon-color"></i> </a> </td>
+                <td><a  style="font-size:1.2em; margin-right:5px;color:var(--main-theme-color);" href="#"> <i class="fas fa-address-card"></i></a>  <?= $cropReqItem['farmer'];?></a> <a href="#"> </a> </td>
                 <td><?= $cropReqItem['crop'];?> </td>
                 <td> <?= $cropReqItem['period'];?></td>
                 <td> <?= $cropReqItem['area'];?></td>
                 <td> <?= $cropReqItem['harvest'];?></td>
                 <td> <?= $cropReqItem['demand'];?></td>
-                <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
-                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>
+                <td>
+                    <a class="mini-button btn"> <i class="fas fa-check-circle"></i> Accept</a> 
+                    <a class="btn mini-button danger"><i class="fas fa-times-circle"></i> Reject</a>
+                </td>
                 
             </tr>
     <?php endforeach;?>
@@ -97,7 +98,7 @@
     <?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $cropReqItem['farmer'];?></a> <a href="#"> <i class="fas fa-phone-square icon-color"></i> </a> </td>
+                <td><a  style="font-size:1.2em; margin-right:5px;color:var(--main-theme-color);" href="#"> <i class="fas fa-address-card"></i></a>  <?= $cropReqItem['farmer'];?></a> <a href="#"> </a> </td>
                 <td><?= $cropReqItem['crop'];?> </td>
                 <td> <?= $cropReqItem['period'];?></td>
                 <td> <?= $cropReqItem['area'];?></td>

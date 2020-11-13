@@ -99,15 +99,22 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="Nothern"         <?php if($this->user['province'] == 'Nothern') echo 'selected'; ?> >Nothern</option>
-                <option value="North Western"   <?php if($this->user['province'] == 'North Western') echo 'selected'; ?> >North Western</option>
-                <option value="Western"         <?php if($this->user['province'] == 'Western') echo 'selected'; ?> >Western</option>
-                <option value="North Central"   <?php if($this->user['province'] == 'North Central') echo 'selected'; ?> >North Central	</option>
-                <option value="Central"         <?php if($this->user['province'] == 'Central') echo 'selected'; ?> >Central</option>
-                <option value="Sabaragamuwa"    <?php if($this->user['province'] == 'Sabaragamuwa') echo 'selected'; ?> >Sabaragamuwa</option>
-                <option value="Eastern"         <?php if($this->user['province'] == 'Eastern') echo 'selected'; ?> >Eastern</option>
-                <option value="Uva"             <?php if($this->user['province'] == 'Uva') echo 'selected'; ?> >Uva</option>
-                <option value="Southern"        <?php if($this->user['province'] == 'Southern') echo 'selected'; ?> >Southern</option>
+                <?php $provinces = [
+                    'Nothern',
+                    'North Western',
+                    'Western',
+                    'North Central',
+                    'Central',
+                    'Sabaragamuwa',
+                    'Eastern',
+                    'Uva',
+                    'Southern'
+                ]; ?>
+
+                <?php foreach ($provinces as $provinceItem): ?>
+                    <option value="<?= $provinceItem?>"      <?php if($this->user['province'] == $provinceItem) echo 'selected'; ?> > <?= $provinceItem?></option>
+                <?php endforeach; ?>
+
             </select>
             </div>
         </div>
@@ -117,9 +124,27 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <option value="district1" <?php if($this->user['district'] == 'district1') echo 'selected'; ?>>District 1</option>
-                <option value="district2" <?php if($this->user['district'] == 'district2') echo 'selected'; ?>>District 2</option>
-                <option value="district3" <?php if($this->user['district'] == 'district3') echo 'selected'; ?>>District 3</option>
+                <?php $districts = [
+                    'Kalutara',
+                    'Anuradhapura',
+                    'Polonnaruwa',
+                    'Gampaha',
+                    'Matale',
+                    'Kandy',
+                    'NuwaraEliya',
+                    'Kegalle',
+                    'Ratnapura',
+                    'Hambantota',
+                    'Matara',
+                    'Galle',
+                    'Trincomalee',
+                    'Jaffna',
+                    'Kurunegala'
+                ]; ?>
+
+                <?php foreach ($districts as $districtItem): ?>
+                    <option value="<?= $districtItem?>"      <?php if($this->user['district'] == $districtItem) echo 'selected'; ?> > <?= $districtItem?></option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -129,9 +154,22 @@
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
-                <option value="grama1" <?php if($this->user['grama'] == 'grama1') echo 'selected'; ?>>Grama 1</option>
-                <option value="grama2" <?php if($this->user['grama'] == 'grama2') echo 'selected'; ?>>Grama 2</option>
-                <option value="grama1" <?php if($this->user['grama'] == 'grama3') echo 'selected'; ?>>Grama 3</option>
+            <?php $gramas = [
+                   'Kurudupoththa',
+                   'Parakandeniya',
+                   'Mahiyanganaya',
+                   'Udawela',
+                   'Kahatagasdeigiliya',
+                   'Horowpathana',
+                   'Ambewela',
+                   'Haten',
+                   'Kalmune'
+                ]; ?>
+
+                <?php foreach ($gramas as $gramaItem): ?>
+                    <option value="<?= $gramaItem?>"      <?php if($this->user['grama'] == $gramaItem) echo 'selected'; ?> > <?= $gramaItem?></option>
+                <?php endforeach; ?>
+
             </select>
             </div>
         </div>

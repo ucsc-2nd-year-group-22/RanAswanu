@@ -142,15 +142,14 @@
             
             </div>
             <div class="col-75">
-                <a class="mini-button" href="<?php echo URL . 'user/edit/' . $id ;?>">Update farmer</a>
+                <a class="btn mini-button" href="<?php echo URL . 'user/edit/' . $id ;?>">Update farmer</a>
             </div>
         </div>
         <?php endif;?>
     </form>
 </div>
-
-<p style="width:100%; background:#fff; padding:20px; margin-top:10px; text-align:center;">
-    Please note that some changes may take effect when you login to the system next time
+<?php if(Session::get('id') == $id): ?>
+<p style="font-size:.9em;width:100%; background:#fff; padding:20px; margin-top:10px; text-align:center;">
+    Please note that after updating, some changes may take effect when you login to the system next time
 </p>
-
-
+<?php endif; ?>

@@ -1,3 +1,5 @@
+<h2> Update Your Password </h2>
+
 <!-- Show error if set -->
 <?php if(Session::get('alert')): ?>
   <div class="alert-box">

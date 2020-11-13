@@ -1,4 +1,6 @@
 
+<script src="<?php echo URL;?>views/user/js/default.js"></script>
+
 <div class="subHeader">
 <?php if(Session::get('role')== 'admin'):?>
     <h1><i class="fas fa-user-edit"></i> Admin & Officer Edit</h1>
@@ -14,7 +16,9 @@
 </div>
 
 <div class="main-form">
-    <form action="<?=URL;?>user/editSave/<?php echo $this->user['id']; ?>" method="post">
+    <div id="errors" class="error"></div>
+
+    <form action="<?=URL;?>user/editSave/<?php echo $this->user['id']; ?>" onsubmit="return CheckPassword()" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">First Name</label>

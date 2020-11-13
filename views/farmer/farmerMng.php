@@ -12,7 +12,7 @@
 </div>
 
 <div class="tabContainer" id="tab1C">
-    <h2>View all reegistered farmers</h2>
+    <h2>View all registered farmers</h2>
     <div class="panel-container">
     <div class="pane1">
 
@@ -62,7 +62,9 @@
                 <th>Action</th>
                 <th>Cotact</th>
                 <th>email</th>
+                <?php if(Session::get('isadmin') != 1): ?>
                 <th>Action</th>
+                <?php endif ?>
             </tr>
         <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
             <tr>
@@ -73,11 +75,12 @@
                 <td><?= $officer['nic'];?> </td>
                 <td><?= $officer['tel'];?> </td>
                 <td><?= $officer['email'];?> </td>
+                <?php if(Session::get('isadmin') != 1): ?>
                 <td>
                     <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Update</a>
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a>
                 </td>
-
+                <?php endif ?>
             </tr>
         <?php endforeach;?>
         </table>

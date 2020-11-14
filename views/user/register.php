@@ -20,7 +20,7 @@
             <label for="fname">First Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="fname" name="firstname" placeholder="ex: Wasantha">
+            <input type="text" id="fname" name="firstname" required placeholder="ex: Wasantha">
             </div>
         </div>
         <div class="row">
@@ -28,7 +28,7 @@
             <label for="lname">Last Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="lname" name="lastname" placeholder="ex: Jayawardana">
+            <input type="text" id="lname" name="lastname" required placeholder="ex: Jayawardana">
             </div>
         </div>
         <div class="row">
@@ -36,7 +36,7 @@
             <label for="nic">NIC Number</label>
             </div>
             <div class="col-75">
-            <input type="text" id="nic" name="nic" placeholder="ex: 123456789V">
+            <input type="text" id="nic" name="nic" required placeholder="ex: 123456789V">
             </div>
         </div>
         <div class="row">
@@ -44,7 +44,7 @@
             <label for="tel">Telephone Number</label>
             </div>
             <div class="col-75">
-            <input type="text" id="tel" name="tel" placeholder="ex: 0123456789">
+            <input type="text" id="tel" name="tel" required placeholder="ex: 0123456789">
             </div>
         </div>
         <div class="row">
@@ -52,7 +52,7 @@
             <label for="email">Email Address</label>
             </div>
             <div class="col-75">
-            <input type="email" id="email" name="email" placeholder="ex: wasantha@gmail.com (if available)..">
+            <input type="email" id="email" name="email" required placeholder="ex: wasantha@gmail.com (if available)..">
             </div>
         </div>
         <div class="row">
@@ -60,7 +60,7 @@
             <label for="dob">Birthday</label>
             </div>
             <div class="col-75">
-            <input type="date" id="dob" name="dob" placeholder="Month/Date/Year ">
+            <input type="date" id="dob" name="dob" required placeholder="Month/Date/Year ">
             </div>
         </div>
         <div class="row">
@@ -116,7 +116,7 @@
             <label for="address">Address</label>
             </div>
             <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
+                <input type="text" id="address" name="address" required placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
             </div>
         </div>
         <div class="row">
@@ -141,7 +141,7 @@
             <label for="login">User Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="login" name="login" placeholder="ex: wasantha123">
+            <input type="text" id="login" name="login" required placeholder="ex: wasantha123">
             </div>
         </div>
         <div class="row">
@@ -149,7 +149,7 @@
             <label for="password">Password</label>
             </div>
             <div class="col-75">
-            <input type="password" id="password" name="password" placeholder="ex: w@$@nth!">
+            <input type="password" id="password" name="password" required placeholder="ex: w@$@nth!">
             </div>
         </div>
         <div class="row">

@@ -10,7 +10,7 @@
             <label for="province">Province</label>
             </div>
             <div class="col-75">
-            <select id="province" name="province">
+            <select id="province" name="province" required>
             <option value ="" disabled selected>select province</option>
                 <option value="province1">Province 1</option>
                 <option value="province2">Province 2</option>
@@ -24,7 +24,7 @@
             <label for="district">District</label>
             </div>
             <div class="col-75">
-            <select id="district" name="district">
+            <select id="district" name="district" required>
             <option value ="" disabled selected>select district</option>
                 <option value="district1">District 1</option>
                 <option value="district2">District 2</option>
@@ -39,7 +39,7 @@
             </div>
 
             <div class="col-75">
-            <select id="gramasewa" name="gramasewa">
+            <select id="gramasewa" name="gramasewa" required>
             <option value ="" disabled selected>select gramasewa division</option>
                 <option value="grama1">Grama 1</option>
                 <option value="grama2">Grama 2</option>
@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
+                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana" required>
             </div>
         </div>  
 
@@ -64,7 +64,7 @@
 			</div>	
 				  
 		    <div class="col-75">
-                <input type="number" placeholder="ex: 2 Acres" name="areasize" max="100">
+                <input type="number" placeholder="ex: 2 Acres" name="areasize" max="100" required>
 			</div>
         </div>
         
@@ -73,7 +73,7 @@
             <label for="exptdate">Expecting Date To Cultivate</label>
             </div>
             <div class="col-75">
-            <input type="date" id="exptdate" name="exptdate" placeholder="Month/Date/Year ">
+            <input type="date" id="exptdate" name="exptdate" placeholder="Month/Date/Year " required>
             </div>
         </div>
         
@@ -83,7 +83,7 @@
             </div>
 
             <div class="col-75">
-                <select id="croptype" name="croptype">
+                <select id="croptype" name="croptype" required>
                    <option value="vegetables">Vegetables</option>
                    <option value="fruits">Fruits</option>                
                 </select>
@@ -105,7 +105,7 @@
             </div>
 
             <div class="col-75">
-                <select id="selectCrop" name="selectCrop">
+                <select id="selectCrop" name="selectCrop" required>
 				<option value ="" disabled selected>select crop</option>
                 <option value="carret">carret</option>
 				<option value="cucumber">cucumber</option>
@@ -123,7 +123,7 @@
             </div>
 
             <div class="col-75">
-                <select id="cropVariety" name="cropVariety">
+                <select id="cropVariety" name="cropVariety" required>
 				<option value ="" disabled selected>Crop variety</option>
                 <option value="Variety1">Variety1</option>
                 <option value="Variety2">Variety2</option>
@@ -139,7 +139,7 @@
                 <label for="otherdetails">Other details:</label>
             </div>
             <div class="col-75">
-                <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details " style="height:200px "></textarea>
+                <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details " style="height:200px " ></textarea>
             </div>
         </div>
 				

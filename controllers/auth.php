@@ -103,9 +103,7 @@ class Auth extends Controller {
                 // handle conflicting pwds
                 header("Location:".URL."auth/createNewPw/$selector/$validator?newpw=notsame");
                 exit();
-            } 
-
-
+            }
 
             $resetResult = $this->model->getPwSelector($selector, $validator);
             if($resetResult == 0) {
@@ -130,7 +128,6 @@ class Auth extends Controller {
                 Session::set('alert', 'Your password has been reset!');
                 header("Location:".URL."user/login");
             } 
-
 
         } else {
             header("Location :".URL);

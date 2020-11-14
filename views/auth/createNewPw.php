@@ -1,3 +1,5 @@
+<script src="<?php echo URL;?>views/auth/js/default.js"></script>
+
 <h2> Create New Password </h2>
 <!-- <?php echo $selector . '<br>' . $validator . '<br>'; ?> -->
 <!-- This is not good. Better to use sessions or jquery for the validation -->
@@ -13,7 +15,9 @@
 ?>
 <!-- end of alert box -->
 <div class="main-form">
-    <form action="<?=URL;?>auth/submitNewPw" method="post">
+    <div id="errors" class="error"></div>
+
+    <form action="<?=URL;?>auth/submitNewPw" onsubmit="return resetPwdValidate()" method="post">
     <!-- Hidden fields  -->
         <input type="hidden" name="selector" value="<?php echo $selector ?>">
         <input type="hidden" name="token" value="<?php echo $validator ?>">

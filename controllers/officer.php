@@ -140,7 +140,7 @@ class Officer extends Controller {
                       ],
             'officerData' => $officerData,
         ];
-        
+        $this->setActivePage('userMgt');
         $this->view->rendor('officer/officers', $pageData);
     }
 

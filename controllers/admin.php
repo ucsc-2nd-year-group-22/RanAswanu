@@ -34,7 +34,7 @@ class Admin extends Controller {
                       ],
             'adminData' => $adminData,
         ];
-        
+        $this->setActivePage('userMgt');
         $this->view->rendor('admin/admins', $pageData);
     }
 

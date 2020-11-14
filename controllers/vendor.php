@@ -72,7 +72,6 @@ class Vendor extends Controller{
     {
         $data['Vid'] = Session::get('id');
         $data['Adid'] =  $adid;
-        $data['Adid'] = $this->model-> getReqid($data);
         $data['Ammount'] =  $_POST['ammount'];
         $this->model-> updateOffer($data);
         header('location: ' . URL . 'vendor/index');

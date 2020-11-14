@@ -1,5 +1,4 @@
 <h1>Update Your Offer</h1>
-
 <div class="user-tabs">
     <ul>
         <li><a id="tab3" href="#" >Other Crops</a></li>

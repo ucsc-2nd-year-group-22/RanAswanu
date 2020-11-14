@@ -1,3 +1,5 @@
+<script src="<?php echo URL;?>views/user/js/default.js"></script>
+
 <div class="subHeader">
 <?php if(Session::get('role')== 'admin'):?>
     <h1>Admin & Officer Registration</h1>
@@ -10,7 +12,9 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/user/create" method="post">
+    <div id="errors" class="error"></div>
+    
+    <form action="<?= URL;?>/user/create" onsubmit="return CheckPassword()" method="post">
         <div class="row">
             <div class="col-25">
             <label for="fname">First Name</label>
@@ -77,9 +81,20 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="province1">Province 1</option>
-                <option value="province2">Province 2</option>
-                <option value="province3">Province 3</option>
+                <?php $provinces = [
+                    'Nothern',
+                    'North Western',
+                    'Western',
+                    'North Central',
+                    'Central',
+                    'Sabaragamuwa',
+                    'Eastern',
+                    'Uva',
+                    'Southern'
+                ]; ?>
+                <?php foreach ($provinces as $provinceItem): ?>
+                    <option value="<?= $provinceItem?>" > <?= $provinceItem?> </option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -89,9 +104,27 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <option value="district1">District 1</option>
-                <option value="district2">District 2</option>
-                <option value="district3">District 3</option>
+                <?php $districts = [
+                    'Kalutara',
+                    'Anuradhapura',
+                    'Polonnaruwa',
+                    'Gampaha',
+                    'Matale',
+                    'Kandy',
+                    'NuwaraEliya',
+                    'Kegalle',
+                    'Ratnapura',
+                    'Hambantota',
+                    'Matara',
+                    'Galle',
+                    'Trincomalee',
+                    'Jaffna',
+                    'Kurunegala'
+                ]; ?>
+
+                <?php foreach ($districts as $districtItem): ?>
+                    <option value="<?= $districtItem?>" > <?= $districtItem?> </option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -101,9 +134,21 @@
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
-                <option value="grama1">Grama 1</option>
-                <option value="grama2">Grama 2</option>
-                <option value="grama1">Grama 3</option>
+                <?php $gramas = [
+                   'Kurudupoththa',
+                   'Parakandeniya',
+                   'Mahiyanganaya',
+                   'Udawela',
+                   'Kahatagasdeigiliya',
+                   'Horowpathana',
+                   'Ambewela',
+                   'Haten',
+                   'Kalmune'
+                ]; ?>
+
+                <?php foreach ($gramas as $gramaItem): ?>
+                    <option value="<?= $gramaItem?>" > <?= $gramaItem?></option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -115,6 +160,7 @@
                 <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
             </div>
         </div>
+        
         <div class="row">
             <div class="col-25">
             <label for="role">Role</label>
@@ -127,11 +173,12 @@
             <?php elseif(Session::get('role') == 'officer'): ?>
                 <option value="farmer">Farmer</option>
             <?php else: ?>
-                <option value="vendor">Vendor</option>
+                <option value="vendor" >Vendor</option>
             <?php endif ?>
             </select>
             </div>
         </div>
+
         <div class="row">
             <div class="col-25">
             <label for="login">User Name</label>
@@ -142,7 +189,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="password">Last Name</label>
+            <label for="password">Password</label>
             </div>
             <div class="col-75">
             <input type="password" id="password" name="password" placeholder="ex: w@$@nth!">

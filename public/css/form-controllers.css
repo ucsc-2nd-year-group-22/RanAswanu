@@ -35,6 +35,8 @@
   font-weight: bold;
   outline: none;
   margin-right: 5px;
+  margin-bottom: 5px;
+  text-decoration: none;
 }
 
 select {

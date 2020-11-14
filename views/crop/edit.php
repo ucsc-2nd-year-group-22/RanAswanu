@@ -7,33 +7,54 @@
     <form action="<?= URL;?>/crop/update/<?php echo $this->crop['id'] ?>" method="post">
         <div class="row">
             <div class="col-25">
-                <label for="crop_varient">Crop Varient</label>
+                <label for="crop_name">Crop Name</label>
             </div>
             <div class="col-75">
-                <input value="<?php echo $this->crop['crop_varient']; ?>" type="text" id="crop_varient" name="crop_varient" placeholder="Crop varient..">
+                <input value="<?php echo $this->crop['crop_name']; ?>" type="text" id="crop_name" name="crop_name" placeholder="Crop name..">
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
-                <label for="crop_type">Crop Type</label>
+                <label for="crop_varient">Crop Varients</label>
             </div>
             <div class="col-75">
-                <select id="crop_type" name="crop_type">
-                    <option value="type1" <?php if($this->crop['crop_type'] == 'type1') echo 'selected'; ?>>Type 1</option>
-                    <option value="type2" <?php if($this->crop['crop_type'] == 'type2') echo 'selected'; ?>>Type 2</option>
-                    <option value="type3" <?php if($this->crop['crop_type'] == 'type3') echo 'selected'; ?>>Type 3</option>
+                <select id="crop_varient" name="crop_varient">
+                    <option value="varient1" <?php if($this->crop['crop_varient'] == 'varient1') echo 'selected'; ?>>Varient 1</option>
+                    <option value="varient2" <?php if($this->crop['crop_varient'] == 'varient2') echo 'selected'; ?>>Varient 2</option>
+                    <option value="varient3" <?php if($this->crop['crop_varient'] == 'varient3') echo 'selected'; ?>>Varient 3</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-25">
                 <label for="best_area">Best Area</label>
             </div>
             <div class="col-75">
                 <select id="best_area" name="best_area">
-                    <option value="area1" <?php if($this->crop['best_area'] == 'area1') echo 'selected'; ?>>Area 1</option>
+                    <!-- <option value="area1" <?php if($this->crop['best_area'] == 'area1') echo 'selected'; ?>>Area 1</option>
                     <option value="area2" <?php if($this->crop['best_area'] == 'area2') echo 'selected'; ?>>Area 2</option>
-                    <option value="area3" <?php if($this->crop['best_area'] == 'area3') echo 'selected'; ?>>Area 3</option>
+                    <option value="area3" <?php if($this->crop['best_area'] == 'area3') echo 'selected'; ?>>Area 3</option> -->
+                    <?php $districts = [
+                    'Kalutara',
+                    'Anuradhapura',
+                    'Polonnaruwa',
+                    'Gampaha',
+                    'Matale',
+                    'Kandy',
+                    'NuwaraEliya',
+                    'Kegalle',
+                    'Ratnapura',
+                    'Hambantota',
+                    'Matara',
+                    'Galle',
+                    'Trincomalee',
+                    'Jaffna',
+                    'Kurunegala'
+                ]; ?>
+
+                <?php foreach ($districts as $districtItem): ?>
+                    <option value="<?= $districtItem?>"      <?php if($this->crop['best_area'] == $districtItem) echo 'selected'; ?> > <?= $districtItem?></option>
+                <?php endforeach; ?>
                 </select>
             </div>
         </div>

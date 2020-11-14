@@ -9,7 +9,8 @@
  @import "filter-panes.css";
  @import "login-style.css";
  @import "dashboard.css";
- @import "index.css";
+ @import "homepage.css";
+ @import "errors.css";
  
  *{
      padding:0;

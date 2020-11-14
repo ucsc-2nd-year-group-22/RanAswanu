@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
     <link rel="icon" href="<?php echo URL; ?>public/img/title-logo.png" type="image/icon type">
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/main.css"/>
     <script src="<?php echo URL;?>public/js/custom.js"></script>
-    <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Ran Aswanu Hvst Mgt Sys</title>
@@ -48,7 +48,7 @@
                                 </div>
                             </li>
                         <?php endif; ?>
-                        <li><a href="#">Reports</a></li>
+                        <li><a href="<?php echo URL; ?>admin/reports">Reports</a></li>
                         <li><a href="<?php echo URL; ?>admin/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
 
                     <!-- Officer configurations for the navigation bar =============================================================== -->
@@ -81,10 +81,10 @@
 
                         <!-- Farmer configurations for the navigation bar =============================================================== -->
                     <?php elseif ((Session::get('role') == 'farmer')): ?>
-                        <li><a href="<?php echo URL; ?>farmer/sellyourcrops" class="<?php View::getActivePage('sellyourcrops'); ?>">Sell Crops</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/sellyourcropsif" class="<?php View::getActivePage('sellyourcropsif'); ?>">Sell Crops</a></li>
                         <li><a href="<?php echo URL; ?>farmer/vendOffers" class="<?php View::getActivePage('vendOffers'); ?>">Vendor Offers</a></li>
-                        <li><a href="<?php echo URL; ?>farmer/damageclaim" class="<?php View::getActivePage('damageclaim'); ?>">Damage Claims</a></li>
-                        <li><a href="<?php echo URL; ?>farmer/cropReq" class="<?php View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/damageclaimif" class="<?php View::getActivePage('damageclaimif'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/cropReqif" class="<?php View::getActivePage('cropReqif'); ?>">Crop Requests</a></li>
 
                 <?php endif ?>
 
@@ -94,7 +94,7 @@
             </nav>
             <?php if(Session::get('loggedIn') == true): ?>
             <div class="dropdown" >
-                <button class="header-popup-btn"><?php echo substr(Session::get('firstname'),0, 5); ?></button>
+                <button class="header-popup-btn"><?php echo substr(Session::get('firstname'),0, 9); ?></button>
                 <div class="dropdown-content right-menu">
                     <a href="<?php echo URL . 'user/viewUser/' . Session::get('id') ?>"><i class="fas fa-user-circle"></i> My Profile</a>
                     <a href="#"><i class="fas fa-cog"></i> My Settings</a>

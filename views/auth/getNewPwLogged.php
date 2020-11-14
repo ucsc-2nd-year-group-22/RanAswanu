@@ -1,3 +1,6 @@
+<h2> Update Your Password </h2>
+<script src="<?php echo URL;?>views/auth/js/default.js"></script>
+
 <!-- Show error if set -->
 <?php if(Session::get('alert')): ?>
   <div class="alert-box">
@@ -7,7 +10,9 @@
 <?php endif; ?>
 
 <div class="main-form">
-    <form action="<?=URL;?>auth/updatePwlogged" method="post">
+    <div id="errors" class="error"></div>
+
+    <form action="<?=URL;?>auth/updatePwlogged" onsubmit="return CheckPassword()" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">Your old password</label>
@@ -21,7 +26,7 @@
                 <label for="fname">New password</label>
             </div>
             <div class="col-75">
-                <input type="password" name="newPw" placeholder="Type your new password here">
+                <input type="password" id="newPw" name="newPw" placeholder="Type your new password here">
             </div>
         </div>
         <div class="row">
@@ -29,7 +34,7 @@
                 <label for="fname">Repeat new password</label>
             </div>
             <div class="col-75">
-                <input type="password" name="newPwRepeat" placeholder="Type your new password again here">
+                <input type="password" id="confPw" name="newPwRepeat" placeholder="Type your new password again here">
             </div>
         </div>
         <div class="row">

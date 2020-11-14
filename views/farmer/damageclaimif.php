@@ -7,9 +7,9 @@
 <div class="user-tabs">                 
     <ul>
     <!--    <li><a id="tab1" href="#" class="active-tab" ><i class="fas fa-users"></i> View farmers</a></li>   -->
-        <?php if(Session::get('isadmin') != 1): ?>
+        
         <li><a id="tab4" href="<?php URL ;?>../farmer/damageclaim" ><i class="fas fa-user-plus"></i> New </a></li>
-        <?php endif ?>
+    
     </ul>
 </div>
 
@@ -58,6 +58,7 @@
           
             <tr>
                 <th>#</th>
+                <th>View</th>  
                 <th>Damaged date</th>
                 <th>Location</th>
                 <th>Address</th>
@@ -70,9 +71,10 @@
         <?php $i = 0; foreach($damageclaimData as $dmgclaim) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
+                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewdamageclaim/' . $dmgclaim['dmgid'] ;?>"> <i class="far fa-address-card"></i></a></td>
                 <td><?= $dmgclaim['dmgdate'];?> </td>
 
-                <td ><?= $dmgclaim['province'];?>->
+                <td >  <!-- <?= $dmgclaim['province'];?>->  -->
                     <?= $dmgclaim['district'];?>->
                     <?= $dmgclaim['gramasewa'];?>
                 </td>
@@ -83,7 +85,7 @@
                <!-- <td><?= $dmgclaim['details'];?></td>  -->
                 <td><?= $dmgclaim['approval'];?> </td>
                <td width="15%">  
-                  
+                  <!--  <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewdmgclaim/' . $dmgclaim['dmgid'] ;?>"> <i class="fas fa-address-card"></i></a> -->
                     <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to update this damage claim data?');" href="<?php echo URL . '/farmer/editdmgclaim/' . $dmgclaim['dmgid'] ;?>"><i class="fas fa-edit"></i>Edit</a>
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this damageclaim data?');" href="<?php echo URL . '/farmer/deletedmg/' . $dmgclaim['dmgid'] ;?>"><i class="fa fa-trash"></i>Delete</a>   
                 </td>

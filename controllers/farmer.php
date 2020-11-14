@@ -364,6 +364,8 @@ public function updatesellyourcrops($cropsid){
 }
 
 
+
+
 // route to the edit dmgclaim form with retrieved data
 public function editdmgclaim($dmgid){
     $data['dmgid']=$dmgid;
@@ -397,7 +399,38 @@ public function updatedmgclaim($dmgid){
 
 
 
+//view damageclaim
+/*public function viewdamageclaim($arg = false) {
+    $dmgclaimData = $this->model->damageclaimList();
+    $data['damageclaimData'] = $dmgclaimData;
+    $this->setActivePage('viewdamageclaim');
+    $this->view->rendor('farmer/viewdamageclaim', $data);
+}
 
+
+*/
+
+// route to the viwe dmgclaim form with retrieved data
+public function viewdamageclaim($dmgid){
+    $data['dmgid']=$dmgid;
+    $this->view->farmer = $this->model-> dmgclaimList($dmgid);
+    $this->view->rendor('farmer/viewdamageclaim',$data);
+}
+
+
+// route to the view cropreq form with retrieved data
+public function viewcropReq($cropreqid){
+    $data['cropreqid']=$cropreqid;
+    $this->view->farmer = $this->model-> cropRequestList($cropreqid);
+    $this->view->rendor('farmer/viewcropReq',$data);
+}
+
+// route to the view cropreq form with retrieved data
+public function viewsellyourcrops($cropsid){
+    $data['cropsid']=$cropsid;
+    $this->view->farmer = $this->model-> sellurcropsList($cropsid);
+    $this->view->rendor('farmer/viewsellyourcrops',$data);
+}
 
 
 }

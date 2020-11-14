@@ -12,7 +12,7 @@
 </div>
 
 <div class="tabContainer" id="tab1C">
-    <h2>View all registered farmers</h2>
+    
     <div class="panel-container">
     <div class="pane1">
 

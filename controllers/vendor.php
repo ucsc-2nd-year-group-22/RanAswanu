@@ -20,12 +20,6 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/register');
     }
 
-    /*public function viewVendor($id){
-        $data['adid']= $id;
-        $this->view->rendor('vendor/view',$data);
-    }*/
-
-    //view all vendors
     public function vendors(){
 
         $vendorData = $this->model->vendorList();
@@ -92,11 +86,6 @@ class Vendor extends Controller{
         $this->view->rendor('farmer/viewFarmer',$data);
     }
 
-    public function myProfile()
-    {
-        
-    }
-
     public function viewCrops()
     {
 
@@ -115,8 +104,5 @@ class Vendor extends Controller{
         $Cropdata = ['Cdata'=>$crop];
         $this->view->rendor('farmer/viewCrops',$Cropdata);
     }
-
-   
-
 
 }

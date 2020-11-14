@@ -31,9 +31,30 @@
             </div>
             <div class="col-75">
                 <select id="best_area" name="best_area">
-                    <option value="area1" <?php if($this->crop['best_area'] == 'area1') echo 'selected'; ?>>Area 1</option>
+                    <!-- <option value="area1" <?php if($this->crop['best_area'] == 'area1') echo 'selected'; ?>>Area 1</option>
                     <option value="area2" <?php if($this->crop['best_area'] == 'area2') echo 'selected'; ?>>Area 2</option>
-                    <option value="area3" <?php if($this->crop['best_area'] == 'area3') echo 'selected'; ?>>Area 3</option>
+                    <option value="area3" <?php if($this->crop['best_area'] == 'area3') echo 'selected'; ?>>Area 3</option> -->
+                    <?php $districts = [
+                    'Kalutara',
+                    'Anuradhapura',
+                    'Polonnaruwa',
+                    'Gampaha',
+                    'Matale',
+                    'Kandy',
+                    'NuwaraEliya',
+                    'Kegalle',
+                    'Ratnapura',
+                    'Hambantota',
+                    'Matara',
+                    'Galle',
+                    'Trincomalee',
+                    'Jaffna',
+                    'Kurunegala'
+                ]; ?>
+
+                <?php foreach ($districts as $districtItem): ?>
+                    <option value="<?= $districtItem?>"      <?php if($this->crop['best_area'] == $districtItem) echo 'selected'; ?> > <?= $districtItem?></option>
+                <?php endforeach; ?>
                 </select>
             </div>
         </div>

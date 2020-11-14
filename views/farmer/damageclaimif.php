@@ -65,7 +65,7 @@
                 <th>Damage Area(Acres)</th>
                <!-- <th>Way Of Damage</th>  -->
                <!-- <th>Details</th>  -->
-                <th>Approval</th>        <!--accept / reject / pending -->
+                <!-- <th>Approval</th>        accept / reject / pending -->
                 <th>Take Action</th>           <!-- view submited form / delete form -->
             </tr>
         <?php $i = 0; foreach($damageclaimData as $dmgclaim) :; $i++;?>
@@ -83,7 +83,7 @@
                 <td><?= $dmgclaim['estdmgarea'];?></td>
                <!-- <td ><?= $dmgclaim['waydmg'];?></td>  -->
                <!-- <td><?= $dmgclaim['details'];?></td>  -->
-                <td><?= $dmgclaim['approval'];?> </td>
+                <!-- <td><?= $dmgclaim['approval'];?> </td> -->
                <td width="15%">  
                   <!--  <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewdmgclaim/' . $dmgclaim['dmgid'] ;?>"> <i class="fas fa-address-card"></i></a> -->
                     <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to update this damage claim data?');" href="<?php echo URL . '/farmer/editdmgclaim/' . $dmgclaim['dmgid'] ;?>"><i class="fas fa-edit"></i>Edit</a>

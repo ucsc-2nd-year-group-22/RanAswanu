@@ -1,17 +1,9 @@
-<h1>Crop Reqeust</h1>
+<h1>Crop Reqeust Form</h1>
        
 
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/cropReq" method="post">	
-        <div class="row">
-            <div class="col-25">
-            <label for="login">Username</label>
-            </div>
-            <div class="col-75">
-            <input type="text" id="login" name="login" placeholder="ex: wasantha123">
-            </div>
-        </div>
-
+    <form action="<?= URL;?>/farmer/cropRequest" method="post">	
+  
        
         <div class="row">
             <div class="col-25">
@@ -19,20 +11,10 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-            <?php $provinces = [
-                    'Nothern',
-                    'North Western',
-                    'Western',
-                    'North Central',
-                    'Central',
-                    'Sabaragamuwa',
-                    'Eastern',
-                    'Uva',
-                    'Southern'
-                ]; ?>
-                <?php foreach ($provinces as $provinceItem): ?>
-                    <option value="<?= $provinceItem?>" > <?= $provinceItem?> </option>
-                <?php endforeach; ?>
+            <option value ="" disabled selected>select province</option>
+                <option value="province1">Province 1</option>
+                <option value="province2">Province 2</option>
+                <option value="province3">Province 3</option>
             </select>
             </div>
         </div>
@@ -43,53 +25,25 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-            <?php $districts = [
-                    'Kalutara',
-                    'Anuradhapura',
-                    'Polonnaruwa',
-                    'Gampaha',
-                    'Matale',
-                    'Kandy',
-                    'NuwaraEliya',
-                    'Kegalle',
-                    'Ratnapura',
-                    'Hambantota',
-                    'Matara',
-                    'Galle',
-                    'Trincomalee',
-                    'Jaffna',
-                    'Kurunegala'
-                ]; ?>
-
-                <?php foreach ($districts as $districtItem): ?>
-                    <option value="<?= $districtItem?>" > <?= $districtItem?> </option>
-                <?php endforeach; ?>
+            <option value ="" disabled selected>select district</option>
+                <option value="district1">District 1</option>
+                <option value="district2">District 2</option>
+                <option value="district3">District 3</option>
             </select>
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-            <label for="grama">Gramasewa Division</label>
+            <label for="gramasewa">Gramasewa Division</label>
             </div>
 
             <div class="col-75">
-            <select id="grama" name="grama">
-            <?php $gramas = [
-                   'Kurudupoththa',
-                   'Parakandeniya',
-                   'Mahiyanganaya',
-                   'Udawela',
-                   'Kahatagasdeigiliya',
-                   'Horowpathana',
-                   'Ambewela',
-                   'Haten',
-                   'Kalmune'
-                ]; ?>
-
-                <?php foreach ($gramas as $gramaItem): ?>
-                    <option value="<?= $gramaItem?>" > <?= $gramaItem?></option>
-                <?php endforeach; ?>
+            <select id="gramasewa" name="gramasewa">
+            <option value ="" disabled selected>select gramasewa division</option>
+                <option value="grama1">Grama 1</option>
+                <option value="grama2">Grama 2</option>
+                <option value="grama3">Grama 3</option>
             </select>
             </div>
         </div>
@@ -106,36 +60,40 @@
 
         <div class="row">
             <div class="col-25">
-			    <label for="areasize">Expect area size to cultivate</label>
+			    <label for="areasize">Expect area size to cultivate -Acres</label>
 			</div>	
 				  
 		    <div class="col-75">
-                <input type="number" placeholder="ex: 2 Acres" name="asize">
+                <input type="number" placeholder="ex: 2 Acres" name="areasize" max="100">
 			</div>
         </div>
         
         <div class="row">
             <div class="col-25">
-            <label for="dmgdate">Expect Date To Harvest</label>
+            <label for="exptdate">Expecting Date To Cultivate</label>
             </div>
             <div class="col-75">
-            <input type="date" id="dmgdate" name="dmgdate" placeholder="Month/Date/Year ">
+            <input type="date" id="exptdate" name="exptdate" placeholder="Month/Date/Year ">
             </div>
         </div>
         
         <div class="row">                                                                             
             <div class="col-25">
-                <label for="selectCrop">Crop type:</label>
+                <label for="croptype">Crop type:</label>
             </div>
 
             <div class="col-75">
-                <select id="selectCrop" name="selectCrop">
+                <select id="croptype" name="croptype">
+                   <option value="vegetables">Vegetables</option>
+                   <option value="fruits">Fruits</option>                
+                </select>
+              <!--  <select id="croptype" name="croptype">
 				<label for="type">Type</label>
                 <input type="radio" id="Vegatable" name="Type" >
                 <label for="vegatable">Vegatable</label><br>
                 <input type="radio" id="Fruit" name="Type" >
-                <label for="fruit">Fruit</label><br><br> 
-                </select>
+                <label for="fruit">Fruit</label><br><br>   
+                </select>   -->
             </div>
         </div>
 				
@@ -161,7 +119,7 @@
             
         <div class="row">
             <div class="col-25">
-                <label for="cropVariety">Select Crop Variety:</label>                                     
+        <!--        <label for="cropVariety">Select Crop Variety:</label>       -->                                
             </div>
 
             <div class="col-75">
@@ -178,16 +136,15 @@
 
         <div class="row">
             <div class="col-25"> 
-                <label for="description">Other details:</label>
+                <label for="otherdetails">Other details:</label>
             </div>
-
             <div class="col-75">
                 <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details " style="height:200px "></textarea>
             </div>
         </div>
 				
 			 
-        <div class="row">
+  <!--      <div class="row">
             <div class="col-25">   
                 <label for="conditions">I Agree to Terms & conditions:</label>
             </div>   
@@ -200,7 +157,7 @@
                     
                 </select>
             </div>
-        </div>
+        </div>      -->
         
 
         <div class="row">

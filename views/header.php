@@ -81,10 +81,10 @@
 
                         <!-- Farmer configurations for the navigation bar =============================================================== -->
                     <?php elseif ((Session::get('role') == 'farmer')): ?>
-                        <li><a href="<?php echo URL; ?>farmer/sellyourcrops" class="<?php View::getActivePage('sellyourcrops'); ?>">Sell Crops</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/sellyourcropsif" class="<?php View::getActivePage('sellyourcropsif'); ?>">Sell Crops</a></li>
                         <li><a href="<?php echo URL; ?>farmer/vendOffers" class="<?php View::getActivePage('vendOffers'); ?>">Vendor Offers</a></li>
-                        <li><a href="<?php echo URL; ?>farmer/damageclaim" class="<?php View::getActivePage('damageclaim'); ?>">Damage Claims</a></li>
-                        <li><a href="<?php echo URL; ?>farmer/cropReq" class="<?php View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/damageclaimif" class="<?php View::getActivePage('damageclaimif'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/cropReqif" class="<?php View::getActivePage('cropReqif'); ?>">Crop Requests</a></li>
 
                 <?php endif ?>
 

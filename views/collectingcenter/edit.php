@@ -19,9 +19,21 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="province1" <?php if($this->center['province'] == 'province1') echo 'selected'; ?>>Province 1</option>
-                <option value="province2" <?php if($this->center['province'] == 'province2') echo 'selected'; ?>>Province 2</option>
-                <option value="province3" <?php if($this->center['province'] == 'province3') echo 'selected'; ?>>Province 3</option>
+                <?php $provinces = [
+                    'Nothern',
+                    'North Western',
+                    'Western',
+                    'North Central',
+                    'Central',
+                    'Sabaragamuwa',
+                    'Eastern',
+                    'Uva',
+                    'Southern'
+                ]; ?>
+
+                <?php foreach ($provinces as $provinceItem): ?>
+                    <option value="<?= $provinceItem?>"      <?php if($this->center['province'] == $provinceItem) echo 'selected'; ?> > <?= $provinceItem?></option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -31,9 +43,27 @@
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <option value="district1" <?php if($this->center['district'] == 'district1') echo 'selected'; ?>>District 1</option>
-                <option value="district2" <?php if($this->center['district'] == 'district2') echo 'selected'; ?>>District 2</option>
-                <option value="district3" <?php if($this->center['district'] == 'district3') echo 'selected'; ?>>District 3</option>
+            <?php $districts = [
+                    'Kalutara',
+                    'Anuradhapura',
+                    'Polonnaruwa',
+                    'Gampaha',
+                    'Matale',
+                    'Kandy',
+                    'NuwaraEliya',
+                    'Kegalle',
+                    'Ratnapura',
+                    'Hambantota',
+                    'Matara',
+                    'Galle',
+                    'Trincomalee',
+                    'Jaffna',
+                    'Kurunegala'
+                ]; ?>
+
+                <?php foreach ($districts as $districtItem): ?>
+                    <option value="<?= $districtItem?>"      <?php if($this->center['district'] == $districtItem) echo 'selected'; ?> > <?= $districtItem?></option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>
@@ -43,9 +73,21 @@
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
-                <option value="grama1" <?php if($this->center['grama'] == 'grama1') echo 'selected'; ?>>Grama 1</option>
-                <option value="grama2" <?php if($this->center['grama'] == 'grama2') echo 'selected'; ?>>Grama 2</option>
-                <option value="grama1" <?php if($this->center['grama'] == 'grama3') echo 'selected'; ?>>Grama 3</option>
+            <?php $gramas = [
+                   'Kurudupoththa',
+                   'Parakandeniya',
+                   'Mahiyanganaya',
+                   'Udawela',
+                   'Kahatagasdeigiliya',
+                   'Horowpathana',
+                   'Ambewela',
+                   'Haten',
+                   'Kalmune'
+                ]; ?>
+
+                <?php foreach ($gramas as $gramaItem): ?>
+                    <option value="<?= $gramaItem?>"      <?php if($this->center['grama'] == $gramaItem) echo 'selected'; ?> > <?= $gramaItem?></option>
+                <?php endforeach; ?>
             </select>
             </div>
         </div>

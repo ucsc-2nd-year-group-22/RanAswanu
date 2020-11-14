@@ -80,7 +80,7 @@
                 </select>
             </td>
             <td>
-                <a href="<?php echo URL .'crop/varients/'.$cropItem['id']; ?>" class="mini-button warning btn"><i class="fas fa-eye"> </i> Config</a> 
+            <a href="<?php echo URL .'crop/varients/'.$cropItem['id']; ?>" class="mini-button warning btn"><i class="fas fa-eye"> </i> Config</a> 
             </td>
             <td>
                 <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal btn"><i class="fas fa-eye"> </i> View</a> 

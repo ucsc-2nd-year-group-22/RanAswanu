@@ -36,11 +36,38 @@ class Vendor_Model extends Model {
 
     public function cropDetails()
     {
-        $st = $this->db->prepare("SELECT   crop, fid, weight, price, date, district FROM crops ");
+        $st = $this->db->prepare("SELECT  cropsid, selectCrop, id, weight, exprice, date, district FROM Sellcrops ");
          $st->execute();
         return $st->fetchAll();
     }
 
+    public function setOffer($data)
+    {
+        $st = $this->db->prepare("INSERT INTO request (`adid`, `vid`, `amount`) VALUES (:adid, :vid, :amount)");
+        $st->execute(array(
+            ':adid' => $data['Adid'],
+            ':vid' => $data['Vid'],
+            ':amount' => $data['Ammount']
+        ));
+    }
 
+    public function updateOffer($data)
+    {
+     $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE Adid = :adid AND Vid = :vid');
+            $st->execute(array(
+                ':adid' => $data['Adid'],
+                ':vid' => $data['Vid'],
+                ':amount' => $data['Ammount'],
+            ));
+    }
+
+    public function deleteOffer($data)
+    {
+        $st = $this->db->prepare('DELETE FROM request WHERE Adid = :id AND Vid = :vid');
+        $st->execute(array(
+            ':id' => $data['Adid'],
+            ':vid' => $data['Vid']
+        ));
+    }
 
 } 

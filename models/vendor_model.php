@@ -36,7 +36,7 @@ class Vendor_Model extends Model {
 
     public function cropDetails()
     {
-        $st = $this->db->prepare("SELECT  cropsid, selectCrop, id, weight, exprice, date, district FROM Sellcrops ");
+        $st = $this->db->prepare("SELECT * FROM sellcrops;");
          $st->execute();
         return $st->fetchAll();
     }

@@ -7,9 +7,9 @@
 <div class="user-tabs">       <!--copied from vender offers-->            
     <ul>
     <!--    <li><a id="tab1" href="#" class="active-tab" ><i class="fas fa-users"></i> View farmers</a></li>   -->
-        <?php if(Session::get('isadmin') != 1): ?>
+     <!--   <?php if(Session::get('isadmin') != 1): ?>  -->
         <li><a id="tab4" href="<?php URL ;?>../farmer/sellyourcrops" ><i class="fas fa-user-plus"></i> New </a></li>
-        <?php endif ?>
+    <!--    <?php endif ?> -->
     </ul>
 </div>
 
@@ -98,6 +98,7 @@
         <table>
             <tr>
                 <th>#</th>
+                <th>View</th>
                 <th>Location</th>
                 <th>State</th>
                 <th>Crop Type</th>
@@ -110,7 +111,9 @@
         <?php $i = 0; foreach($sellurcropsData as $sellurcrops) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td><?= $sellurcrops['province'];?>->
+                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewsellyourcrops/' . $sellurcrops['cropsid'] ;?>"> <i class="far fa-address-card"></i></a></td>
+                <td>
+                    <!--<?= $sellurcrops['province'];?>->   -->
                     <?= $sellurcrops['district'];?> 
                 </td>
                 <td><?= $sellurcrops['state'];?> </td>

@@ -114,26 +114,24 @@ class User extends Controller {
 
     public function editSave($id){
 
+        // Sanitize variables before db update
         $data = array();
-        $data['firstname'] = $_POST['firstname'];
-        $data['lastname'] = $_POST['lastname'];
-        $data['login'] = $_POST['login'];
-        $data['nic'] = $_POST['nic'];
-        $data['tel'] = $_POST['tel'];
-        $data['email'] = $_POST['email'];
-        $data['dob'] = $_POST['dob'];
-        $data['sex'] = $_POST['sex'];
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['grama'] = $_POST['grama'];
-        $data['address'] = $_POST['address'];
-        $data['role'] = $_POST['role'];
-        $data['id'] = $id;
-        // $data['password'] = MD5($_POST['password']);
+        $data['firstname'] = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
+        $data['lastname'] = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
+        $data['login'] = filter_var($_POST['login'], FILTER_SANITIZE_STRING);
+        $data['nic'] = filter_var($_POST['nic'],  FILTER_SANITIZE_STRING);
+        $data['tel'] = filter_var($_POST['tel'],  FILTER_SANITIZE_STRING);
+        $data['email'] = filter_var($_POST['email'],  FILTER_SANITIZE_EMAIL);
+        $data['dob'] = filter_var($_POST['dob'],  FILTER_SANITIZE_STRING);
+        $data['sex'] = filter_var($_POST['sex'],  FILTER_SANITIZE_STRING);
+        $data['province'] = filter_var($_POST['province'],  FILTER_SANITIZE_STRING);
+        $data['district'] = filter_var($_POST['district'],  FILTER_SANITIZE_STRING);
+        $data['grama'] = filter_var($_POST['grama'],  FILTER_SANITIZE_STRING);
+        $data['address'] = filter_var($_POST['address'],  FILTER_SANITIZE_STRING);
+        $data['role'] = filter_var($_POST['role'],  FILTER_SANITIZE_STRING);
+        $data['id'] = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
-        
-
-        // TODO: Do error checking
+        //: Do error checking
 
         $this->model->editSave($data);
         // print_r($data);

@@ -84,7 +84,7 @@ class Farmer_Model extends Model {
 
     public function creates($data)
     {
-
+        // print_r($data);
     $st = $this->db->prepare("INSERT INTO dmgclaim ( `dmgdate` , `province` , `district` , `gramasewa` , `address` , `estdmgarea` , `waydmg` , `details`) VALUES ( :dmgdate , :province , :district , :gramasewa , :address , :estdmgarea , :waydmg , :details)");
         $st-> execute(array(
             

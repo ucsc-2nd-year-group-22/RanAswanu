@@ -18,7 +18,7 @@
         </div>   
     </div>
 
-    <div class="quater1">
+    <!-- <div class="quater1">
         q1
     </div>
 
@@ -32,10 +32,11 @@
 
     <div class="quater4">
         q4
-    </div>
+    </div> -->
 
     <div class="wide">
-        wide
+        <h1>Welcome</h1>
+        <h2>Ran Aswanu Harvest Managment System</h2>
     </div>
 
 </div>

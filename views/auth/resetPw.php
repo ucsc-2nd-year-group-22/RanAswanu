@@ -19,7 +19,7 @@
     <?php endif; ?>
 
 </div>
-<?endif; ?>
+<?php endif; ?>
 <!-- end of alert -->
 
 

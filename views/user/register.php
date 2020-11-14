@@ -1,3 +1,5 @@
+<script src="<?php echo URL;?>views/user/js/default.js"></script>
+
 <div class="subHeader">
 <?php if(Session::get('role')== 'admin'):?>
     <h1>Admin & Officer Registration</h1>
@@ -10,7 +12,9 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/user/create" method="post">
+    <div id="errors" class="error"></div>
+    
+    <form action="<?= URL;?>/user/create" onsubmit="return CheckPassword()" method="post">
         <div class="row">
             <div class="col-25">
             <label for="fname">First Name</label>

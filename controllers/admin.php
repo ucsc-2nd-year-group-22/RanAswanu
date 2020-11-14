@@ -67,4 +67,17 @@ class Admin extends Controller {
         $this->setActivePage('notifications');
         $this->view->rendor('admin/notifications', $data);
     }
+
+    //route to reports
+    public function reports() {
+        $data = [];
+        $this->setActivePage('reports');
+        $this->view->rendor('admin/reports', $data);
+    }
+
+    //remove a admin
+    public function delete($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'admin/admins');
+    }
 }

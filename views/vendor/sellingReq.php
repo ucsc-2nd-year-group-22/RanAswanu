@@ -117,7 +117,11 @@
             <td> <?=$dt['date'];?></td>
             <td>
                 <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['adid']?>" class="mini-button normal">Offer</a>  
+                <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this request?');" href="<?php echo URL . 'vendor/updateOffer/' . $dt['adid'] ;?>">Update</a>
+                <!--<a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a> --> 
+           
             </td>
+          
             <td style="text-align:left;">
                 <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $dt['fid'] ;?>"> 
                     <i class="fas fa-address-card"></i>

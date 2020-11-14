@@ -117,8 +117,8 @@
             <td> <?=$dt['date'];?></td>
             <td>
                 <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['adid']?>" class="mini-button normal">Offer</a>  
-                <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this request?');" href="<?php echo URL . 'vendor/updateOffer/' . $dt['adid'] ;?>">Update</a>
-                <!--<a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a> --> 
+                <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this request?');" href="<?php echo URL . 'vendor/updateOffer/' . $dt['adid'] ;?>">Update Offer</a>
+                <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this offer?');" href="<?php echo URL . '/vendor/deleteOffer/' . $dt['adid'] ;?>">Delete Offer</a>  
            
             </td>
           

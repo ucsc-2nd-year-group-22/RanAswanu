@@ -53,12 +53,21 @@ class Vendor_Model extends Model {
 
     public function updateOffer($data)
     {
-     $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE Reqid = :reqid AND Vid = :vid');
+     $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE Adid = :adid AND Vid = :vid');
             $st->execute(array(
-                ':reqid' => $data['Reqid'],
+                ':adid' => $data['Adid'],
                 ':vid' => $data['Vid'],
                 ':amount' => $data['Ammount'],
             ));
+    }
+
+    public function deleteOffer($data)
+    {
+        $st = $this->db->prepare('DELETE FROM request WHERE Adid = :id AND Vid = :vid');
+        $st->execute(array(
+            ':id' => $data['Adid'],
+            ':vid' => $data['Vid']
+        ));
     }
 
 

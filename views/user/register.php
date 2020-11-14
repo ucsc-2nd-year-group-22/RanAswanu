@@ -146,7 +146,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="password">Last Name</label>
+            <label for="password">Password</label>
             </div>
             <div class="col-75">
             <input type="password" id="password" name="password" placeholder="ex: w@$@nth!">

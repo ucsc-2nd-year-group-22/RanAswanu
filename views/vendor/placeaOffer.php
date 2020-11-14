@@ -2,7 +2,7 @@
 
 <div class="user-tabs">
     <ul>
-        <li><a id="tab3" href="#" >Other Crops</a></li>
+        <li><a id="tab3" href="#" ></a></li>
     </ul>
 </div>
 

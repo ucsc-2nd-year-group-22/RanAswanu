@@ -100,7 +100,7 @@
             <th>Weight</th>
             <th>Price</th>
             <th>District</th>
-            <th>Date</th>
+            <!--<th>Date</th> -->
             <th>Action</th>
             <th>View Profile</th>
             
@@ -114,7 +114,7 @@
             <td> <?=$dt['weight'];?></td>
             <td> <?=$dt['exprice'];?></td>
             <td> <?=$dt['district'];?></td>
-            <td> <?=$dt['date'];?></td>
+            <!--<td> <?=$dt['date'];?></td> -->
             <td>
                 <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['cropsid']?>" class="mini-button normal">Offer</a>  
                 <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this request?');" href="<?php echo URL . 'vendor/updateOffer/' . $dt['cropsid'] ;?>">Update Offer</a>

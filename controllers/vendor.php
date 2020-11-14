@@ -85,18 +85,6 @@ class Vendor extends Controller{
         header('location: ' . URL . 'vendor/index');
     }
 
-    public function viewVendor()
-    {
-        $id = Session::get('id');
-        $this->setActivePage('profile');
-        $userData = $this->model->vendorInfo($id);
-        $data['userData'] = $userData;
-        $data['role'] = $userData['role'];
-        $data['id'] = $userData['id'];
-        $data['loggedIn'] = Session::get('loggedIn');
-        $this->view->rendor('user/profile', $data);
-    }
-
     public function viewFarmer($id)
     {
         $farmerData = $this->model->farmerDetail($id);

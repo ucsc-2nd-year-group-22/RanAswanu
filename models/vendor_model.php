@@ -70,15 +70,4 @@ class Vendor_Model extends Model {
         ));
     }
 
-
-    public function vendorInfo($id){
-        
-        $st = $this->db->prepare("SELECT * FROM users WHERE id = :id");
-        $st->execute(array(
-            ':id' => $id,
-        ));
-        return $st->fetch();
-    }
-    
-
 } 

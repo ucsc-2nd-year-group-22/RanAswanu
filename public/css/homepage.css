@@ -3,19 +3,15 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, auto);
     grid-template-areas:
-    "halfleft halfleft halfright halfright"
     "wide wide wide wide"
+    "halfleft halfleft halfright halfright"
     "quater1 quater2 quater3 quater4";
     background-color:var(--main-layout-bg-color);
     grid-gap: 10px;
 }
 
-.homecontainer div {
-    /* box-shadow: var(--small-shadow); */
-}
-
 .homecontainer div.halfleft, .homecontainer div.halfright {
-    box-shadow: var(--small-shadow);
+    box-shadow: var(--large-shadow);
 }
 
 .homecontainer div.quater1,
@@ -33,6 +29,7 @@
     min-height:300px;
     background-image: url('../img/homepage/vegetb.webp');
     background-size: cover;
+    /* box-shadow: var(--small-shadow); */
 }
 
 .halfright {
@@ -41,12 +38,17 @@
     min-height:300px;
     background-image: url('../img/homepage/a-sri-lankan-vegetable-vendor-at-his-roadside-stall-in-bentota-AM4P8W.jpg');
     background-size: cover;
+    /* box-shadow: var(--small-shadow); */
 }
 
 .wide {
     grid-area: wide;
     min-height: 200px;
-    background-color: #fff;
+    background-color: var(--main-theme-color);
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    box-shadow: var(--small-shadow);
 }
 
 .quater1 {

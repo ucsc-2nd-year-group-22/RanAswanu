@@ -11,7 +11,11 @@ class Vendor extends Controller{
     function index() {
         $sellData = $this->model->cropDetails();
         $data['Req'] = $sellData;
-        print_r($sellData);
+
+        $myOffers = $this->model->myOffers(Session::get('id'));
+        $data['myOffers'] = $myOffers;
+        
+        print_r($data);
         $this->setActivePage('index');
         $this->view->rendor('vendor/sellingReq', $data);
 

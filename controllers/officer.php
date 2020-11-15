@@ -104,6 +104,15 @@ class Officer extends Controller {
         $this->view->rendor('officer/damageClaims', $data);
     }
 
+    function editDmg() {
+        
+        $this->view->rendor('officer/editDmg');
+    }
+
+    function saveDmg() {
+        header('location: '. URL .'officer/damageClaims');
+    }
+
     public function reports() {
         $data = [];
         $this->setActivePage('reports');

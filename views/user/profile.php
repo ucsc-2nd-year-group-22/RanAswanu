@@ -136,7 +136,7 @@
         
         <?php endif;?>
 
-        <?php if((Session::get('isadmin') == '0' && Session::get('role') == 'officer')): ?>
+        <?php if((Session::get('isadmin') == '0' && Session::get('role') == 'officer') && Session::get('id')!=$id): ?>
         <div class="row">
             <div class="col-25">
             

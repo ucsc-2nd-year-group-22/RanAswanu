@@ -1,8 +1,8 @@
-<h1>Sell Your Crops Form</h1>
+<h1>Sell Your Crops Form </h1>
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/sellurcrops" method="post">
+    <form action="<?= URL;?>farmer/sellurcropsA" method="post">
     
         
         <div class="row">

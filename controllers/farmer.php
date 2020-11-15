@@ -71,7 +71,7 @@ class Farmer extends Controller {
         $this->view->rendor('farmer/cropReq');
     }
     
-    public function sellyourcrops($arg = false) {
+    public function sellyourcrops() {
         $this->view->rendor('farmer/sellyourcrops');
     }
    
@@ -84,7 +84,7 @@ class Farmer extends Controller {
 
 
     //instert damage claim information to the database
-    public function creates()
+    public function creates($arg = false)
     {
         
         $data=array();
@@ -107,7 +107,7 @@ class Farmer extends Controller {
     
     
      //insterting crop details of farmers' which expect to sell
-   public function sellurcrops()
+   public function sellurcropsA()
     {
         $data=array();
 
@@ -120,7 +120,7 @@ class Farmer extends Controller {
         $data['exprice'] = $_POST['exprice'];
         $data['weight'] = $_POST['weight'];
         $data['display'] = $_POST['display'];
-        
+        // print_r($data);
         $this->model->sellurcrops($data);
         header('location: ' . URL . 'farmer/sellyourcropsif');
 

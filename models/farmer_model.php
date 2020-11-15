@@ -105,8 +105,8 @@ class Farmer_Model extends Model {
 
     public function sellurcrops($data)
     {
-    
-    $st=$this->db->prepare("INSERT INTO sellcrops ( `province` , `district` , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`) VALUES (  :province , :district  ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display)");
+    print_r($data);
+    $st=$this->db->prepare("INSERT INTO sellcrops ( `province` , `district` , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`, `cropsid` ) VALUES (  :province , :district  ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display, :cropsid)");
         $st-> execute(array(
     
             ':province' =>$data['province'],
@@ -116,8 +116,8 @@ class Farmer_Model extends Model {
             ':cropVariety' => $data['cropVariety'],
             ':exprice' => $data ['exprice'],
             ':weight' => $data['weight'],
-            ':display'=> $data['display']
-            
+            ':display'=> $data['display'],
+            ':cropsid' => 111
 
         ));
     }

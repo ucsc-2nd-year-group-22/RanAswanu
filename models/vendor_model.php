@@ -61,12 +61,11 @@ class Vendor_Model extends Model {
             ));
     }
 
-    public function deleteOffer($data)
+    public function undoOffer($data)
     {
-        $st = $this->db->prepare('DELETE FROM request WHERE Adid = :id AND Vid = :vid');
+        $st = $this->db->prepare('DELETE FROM request WHERE reqid = :id');
         $st->execute(array(
-            ':id' => $data['Adid'],
-            ':vid' => $data['Vid']
+            ':id' => $data['reqid']
         ));
     }
 

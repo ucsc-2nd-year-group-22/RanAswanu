@@ -76,11 +76,10 @@ class Vendor extends Controller{
         header('location: ' . URL . 'vendor/index');
     }
 
-    public function deleteOffer($id)
+    public function undoOffer($id)
     {
-        $data['Adid']= $id;
-        $data['Vid'] = Session::get('id');
-        $this->model->deleteOffer($data);
+        $data['reqid']= $id;
+        $this->model->undoOffer($data);
         header('location: ' . URL . 'vendor/index');
     }
 

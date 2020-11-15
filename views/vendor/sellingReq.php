@@ -72,18 +72,12 @@
     <?php $i = 0; foreach($Req as $dt) :; $i++;?>
             <tr>
                 <td> <?= $i ?></td>
-                <!-- <td><?= $dt['id'];?> </td> -->
-            <!-- <td><?= $dt['name'];?> </td> --> 
                 <td> <?=$dt['selectCrop'];?></td>
                 <td> <?=$dt['weight'];?></td>
                 <td> <?=$dt['exprice'];?></td>
                 <td> <?=$dt['district'];?></td>
-                <!--<td> <?=$dt['date'];?></td> -->
                 <td>
-                    <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['aId']?>" class="mini-button normal">Offer</a>  
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this request?');" href="<?php echo URL . 'vendor/updateOffer/' . $dt['cropsid'] ;?>">Update Offer</a>
-                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this offer?');" href="<?php echo URL . '/vendor/deleteOffer/' . $dt['cropsid'] ;?>">Delete Offer</a>  
-            
+                    <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['aId']?>" class="mini-button normal">Offer</a> 
                 </td>
             
                 <td style="text-align:left;">
@@ -122,12 +116,12 @@
                 <td> <?=$offer['amount'];?></td>
                 <td>  
                     <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this request?');" href="<?php echo URL . 'vendor/updateOffer/' . $dt['cropsid'] ;?>">Update Offer</a>
-                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this offer?');" href="<?php echo URL . '/vendor/deleteOffer/' . $dt['cropsid'] ;?>">Undo</a>  
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this offer?');" href="<?php echo URL . 'vendor/undoOffer/' . $offer['reqid'] ;?>">Undo</a>  
             
                 </td>
             
                 <td style="text-align:left;">
-                    <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $dt['id'] ;?>"> 
+                    <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'vendor/undoOffer/' . $offer['reqid'] ;?>"> 
                         <i class="fas fa-address-card"></i>
                     </a>
                 </td>     

@@ -94,7 +94,7 @@
     <table>
         <tr>
             <th>#</th>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
           <!--  <th>Farmer </th> -->
             <th>Crop Type</th>
             <th>Weight</th>
@@ -108,7 +108,7 @@
 <?php $i = 0; foreach($Req as $dt) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?= $dt['id'];?> </td>
+            <!-- <td><?= $dt['id'];?> </td> -->
            <!-- <td><?= $dt['name'];?> </td> --> 
             <td> <?=$dt['selectCrop'];?></td>
             <td> <?=$dt['weight'];?></td>

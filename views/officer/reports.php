@@ -14,9 +14,12 @@
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="report1">report 1</option>
-                <option value="report2">report 2</option>
-                <option value="report3">report 3</option>
+                <option value="report1">Anual farmer report</option>
+                <option value="report2">Monthly vendor-farmer orders</option>
+                <option value="report3">Farmer report</option>
+                <option value="report3">Damages report</option>
+                <option value="report3">User report</option>
+                <option value="report3">Custom report...</option>
             </select>
             </div>
         </div>
@@ -64,7 +67,7 @@
 </div>
 <div class="main-form">
 
-    <form action="<?= URL;?>officer/sendmail" method="post">
+    <form action="#" method="post">
         <div class="row">
             <div class="col-25">
             

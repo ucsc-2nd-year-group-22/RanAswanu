@@ -97,7 +97,7 @@
                 <button class="header-popup-btn"><?php echo substr(Session::get('firstname'),0, 9); ?></button>
                 <div class="dropdown-content right-menu">
                     <a href="<?php echo URL . 'user/viewUser/' . Session::get('id') ?>"><i class="fas fa-user-circle"></i> My Profile</a>
-                    <a href="#"><i class="fas fa-cog"></i> My Settings</a>
+                    <!-- <a href="#"><i class="fas fa-cog"></i> My Settings</a> -->
                     <a href="#"><i class="fas fa-question-circle"></i> Help & Support</a>
                     <?php if(Session::get('loggedIn') == true): ?>
                         <a href="<?= URL?>user/logout"><i class="fas fa-sign-out-alt"></i> Log out</a>

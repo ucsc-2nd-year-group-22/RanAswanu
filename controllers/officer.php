@@ -80,10 +80,10 @@ class Officer extends Controller {
 
         $dmgClaimData = [
             [
-                'farmer' => "Suneetha Madawala",
-                'crops' => "Pumpkin, Carrot",
-                'area' => "Horowpathana-south",
-                'damageAmt' => "2 hectares",
+                'farmer' => "Amal Lakshan",
+                'crops' => "Beans, Carrot",
+                'area' => "Kandy",
+                'damageAmt' => "1 hectares",
             ],
             [
                 'farmer' => "Suneetha Madawala",
@@ -92,16 +92,25 @@ class Officer extends Controller {
                 'damageAmt' => "2 hectares",
             ],
             [
-                'farmer' => "Suneetha Madawala",
-                'crops' => "Pumpkin, Carrot",
-                'area' => "Horowpathana-south",
-                'damageAmt' => "2 hectares",
+                'farmer' => "Nalin Jeewaka",
+                'crops' => "Tomatoe",
+                'area' => "Badulla",
+                'damageAmt' => "2.5 hectares",
             ]
         ];
         $data = [
             'dmgClaimData' => $dmgClaimData ];
         $this->setActivePage('damageClaims');
         $this->view->rendor('officer/damageClaims', $data);
+    }
+
+    function editDmg() {
+        
+        $this->view->rendor('officer/editDmg');
+    }
+
+    function saveDmg() {
+        header('location: '. URL .'officer/damageClaims');
     }
 
     public function reports() {

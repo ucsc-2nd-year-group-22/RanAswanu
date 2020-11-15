@@ -15,7 +15,7 @@ class Vendor extends Controller{
         $myOffers = $this->model->myOffers(Session::get('id'));
         $data['myOffers'] = $myOffers;
         
-        print_r($data);
+        // print_r($data);
         $this->setActivePage('index');
         $this->view->rendor('vendor/sellingReq', $data);
 

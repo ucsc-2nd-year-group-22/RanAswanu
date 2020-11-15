@@ -102,7 +102,9 @@
 <div id="tab2C" class="tabContainer">
     <h2>Offers Sent</h2>
    
+    <?php if(sizeof($myOffers) > 0){ ?>
     <div class="main-table">
+    
         <table>
             <tr>
                 <th>#</th>
@@ -112,6 +114,7 @@
                 <th>View Advertisement</th>
                 
             </tr>
+
     <?php $i = 0; foreach($myOffers as $offer) :; $i++;?>
             <tr>
                 <td> <?= $i ?></td> 
@@ -133,6 +136,14 @@
     <?php endforeach;?>
         </table>
     </div>
+    <?php } else { ?>
+
+    <div class="banner">
+        <h4> No varitents found</h4>
+        <h1><i class="far fa-times-circle icon-color"></i><h1>
+    </div>
+
+    <?php } ?>
 
 </div>
 

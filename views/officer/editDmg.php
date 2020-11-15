@@ -34,7 +34,7 @@
             
             </div>
             <div class="col-75">
-            <button type="submit"><i class="fas fa-handshake"></i> Update </button>
+            <button type="submit">Update </button>
             </div>
         </div>
     </form>

@@ -25,6 +25,7 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/register');
     }
 
+    //retriev all vendors
     public function vendors(){
 
         $vendorData = $this->model->vendorList();

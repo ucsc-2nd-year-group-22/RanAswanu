@@ -34,6 +34,7 @@ class Vendor_Model extends Model {
         return $st->fetch();
     }
 
+    //retrieve advertisements posted by the farmer
     public function cropDetails()
     {
         $st = $this->db->prepare("SELECT  aId, cropsid, selectCrop, weight, exprice, district FROM sellcrops ");
@@ -41,6 +42,7 @@ class Vendor_Model extends Model {
         return $st->fetchAll();
     }
 
+    //make an offer for a sellreq
     public function setOffer($data)
     {
         $st = $this->db->prepare("INSERT INTO request (`adid`, `vid`, `amount`) VALUES (:adid, :vid, :amount)");
@@ -51,6 +53,7 @@ class Vendor_Model extends Model {
         ));
     }
 
+    //update sent offers
     public function updateOffer($data)
     {
      $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE reqid = :reqid');
@@ -68,7 +71,6 @@ class Vendor_Model extends Model {
             ':id' => $data['reqid']
         ));
     }
-
 
     //getting offers sent by vendor (logged in)
     public function myOffers($id)

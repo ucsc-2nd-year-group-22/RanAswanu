@@ -4,7 +4,7 @@
 <div class="main-form">
     <div id="errors" class="error"></div>
     
-    <form action="<?= URL;?>/officer/damageClaims" onsubmit="return CheckPassword()" method="post">
+    <form action="<?= URL;?>officer/damageClaims" onsubmit="return CheckPassword()" method="post">
         <div class="row">
             <div class="col-25">
             <label for="fname">Crops</label>

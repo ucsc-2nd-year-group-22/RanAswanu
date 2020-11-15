@@ -111,7 +111,7 @@
         <?php $i = 0; foreach($sellurcropsData as $sellurcrops) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewsellyourcrops/' . $sellurcrops['cropsid'] ;?>"> <i class="far fa-address-card"></i></a></td>
+                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewsellyourcrops/' . $sellurcrops['aId'] ;?>"> <i class="far fa-address-card"></i></a></td>
                 <td>
                     <!--<?= $sellurcrops['province'];?>->   -->
                     <?= $sellurcrops['district'];?> 

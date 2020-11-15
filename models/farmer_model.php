@@ -154,7 +154,7 @@ class Farmer_Model extends Model {
     
     //deleting sellcrops data
     public function deletesellcrops($cropsid){
-        $st = $this->db->prepare("DELETE FROM sellcrops WHERE cropsid = :cropsid ");
+        $st = $this->db->prepare("DELETE FROM sellcrops WHERE aId = :cropsid ");
         $st->execute(array(
             ':cropsid' => $cropsid
         ));

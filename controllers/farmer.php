@@ -299,7 +299,7 @@ public function editcropReq($cropreqid){
 }
 
 //update the database(cropreq)
-public function updatecropReq($cropreqid){
+public function updatecropReq($aId){
 
     $data = array();
 
@@ -324,7 +324,7 @@ public function updatecropReq($cropreqid){
     $data['selectCrop'] = $_POST['selectCrop'];
     $data['cropVariety'] = $_POST['cropVariety'];
     $data['otherdetails'] = $_POST['otherdetails'];
-    $data['cropreqid']=$cropreqid;
+    $data['aId']=$aId;
 
     
     $this->model->updatecropReq($data);
@@ -332,15 +332,15 @@ public function updatecropReq($cropreqid){
 }
 
 // route to the edit sellurcrops form with retrieved data
-public function editsellyourcrops($cropsid){
-    $data['cropsid']=$cropsid;
-    $this->view->farmer = $this->model->sellurcropsList($cropsid);
+public function editsellyourcrops($aId){
+    $data['aId']=$aId;
+    $this->view->farmer = $this->model->sellurcropsList($aId);
     $this->view->rendor('farmer/editsellyourcrops',$data);
     
 }
 
 //update the database(cropreq)
-public function updatesellyourcrops($cropsid){
+public function updatesellyourcrops($aId){
 
     $data = array();
 
@@ -355,13 +355,15 @@ public function updatesellyourcrops($cropsid){
     $data['exprice'] = $_POST ['exprice'];
     $data['weight'] = $_POST['weight'];
   //  $data['display']= $_POST['display'];
-    $data['cropsid']=$cropsid;
+    $data['cropsid']= 111;
+    $data['aId'] = $aId;
 
     
 
-
+    // print_r($data);
     
     $this->model->updatesellyourcrops($data);
+    
     header('location: ' . URL . 'farmer/sellyourcropsif');
 }
 

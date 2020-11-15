@@ -123,7 +123,7 @@
                 <td><?= $sellurcrops['exprice'];?> </td>
                 <td><?= $sellurcrops['weight'];?> </td>
                 <td>
-                    <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to edit this sellcrops data?');" href="<?php echo URL . 'farmer/editsellyourcrops/' . $sellurcrops['cropsid'] ;?>"><i class="fas fa-edit"></i>Edit</a>
+                    <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to edit this sellcrops data?');" href="<?php echo URL . 'farmer/editsellyourcrops/' . $sellurcrops['aId'] ;?>"><i class="fas fa-edit"></i>Edit</a>
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this sellcrops data?');" href="<?php echo URL . '/farmer/deletesellcrops/' . $sellurcrops['cropsid'] ;?>"><i class="fa fa-trash"></i>Delete</a>
                 </td>
 

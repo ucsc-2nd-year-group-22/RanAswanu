@@ -4,7 +4,7 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/updatesellyourcrops/<?php echo $this->farmer['cropsid'] ?>" method="post">
+    <form action="<?= URL;?>/farmer/updatesellyourcrops/<?php echo $this->farmer['aId'] ?>" method="post">
        
         <div class="row">
             <div class="col-25">

@@ -70,10 +70,10 @@ class Farmer_Model extends Model {
     }
     
     //edit sellyourcrops
-    public function sellurcropsList($cropsid){
-        $st = $this->db->prepare("SELECT * FROM sellcrops WHERE cropsid=:cropsid");
+    public function sellurcropsList($aId){
+        $st = $this->db->prepare("SELECT * FROM sellcrops WHERE aId=:aId");
         $st->execute(array(
-            ':cropsid' => $cropsid,
+            ':aId' => $aId,
         ));
         // print_r($st->fetchAll());
         return $st->fetch();
@@ -195,7 +195,7 @@ class Farmer_Model extends Model {
     //update sellcrops
     public function updatesellyourcrops($data){
        // $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district ,`state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `display` = :display, `otherdetails`=:otherdetails WHERE `cropsid` = :cropsid");
-        $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district, `state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight WHERE `cropsid` = :cropsid");
+        $st = $this->db->prepare("UPDATE sellcrops SET `province` = :province, `district` = :district, `state` = :state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `cropsid` = :cropsid WHERE `aId` = :aId");
         $st->execute(array(
             ':province' =>$data['province'],
             ':district' => $data['district'],
@@ -205,10 +205,10 @@ class Farmer_Model extends Model {
             ':exprice' => $data ['exprice'],
             ':weight' => $data['weight'],
            // ':display'=> $data['display'],
-            ':cropsid' =>$data['cropsid']
-
-
+            ':cropsid' =>$data['cropsid'],
+            ':aId' => $data['aId']
         ));
+        // print_r($st);
     }
 
 

@@ -11,6 +11,7 @@ class Vendor extends Controller{
     function index() {
         $sellData = $this->model->cropDetails();
         $data['Req'] = $sellData;
+        print_r($sellData);
         $this->setActivePage('index');
         $this->view->rendor('vendor/sellingReq', $data);
 
@@ -43,14 +44,14 @@ class Vendor extends Controller{
     //MY FUNCTIONS
     public function placeaOffer($id)
     { 
-        $data['adid']= $id;
+        $data['aId']= $id;
         $this->view->rendor('vendor/placeaOffer',$data);
     }
 
-      public function offer($adid)
+      public function offer($aId)
     {
         $data['Vid'] = Session::get('id');
-        $data['Adid'] =  $adid;
+        $data['aId'] =  $aId;
         $data['Ammount'] =  $_POST['ammount'];
         $this->model-> setOffer($data);
         header('location: ' . URL . 'vendor/index');

@@ -36,8 +36,8 @@ class Vendor_Model extends Model {
 
     public function cropDetails()
     {
-        $st = $this->db->prepare("SELECT  cropsid, selectCrop, id, weight, exprice, date, district FROM Sellcrops ");
-         $st->execute();
+        $st = $this->db->prepare("SELECT  aId, cropsid, selectCrop, weight, exprice, district FROM sellcrops ");
+        $st->execute();
         return $st->fetchAll();
     }
 
@@ -45,7 +45,7 @@ class Vendor_Model extends Model {
     {
         $st = $this->db->prepare("INSERT INTO request (`adid`, `vid`, `amount`) VALUES (:adid, :vid, :amount)");
         $st->execute(array(
-            ':adid' => $data['Adid'],
+            ':adid' => $data['aId'],
             ':vid' => $data['Vid'],
             ':amount' => $data['Ammount']
         ));

@@ -11,6 +11,11 @@ class Vendor extends Controller{
     function index() {
         $sellData = $this->model->cropDetails();
         $data['Req'] = $sellData;
+
+        $myOffers = $this->model->myOffers(Session::get('id'));
+        $data['myOffers'] = $myOffers;
+        
+        // print_r($data);
         $this->setActivePage('index');
         $this->view->rendor('vendor/sellingReq', $data);
 
@@ -20,6 +25,7 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/register');
     }
 
+    //retriev all vendors
     public function vendors(){
 
         $vendorData = $this->model->vendorList();
@@ -43,14 +49,14 @@ class Vendor extends Controller{
     //MY FUNCTIONS
     public function placeaOffer($id)
     { 
-        $data['adid']= $id;
+        $data['aId']= $id;
         $this->view->rendor('vendor/placeaOffer',$data);
     }
 
-      public function offer($adid)
+    public function offer($aId)
     {
         $data['Vid'] = Session::get('id');
-        $data['Adid'] =  $adid;
+        $data['aId'] =  $aId;
         $data['Ammount'] =  $_POST['ammount'];
         $this->model-> setOffer($data);
         header('location: ' . URL . 'vendor/index');
@@ -58,24 +64,22 @@ class Vendor extends Controller{
 
     public function updateOffer($id)
     {
-        $data['adid']= $id;
+        $data['reqid']= $id;
         $this->view->rendor('vendor/updateOffer',$data);
     }
 
-    public function update($adid)
+    public function update($reqid)
     {
-        $data['Vid'] = Session::get('id');
-        $data['Adid'] =  $adid;
-        $data['Ammount'] =  $_POST['ammount'];
+        $data['reqid'] =  $reqid;
+        $data['amount'] =  $_POST['ammount'];
         $this->model-> updateOffer($data);
         header('location: ' . URL . 'vendor/index');
     }
 
-    public function deleteOffer($id)
+    public function undoOffer($id)
     {
-        $data['Adid']= $id;
-        $data['Vid'] = Session::get('id');
-        $this->model->deleteOffer($data);
+        $data['reqid']= $id;
+        $this->model->undoOffer($data);
         header('location: ' . URL . 'vendor/index');
     }
 

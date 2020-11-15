@@ -6,6 +6,8 @@ class Auth extends Controller {
 
     public function __construct() {
         parent::__construct();
+
+        $this->view->js = array('auth/js/default.js');
     }
 
     function resetPw() {

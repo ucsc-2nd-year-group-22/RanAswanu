@@ -34,40 +34,52 @@ class Vendor_Model extends Model {
         return $st->fetch();
     }
 
+    //retrieve advertisements posted by the farmer
     public function cropDetails()
     {
-        $st = $this->db->prepare("SELECT * FROM sellcrops;");
-         $st->execute();
+        $st = $this->db->prepare("SELECT  aId, cropsid, selectCrop, weight, exprice, district FROM sellcrops ");
+        $st->execute();
         return $st->fetchAll();
     }
 
+    //make an offer for a sellreq
     public function setOffer($data)
     {
         $st = $this->db->prepare("INSERT INTO request (`adid`, `vid`, `amount`) VALUES (:adid, :vid, :amount)");
         $st->execute(array(
-            ':adid' => $data['Adid'],
+            ':adid' => $data['aId'],
             ':vid' => $data['Vid'],
             ':amount' => $data['Ammount']
         ));
     }
 
+    //update sent offers
     public function updateOffer($data)
     {
-     $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE Adid = :adid AND Vid = :vid');
+     $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE reqid = :reqid');
             $st->execute(array(
-                ':adid' => $data['Adid'],
-                ':vid' => $data['Vid'],
-                ':amount' => $data['Ammount'],
+                ':reqid' => $data['reqid'],
+                ':amount' => $data['amount'],
             ));
     }
 
-    public function deleteOffer($data)
+    //delete sent offers
+    public function undoOffer($data)
     {
-        $st = $this->db->prepare('DELETE FROM request WHERE Adid = :id AND Vid = :vid');
+        $st = $this->db->prepare('DELETE FROM request WHERE reqid = :id');
         $st->execute(array(
-            ':id' => $data['Adid'],
-            ':vid' => $data['Vid']
+            ':id' => $data['reqid']
         ));
+    }
+
+    //getting offers sent by vendor (logged in)
+    public function myOffers($id)
+    {
+        $st = $this->db->prepare("SELECT * FROM request WHERE vid = :id");
+        $st->execute(array(
+            ':id' => $id
+        ));
+        return $st->fetchAll();
     }
 
 } 

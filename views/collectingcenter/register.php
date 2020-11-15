@@ -10,7 +10,7 @@
             <label for="center_name">Collecting Center Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="center_name" name="center_name" placeholder="Collecting center name..">
+            <input type="text" id="center_name" name="center_name" required placeholder="Collecting center name..">
             </div>
         </div>
         <div class="row">

@@ -10,7 +10,7 @@
             <label for="crop_name">Crop Name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="crop_name" name="crop_name" placeholder="Crop name..">
+            <input type="text" id="crop_name" name="crop_name" required placeholder="Crop name..">
             </div>
         </div>
         <!-- <div class="row">
@@ -60,7 +60,7 @@
             <label for="harvest_per_land">Harvest Per Land (Kg)</label>
             </div>
             <div class="col-75">
-            <input type="number" id="harvest_per_land" name="harvest_per_land" placeholder="Harvest per land(Kg)..">
+            <input type="number" id="harvest_per_land" name="harvest_per_land" required placeholder="Harvest per land(Kg)..">
             </div>
         </div>
         <div class="row">
@@ -68,7 +68,7 @@
             <label for="harvest_period">Harvest Period (Days)</label>
             </div>
             <div class="col-75">
-            <input type="number" id="harvest_period" name="harvest_period" placeholder="Harvest period in days">
+            <input type="number" id="harvest_period" name="harvest_period" required placeholder="Harvest period in days">
             </div>
         </div>
         <div class="row">

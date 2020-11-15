@@ -52,7 +52,7 @@ class Vendor extends Controller{
         $this->view->rendor('vendor/placeaOffer',$data);
     }
 
-      public function offer($aId)
+    public function offer($aId)
     {
         $data['Vid'] = Session::get('id');
         $data['aId'] =  $aId;
@@ -63,15 +63,14 @@ class Vendor extends Controller{
 
     public function updateOffer($id)
     {
-        $data['adid']= $id;
+        $data['reqid']= $id;
         $this->view->rendor('vendor/updateOffer',$data);
     }
 
-    public function update($adid)
+    public function update($reqid)
     {
-        $data['Vid'] = Session::get('id');
-        $data['Adid'] =  $adid;
-        $data['Ammount'] =  $_POST['ammount'];
+        $data['reqid'] =  $reqid;
+        $data['amount'] =  $_POST['ammount'];
         $this->model-> updateOffer($data);
         header('location: ' . URL . 'vendor/index');
     }

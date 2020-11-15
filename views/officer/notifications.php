@@ -9,9 +9,24 @@
 
 <div id="tab1C" class="tabContainer">
     <dl class="notification">
-        <dd>20-02-2020</dd>
+        <dd>04-02-2020</dd>
+        <dd>06.00 AM</dd>
+        <dd>Amila Jayapla send a damage claims (1 hectare, pumpkin, Hambantota-south) </dd>
+    </dl>
+    <dl class="notification">
+        <dd>10-02-2020</dd>
         <dd>10.00 AM</dd>
         <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
+    </dl>
+    <dl class="notification">
+        <dd>10-02-2020</dd>
+        <dd>11.00 AM</dd>
+        <dd>Your annual farmer report is ready to download </dd>
+    </dl>
+    <dl class="notification">
+        <dd>20-02-2020</dd>
+        <dd>10.00 AM</dd>
+        <dd>Wijedasa Karunanayake submitted a crop request (Pumpking, 1MT, 6 weeks, below-demand) </dd>
     </dl>
     <dl class="notification">
         <dd>20-02-2020</dd>
@@ -19,14 +34,19 @@
         <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
     </dl>
     <dl class="notification">
-        <dd>20-02-2020</dd>
-        <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
+        <dd>04-02-2020</dd>
+        <dd>06.00 AM</dd>
+        <dd>Amila Jayapla send a damage claims (1 hectare, pumpkin, Hambantota-south) </dd>
+    </dl>
+    <dl class="notification">
+        <dd>10-02-2020</dd>
+        <dd>11.00 AM</dd>
+        <dd>Your annual farmer report is ready to download </dd>
     </dl>
     <dl class="notification">
         <dd>20-02-2020</dd>
         <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
+        <dd>Wijedasa Karunanayake submitted a crop request (Pumpking, 1MT, 6 weeks, below-demand) </dd>
     </dl>
     <dl class="notification">
         <dd>20-02-2020</dd>
@@ -37,17 +57,32 @@
 
 <div id="tab2C" class="tabContainer">
     <dl class="notification">
-        <dd>12-01-2020</dd>
+        <dd>10-02-2020</dd>
+        <dd>11.00 AM</dd>
+        <dd>Your annual farmer report is ready to download </dd>
+    </dl>
+    <dl class="notification">
+        <dd>20-02-2020</dd>
+        <dd>10.00 AM</dd>
+        <dd>Wijedasa Karunanayake submitted a crop request (Pumpking, 1MT, 6 weeks, below-demand) </dd>
+    </dl>
+    <dl class="notification">
+        <dd>20-02-2020</dd>
         <dd>10.00 AM</dd>
         <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
     </dl>
     <dl class="notification">
-        <dd>12-01-2020</dd>
-        <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
+        <dd>10-02-2020</dd>
+        <dd>11.00 AM</dd>
+        <dd>Your annual farmer report is ready to download </dd>
     </dl>
     <dl class="notification">
-        <dd>12-01-2020</dd>
+        <dd>20-02-2020</dd>
+        <dd>10.00 AM</dd>
+        <dd>Wijedasa Karunanayake submitted a crop request (Pumpking, 1MT, 6 weeks, below-demand) </dd>
+    </dl>
+    <dl class="notification">
+        <dd>20-02-2020</dd>
         <dd>10.00 AM</dd>
         <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
     </dl>

@@ -68,7 +68,7 @@
                 <td> <?= $dmgClaim['damageAmt'];?></td>
                 <td>
                     <a class="mini-button btn"> <i class="fas fa-check-circle"></i> Accept</a> 
-                    <a class="btn mini-button warning   "href="#"><i class="fas fa-edit"></i> Edit Claim</a>
+                    <a class="btn mini-button warning" href="<?= URL; ?>officer/editDmg"><i class="fas fa-edit"></i> Edit Claim</a>
                     <a class="btn mini-button danger"><i class="fas fa-times-circle"></i> Reject</a>
                 </td>
             </tr>

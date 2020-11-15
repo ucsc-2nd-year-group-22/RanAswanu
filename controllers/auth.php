@@ -42,7 +42,7 @@ class Auth extends Controller {
             // echo "<a href='$url'>$url</a>";
 
             // U => Toadys date in seconds since 1970
-            $expires = date("U") + 1800;        // 1 hour
+            $expires = date("U") + 600;        // expires in 10 minutes
 
             $this->model->deleteOldTokens($userEmail);
             $hashedToken = password_hash($token, PASSWORD_DEFAULT);

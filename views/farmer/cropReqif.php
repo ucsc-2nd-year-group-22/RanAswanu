@@ -129,7 +129,7 @@
 
                 <!--<td><?= $cropreq['otherdetails'];?> </td>  -->
 
-                <td>
+                <td width="16%">
                    <!-- <a href="<?php echo URL .'farmer/editcropReq/'.$cropreq['cropreqid']; ?>" class="mini-button normal"><i class="fas fa-eye"> View</i></a>   -->
                     <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to edit this crop request data?');" href="<?php echo URL . 'farmer/editcropReq/' . $cropreq['cropreqid'] ;?>"><i class="fas fa-edit"></i>Edit</a>  
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this crop request data?');" href="<?php echo URL . '/farmer/deletecropreq/' . $cropreq['cropreqid'] ;?>"><i class="fa fa-trash"></i>Delete</a>

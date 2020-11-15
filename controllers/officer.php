@@ -162,8 +162,8 @@ class Officer extends Controller {
             'address' => 'dimuthudhanushka8@gmail.com',
         ];
 
-        $mymail = new Email();
-        $mymail->sendmail($mailInfo);
+        // $mymail = new Email();
+        // $mymail->sendmail($mailInfo);
 
     }
 

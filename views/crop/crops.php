@@ -40,12 +40,12 @@
 
         <!-- Comment pane 3 & 4 If they are empty -->
 
-        <div class="pane3">
+        <!-- <div class="pane3">
             <label>Empty pane</label>
         </div>
         <div class="pane4">
             <label>Empty pane</label>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -80,13 +80,13 @@
                 </select>
             </td>
             <td>
-                <a href="<?php echo URL .'crop/varients/'.$cropItem['id']; ?>" class="mini-button normal"><i class="fas fa-eye"> Config</i></a> 
+            <a href="<?php echo URL .'crop/varients/'.$cropItem['id']; ?>" class="mini-button warning btn"><i class="fas fa-eye"> </i> Config</a> 
             </td>
             <td>
-                <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal"><i class="fas fa-eye"> View</i></a> 
+                <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal btn"><i class="fas fa-eye"> </i> View</a> 
             </td>
             <td>
-                <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" class="mini-button danger"><i class="fas fa-trash"> Remove</i></a> 
+            <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" class="mini-button danger btn"><i class="fas fa-trash"> </i> Remove </a> 
             </td>
         </tr>
 <?php endforeach;?>

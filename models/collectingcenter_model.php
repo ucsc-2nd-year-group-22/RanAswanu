@@ -8,7 +8,8 @@ class CollectingCenter_Model extends Model {
     
     //register new collecting center into the  database col. center table
     public function create($data){  
-        $st = $this->db->prepare("INSERT INTO colcenter (`center_name`, `province`, `district`, `grama`) VALUES (:center_name, :province, :district, :grama)");
+        // print_r($data);
+        $st = $this->db->prepare("INSERT INTO `colcenter` (`center_name`, `province`, `district`, `grama`) VALUES (:center_name, :province, :district, :grama)");
         $st->execute(array(
             ':center_name' => $data['center_name'],
             ':province' => $data['province'],

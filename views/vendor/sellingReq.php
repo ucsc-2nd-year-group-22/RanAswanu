@@ -100,30 +100,34 @@
             <th>Weight</th>
             <th>Price</th>
             <th>District</th>
-            <th>Date</th>
+            <!--<th>Date</th> -->
             <th>Action</th>
-            <th>Profile</th>
+            <th>View Profile</th>
             
         </tr>
 <?php $i = 0; foreach($Req as $dt) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?= $dt['fid'];?> </td>
+            <td><?= $dt['id'];?> </td>
            <!-- <td><?= $dt['name'];?> </td> --> 
-            <td> <?=$dt['crop'];?></td>
+            <td> <?=$dt['selectCrop'];?></td>
             <td> <?=$dt['weight'];?></td>
-             <td> <?=$dt['price'];?></td>
-              <td> <?=$dt['district'];?></td>
-            <td> <?=$dt['date'];?></td>
+            <td> <?=$dt['exprice'];?></td>
+            <td> <?=$dt['district'];?></td>
+            <!--<td> <?=$dt['date'];?></td> -->
             <td>
-                <a href="<?php echo URL. 'vendor/placeaOffer'?>" class="mini-button normal">Offer</a>  
+                <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['cropsid']?>" class="mini-button normal">Offer</a>  
+                <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this request?');" href="<?php echo URL . 'vendor/updateOffer/' . $dt['cropsid'] ;?>">Update Offer</a>
+                <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this offer?');" href="<?php echo URL . '/vendor/deleteOffer/' . $dt['cropsid'] ;?>">Delete Offer</a>  
+           
             </td>
-            <td>
-                  <a  class="mini-button normal" href="<?php echo URL . 'vendor/viewFarmer/'. $dt['fid'] ;?>">View Profile</a>  
-            </td>    
-             
-              
-        
+          
+            <td style="text-align:left;">
+                <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $dt['id'] ;?>"> 
+                    <i class="fas fa-address-card"></i>
+                </a>
+            </td>     
+    
         </tr>
 <?php endforeach;?>
     </table>

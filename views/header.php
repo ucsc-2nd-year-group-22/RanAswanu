@@ -77,14 +77,14 @@
 
                     <!-- Vendor configurations for the navigation bar =============================================================== -->
                     <?php elseif(Session::get('role') == 'vendor'): ?>
-                        <li><a href="<?php echo URL; ?>vendor/index" class="<?php View::getActivePage('sellingReq'); ?>">Buy Crops</a></li>
+                        <li><a href="<?php echo URL; ?>vendor/index" class="<?php View::getActivePage('index'); ?>">Buy Crops</a></li>
 
                         <!-- Farmer configurations for the navigation bar =============================================================== -->
                     <?php elseif ((Session::get('role') == 'farmer')): ?>
-                        <li><a href="<?php echo URL; ?>farmer/sellyourcrops" class="<?php View::getActivePage('sellyourcrops'); ?>">Sell Crops</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/sellyourcropsif" class="<?php View::getActivePage('sellyourcropsif'); ?>">Sell Crops</a></li>
                         <li><a href="<?php echo URL; ?>farmer/vendOffers" class="<?php View::getActivePage('vendOffers'); ?>">Vendor Offers</a></li>
-                        <li><a href="<?php echo URL; ?>farmer/damageclaim" class="<?php View::getActivePage('damageclaim'); ?>">Damage Claims</a></li>
-                        <li><a href="<?php echo URL; ?>farmer/cropReq" class="<?php View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/damageclaimif" class="<?php View::getActivePage('damageclaimif'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/cropReqif" class="<?php View::getActivePage('cropReqif'); ?>">Crop Requests</a></li>
 
                 <?php endif ?>
 
@@ -94,7 +94,7 @@
             </nav>
             <?php if(Session::get('loggedIn') == true): ?>
             <div class="dropdown" >
-                <button class="header-popup-btn"><?php echo substr(Session::get('firstname'),0, 5); ?></button>
+                <button class="header-popup-btn"><?php echo substr(Session::get('firstname'),0, 9); ?></button>
                 <div class="dropdown-content right-menu">
                     <a href="<?php echo URL . 'user/viewUser/' . Session::get('id') ?>"><i class="fas fa-user-circle"></i> My Profile</a>
                     <a href="#"><i class="fas fa-cog"></i> My Settings</a>

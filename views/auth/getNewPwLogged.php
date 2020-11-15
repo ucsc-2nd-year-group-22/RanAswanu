@@ -1,3 +1,4 @@
+<h2> Update Your Password </h2>
 <script src="<?php echo URL;?>views/auth/js/default.js"></script>
 
 <!-- Show error if set -->

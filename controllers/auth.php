@@ -44,13 +44,13 @@ class Auth extends Controller {
             // U => Toadys date in seconds since 1970
             $expires = date("U") + 1800;        // 1 hour
 
-
             $this->model->deleteOldTokens($userEmail);
             $hashedToken = password_hash($token, PASSWORD_DEFAULT);
             $this->model->insertNewToken($userEmail, $selector, $hashedToken, $expires);
 
             // Send the link to the mail
             $mailbody = "<div style='background:#eee;font-size:1.2em;padding:10px;font-family:sans-serif;'>";
+            $mailbody .= '<img src="https://i.ibb.co/PxCGB1W/logo.png" alt="logo" border="0" style="width:200px;margin:auto; width:200px;">';
             $mailbody .= "<p>We recievied a password reset request. The link to reset your password is below. If you did not make this request you can ignore this email.<p>";
             $mailbody .= "<a href='$url'>$url</a>";
             $mailbody .= "</div>";
@@ -59,11 +59,9 @@ class Auth extends Controller {
                 'subject' => 'Reset your password for Ran Aswanu',
                 'address' => $userEmail,
             ];
-    
             $mymail = new Email();
             $mymail->sendmail($mailInfo);
     
-            
             header("Location: ".URL."auth/resetPw?reset=success");
 
         } else {
@@ -107,9 +105,7 @@ class Auth extends Controller {
                 // handle conflicting pwds
                 header("Location:".URL."auth/createNewPw/$selector/$validator?newpw=notsame");
                 exit();
-            } 
-
-
+            }
 
             $resetResult = $this->model->getPwSelector($selector, $validator);
             if($resetResult == 0) {
@@ -134,7 +130,6 @@ class Auth extends Controller {
                 Session::set('alert', 'Your password has been reset!');
                 header("Location:".URL."user/login");
             } 
-
 
         } else {
             header("Location :".URL);

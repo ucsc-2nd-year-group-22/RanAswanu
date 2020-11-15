@@ -111,7 +111,7 @@
         <?php $i = 0; foreach($sellurcropsData as $sellurcrops) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewsellyourcrops/' . $sellurcrops['cropsid'] ;?>"> <i class="far fa-address-card"></i></a></td>
+                <td style="text-align:center;"><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'farmer/viewsellyourcrops/' . $sellurcrops['aId'] ;?>"> <i class="far fa-address-card"></i></a></td>
                 <td>
                     <!--<?= $sellurcrops['province'];?>->   -->
                     <?= $sellurcrops['district'];?> 
@@ -123,8 +123,8 @@
                 <td><?= $sellurcrops['exprice'];?> </td>
                 <td><?= $sellurcrops['weight'];?> </td>
                 <td>
-                    <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to edit this sellcrops data?');" href="<?php echo URL . 'farmer/editsellyourcrops/' . $sellurcrops['cropsid'] ;?>"><i class="fas fa-edit"></i>Edit</a>
-                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this sellcrops data?');" href="<?php echo URL . '/farmer/deletesellcrops/' . $sellurcrops['cropsid'] ;?>"><i class="fa fa-trash"></i>Delete</a>
+                    <a type="button" class="mini-button btn-success" onclick="return confirm('Are you sure you want to edit this sellcrops data?');" href="<?php echo URL . 'farmer/editsellyourcrops/' . $sellurcrops['aId'] ;?>"><i class="fas fa-edit"></i>Edit</a>
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this sellcrops data?');" href="<?php echo URL . '/farmer/deletesellcrops/' . $sellurcrops['aId'] ;?>"><i class="fa fa-trash"></i>Delete</a>
                 </td>
 
         <!--        <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Delete</button> </td>   -->

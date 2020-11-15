@@ -3,7 +3,11 @@
 
 <div class="subHeader">
 <?php if(Session::get('role')== 'admin'):?>
-    <h1><i class="fas fa-user-edit"></i> Admin & Officer Edit</h1>
+    <?php if($this->user['role'] == 'vendor'){  ?>
+        <h1><i class="fas fa-user-edit"></i> View vendor</h1>
+    <?php }else{ ?>
+        <h1><i class="fas fa-user-edit"></i> Admin & Officer Edit</h1>
+    <?php } ?>
 <?php elseif(Session::get('role') == 'officer'): ?>
     <?php if(Session::get('id') == $id): ?>
         <h1><i class="fas fa-user-edit"></i> Edit My Profile</h1>

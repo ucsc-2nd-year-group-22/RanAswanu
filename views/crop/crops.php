@@ -86,7 +86,7 @@
                 <a href="<?php echo URL .'crop/edit/'.$cropItem['id']; ?>" class="mini-button normal btn"><i class="fas fa-eye"> </i> View</a> 
             </td>
             <td>
-            <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" class="mini-button danger btn"><i class="fas fa-trash"> </i> Remove </a> 
+            <a href="<?php echo URL .'crop/delete/'.$cropItem['id']; ?>" onclick="return confirm('Are you sure you want to delete this crop?');" class="mini-button danger btn"><i class="fas fa-trash"> </i> Remove </a> 
             </td>
         </tr>
 <?php endforeach;?>

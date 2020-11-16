@@ -72,7 +72,7 @@
                 <a href="<?php echo URL .'user/edit/'.$officer['id']; ?>" class="mini-button normal">View</a>
             </td>
             <td>
-                <a href="<?php echo URL .'user/delete/'.$officer['id']; ?>" class="mini-button danger">Remove</a> 
+                <a href="<?php echo URL .'user/delete/'.$officer['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?');" class="mini-button danger">Remove</a> 
             </td>
         </tr>
 <?php endforeach;?>

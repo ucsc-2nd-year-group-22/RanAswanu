@@ -86,15 +86,16 @@ class User_Model extends Model {
             ':user_name' => $_POST['user_name'],
             ':password' => $_POST['password']
         ));
-
         $data = $st->fetch();
+        // echo 'hello';
+        // print_r($data);
 
         $count = $st->rowCount();
         if($count > 0) {
             // login
             Session::init();
-            Session::set('id', $data['id']);
-            Session::set('firstname', $data['firstname']);
+            Session::set('id', $data['user_id']);
+            Session::set('firstname', $data['first_name']);
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             Session::set('isadmin', $data['isadmin']);

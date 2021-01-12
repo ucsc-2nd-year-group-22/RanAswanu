@@ -81,9 +81,9 @@ class User_Model extends Model {
 
     //make user logged into the system
     public function loginto() {
-        $st = $this->db->prepare("SELECT id, role, isadmin, firstname FROM users WHERE login= :login AND password = MD5(:password) ");
+        $st = $this->db->prepare("SELECT user_id, role, isadmin, first_name FROM user WHERE user_name = :user_name AND password = MD5(:password) ");
         $st->execute(array(
-            ':login' => $_POST['login'],
+            ':user_name' => $_POST['user_name'],
             ':password' => $_POST['password']
         ));
 

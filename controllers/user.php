@@ -181,12 +181,12 @@ class User extends Controller {
         header('location: '. URL .'user/login');
     }
 
-    function viewUser($id) {
+    function viewUser($user_id) {
 
-        $userData = $this->model->userSingleList($id);
+        $userData = $this->model->userSingleList($user_id);
         $data['userData'] = $userData;
         $data['role'] = $userData['role'];
-        $data['id'] = $userData['id'];
+        $data['user_id'] = $userData['user_id'];
         $data['loggedIn'] = Session::get('loggedIn');
         $this->destroyActivePage();
         $this->view->rendor('user/profile', $data);

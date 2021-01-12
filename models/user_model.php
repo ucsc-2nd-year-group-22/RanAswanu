@@ -94,8 +94,8 @@ class User_Model extends Model {
         if($count > 0) {
             // login
             Session::init();
-            Session::set('id', $data['user_id']);
-            Session::set('firstname', $data['first_name']);
+            Session::set('user_id', $data['user_id']);
+            Session::set('first_name', $data['first_name']);
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             Session::set('isadmin', $data['isadmin']);
@@ -127,11 +127,11 @@ class User_Model extends Model {
     }
 
     //fetching a single user
-    public function userSingleList($id){
+    public function userSingleList($user_id){
         
-        $st = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $st = $this->db->prepare("SELECT * FROM user WHERE user_id = :user_id");
         $st->execute(array(
-            ':id' => $id,
+            ':user_id' => $user_id,
         ));
         return $st->fetch();
     }

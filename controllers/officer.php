@@ -37,29 +37,29 @@ class Officer extends Controller {
                 'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
-                'farmer' => "Nimal Siripala",
-                'crop' => "Potatoe-CG1",
-                'period' => "7 weeks",
-                'area' => "Udawalawe-north",
-                'harvest' => "1.2 MT",
+                'farmer' => "Namal Wijesuriya",
+                'crop' => "Potatoe-CG5",
+                'period' => "6 weeks",
+                'area' => "Horowpathana",
+                'harvest' => "1.0 MT",
                 'demand' => "Below",
                 'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
-                'farmer' => "Nimal Siripala",
+                'farmer' => "Sunil Ariyarthne",
                 'crop' => "Potatoe-CG1",
                 'period' => "7 weeks",
-                'area' => "Udawalawe-north",
-                'harvest' => "1.2 MT",
-                'demand' => "Below",
+                'area' => "Ambanpola-south",
+                'harvest' => "600 Kg",
+                'demand' => "Above",
                 'dateTime' => "10-05-2020 | 10.00 AM"
             ],
             [
-                'farmer' => "Nimal Siripala",
-                'crop' => "Potatoe-CG1",
-                'period' => "7 weeks",
-                'area' => "Udawalawe-north",
-                'harvest' => "1.2 MT",
+                'farmer' => "Suresh Punchihewa",
+                'crop' => "Cucumber-T.S.1",
+                'period' => "8 weeks",
+                'area' => "Suriyawawa",
+                'harvest' => "3.2 MT",
                 'demand' => "Below",
                 'dateTime' => "10-05-2020 | 10.00 AM"
             ],

@@ -16,13 +16,13 @@
 
 
 <div class="main-form">
-    <form action="<?php if ($role == Session::get('role')) echo URL . "user/edit/" . Session::get('id')?>" method="post">
+    <form action="<?php if ($role == Session::get('role')) echo URL . "user/edit/" . Session::get('user_id')?>" method="post">
         <div class="row">
             <div class="col-25">
-                <label for="fname">First name</label>
+                <label for="fname">First name <?php echo Session::get('user_id'); ?></label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['firstname'] ?></b></label>
+                <label><b> <?= $userData['first_name'] ?></b></label>
             </div>
         </div>
         <div class="row">
@@ -30,18 +30,18 @@
                 <label for="fname">Last name</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['lastname'] ?></b></label>
+                <label><b> <?= $userData['last_name'] ?></b></label>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="fname">Login (Username)</label>
+                <label for="fname">Username</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['login'] ?></b></label>
+                <label><b> <?= $userData['user_name'] ?></b></label>
             </div>
         </div>
-        <?php if(Session::get('id') == $id): ?>
+        <?php if(Session::get('user_id') == $user_id): ?>
         <div class="row">
             <div class="col-25">
             <label for="login">Passowrd</label>
@@ -136,7 +136,7 @@
         
         <?php endif;?>
 
-        <?php if((Session::get('isadmin') == '0' && Session::get('role') == 'officer') && Session::get('id')!=$id): ?>
+        <?php if((Session::get('isadmin') == '0' && Session::get('role') == 'officer') && Session::get('user_id')!=$user_id): ?>
         <div class="row">
             <div class="col-25">
             
@@ -148,7 +148,7 @@
         <?php endif;?>
     </form>
 </div>
-<?php if(Session::get('id') == $id): ?>
+<?php if(Session::get('user_id') == $user_id): ?>
 <p style="font-size:.9em;width:100%; background:#fff; padding:20px; margin-top:10px; text-align:center;">
     Please note that after updating, some changes may take effect when you login to the system next time
 </p>

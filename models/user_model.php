@@ -81,20 +81,21 @@ class User_Model extends Model {
 
     //make user logged into the system
     public function loginto() {
-        $st = $this->db->prepare("SELECT id, role, isadmin, firstname FROM users WHERE login= :login AND password = MD5(:password) ");
+        $st = $this->db->prepare("SELECT user_id, role, isadmin, first_name FROM user WHERE user_name = :user_name AND password = MD5(:password) ");
         $st->execute(array(
-            ':login' => $_POST['login'],
+            ':user_name' => $_POST['user_name'],
             ':password' => $_POST['password']
         ));
-
         $data = $st->fetch();
+        // echo 'hello';
+        // print_r($data);
 
         $count = $st->rowCount();
         if($count > 0) {
             // login
             Session::init();
-            Session::set('id', $data['id']);
-            Session::set('firstname', $data['firstname']);
+            Session::set('user_id', $data['user_id']);
+            Session::set('first_name', $data['first_name']);
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             Session::set('isadmin', $data['isadmin']);
@@ -126,11 +127,11 @@ class User_Model extends Model {
     }
 
     //fetching a single user
-    public function userSingleList($id){
+    public function userSingleList($user_id){
         
-        $st = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $st = $this->db->prepare("SELECT * FROM user WHERE user_id = :user_id");
         $st->execute(array(
-            ':id' => $id,
+            ':user_id' => $user_id,
         ));
         return $st->fetch();
     }

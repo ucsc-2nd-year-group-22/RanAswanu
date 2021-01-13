@@ -15,7 +15,7 @@
           <img src="<?= URL ?>public/img/logo.png" width="250px" >
         </div>
         <div class="col-center">
-          <input type="text" placeholder="Enter Username" name="login" required>
+          <input type="text" placeholder="Enter Username" name="user_name" required>
         </div>
         <div class="col-center">
           <input type="password" placeholder="Enter Password"  name="password" required>

@@ -187,10 +187,11 @@ class User extends Controller {
 
         $userData = $userAllData['user'];
         $userTel = $userAllData['userTel'];
-
+        $userLocationData = $userAllData['locationData'];
         // $data is passed to the view
         $data['userTel'] = $userTel;
         $data['userData'] = $userData;
+        $data['userLocationData'] = $userLocationData;
         $data['role'] = $userData['role'];
         $data['user_id'] = $userData['user_id'];
         $data['loggedIn'] = Session::get('loggedIn');

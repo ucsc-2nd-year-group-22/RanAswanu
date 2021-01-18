@@ -106,7 +106,7 @@
                 <label for="fname">Province</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['province'] ?></b></label>
+                <label><b> <?= $userLocationData['province_name']; ?></b></label>
             </div>
         </div>
         <div class="row">
@@ -114,7 +114,7 @@
                 <label for="fname">Disttict</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['district'] ?></b></label>
+                <label><b> <?= $userLocationData['ds_name']; ?></b></label>
             </div>
         </div>
         <div class="row">
@@ -122,7 +122,7 @@
                 <label for="fname">Gramasewa division</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['grama'] ?></b></label>
+                <label><b> <?= $userLocationData['gs_name']; ?></b></label>
             </div>
         </div>
 

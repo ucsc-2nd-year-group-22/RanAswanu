@@ -139,14 +139,24 @@ class User_Model extends Model {
             ':user_id' => $user_id,
         ));
 
-
-
+        $getLocationData = $this->db->prepare(
+            "SELECT gramasewa_division.gs_name, divisional_secratariast.ds_name, district.ds_name, province.province_name FROM gramasewa_division 
+            JOIN user on user.gs_id = gramasewa_division.gs_id 
+            JOIN divisional_secratariast on gramasewa_division.ds_id = divisional_secratariast.ds_id
+            JOIN district on divisional_secratariast.district_id = district.district_id
+            JOIN province on province.province_id = district.province_id
+            WHERE user.user_id = :user_id;");
+        $getLocationData->execute(array(
+            ':user_id' => $user_id,
+        ));
+       
+        $data['locationData'] = $getLocationData->fetch();
         $data['user'] = $getUserSql->fetch();
         $data['userTel'] = $getTel->fetchAll(PDO::FETCH_COLUMN);        // FETCH_CULUMN : To return an array that contains a single column from all of the remaining rows in the result set
         // https://www.ibm.com/support/knowledgecenter/SSEPGG_11.5.0/com.ibm.swg.im.dbclient.php.doc/doc/t0023505.html
 
-        // print_r($data['userTel']);
-        // echo "<hr> " .  $data['userTel'][0];
+        // print_r($data['locationData']);
+        // echo "<hr> " .  $data['locationData']['province_name'];
         return $data;
     }
 

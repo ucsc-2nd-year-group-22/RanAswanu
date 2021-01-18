@@ -129,11 +129,25 @@ class User_Model extends Model {
     //fetching a single user
     public function userSingleList($user_id){
         
-        $st = $this->db->prepare("SELECT * FROM user WHERE user_id = :user_id");
-        $st->execute(array(
+        $getUserSql = $this->db->prepare("SELECT * FROM user WHERE user_id = :user_id");
+        $getUserSql->execute(array(
             ':user_id' => $user_id,
         ));
-        return $st->fetch();
+
+        $getTel = $this->db->prepare("SELECT `user_tel`.`tel_no` FROM `user_tel` JOIN `user` ON `user_tel`.`user_id` = `user`.`user_id` WHERE `user`.`user_id` = :user_id");
+        $getTel->execute(array(
+            ':user_id' => $user_id,
+        ));
+
+
+
+        $data['user'] = $getUserSql->fetch();
+        $data['userTel'] = $getTel->fetchAll(PDO::FETCH_COLUMN);        // FETCH_CULUMN : To return an array that contains a single column from all of the remaining rows in the result set
+        // https://www.ibm.com/support/knowledgecenter/SSEPGG_11.5.0/com.ibm.swg.im.dbclient.php.doc/doc/t0023505.html
+
+        // print_r($data['userTel']);
+        // echo "<hr> " .  $data['userTel'][0];
+        return $data;
     }
 
 } 

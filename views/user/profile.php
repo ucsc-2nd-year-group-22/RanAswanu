@@ -64,7 +64,9 @@
                 <label for="fname">Contact number</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['tel'] ?></b></label>
+            <?php foreach($userTel as $telno): ?>
+                <label><b><?php echo $telno; ?></b></label></br>
+            <?php endforeach; ?>
             </div>
         </div>
         <div class="row">

@@ -183,12 +183,19 @@ class User extends Controller {
 
     function viewUser($user_id) {
 
-        $userData = $this->model->userSingleList($user_id);
+        $userAllData = $this->model->userSingleList($user_id);          //$userAllData contains all the data about user, (user + userTel + ...), used joins in sql
+
+        $userData = $userAllData['user'];
+        $userTel = $userAllData['userTel'];
+
+        // $data is passed to the view
+        $data['userTel'] = $userTel;
         $data['userData'] = $userData;
         $data['role'] = $userData['role'];
         $data['user_id'] = $userData['user_id'];
         $data['loggedIn'] = Session::get('loggedIn');
         $this->destroyActivePage();
+        
         $this->view->rendor('user/profile', $data);
     }
 

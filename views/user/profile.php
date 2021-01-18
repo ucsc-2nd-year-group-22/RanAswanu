@@ -119,6 +119,14 @@
         </div>
         <div class="row">
             <div class="col-25">
+                <label for="fname">Divisional Secratariast</label>
+            </div>
+            <div class="col-75">
+                <label><b> <?= $userLocationData['div_name']; ?></b></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
                 <label for="fname">Gramasewa division</label>
             </div>
             <div class="col-75">

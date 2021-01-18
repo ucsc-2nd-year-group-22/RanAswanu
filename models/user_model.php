@@ -140,7 +140,7 @@ class User_Model extends Model {
         ));
 
         $getLocationData = $this->db->prepare(
-            "SELECT gramasewa_division.gs_name, divisional_secratariast.ds_name, district.ds_name, province.province_name FROM gramasewa_division 
+            "SELECT gramasewa_division.gs_name, divisional_secratariast.ds_name AS div_name, district.ds_name, province.province_name FROM gramasewa_division 
             JOIN user on user.gs_id = gramasewa_division.gs_id 
             JOIN divisional_secratariast on gramasewa_division.ds_id = divisional_secratariast.ds_id
             JOIN district on divisional_secratariast.district_id = district.district_id

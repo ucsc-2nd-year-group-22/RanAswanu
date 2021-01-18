@@ -20,6 +20,8 @@ class User extends Controller {
     public function index() {
         $this->view->userList = $this->model->userList();
         $role = Session::get('role');
+        $loggedIn = Session::get('loggedIn');
+        
         if($role == 'admin') {
             header('Location: admin');
         }else if($role == 'officer'){
@@ -27,8 +29,10 @@ class User extends Controller {
         }else if($role == 'farmer'){
             header('Location: farmer');
         }
+        if($loggedIn == false) {
 
-        $this->view->rendor('user/index');
+            $this->view->rendor('user/index');
+        }
     }
 
     //route to the register user
@@ -167,7 +171,11 @@ class User extends Controller {
     //route to the user/login
     public function login(){
         $this->destroyActivePage();
-        $this->view->rendor('user/login');
+        if(Session::get('loggedIn') == false) {
+            $this->view->rendor('user/login');
+        } else {
+            $this->view->rendor('error/403');
+        }
     }
     //login to the syetem
     public function loginusr(){

@@ -22,7 +22,7 @@
         </div>
         <div class="col-center">
           <div class="col-half-left">
-            <input type="checkbox" <?php if(isset($_COOKIE["member_login"])) echo "checked"; ?> name="remember" id="remember"> Remember me
+            <input type="checkbox" <?php if(isset($_COOKIE["member_login"])) echo "checked"; ?> name="remember" id="remember"> Remember Me
           </div>
           <div class="col-half-right">
             <a href="<?= URL ?>auth/resetPw">Forgot Password ?</a>

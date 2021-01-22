@@ -99,7 +99,17 @@ class User_Model extends Model {
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             Session::set('isadmin', $data['isadmin']);
-            echo Session::get('role');
+
+            // echo Session::get('role');
+
+            if(!empty($_POST['remember'])) {
+                setcookie("member_login", $_POST['user_name'], time() + (10 * 365 * 24 * 60 * 60));
+            } else {
+                if(isset($_COOKIE['member_login'])) {
+                    setcookie("member_login", "");
+                }
+            }
+
             switch (Session::get('role')) {
                 case 'officer':
                     header('location: ' . URL . 'officer/cropReq');

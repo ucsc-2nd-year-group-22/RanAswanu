@@ -170,6 +170,7 @@ class User extends Controller {
 
     //route to the user/login
     public function login(){
+      
         $this->destroyActivePage();
         if(Session::get('loggedIn') == false) {
             $this->view->rendor('user/login');

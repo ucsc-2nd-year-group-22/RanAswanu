@@ -64,7 +64,9 @@
                 <label for="fname">Contact number</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['tel'] ?></b></label>
+            <?php foreach($userTel as $telno): ?>
+                <label><b><?php echo $telno; ?></b></label></br>
+            <?php endforeach; ?>
             </div>
         </div>
         <div class="row">
@@ -104,7 +106,7 @@
                 <label for="fname">Province</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['province'] ?></b></label>
+                <label><b> <?= $userLocationData['province_name']; ?></b></label>
             </div>
         </div>
         <div class="row">
@@ -112,7 +114,15 @@
                 <label for="fname">Disttict</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['district'] ?></b></label>
+                <label><b> <?= $userLocationData['ds_name']; ?></b></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="fname">Divisional Secratariast</label>
+            </div>
+            <div class="col-75">
+                <label><b> <?= $userLocationData['div_name']; ?></b></label>
             </div>
         </div>
         <div class="row">
@@ -120,7 +130,7 @@
                 <label for="fname">Gramasewa division</label>
             </div>
             <div class="col-75">
-                <label><b> <?= $userData['grama'] ?></b></label>
+                <label><b> <?= $userLocationData['gs_name']; ?></b></label>
             </div>
         </div>
 

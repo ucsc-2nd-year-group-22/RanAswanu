@@ -20,6 +20,8 @@ class User extends Controller {
     public function index() {
         $this->view->userList = $this->model->userList();
         $role = Session::get('role');
+        $loggedIn = Session::get('loggedIn');
+        
         if($role == 'admin') {
             header('Location: admin');
         }else if($role == 'officer'){
@@ -27,8 +29,10 @@ class User extends Controller {
         }else if($role == 'farmer'){
             header('Location: farmer');
         }
+        if($loggedIn == false) {
 
-        $this->view->rendor('user/index');
+            $this->view->rendor('user/index');
+        }
     }
 
     //route to the register user
@@ -166,8 +170,13 @@ class User extends Controller {
 
     //route to the user/login
     public function login(){
+      
         $this->destroyActivePage();
-        $this->view->rendor('user/login');
+        if(Session::get('loggedIn') == false) {
+            $this->view->rendor('user/login');
+        } else {
+            $this->view->rendor('error/403');
+        }
     }
     //login to the syetem
     public function loginusr(){
@@ -183,12 +192,20 @@ class User extends Controller {
 
     function viewUser($user_id) {
 
-        $userData = $this->model->userSingleList($user_id);
+        $userAllData = $this->model->userSingleList($user_id);          //$userAllData contains all the data about user, (user + userTel + ...), used joins in sql
+
+        $userData = $userAllData['user'];
+        $userTel = $userAllData['userTel'];
+        $userLocationData = $userAllData['locationData'];
+        // $data is passed to the view
+        $data['userTel'] = $userTel;
         $data['userData'] = $userData;
+        $data['userLocationData'] = $userLocationData;
         $data['role'] = $userData['role'];
         $data['user_id'] = $userData['user_id'];
         $data['loggedIn'] = Session::get('loggedIn');
         $this->destroyActivePage();
+        
         $this->view->rendor('user/profile', $data);
     }
 

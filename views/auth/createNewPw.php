@@ -22,6 +22,7 @@
         <input type="hidden" name="selector" value="<?php echo $selector ?>">
         <input type="hidden" name="token" value="<?php echo $validator ?>">
         <input type="hidden" name="email" value="<?php echo Session::get('email') ?>">
+
     <!-- ------- -->
 
         <div class="row">

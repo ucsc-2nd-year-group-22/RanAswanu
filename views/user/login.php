@@ -15,14 +15,14 @@
           <img src="<?= URL ?>public/img/logo.png" width="250px" >
         </div>
         <div class="col-center">
-          <input type="text" placeholder="Enter Username" name="user_name" required>
+          <input type="text" placeholder="Enter Username" name="user_name" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" required>
         </div>
         <div class="col-center">
           <input type="password" placeholder="Enter Password"  name="password" required>
         </div>
         <div class="col-center">
           <div class="col-half-left">
-            <input type="checkbox" checked="checked" name="remember"> Remember me
+            <input type="checkbox" <?php if(isset($_COOKIE["member_login"])) echo "checked"; ?> name="remember" id="remember"> Remember Me
           </div>
           <div class="col-half-right">
             <a href="<?= URL ?>auth/resetPw">Forgot Password ?</a>

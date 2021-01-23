@@ -42,8 +42,8 @@
                                 <div class="dropdown">
                                     <a href="#">Change Role</a>
                                     <div class="dropdown-content">
-                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('id'); ?>">Admin</a>
-                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('id'); ?>">Officer</a>
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('user_id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('user_id'); ?>">Officer</a>
                                     </div>
                                 </div>
                             </li>
@@ -66,8 +66,8 @@
                                 <div class="dropdown">
                                     <a href="#">Change Role</a>
                                     <div class="dropdown-content">
-                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('id'); ?>">Admin</a>
-                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('id'); ?>">Officer</a>
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('user_id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('user_id'); ?>">Officer</a>
                                     </div>
                                 </div>
                             </li>

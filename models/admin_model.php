@@ -18,7 +18,7 @@ class Admin_Model extends Model {
     //update role to officer
     public function toofficer($data){
         
-        $st = $this->db->prepare('UPDATE users SET `role` = :role WHERE id = :id');
+        $st = $this->db->prepare('UPDATE user SET `role` = :role WHERE id = :id');
         $st->execute(array(
             ':id' => $data['id'],
             ':role' => $data['role']
@@ -28,7 +28,7 @@ class Admin_Model extends Model {
     //update role to admin
     public function toadmin($data){
         
-        $st = $this->db->prepare('UPDATE users SET `role` = :role WHERE id = :id');
+        $st = $this->db->prepare('UPDATE user SET `role` = :role WHERE id = :id');
         $st->execute(array(
             ':id' => $data['id'],
             ':role' => $data['role']

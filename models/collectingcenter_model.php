@@ -15,7 +15,7 @@ class CollectingCenter_Model extends Model
         $st = $this->db->prepare("INSERT INTO `collecting_center` (`center_name`, `district_id`) VALUES (:center_name, :district_id)");
         $st->execute(array(
             ':center_name' => $data['center_name'],
-            ':district_id' => $data['district']
+            ':district_id' => $data['district_id']
         ));
     }
 
@@ -64,6 +64,16 @@ class CollectingCenter_Model extends Model
     {
         $st = $this->db->prepare("SELECT province_id, province_name FROM province");
         $st->execute();
+        return $st->fetchAll();
+    }
+
+    //retrieve district list
+    public function getDistricts($id)
+    {
+        $st = $this->db->prepare("SELECT district_id, ds_name FROM district WHERE province_id = :id");
+        $st->execute(array(
+            ':id' => $id
+        ));
         return $st->fetchAll();
     }
 }

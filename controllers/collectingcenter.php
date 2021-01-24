@@ -32,9 +32,7 @@ class CollectingCenter extends Controller
         $data = array();
 
         $data['center_name'] = $_POST['center_name'];
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['grama'] = $_POST['grama'];
+        $data['district_id'] = $_POST['district'];
 
         // TODO: Do error checking
 
@@ -90,5 +88,12 @@ class CollectingCenter extends Controller
     {
         $this->model->delete($id);
         header('location: ' . URL . 'collectingcenter/collectingcenters');
+    }
+
+    //get districts
+    public function getDistricts($id)
+    {
+        $districts = $this->model->getDistricts($id);
+        echo json_encode($districts);
     }
 }

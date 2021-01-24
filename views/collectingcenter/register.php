@@ -19,6 +19,7 @@
             </div>
             <div class="col-75">
                 <select id="province" name="province">
+                    <option value="null"> -- SELECT PROVINCE -- </option>
                     <?php foreach ($provinces as $provinceItem) : ?>
                         <option value="<?= $provinceItem['province_id'] ?>"> <?= $provinceItem['province_name'] ?> </option>
                     <?php endforeach; ?>
@@ -31,51 +32,7 @@
             </div>
             <div class="col-75">
                 <select id="district" name="district">
-                    <?php $districts = [
-                        'Kalutara',
-                        'Anuradhapura',
-                        'Polonnaruwa',
-                        'Gampaha',
-                        'Matale',
-                        'Kandy',
-                        'NuwaraEliya',
-                        'Kegalle',
-                        'Ratnapura',
-                        'Hambantota',
-                        'Matara',
-                        'Galle',
-                        'Trincomalee',
-                        'Jaffna',
-                        'Kurunegala'
-                    ]; ?>
-
-                    <?php foreach ($districts as $districtItem) : ?>
-                        <option value="<?= $districtItem ?>"> <?= $districtItem ?> </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="grama">Gramasewa Division</label>
-            </div>
-            <div class="col-75">
-                <select id="grama" name="grama">
-                    <?php $gramas = [
-                        'Kurudupoththa',
-                        'Parakandeniya',
-                        'Mahiyanganaya',
-                        'Udawela',
-                        'Kahatagasdeigiliya',
-                        'Horowpathana',
-                        'Ambewela',
-                        'Haten',
-                        'Kalmune'
-                    ]; ?>
-
-                    <?php foreach ($gramas as $gramaItem) : ?>
-                        <option value="<?= $gramaItem ?>"> <?= $gramaItem ?></option>
-                    <?php endforeach; ?>
+                    <option value="null"> -- SELECT DISTRICT --</option>
                 </select>
             </div>
         </div>
@@ -89,3 +46,5 @@
         </div>
     </form>
 </div>
+
+<script src="<?php echo URL; ?>/views/collectingcenter/js/locations.js"></script>

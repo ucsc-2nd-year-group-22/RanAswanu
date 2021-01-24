@@ -22,7 +22,7 @@ class CollectingCenter_Model extends Model
     //getting single col. center
     public function singleCenterList($id)
     {
-        $st = $this->db->prepare("SELECT id, center_name, province, district, grama FROM colcenter WHERE id = :id");
+        $st = $this->db->prepare("SELECT center_id, center_name, district_id FROM colcenter WHERE center_id = :id");
         $st->execute(array(
             ':id' => $id,
         ));
@@ -32,7 +32,7 @@ class CollectingCenter_Model extends Model
     //retrieve all col centers
     public function centers()
     {
-        $st = $this->db->prepare("SELECT id, center_name, province, district FROM colcenter");
+        $st = $this->db->prepare("SELECT collecting_center.center_id, collecting_center.center_name, district.ds_name FROM collecting_center INNER JOIN district ON collecting_center.district_id = district.district_id");
         $st->execute();
         return $st->fetchAll();
     }

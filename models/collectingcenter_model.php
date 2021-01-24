@@ -51,7 +51,7 @@ class CollectingCenter_Model extends Model
     //delete a col. center
     public function delete($id)
     {
-        $st = $this->db->prepare('DELETE FROM colcenter WHERE id = :id');
+        $st = $this->db->prepare('DELETE FROM collecting_center WHERE center_id = :id');
         $st->execute(array(
             ':id' => $id
         ));

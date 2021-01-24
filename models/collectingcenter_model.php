@@ -22,7 +22,7 @@ class CollectingCenter_Model extends Model
     //getting single col. center
     public function singleCenterList($id)
     {
-        $st = $this->db->prepare("SELECT center_id, center_name, district_id FROM colcenter WHERE center_id = :id");
+        $st = $this->db->prepare("SELECT center_id, center_name, district_id FROM collecting_center WHERE center_id = :id");
         $st->execute(array(
             ':id' => $id,
         ));
@@ -40,13 +40,11 @@ class CollectingCenter_Model extends Model
     //update col. center
     public function update($data)
     {
-        $st = $this->db->prepare('UPDATE colcenter SET `center_name` = :center_name, `province` = :province, `district` = :district, `grama` = :grama WHERE id = :id');
+        $st = $this->db->prepare('UPDATE collecting_center SET `center_name` = :center_name, `district_id` = :district WHERE center_id = :id');
         $st->execute(array(
             ':id' => $data['id'],
             ':center_name' => $data['center_name'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':grama' => $data['grama']
+            ':district' => $data['district']
         ));
     }
 
@@ -74,6 +72,13 @@ class CollectingCenter_Model extends Model
         $st->execute(array(
             ':id' => $id
         ));
+        return $st->fetchAll();
+    }
+
+    //retrieve all districts
+    public function getAllDistricts() {
+        $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
+        $st->execute();
         return $st->fetchAll();
     }
 }

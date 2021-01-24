@@ -43,8 +43,15 @@ class CollectingCenter extends Controller
     // route to the edit form with retrieved data
     public function edit($id)
     {
+        $districts = $this->model->getAllDistricts();
+
+        $pageData = [
+            'id' => $id,
+            'districts' => $districts,
+        ];
         $this->view->center = $this->model->singleCenterList($id);
-        $this->view->rendor('collectingcenter/edit');
+
+        $this->view->rendor('collectingcenter/edit', $pageData);
     }
 
     //update the database
@@ -55,9 +62,7 @@ class CollectingCenter extends Controller
 
         $data['id'] = $id;
         $data['center_name'] = $_POST['center_name'];
-        $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
-        $data['grama'] = $_POST['grama'];
 
         $this->model->update($data);
         header('location: ' . URL . 'collectingcenter/collectingcenters');

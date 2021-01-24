@@ -64,7 +64,7 @@
             <td><?=$center['center_name'];?> </td>
             <td> <?=$center['ds_name'];?></td>
             <td>
-                <a href="<?php echo URL .'collectingcenter/edit/'.$center['id']; ?>" class="mini-button normal btn"><i class="fas fa-eye"> </i> View</a> 
+                <a href="<?php echo URL .'collectingcenter/edit/'.$center['center_id']; ?>" class="mini-button normal btn"><i class="fas fa-eye"> </i> View</a> 
             </td>
             <td>
                 <a href="<?php echo URL .'collectingcenter/delete/'.$center['id']; ?>" onclick="return confirm('Are you sure you want to delete this center?');" class="mini-button danger btn"><i class="fas fa-trash"> </i> Remove</a> 

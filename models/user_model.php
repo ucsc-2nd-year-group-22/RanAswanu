@@ -1,19 +1,23 @@
-<?php 
+<?php
 
-class User_Model extends Model {
-    
-    public function __construct() {
+class User_Model extends Model
+{
+
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function userList() {
+    public function userList()
+    {
         $st = $this->db->prepare("SELECT id, login, role FROM users");
         $st->execute();
         return $st->fetchAll();
     }
 
     //register new user into the  database user table
-    public function create($data){  
+    public function create($data)
+    {
         $st = $this->db->prepare("INSERT INTO users (`firstname`, `lastname`, `login`, `password`, `role`, `isadmin`, `nic`, `tel`, `email`, `dob`, `sex`, `province`, `district`, `grama`, `address`) VALUES (:firstname, :lastname, :login, :password, :role, :isadmin, :nic, :tel, :email, :dob, :sex, :province, :district, :grama, :address)");
         $st->execute(array(
             ':firstname' => $data['firstname'],
@@ -35,7 +39,8 @@ class User_Model extends Model {
     }
 
     //update the user data in the database 
-    public function editSave($data){
+    public function editSave($data)
+    {
         // print_r($data);
         $stmt = $this->db->prepare("UPDATE users SET 
             `firstname` = :firstname, 
@@ -69,10 +74,10 @@ class User_Model extends Model {
             ':role' => $data['role'],
             ':id' => $data['id']
         ));
-
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $st = $this->db->prepare('DELETE FROM users WHERE id = :id');
         $st->execute(array(
             ':id' => $id
@@ -80,7 +85,8 @@ class User_Model extends Model {
     }
 
     //make user logged into the system
-    public function loginto() {
+    public function loginto()
+    {
         $st = $this->db->prepare("SELECT user_id, role, isadmin, first_name FROM user WHERE user_name = :user_name AND password = MD5(:password) ");
         $st->execute(array(
             ':user_name' => $_POST['user_name'],
@@ -91,7 +97,7 @@ class User_Model extends Model {
         // print_r($data);
 
         $count = $st->rowCount();
-        if($count > 0) {
+        if ($count > 0) {
             // login
             Session::init();
             Session::set('user_id', $data['user_id']);
@@ -102,10 +108,10 @@ class User_Model extends Model {
 
             // echo Session::get('role');
 
-            if(!empty($_POST['remember'])) {
+            if (!empty($_POST['remember'])) {
                 setcookie("member_login", $_POST['user_name'], time() + (10 * 365 * 24 * 60 * 60));
             } else {
-                if(isset($_COOKIE['member_login'])) {
+                if (isset($_COOKIE['member_login'])) {
                     setcookie("member_login", "");
                 }
             }
@@ -114,11 +120,11 @@ class User_Model extends Model {
                 case 'officer':
                     header('location: ' . URL . 'officer/cropReq');
                     break;
-    
+
                 case 'admin':
                     header('location: ' . URL . 'admin/');
                     break;
-                
+
                 case 'farmer':
                     header('location: ' . URL . 'farmer/sellyourcropsif');
                     break;
@@ -127,18 +133,17 @@ class User_Model extends Model {
                     header('location: ' . URL . 'vendor');
                     break;
             }
-
         } else {
             // show error
             Session::set('alert', 'Username or password is incorrect !');
             header('location: login');
         }
-        
     }
 
     //fetching a single user
-    public function userSingleList($user_id){
-        
+    public function userSingleList($user_id)
+    {
+
         $getUserSql = $this->db->prepare("SELECT * FROM user WHERE user_id = :user_id");
         $getUserSql->execute(array(
             ':user_id' => $user_id,
@@ -155,11 +160,12 @@ class User_Model extends Model {
             JOIN divisional_secratariast on gramasewa_division.ds_id = divisional_secratariast.ds_id
             JOIN district on divisional_secratariast.district_id = district.district_id
             JOIN province on province.province_id = district.province_id
-            WHERE user.user_id = :user_id;");
+            WHERE user.user_id = :user_id;"
+        );
         $getLocationData->execute(array(
             ':user_id' => $user_id,
         ));
-       
+
         $data['locationData'] = $getLocationData->fetch();
         $data['user'] = $getUserSql->fetch();
         $data['userTel'] = $getTel->fetchAll(PDO::FETCH_COLUMN);        // FETCH_CULUMN : To return an array that contains a single column from all of the remaining rows in the result set
@@ -170,4 +176,25 @@ class User_Model extends Model {
         return $data;
     }
 
-} 
+    //retrieve all provinces
+    public function getAllProvinces() {
+        $st = $this->db->prepare("SELECT province_id, province_name FROM province");
+        $st->execute();
+        return $st->fetchAll();
+    }
+
+    //retrieve all districts
+    public function getAllDistricts() {
+        $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
+        $st->execute();
+        return $st->fetchAll();
+    }
+
+    //retrieve all grama
+    public function getAllGrama() {
+        $st = $this->db->prepare("SELECT gs_id, gs_name FROM gramasewa_division");
+        $st->execute();
+        return $st->fetchAll();
+    }
+
+}

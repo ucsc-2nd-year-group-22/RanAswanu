@@ -1,8 +1,10 @@
 <?php
 
-class User extends Controller {
+class User extends Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         Session::init();
         $logged = Session::get('loggedIn');
@@ -17,32 +19,35 @@ class User extends Controller {
         $this->view->js = array('user/js/default.js');
     }
 
-    public function index() {
+    public function index()
+    {
         $this->view->userList = $this->model->userList();
         $role = Session::get('role');
         $loggedIn = Session::get('loggedIn');
-        
-        if($role == 'admin') {
+
+        if ($role == 'admin') {
             header('Location: admin');
-        }else if($role == 'officer'){
+        } else if ($role == 'officer') {
             header('Location: officer/cropReq');
-        }else if($role == 'farmer'){
+        } else if ($role == 'farmer') {
             header('Location: farmer');
         }
-        if($loggedIn == false) {
+        if ($loggedIn == false) {
 
             $this->view->rendor('user/index');
         }
     }
 
     //route to the register user
-    public function register(){
+    public function register()
+    {
         $this->destroyActivePage();
         $this->view->rendor('user/register');
     }
 
     //instert new user in to the database
-    public function create(){
+    public function create()
+    {
         $data = array();
         // Sanitize
 
@@ -63,9 +68,9 @@ class User extends Controller {
 
 
 
-        if($data['role'] == 'admin'){
+        if ($data['role'] == 'admin') {
             $data['isadmin'] = 1;
-        }else{
+        } else {
             $data['isadmin'] = 0;
         }
 
@@ -80,33 +85,42 @@ class User extends Controller {
             case 'officer':
                 header('location: ' . URL . 'farmer/farmerMng');
                 break;
-            
+
             default:
-            header('location: ' . URL . 'user/login');
+                header('location: ' . URL . 'user/login');
                 break;
         }
-
     }
-    
+
     //fetch individual user
-    public function edit($id){
+    public function edit($id)
+    {
 
         $data['id'] = $id;
-        if(Session::get('id') != $id){
+        if (Session::get('user_id') != $id) {
             $this->view->user = $this->model->userSingleList($id);
-            if(Session::get('isadmin') == 1 || ($this->view->user['role'] == 'farmer' && Session::get('role') == 'officer')){
+            if (Session::get('isadmin') == 1 || ($this->view->user['role'] == 'farmer' && Session::get('role') == 'officer')) {     //<-- to be fixed
                 $this->view->rendor('user/edit', $data);
-            }else{
+            } else {
                 $this->logout();
             }
-        }else{
+        } else {
+            $userAllData = $this->model->userSingleList($id);          //$userAllData contains all the data about user, (user + userTel + ...), used joins in sql
+            
+            $data['allProvinces']  = $this->model->getAllProvinces();
+            $data['allDistricts']  = $this->model->getAllDistricts();
+            $data['allGrama']  = $this->model->getAllGrama();
+
+            $data['userData'] = $userAllData['user'];
+            $data['userTel'] = $userAllData['userTel'];
+            $data['userLocationData'] = $userAllData['locationData'];
             $this->view->user = $this->model->userSingleList($id);
             $this->view->rendor('user/edit', $data);
         }
-        
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $this->model->delete($id);
         switch (Session::get('role')) {
             case 'officer':
@@ -119,7 +133,8 @@ class User extends Controller {
         }
     }
 
-    public function editSave($id){
+    public function editSave($id)
+    {
 
         // Sanitize variables before db update
         $data = array();
@@ -143,54 +158,56 @@ class User extends Controller {
         $this->model->editSave($data);
         // print_r($data);
 
-        if($id == Session::get('id')) {
+        if ($id == Session::get('user_id')) {
             header('location: ' . URL . 'user/viewUser/' . $id);
         } else {
-            
+
             switch (Session::get('role')) {
                 case 'officer':
                     header('location: ' . URL . 'farmer/farmerMng');
                     break;
-    
+
                 case 'admin':
                     header('location: ' . URL . 'admin/index');
                     break;
-                
+
                 case 'vendor':
                     header('location: ' . URL . 'vendor/index');
                     break;
-    
+
                 case 'farmer':
                     header('location: ' . URL . 'farmer/index');
             }
-
         }
-
     }
 
     //route to the user/login
-    public function login(){
-      
+    public function login()
+    {
+
         $this->destroyActivePage();
-        if(Session::get('loggedIn') == false) {
+        if (Session::get('loggedIn') == false) {
             $this->view->rendor('user/login');
         } else {
             $this->view->rendor('error/403');
         }
     }
     //login to the syetem
-    public function loginusr(){
+    public function loginusr()
+    {
         $this->model->loginto();
     }
 
     //logout user from the system
-    function logout() {
+    function logout()
+    {
         Session::destroy();
         // Session::unset('loggedIn');
-        header('location: '. URL .'user/login');
+        header('location: ' . URL . 'user/login');
     }
 
-    function viewUser($user_id) {
+    function viewUser($user_id)
+    {
 
         $userAllData = $this->model->userSingleList($user_id);          //$userAllData contains all the data about user, (user + userTel + ...), used joins in sql
 
@@ -205,14 +222,14 @@ class User extends Controller {
         $data['user_id'] = $userData['user_id'];
         $data['loggedIn'] = Session::get('loggedIn');
         $this->destroyActivePage();
-        
+
         $this->view->rendor('user/profile', $data);
     }
 
 
-////////////////////////////////////////////////
-// Moved authentication functions to another module
+    ////////////////////////////////////////////////
+    // Moved authentication functions to another module
 
 
     // End of user class controller
-}  
+}

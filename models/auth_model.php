@@ -9,7 +9,7 @@ class Auth_Model extends Model {
 
 
     public function checkEmail($email) {
-        $sql = "SELECT * FROM `users` WHERE `email` = :email;";
+        $sql = "SELECT * FROM `user` WHERE `email` = :email;";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
             ':email' => $email,
@@ -76,7 +76,7 @@ class Auth_Model extends Model {
 
     function updatePw($userId, $password) {
         
-        $sql = "UPDATE users SET `password` = :password WHERE `id` = :id";
+        $sql = "UPDATE user SET `password` = :password WHERE `user_id` = :id";
         
         // $sql = "UPDATE `users` INNER JOIN `pwdReset` on `users.email` = `pwdReset.pwdResetEmail` SET `users.password` = :password WHERE `users.id` = :id AND `pwdReset.pwdResetExpires` >= :currentDate;";
         
@@ -87,7 +87,7 @@ class Auth_Model extends Model {
         ));
 
         if($stmt->rowCount() == 1) {
-            // echo "<br>success";
+            echo "<br>success";
 
         }
 
@@ -95,7 +95,7 @@ class Auth_Model extends Model {
 
     function checkUserPw($pwd) {
         $userId = Session::get('id');
-        $st = $this->db->prepare("SELECT id FROM users WHERE password = MD5(:password) AND id = :id ");
+        $st = $this->db->prepare("SELECT user_id FROM user WHERE password = MD5(:password) AND user_id = :id ");
         $st->execute(array(
             'id' => $userId,
             ':password' => $pwd
@@ -109,7 +109,7 @@ class Auth_Model extends Model {
 
     function updatePwLogged($newPw, $id) {
 
-        $st = $this->db->prepare("UPDATE users SET password = MD5(:password) WHERE id = :id");
+        $st = $this->db->prepare("UPDATE user SET password = MD5(:password) WHERE user_id = :id");
         $st->execute(array(
             ':password' => $newPw,
             ':id' => $id

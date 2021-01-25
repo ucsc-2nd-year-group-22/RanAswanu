@@ -56,20 +56,22 @@
             <th>Admin-ID</th>
             <th>Admin Name</th>
             <th>Address</th>
+            <th>Tel</th>
             <th><i class="fas fa-users"></i> View</th>
             <th><i class="fas fa-user-times"></i> Remove</th>
         </tr>
 <?php $i = 0; foreach($adminData as $admin) :; $i++;?>
         <tr>
             <td> <?= $i ?></td>
-            <td><?=$admin['id'];?> </td>
-            <td><?=$admin['firstname'];?> </td>
+            <td><?=$admin['user_id'];?> </td>
+            <td><?=$admin['first_name'];?> </td>
             <td> <?=$admin['address'];?></td>
+            <td> <?=$admin['tel_no'];?></td>
             <td>
-                <a href="<?php echo URL .'user/edit/'.$admin['id']; ?>" class="mini-button normal">View</a>
+                <a href="<?php echo URL .'user/edit/'.$admin['user_id']; ?>" class="mini-button normal">View</a>
             </td>
             <td>
-                <a href="<?php echo URL .'admin/delete/'.$admin['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?');" class="mini-button danger">Remove</a>
+                <a href="<?php echo URL .'admin/delete/'.$admin['user_id']; ?>" onclick="return confirm('Are you sure you want to delete this user?');" class="mini-button danger">Remove</a>
             </td>
         </tr>
 <?php endforeach;?>

@@ -1,42 +1,50 @@
-<?php 
+<?php
 
-class Crop_Model extends Model {
-    
-    public function __construct() {
+class Crop_Model extends Model
+{
+
+    public function __construct()
+    {
         parent::__construct();
     }
-    
+
     //register new collecting center into the  database col. center table
-    public function create($data){  
-        $st = $this->db->prepare("INSERT INTO crops (`crop_name`, `best_area`, `harvest_per_land`, `harvest_period`, `discription`) VALUES (:crop_name, :best_area, :harvest_per_land, :harvest_period, :discription)");
+    public function create($data)
+    {
+        $st = $this->db->prepare("INSERT INTO crop (`harvest_per_land`, `harvest_period`, `crop_type`, `crop_varient`, `description`, `admin_user_id`, `best_district`) VALUES (:harvest_per_land, :harvest_period, :crop_type, :crop_varient, :description, :admin_user_id, :best_area)");
         $st->execute(array(
-            ':crop_name' => $data['crop_name'],
+            ':crop_type' => $data['crop_type'],
+            ':crop_varient' => $data['crop_varient'],
             ':best_area' => $data['best_area'],
             ':harvest_per_land' => $data['harvest_per_land'],
             ':harvest_period' => $data['harvest_period'],
-            ':discription' => $data['discription'],
+            ':description' => $data['description'],
+            ':admin_user_id' => $data['admin_user_id']
         ));
     }
 
     //getting single col. center
-    public function singleCropList($id){
+    public function singleCropList($id)
+    {
         $st = $this->db->prepare("SELECT * FROM crops WHERE id = :id");
         $st->execute(array(
             ':id' => $id,
         ));
         return $st->fetch();
     }
-    
+
     //retrieve all col centers
-    public function crops() {
+    public function crops()
+    {
         $st = $this->db->prepare("SELECT * FROM crops");
         $st->execute();
         return $st->fetchAll();
     }
 
-    
+
     //update col. center
-    public function update($data){
+    public function update($data)
+    {
         $st = $this->db->prepare('UPDATE crops SET `crop_name` = :crop_name, `best_area` = :best_area, `harvest_per_land` = :harvest_per_land, `harvest_period` = :harvest_period, `discription` = :discription WHERE id = :id');
         $st->execute(array(
             ':id' => $data['id'],
@@ -49,7 +57,8 @@ class Crop_Model extends Model {
     }
 
     //get crop varients
-    public function cropVarients($id){
+    public function cropVarients($id)
+    {
         $st = $this->db->prepare("SELECT * FROM crop_varient WHERE crop_id = :id");
         $st->execute(array(
             ':id' => $id,
@@ -58,7 +67,8 @@ class Crop_Model extends Model {
     }
 
     //delete a crop
-    public function delete($id){
+    public function delete($id)
+    {
         $st = $this->db->prepare('DELETE FROM crops WHERE id = :id');
         $st->execute(array(
             ':id' => $id
@@ -66,7 +76,8 @@ class Crop_Model extends Model {
     }
 
     //delete crop varient
-    public function deleteVarient($id){
+    public function deleteVarient($id)
+    {
         $st = $this->db->prepare('DELETE FROM crop_varient WHERE id = :id');
         $st->execute(array(
             ':id' => $id
@@ -74,11 +85,20 @@ class Crop_Model extends Model {
     }
 
     //create varients
-    public function addVarient($data){
+    public function addVarient($data)
+    {
         $st = $this->db->prepare("INSERT INTO crop_varient (`varient_name`, `crop_id`) VALUES (:crop_name, :id)");
         $st->execute(array(
             ':id' => $data['id'],
             ':crop_name' => $data['crop_name'],
         ));
     }
-} 
+
+    //retrieve all districts
+    public function getAllDistricts()
+    {
+        $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
+        $st->execute();
+        return $st->fetchAll();
+    }
+}

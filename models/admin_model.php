@@ -8,7 +8,7 @@ class Admin_Model extends Model {
 
     //retrieve all admins
     public function adminList() {
-        $st = $this->db->prepare("SELECT id, firstname, address, tel FROM users WHERE role = :role");
+        $st = $this->db->prepare("SELECT user.user_id, user.first_name, user.address, user_tel.tel_no FROM user INNER JOIN user_tel ON user.user_id = user_tel.user_id AND user.role = :role");
         $st->execute(array(
             ':role' => 'admin'
         ));

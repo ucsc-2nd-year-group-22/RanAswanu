@@ -13,18 +13,26 @@ class Crop extends Controller{
 
     //route to the crop register form
     public function register($arg = false) {
-        $this->view->rendor('crop/register');
+        
+        $districts = $this->model->getAllDistricts();
+        $pageData = [
+            'districts' => $districts
+        ];
+
+        $this->view->rendor('crop/register', $pageData);
     }
 
     //get the post data and create the crop in the database
     public function create(){
         $data = array();
 
-        $data['crop_name'] = $_POST['crop_name'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['crop_varient'] = $_POST['crop_varient'];
         $data['best_area'] = $_POST['best_area'];
         $data['harvest_per_land'] = $_POST['harvest_per_land'];
         $data['harvest_period'] = $_POST['harvest_period'];
-        $data['discription'] = $_POST['discription'];
+        $data['description'] = $_POST['description'];
+        $data['admin_user_id'] = Session::get('user_id');
 
         // TODO: Do error checking
 

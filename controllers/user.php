@@ -45,7 +45,7 @@ class User extends Controller {
     public function create(){
         $data = array();
         // Sanitize
-
+/*
         $data['firstname'] = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
         $data['lastname'] = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
         $data['nic'] = filter_var($_POST['nic'],  FILTER_SANITIZE_STRING);
@@ -60,7 +60,28 @@ class User extends Controller {
         $data['role'] = filter_var($_POST['role'],  FILTER_SANITIZE_STRING);
         $data['login'] = filter_var($_POST['login'],  FILTER_SANITIZE_STRING);
         $data['password'] = filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
+*/
+        $data['first_name'] = $_POST['first_name'];
+        $data['last_name'] = $_POST['last_name'];
+        $data['user_name'] = $_POST['user_name'];
+        $data['password'] = $_POST['password'];
+        $data['nic'] = $_POST['nic'];        
+        $data['email'] = $_POST['email'];
+        $data['dob'] = $_POST['dob'];
+        $data['sex'] = $_POST['sex'];
+        $data['address'] = $_POST['address'];
+        $data['grama'] = $_POST['grama'];
+        $data['role'] = $_POST['role'];
 
+        $data['tel_no_1'] = $_POST['tel_no_1'];
+        $data['tel_no_2'] = $_POST['tel_no_2'];
+
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['div_sec'] = $_POST['div_sec'];
+        $data['grama'] = $_POST['grama'];
+        
+        $data['is_blocked'] = 0;
 
 
         if($data['role'] == 'admin'){
@@ -69,9 +90,21 @@ class User extends Controller {
             $data['isadmin'] = 0;
         }
 
+        /////// FOR TESTING INSERTION ONLY
+        /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
+        $data['province'] = 1;
+        $data['district'] = 1;
+        $data['div_sec'] = 1;
+        $data['grama'] = 5;
+
         // TODO: Do error checking
         $this->model->create($data);
 
+
+        //print_r($_POST);
+        echo '<hr>';
+        print_r($data);
+/*
         switch (Session::get('role')) {
             case 'admin':
                 header('location: ' . URL . 'admin');
@@ -85,7 +118,7 @@ class User extends Controller {
             header('location: ' . URL . 'user/login');
                 break;
         }
-
+*/
     }
     
     //fetch individual user

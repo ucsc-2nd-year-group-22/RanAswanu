@@ -108,9 +108,8 @@
             <div class="col-75">
             <select id="province" name="province">
                 <?php $provinces = [
-                    'Nothern',
+                    '1-western',
                     'North Western',
-                    'Western',
                     'North Central',
                     'Central',
                     'Sabaragamuwa',
@@ -131,7 +130,7 @@
             <div class="col-75">
             <select id="district" name="district">
                 <?php $districts = [
-                    'Kalutara',
+                    '1-Gampaha',
                     'Anuradhapura',
                     'Polonnaruwa',
                     'Gampaha',
@@ -161,7 +160,7 @@
             <div class="col-75">
             <select id="div_sec" name="div_sec">
                 <?php $div_secs = [
-                    'Gampaha',
+                    '1-Gampaha',
                     'Dompe',
                     'ds-3',
                     'ds-4',
@@ -180,7 +179,7 @@
             <div class="col-75">
             <select id="grama" name="grama">
                 <?php $gramas = [
-                   'Kurudupoththa',
+                   '5- Parakandeniya',
                    'Parakandeniya',
                    'Mahiyanganaya',
                    'Udawela',

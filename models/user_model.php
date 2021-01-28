@@ -14,24 +14,27 @@ class User_Model extends Model {
 
     //register new user into the  database user table
     public function create($data){  
-        $st = $this->db->prepare("INSERT INTO users (`firstname`, `lastname`, `login`, `password`, `role`, `isadmin`, `nic`, `tel`, `email`, `dob`, `sex`, `province`, `district`, `grama`, `address`) VALUES (:firstname, :lastname, :login, :password, :role, :isadmin, :nic, :tel, :email, :dob, :sex, :province, :district, :grama, :address)");
+
+       $st = $this->db->prepare("INSERT INTO `user`(`user_name`, `nic`, `first_name`, `last_name`, `gs_id`, `sex`, `is_blocked`, `address`, `role`, `dob`, `email`, `user_registered_time`, `password`, `isadmin`)
+VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :address, :role, :dob, :email, current_timestamp(), :password, :isadmin)");
+
+        // Need to sanitize
         $st->execute(array(
-            ':firstname' => $data['firstname'],
-            ':lastname' => $data['lastname'],
-            ':login' => $data['login'],
-            ':password' => MD5($data['password']),
-            ':role' => $data['role'],
-            ':isadmin' => $data['isadmin'],
-            ':nic' => $data['nic'],
-            ':tel' => $data['tel'],
+            ':user_name' => $data['user_name'],
+            ':nic' => $data['nic'], 
+            ':first_name' => $data['first_name'], 
+            ':last_name' => $data['last_name'], 
+            ':gs_id' => $data['grama'],
+            ':sex' => $data['sex'], 
+            ':is_blocked' => $data['is_blocked'], 
+            ':address' => $data['address'], 
+            ':role' => $data['role'], 
+            ':dob' => $data['dob'], 
             ':email' => $data['email'],
-            ':dob' => $data['dob'],
-            ':sex' => $data['sex'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':grama' => $data['grama'],
-            ':address' => $data['address'],
+            ':password' => MD5($data['password']),
+            ':isadmin' => $data['isadmin']
         ));
+
     }
 
     //update the user data in the database 

@@ -27,7 +27,7 @@ class Farmer extends Controller {
     public function farmerMng() {
        
         $farmerData = $this->model->farmerList();
-        $data['officerData'] = $farmerData;
+        $data['farmerData'] = $farmerData;
         $this->setActivePage('farmerMng');
         $this->setActivePage('userMgt');
         $this->view->rendor('farmer/farmerMng', $data);

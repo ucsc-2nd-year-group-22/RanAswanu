@@ -7,7 +7,7 @@ class Farmer_Model extends Model {
     }
 
     public function farmerList() {
-        $st = $this->db->prepare("SELECT * FROM users WHERE role = :role");
+        $st = $this->db->prepare("SELECT * FROM user WHERE role = :role");
         $st->execute(array(
             ':role' => 'farmer'
         ));

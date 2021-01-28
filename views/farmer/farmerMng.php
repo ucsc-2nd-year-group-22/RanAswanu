@@ -57,24 +57,22 @@
             <tr>
                 <th>#</th>
                 <th style="text-align:center;" >View Profile</th>
-                <th>First ame</th>
+                <th>First name</th>
                 <th>Last name</th>
                 <th>NIC</th>
-                <th>Contact No.</th>
                 <th>Email address</th>
               <?php if(Session::get('isadmin') != 1): ?>
                 <th>Action</th>
               <?php endif ?>
             </tr>
-        <?php $i = 0; foreach($officerData as $officer) :; $i++;?>
+        <?php $i = 0; foreach($farmerData as $farmer) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td style="text-align:center;"><a  style="font-size:1.5em;color:var(--main-theme-color);" href="<?php echo URL . 'user/viewUser/' . $officer['id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
-                <td><?= $officer['firstname'];?> </td>
-                <td><?= $officer['lastname'];?> </td>
-                <td><?= $officer['nic'];?> </td>
-                <td><?= $officer['tel'];?> </td>
-                <td><?= $officer['email'];?> </td>
+                <td style="text-align:center;"><a  style="font-size:1.5em;color:var(--main-theme-color);" href="<?php echo URL . 'user/viewUser/' . $farmer['user_id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
+                <td><?= $farmer['first_name'];?> </td>
+                <td><?= $farmer['last_name'];?> </td>
+                <td><?= $farmer['nic'];?> </td>
+                <td><?= $farmer['email'];?> </td>
                 <?php if(Session::get('isadmin') != 1): ?>
                 <td>
                     <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Update</a>

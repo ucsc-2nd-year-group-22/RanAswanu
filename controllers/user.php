@@ -100,11 +100,8 @@ class User extends Controller {
         // TODO: Do error checking
         $this->model->create($data);
 
+        //print_r($data);
 
-        //print_r($_POST);
-        echo '<hr>';
-        print_r($data);
-/*
         switch (Session::get('role')) {
             case 'admin':
                 header('location: ' . URL . 'admin');
@@ -118,7 +115,7 @@ class User extends Controller {
             header('location: ' . URL . 'user/login');
                 break;
         }
-*/
+
     }
     
     //fetch individual user

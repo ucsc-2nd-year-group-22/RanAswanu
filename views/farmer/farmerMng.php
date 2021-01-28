@@ -59,6 +59,7 @@
                 <th style="text-align:center;" >View Profile</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Contact</th>
                 <th>NIC</th>
                 <th>Email address</th>
               <?php if(Session::get('isadmin') != 1): ?>
@@ -71,6 +72,14 @@
                 <td style="text-align:center;"><a  style="font-size:1.5em;color:var(--main-theme-color);" href="<?php echo URL . 'user/viewUser/' . $farmer['user_id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
                 <td><?= $farmer['first_name'];?> </td>
                 <td><?= $farmer['last_name'];?> </td>
+                <td> 
+                    <?php 
+                        $telAr = explode(',', $farmer['telNos']); 
+                        foreach($telAr as $tel) {
+                            echo "$tel <br> ";
+                        }
+                    ?>
+                </td>
                 <td><?= $farmer['nic'];?> </td>
                 <td><?= $farmer['email'];?> </td>
                 <?php if(Session::get('isadmin') != 1): ?>

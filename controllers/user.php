@@ -48,18 +48,7 @@ class User extends Controller {
 /*
         $data['firstname'] = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
         $data['lastname'] = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
-        $data['nic'] = filter_var($_POST['nic'],  FILTER_SANITIZE_STRING);
-        $data['tel'] = filter_var($_POST['tel'],  FILTER_SANITIZE_STRING);
-        $data['email'] = filter_var($_POST['email'],  FILTER_SANITIZE_EMAIL);
-        $data['dob'] = filter_var($_POST['dob'],  FILTER_SANITIZE_STRING);
-        $data['sex'] = filter_var($_POST['sex'],  FILTER_SANITIZE_STRING);
-        $data['province'] = filter_var($_POST['province'],  FILTER_SANITIZE_STRING);
-        $data['district'] = filter_var($_POST['district'],  FILTER_SANITIZE_STRING);
-        $data['grama'] = filter_var($_POST['grama'],  FILTER_SANITIZE_STRING);
-        $data['address'] = filter_var($_POST['address'],  FILTER_SANITIZE_STRING);
-        $data['role'] = filter_var($_POST['role'],  FILTER_SANITIZE_STRING);
-        $data['login'] = filter_var($_POST['login'],  FILTER_SANITIZE_STRING);
-        $data['password'] = filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
+
 */
         $data['first_name'] = $_POST['first_name'];
         $data['last_name'] = $_POST['last_name'];
@@ -76,9 +65,6 @@ class User extends Controller {
         $data['tel_no_1'] = $_POST['tel_no_1'];
         $data['tel_no_2'] = $_POST['tel_no_2'];
 
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['div_sec'] = $_POST['div_sec'];
         $data['grama'] = $_POST['grama'];
         
         $data['is_blocked'] = 0;

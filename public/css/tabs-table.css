@@ -39,6 +39,16 @@
     padding: 0 0 15px 0;
 }
 
+.main-table td a.table-icon {
+    color: var(--main-dark-color);
+    transition: all .3s;
+    font-size:1.5em
+}
+
+.main-table td a.table-icon:hover {
+    color: var(--main-theme-color);
+}
+
 /* Mobile ------------------------------------------------- */
 
 @media only screen and (max-width:600px) {

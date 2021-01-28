@@ -69,7 +69,7 @@
         <?php $i = 0; foreach($farmerData as $farmer) :; $i++;?>
             <tr>
                 <td> <?=  $i ?></td>
-                <td style="text-align:center;"><a  style="font-size:1.5em;color:var(--main-theme-color);" href="<?php echo URL . 'user/viewUser/' . $farmer['user_id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
+                <td style="text-align:center;"><a  class="table-icon" href="<?php echo URL . 'user/viewUser/' . $farmer['user_id'] ;?>"> <i class="fas fa-address-card"></i></a></td>
                 <td><?= $farmer['first_name'];?> </td>
                 <td><?= $farmer['last_name'];?> </td>
                 <td> 

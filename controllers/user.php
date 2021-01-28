@@ -92,9 +92,6 @@ class User extends Controller {
 
         /////// FOR TESTING INSERTION ONLY
         /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
-        $data['province'] = 1;
-        $data['district'] = 1;
-        $data['div_sec'] = 1;
         $data['grama'] = 5;
 
         // TODO: Do error checking

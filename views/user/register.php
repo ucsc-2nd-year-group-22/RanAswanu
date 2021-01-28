@@ -60,8 +60,8 @@
             <label for="tel">Telephone Number</label>
             </div>
             <div class="col-75">
-            <input style="width:50%;float:left" type="text" id="tel_no_1" name="tel_no_1" required placeholder="Mobile">
-            <input style="width:50%" type="text" id="tel_no_2" name="tel_no_2" required placeholder="Home">
+            <input style="width:50%;float:left" type="text" id="tel_no_1" name="tel_no_1" required placeholder="* Required">
+            <input style="width:50%" type="text" id="tel_no_2" name="tel_no_2" placeholder="Optional">
             </div>
         </div>
         <div class="row">
@@ -69,7 +69,7 @@
             <label for="email">Email Address</label>
             </div>
             <div class="col-75">
-            <input type="email" id="email" name="email" required placeholder="ex: wasantha@gmail.com (if available)..">
+            <input type="email" id="email" name="email" placeholder="ex: wasantha@gmail.com (if available)..">
             </div>
         </div>
         <div class="row">

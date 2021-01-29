@@ -27,7 +27,22 @@ class Farmer extends Controller {
     public function farmerMng() {
        
         $farmerData = $this->model->farmerList();
-        $data['officerData'] = $farmerData;
+        /*print_r($farmerData);
+        echo '<hr>';
+        
+        foreach($farmerData as $farmer) {
+            // echo print_r($farmer) . '<hr>' ;
+            foreach($farmer as $f) {
+                echo "$f ,";
+            }
+            echo '<hr>';
+
+        }*/
+
+        //echo "tels -> " . $farmerData[1]['telNos'];
+        
+        
+        $data['farmerData'] = $farmerData;
         $this->setActivePage('farmerMng');
         $this->setActivePage('userMgt');
         $this->view->rendor('farmer/farmerMng', $data);

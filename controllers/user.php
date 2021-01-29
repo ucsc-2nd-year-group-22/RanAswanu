@@ -45,22 +45,29 @@ class User extends Controller {
     public function create(){
         $data = array();
         // Sanitize
-
+/*
         $data['firstname'] = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
         $data['lastname'] = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
-        $data['nic'] = filter_var($_POST['nic'],  FILTER_SANITIZE_STRING);
-        $data['tel'] = filter_var($_POST['tel'],  FILTER_SANITIZE_STRING);
-        $data['email'] = filter_var($_POST['email'],  FILTER_SANITIZE_EMAIL);
-        $data['dob'] = filter_var($_POST['dob'],  FILTER_SANITIZE_STRING);
-        $data['sex'] = filter_var($_POST['sex'],  FILTER_SANITIZE_STRING);
-        $data['province'] = filter_var($_POST['province'],  FILTER_SANITIZE_STRING);
-        $data['district'] = filter_var($_POST['district'],  FILTER_SANITIZE_STRING);
-        $data['grama'] = filter_var($_POST['grama'],  FILTER_SANITIZE_STRING);
-        $data['address'] = filter_var($_POST['address'],  FILTER_SANITIZE_STRING);
-        $data['role'] = filter_var($_POST['role'],  FILTER_SANITIZE_STRING);
-        $data['login'] = filter_var($_POST['login'],  FILTER_SANITIZE_STRING);
-        $data['password'] = filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
 
+*/
+        $data['first_name'] = $_POST['first_name'];
+        $data['last_name'] = $_POST['last_name'];
+        $data['user_name'] = $_POST['user_name'];
+        $data['password'] = $_POST['password'];
+        $data['nic'] = $_POST['nic'];        
+        $data['email'] = $_POST['email'];
+        $data['dob'] = $_POST['dob'];
+        $data['sex'] = $_POST['sex'];
+        $data['address'] = $_POST['address'];
+        $data['grama'] = $_POST['grama'];
+        $data['role'] = $_POST['role'];
+
+        $data['tel_no_1'] = $_POST['tel_no_1'];
+        $data['tel_no_2'] = $_POST['tel_no_2'];
+
+        $data['grama'] = $_POST['grama'];
+        
+        $data['is_blocked'] = 0;
 
 
         if($data['role'] == 'admin'){
@@ -69,8 +76,14 @@ class User extends Controller {
             $data['isadmin'] = 0;
         }
 
+        /////// FOR TESTING INSERTION ONLY
+        /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
+        $data['grama'] = 5;
+
         // TODO: Do error checking
         $this->model->create($data);
+
+        //print_r($data);
 
         switch (Session::get('role')) {
             case 'admin':

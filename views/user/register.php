@@ -17,23 +17,39 @@
     <form action="<?= URL;?>/user/create" onsubmit="return CheckPassword()" method="post">
         <div class="row">
             <div class="col-25">
-            <label for="fname">First Name</label>
+            <label for="fname">First name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="fname" name="firstname" required placeholder="ex: Wasantha">
+            <input type="text" id="first_name" name="first_name" required placeholder="ex: Wasantha">
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="lname">Last Name</label>
+            <label for="lname">Last name</label>
             </div>
             <div class="col-75">
-            <input type="text" id="lname" name="lastname" required placeholder="ex: Jayawardana">
+            <input type="text" id="last_name" name="last_name" required placeholder="ex: Jayawardana">
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="nic">NIC Number</label>
+            <label for="login">User name</label>
+            </div>
+            <div class="col-75">
+            <input type="text" id="user_name" name="user_name" required placeholder="ex: wasantha123">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+            <label for="password">Password</label>
+            </div>
+            <div class="col-75">
+            <input type="password" id="password" name="password" required placeholder="ex: w@$@nth!">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+            <label for="nic">NIC number</label>
             </div>
             <div class="col-75">
             <input type="text" id="nic" name="nic" required placeholder="ex: 123456789V">
@@ -44,7 +60,8 @@
             <label for="tel">Telephone Number</label>
             </div>
             <div class="col-75">
-            <input type="text" id="tel" name="tel" required placeholder="ex: 0123456789">
+            <input style="width:50%;float:left" type="text" id="tel_no_1" name="tel_no_1" required placeholder="* Required">
+            <input style="width:50%" type="text" id="tel_no_2" name="tel_no_2" placeholder="Optional">
             </div>
         </div>
         <div class="row">
@@ -52,12 +69,12 @@
             <label for="email">Email Address</label>
             </div>
             <div class="col-75">
-            <input type="email" id="email" name="email" required placeholder="ex: wasantha@gmail.com (if available)..">
+            <input type="email" id="email" name="email" placeholder="ex: wasantha@gmail.com (if available)..">
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="dob">Birthday</label>
+            <label for="dob">Date of birth</label>
             </div>
             <div class="col-75">
             <input type="date" id="dob" name="dob" required placeholder="Month/Date/Year ">
@@ -77,14 +94,22 @@
         </div>
         <div class="row">
             <div class="col-25">
+            <label for="address">Address</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="address" name="address" required placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
             <label for="province">Province</label>
             </div>
             <div class="col-75">
             <select id="province" name="province">
                 <?php $provinces = [
-                    'Nothern',
+                    '1-western',
                     'North Western',
-                    'Western',
                     'North Central',
                     'Central',
                     'Sabaragamuwa',
@@ -105,7 +130,7 @@
             <div class="col-75">
             <select id="district" name="district">
                 <?php $districts = [
-                    'Kalutara',
+                    '1-Gampaha',
                     'Anuradhapura',
                     'Polonnaruwa',
                     'Gampaha',
@@ -130,12 +155,31 @@
         </div>
         <div class="row">
             <div class="col-25">
+            <label for="province">Divisional secratariast</label>
+            </div>
+            <div class="col-75">
+            <select id="div_sec" name="div_sec">
+                <?php $div_secs = [
+                    '1-Gampaha',
+                    'Dompe',
+                    'ds-3',
+                    'ds-4',
+                    'ds-5'
+                ]; ?>
+                <?php foreach ($div_secs as $div_secItem): ?>
+                    <option value="<?= $div_secItem?>" > <?= $div_secItem?> </option>
+                <?php endforeach; ?>
+            </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
             <label for="grama">Gramasewa Division</label>
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
                 <?php $gramas = [
-                   'Kurudupoththa',
+                   '5- Parakandeniya',
                    'Parakandeniya',
                    'Mahiyanganaya',
                    'Udawela',
@@ -152,14 +196,7 @@
             </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="address">Address</label>
-            </div>
-            <div class="col-75">
-                <input type="text" id="address" name="address" required placeholder="ex: No. 32, Atha watunu wava, Horawpathana">
-            </div>
-        </div>
+
         
         <div class="row">
             <div class="col-25">
@@ -179,22 +216,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-25">
-            <label for="login">User Name</label>
-            </div>
-            <div class="col-75">
-            <input type="text" id="login" name="login" required placeholder="ex: wasantha123">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="password">Password</label>
-            </div>
-            <div class="col-75">
-            <input type="password" id="password" name="password" required placeholder="ex: w@$@nth!">
-            </div>
-        </div>
         <div class="row">
             <div class="col-25">
             

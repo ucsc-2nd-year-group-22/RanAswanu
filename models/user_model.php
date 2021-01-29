@@ -30,8 +30,8 @@ class User_Model extends Model {
     //register new user into the  database user table
     public function create($data){  
 
-       $createUser = $this->db->prepare("INSERT INTO `user`(`user_name`, `nic`, `first_name`, `last_name`, `gs_id`, `sex`, `is_blocked`, `address`, `role`, `dob`, `email`, `user_registered_time`, `password`, `isadmin`)
-VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :address, :role, :dob, :email, current_timestamp(), :password, :isadmin)");
+        $createUser = $this->db->prepare("INSERT INTO `user`(`user_name`, `nic`, `first_name`, `last_name`, `gs_id`, `sex`, `is_blocked`, `address`, `role`, `dob`, `email`, `user_registered_time`, `password`, `isadmin`)
+        VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :address, :role, :dob, :email, current_timestamp(), :password, :isadmin)");
 
         // Need to sanitize
         $createUser->execute(array(
@@ -200,7 +200,7 @@ VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :a
         ));
        
         $data['locationData'] = $getLocationData->fetch();
-        $data['user'] = $getUserSql->fetch();
+        $data['user'] = $getUserSql->fetch(PDO::FETCH_ASSOC);
         $data['userTel'] = $getTel->fetchAll(PDO::FETCH_COLUMN);        // FETCH_CULUMN : To return an array that contains a single column from all of the remaining rows in the result set
         // https://www.ibm.com/support/knowledgecenter/SSEPGG_11.5.0/com.ibm.swg.im.dbclient.php.doc/doc/t0023505.html
 

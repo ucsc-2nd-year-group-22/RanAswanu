@@ -96,18 +96,23 @@ class User extends Controller {
     }
     
     //fetch individual user
-    public function edit($id){
+    public function edit($user_id){
 
-        $data['id'] = $id;
-        if(Session::get('id') != $id){
-            $this->view->user = $this->model->userSingleList($id);
-            if(Session::get('isadmin') == 1 || ($this->view->user['role'] == 'farmer' && Session::get('role') == 'officer')){
+        $data['user_id'] = $user_id;
+        // echo $user_id . '=> ' . Session::get('user_id');
+        
+        if(Session::get('user_id') != $user_id){
+            $this->view->user = $this->model->userSingleList($user_id);
+            // print_r($this->view->user['user']);
+            // echo $this->view->user['user']['role'];
+            if(Session::get('isadmin') == 1 || ($this->view->user['user']['role'] == 'farmer' && Session::get('role') == 'officer')){
                 $this->view->rendor('user/edit', $data);
             }else{
-                $this->logout();
+                echo '<hr>logout';
+                //$this->logout();
             }
         }else{
-            $this->view->user = $this->model->userSingleList($id);
+            $this->view->user = $this->model->userSingleList($user_id);
             $this->view->rendor('user/edit', $data);
         }
         

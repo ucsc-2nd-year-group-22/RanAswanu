@@ -111,7 +111,8 @@ VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :a
     }
 
     public function delete($id){
-        $st = $this->db->prepare('DELETE FROM users WHERE id = :id');
+        
+        $st = $this->db->prepare('DELETE FROM user WHERE user_id = :id');
         $st->execute(array(
             ':id' => $id
         ));

@@ -45,24 +45,6 @@ class User extends Controller {
     public function create(){
         $data = array();
         // Sanitize
-/*
-        $data['first_name'] = $_POST['first_name'];
-        $data['last_name'] = $_POST['last_name'];
-        $data['user_name'] = $_POST['user_name'];
-        $data['password'] = $_POST['password'];
-        $data['nic'] = $_POST['nic'];        
-        $data['email'] = $_POST['email'];
-        $data['dob'] = $_POST['dob'];
-        $data['sex'] = $_POST['sex'];
-        $data['address'] = $_POST['address'];
-        $data['grama'] = $_POST['grama'];
-        $data['role'] = $_POST['role'];
-
-        $data['tel_no_1'] = $_POST['tel_no_1'];
-        $data['tel_no_2'] = $_POST['tel_no_2'];
-
-        $data['grama'] = $_POST['grama'];
-        */
         $data['first_name'] = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
         $data['last_name'] = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
         $data['user_name'] = filter_var($_POST['user_name'], FILTER_SANITIZE_STRING);
@@ -133,7 +115,10 @@ class User extends Controller {
 
     public function delete($id) {
         $this->model->delete($id);
+        echo $id;
+
         switch (Session::get('role')) {
+            
             case 'officer':
                 header('location: ' . URL . 'farmer/farmerMng');
                 break;

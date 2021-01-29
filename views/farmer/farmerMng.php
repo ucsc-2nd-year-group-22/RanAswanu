@@ -84,8 +84,8 @@
                 <td><?= $farmer['email'];?> </td>
                 <?php if(Session::get('isadmin') != 1): ?>
                 <td>
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'user/edit/' . $officer['id'] ;?>">Update</a>
-                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . '/user/delete/' . $officer['id'] ;?>">Delete</a>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'user/edit/' . $farmer['user_id'] ;?>">Update</a>
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . 'user/delete/' . $farmer['user_id'] ;?>">Delete</a>
                 </td>
                 <?php endif ?>
             </tr>

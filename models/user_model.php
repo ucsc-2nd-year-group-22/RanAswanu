@@ -30,8 +30,8 @@ class User_Model extends Model {
     //register new user into the  database user table
     public function create($data){  
 
-       $createUser = $this->db->prepare("INSERT INTO `user`(`user_name`, `nic`, `first_name`, `last_name`, `gs_id`, `sex`, `is_blocked`, `address`, `role`, `dob`, `email`, `user_registered_time`, `password`, `isadmin`)
-VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :address, :role, :dob, :email, current_timestamp(), :password, :isadmin)");
+        $createUser = $this->db->prepare("INSERT INTO `user`(`user_name`, `nic`, `first_name`, `last_name`, `gs_id`, `sex`, `is_blocked`, `address`, `role`, `dob`, `email`, `user_registered_time`, `password`, `isadmin`)
+        VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :address, :role, :dob, :email, current_timestamp(), :password, :isadmin)");
 
         // Need to sanitize
         $createUser->execute(array(
@@ -74,44 +74,48 @@ VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :a
 
     //update the user data in the database 
     public function editSave($data){
-        // print_r($data);
-        $stmt = $this->db->prepare("UPDATE users SET 
-            `firstname` = :firstname, 
-            `lastname` = :lastname,
-            `login` = :login,
-            `nic` = :nic,
-            `tel` = :tel,
-            `email` = :email,
-            `dob` = :dob,
-            `sex` = :sex,
-            `province` = :province,
-            `district` = :district,
-            `grama` = :grama,
-            `address` = :address,
-            `role` = :role
-        WHERE `id` = :id");
+        print_r($data);
+        $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex, gs_id = :gs_id, address = :address, role = :role WHERE user_id = :user_id");
 
         $stmt->execute(array(
-            ':firstname' => $data['firstname'],
-            ':lastname' => $data['lastname'],
-            ':login' => $data['login'],
+            ':first_name' => $data['first_name'],
+            ':last_name' => $data['last_name'],
+            ':user_name' => $data['user_name'],
             ':nic' => $data['nic'],
-            ':tel' => $data['tel'],
             ':email' => $data['email'],
             ':dob' => $data['dob'],
             ':sex' => $data['sex'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':grama' => $data['grama'],
+            ':gs_id' => $data['grama'],
             ':address' => $data['address'],
             ':role' => $data['role'],
-            ':id' => $data['id']
+            ':user_id' => $data['user_id']
         ));
+
+        echo '<hr>';
+        $userID = $data['user_id'];
+        $telNos = array($data['tel_no_1'], $data['tel_no_2']);
+        $oldTels = array($data['old-tel-1'], $data['old-tel-2']);
+        foreach (array_combine($telNos, $oldTels) as $tel => $oldTel) {
+            if(!empty($tel)) {
+                // echo $tel . ', ' .  $oldTel . ', ' . '<br>';
+
+                $insertTelNos = $this->db->prepare("UPDATE `user_tel` SET `tel_no` = :tel WHERE `user_tel`.`user_id` = :user_id AND `user_tel`.`tel_no` =  :oldTel");
+                $insertTelNos->execute(array(
+                    ':user_id' => $userID,
+                    ':tel' => $tel,
+                    ':oldTel' => $oldTel
+                ));
+            }
+        }
+
+        echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
+        print_r($insertTelNos);
 
     }
 
     public function delete($id){
-        $st = $this->db->prepare('DELETE FROM users WHERE id = :id');
+        
+        $st = $this->db->prepare('DELETE FROM user WHERE user_id = :id');
         $st->execute(array(
             ':id' => $id
         ));
@@ -199,7 +203,7 @@ VALUES (:user_name, :nic, :first_name, :last_name, :gs_id, :sex, :is_blocked, :a
         ));
        
         $data['locationData'] = $getLocationData->fetch();
-        $data['user'] = $getUserSql->fetch();
+        $data['user'] = $getUserSql->fetch(PDO::FETCH_ASSOC);
         $data['userTel'] = $getTel->fetchAll(PDO::FETCH_COLUMN);        // FETCH_CULUMN : To return an array that contains a single column from all of the remaining rows in the result set
         // https://www.ibm.com/support/knowledgecenter/SSEPGG_11.5.0/com.ibm.swg.im.dbclient.php.doc/doc/t0023505.html
 

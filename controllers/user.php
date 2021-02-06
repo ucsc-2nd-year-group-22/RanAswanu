@@ -45,28 +45,22 @@ class User extends Controller {
     public function create(){
         $data = array();
         // Sanitize
-/*
-        $data['firstname'] = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
-        $data['lastname'] = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
+        $data['first_name'] = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
+        $data['last_name'] = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
+        $data['user_name'] = filter_var($_POST['user_name'], FILTER_SANITIZE_STRING);
+        $data['password'] = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+        $data['nic'] = filter_var($_POST['nic'], FILTER_SANITIZE_STRING);        
+        $data['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $data['dob'] = filter_var($_POST['dob'], FILTER_SANITIZE_STRING);
+        $data['sex'] = filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
+        $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+        $data['grama'] = filter_var($_POST['grama'], FILTER_SANITIZE_STRING);
+        $data['role'] = filter_var($_POST['role'], FILTER_SANITIZE_STRING);
 
-*/
-        $data['first_name'] = $_POST['first_name'];
-        $data['last_name'] = $_POST['last_name'];
-        $data['user_name'] = $_POST['user_name'];
-        $data['password'] = $_POST['password'];
-        $data['nic'] = $_POST['nic'];        
-        $data['email'] = $_POST['email'];
-        $data['dob'] = $_POST['dob'];
-        $data['sex'] = $_POST['sex'];
-        $data['address'] = $_POST['address'];
-        $data['grama'] = $_POST['grama'];
-        $data['role'] = $_POST['role'];
+        $data['tel_no_1'] = filter_var($_POST['tel_no_1'], FILTER_SANITIZE_STRING);
+        $data['tel_no_2'] = filter_var($_POST['tel_no_2'], FILTER_SANITIZE_STRING);
 
-        $data['tel_no_1'] = $_POST['tel_no_1'];
-        $data['tel_no_2'] = $_POST['tel_no_2'];
-
-        $data['grama'] = $_POST['grama'];
-        
+        $data['grama'] = filter_var($_POST['grama'], FILTER_SANITIZE_STRING);
         $data['is_blocked'] = 0;
 
 
@@ -102,18 +96,23 @@ class User extends Controller {
     }
     
     //fetch individual user
-    public function edit($id){
+    public function edit($user_id){
 
-        $data['id'] = $id;
-        if(Session::get('id') != $id){
-            $this->view->user = $this->model->userSingleList($id);
-            if(Session::get('isadmin') == 1 || ($this->view->user['role'] == 'farmer' && Session::get('role') == 'officer')){
+        $data['user_id'] = $user_id;
+        // echo $user_id . '=> ' . Session::get('user_id');
+        
+        if(Session::get('user_id') != $user_id){
+            $this->view->user = $this->model->userSingleList($user_id);
+            // print_r($this->view->user['user']);
+            // echo $this->view->user['user']['role'];
+            if(Session::get('isadmin') == 1 || ($this->view->user['user']['role'] == 'farmer' && Session::get('role') == 'officer')){
                 $this->view->rendor('user/edit', $data);
             }else{
-                $this->logout();
+                echo '<hr>logout';
+                //$this->logout();
             }
         }else{
-            $this->view->user = $this->model->userSingleList($id);
+            $this->view->user = $this->model->userSingleList($user_id);
             $this->view->rendor('user/edit', $data);
         }
         
@@ -121,7 +120,10 @@ class User extends Controller {
 
     public function delete($id) {
         $this->model->delete($id);
+        echo $id;
+
         switch (Session::get('role')) {
+            
             case 'officer':
                 header('location: ' . URL . 'farmer/farmerMng');
                 break;
@@ -132,32 +134,42 @@ class User extends Controller {
         }
     }
 
-    public function editSave($id){
+    public function editSave($user_id){
 
         // Sanitize variables before db update
-        $data = array();
-        $data['firstname'] = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
-        $data['lastname'] = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
-        $data['login'] = filter_var($_POST['login'], FILTER_SANITIZE_STRING);
-        $data['nic'] = filter_var($_POST['nic'],  FILTER_SANITIZE_STRING);
-        $data['tel'] = filter_var($_POST['tel'],  FILTER_SANITIZE_STRING);
-        $data['email'] = filter_var($_POST['email'],  FILTER_SANITIZE_EMAIL);
-        $data['dob'] = filter_var($_POST['dob'],  FILTER_SANITIZE_STRING);
-        $data['sex'] = filter_var($_POST['sex'],  FILTER_SANITIZE_STRING);
-        $data['province'] = filter_var($_POST['province'],  FILTER_SANITIZE_STRING);
-        $data['district'] = filter_var($_POST['district'],  FILTER_SANITIZE_STRING);
-        $data['grama'] = filter_var($_POST['grama'],  FILTER_SANITIZE_STRING);
-        $data['address'] = filter_var($_POST['address'],  FILTER_SANITIZE_STRING);
-        $data['role'] = filter_var($_POST['role'],  FILTER_SANITIZE_STRING);
-        $data['id'] = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $data['first_name'] = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
+        $data['last_name'] = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
+        $data['user_name'] = filter_var($_POST['user_name'], FILTER_SANITIZE_STRING);
+        $data['nic'] = filter_var($_POST['nic'], FILTER_SANITIZE_STRING);        
+        $data['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $data['dob'] = filter_var($_POST['dob'], FILTER_SANITIZE_STRING);
+        $data['sex'] = filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
+        $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+        $data['grama'] = filter_var($_POST['grama'], FILTER_SANITIZE_STRING);
+        $data['role'] = filter_var($_POST['role'], FILTER_SANITIZE_STRING);
+
+        // Updated
+        $data['tel_no_1'] = filter_var($_POST['tel_no_1'], FILTER_SANITIZE_STRING);
+        $data['tel_no_2'] = filter_var($_POST['tel_no_2'], FILTER_SANITIZE_STRING);
+        // Values before update
+        $data['old-tel-1'] = filter_var($_POST['old-tel-1'], FILTER_SANITIZE_STRING);
+        $data['old-tel-2'] = filter_var($_POST['old-tel-2'], FILTER_SANITIZE_STRING);
+
+        /////// FOR TESTING INSERTION ONLY
+        /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
+        $data['grama'] = 5;
+        
+        $data['user_id'] = $user_id;
 
         //: Do error checking
 
         $this->model->editSave($data);
         // print_r($data);
 
-        if($id == Session::get('id')) {
-            header('location: ' . URL . 'user/viewUser/' . $id);
+        // print_r($data);
+
+        if($id == Session::get('user_id')) {
+            header('location: ' . URL . 'user/viewUser/' . $user_id);
         } else {
             
             switch (Session::get('role')) {

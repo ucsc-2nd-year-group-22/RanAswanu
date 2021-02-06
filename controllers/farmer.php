@@ -44,7 +44,7 @@ class Farmer extends Controller {
         
         $data['farmerData'] = $farmerData;
         $this->setActivePage('farmerMng');
-        $this->setActivePage('userMgt');
+        // $this->setActivePage('userMgt');
         $this->view->rendor('farmer/farmerMng', $data);
     }
 

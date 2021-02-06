@@ -76,9 +76,7 @@ class User_Model extends Model {
     public function editSave($data){
         print_r($data);
         $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex, gs_id = :gs_id, address = :address, role = :role WHERE user_id = :user_id");
-
-        // $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex WHERE user_id = :user_id");
-        
+       
         $stmt->execute(array(
             ':first_name' => $data['first_name'],
             ':last_name' => $data['last_name'],
@@ -92,18 +90,6 @@ class User_Model extends Model {
             ':role' => $data['role'],
             ':user_id' => $data['user_id']
         ));
-
-
-        // $stmt->execute(array(
-        //     ':first_name' => $data['first_name'],
-        //     ':last_name' => $data['last_name'],
-        //     ':user_name' => $data['user_name'],
-        //     ':user_id' => $data['user_id'],
-        //     ':nic' => $data['nic'],
-        //     ':email' => $data['email'],
-        //     ':dob' => $data['dob'],
-        //     ':sex' => $data['sex']
-        // ));
 
         echo '<hr>';
         $userID = $data['user_id'];

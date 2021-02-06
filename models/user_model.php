@@ -74,39 +74,42 @@ class User_Model extends Model {
 
     //update the user data in the database 
     public function editSave($data){
-        // print_r($data);
-        $stmt = $this->db->prepare("UPDATE users SET 
-            `firstname` = :firstname, 
-            `lastname` = :lastname,
-            `login` = :login,
-            `nic` = :nic,
-            `tel` = :tel,
-            `email` = :email,
-            `dob` = :dob,
-            `sex` = :sex,
-            `province` = :province,
-            `district` = :district,
-            `grama` = :grama,
-            `address` = :address,
-            `role` = :role
-        WHERE `id` = :id");
+        print_r($data);
+        $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex, gs_id = :gs_id, address = :address, role = :role WHERE user_id = :user_id");
 
         $stmt->execute(array(
-            ':firstname' => $data['firstname'],
-            ':lastname' => $data['lastname'],
-            ':login' => $data['login'],
+            ':first_name' => $data['first_name'],
+            ':last_name' => $data['last_name'],
+            ':user_name' => $data['user_name'],
             ':nic' => $data['nic'],
-            ':tel' => $data['tel'],
             ':email' => $data['email'],
             ':dob' => $data['dob'],
             ':sex' => $data['sex'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':grama' => $data['grama'],
+            ':gs_id' => $data['grama'],
             ':address' => $data['address'],
             ':role' => $data['role'],
-            ':id' => $data['id']
+            ':user_id' => $data['user_id']
         ));
+
+        echo '<hr>';
+        $userID = $data['user_id'];
+        $telNos = array($data['tel_no_1'], $data['tel_no_2']);
+        $oldTels = array($data['old-tel-1'], $data['old-tel-2']);
+        foreach (array_combine($telNos, $oldTels) as $tel => $oldTel) {
+            if(!empty($tel)) {
+                // echo $tel . ', ' .  $oldTel . ', ' . '<br>';
+
+                $insertTelNos = $this->db->prepare("UPDATE `user_tel` SET `tel_no` = :tel WHERE `user_tel`.`user_id` = :user_id AND `user_tel`.`tel_no` =  :oldTel");
+                $insertTelNos->execute(array(
+                    ':user_id' => $userID,
+                    ':tel' => $tel,
+                    ':oldTel' => $oldTel
+                ));
+            }
+        }
+
+        echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
+        print_r($insertTelNos);
 
     }
 

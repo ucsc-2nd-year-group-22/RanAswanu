@@ -134,32 +134,42 @@ class User extends Controller {
         }
     }
 
-    public function editSave($id){
+    public function editSave($user_id){
 
         // Sanitize variables before db update
-        $data = array();
-        $data['firstname'] = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
-        $data['lastname'] = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
-        $data['login'] = filter_var($_POST['login'], FILTER_SANITIZE_STRING);
-        $data['nic'] = filter_var($_POST['nic'],  FILTER_SANITIZE_STRING);
-        $data['tel'] = filter_var($_POST['tel'],  FILTER_SANITIZE_STRING);
-        $data['email'] = filter_var($_POST['email'],  FILTER_SANITIZE_EMAIL);
-        $data['dob'] = filter_var($_POST['dob'],  FILTER_SANITIZE_STRING);
-        $data['sex'] = filter_var($_POST['sex'],  FILTER_SANITIZE_STRING);
-        $data['province'] = filter_var($_POST['province'],  FILTER_SANITIZE_STRING);
-        $data['district'] = filter_var($_POST['district'],  FILTER_SANITIZE_STRING);
-        $data['grama'] = filter_var($_POST['grama'],  FILTER_SANITIZE_STRING);
-        $data['address'] = filter_var($_POST['address'],  FILTER_SANITIZE_STRING);
-        $data['role'] = filter_var($_POST['role'],  FILTER_SANITIZE_STRING);
-        $data['id'] = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $data['first_name'] = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
+        $data['last_name'] = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
+        $data['user_name'] = filter_var($_POST['user_name'], FILTER_SANITIZE_STRING);
+        $data['nic'] = filter_var($_POST['nic'], FILTER_SANITIZE_STRING);        
+        $data['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $data['dob'] = filter_var($_POST['dob'], FILTER_SANITIZE_STRING);
+        $data['sex'] = filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
+        $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+        $data['grama'] = filter_var($_POST['grama'], FILTER_SANITIZE_STRING);
+        $data['role'] = filter_var($_POST['role'], FILTER_SANITIZE_STRING);
+
+        // Updated
+        $data['tel_no_1'] = filter_var($_POST['tel_no_1'], FILTER_SANITIZE_STRING);
+        $data['tel_no_2'] = filter_var($_POST['tel_no_2'], FILTER_SANITIZE_STRING);
+        // Values before update
+        $data['old-tel-1'] = filter_var($_POST['old-tel-1'], FILTER_SANITIZE_STRING);
+        $data['old-tel-2'] = filter_var($_POST['old-tel-2'], FILTER_SANITIZE_STRING);
+
+        /////// FOR TESTING INSERTION ONLY
+        /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
+        $data['grama'] = 5;
+        
+        $data['user_id'] = $user_id;
 
         //: Do error checking
 
         $this->model->editSave($data);
         // print_r($data);
 
-        if($id == Session::get('id')) {
-            header('location: ' . URL . 'user/viewUser/' . $id);
+        // print_r($data);
+
+        if($id == Session::get('user_id')) {
+            header('location: ' . URL . 'user/viewUser/' . $user_id);
         } else {
             
             switch (Session::get('role')) {

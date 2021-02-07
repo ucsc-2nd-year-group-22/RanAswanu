@@ -16,7 +16,6 @@ class Officer extends Controller {
             'role' => $role
         );
         if(($role=='officer'|| 'admin') && $logged==true)
-
             $this->view->rendor('officer/index', $data);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
@@ -73,7 +72,13 @@ class Officer extends Controller {
         // Session::set('activePage', 'cropReq');
         $this->view->js = 'officer/js/default';
         $this->setActivePage('cropReq');
-        $this->view->rendor('officer/cropReq', $pageData);
+
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('officer/cropReq', $pageData);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
     }
 
     public function damageClaims() {
@@ -101,12 +106,17 @@ class Officer extends Controller {
         $data = [
             'dmgClaimData' => $dmgClaimData ];
         $this->setActivePage('damageClaims');
-        $this->view->rendor('officer/damageClaims', $data);
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('officer/damageClaims', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
     }
 
     function editDmg() {
-        
-        $this->view->rendor('officer/editDmg');
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('officer/editDmg');
     }
 
     function saveDmg() {
@@ -116,17 +126,23 @@ class Officer extends Controller {
     public function reports() {
         $data = [];
         $this->setActivePage('reports');
-        $this->view->rendor('officer/reports', $data);
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('officer/reports', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
     }
 
     public function notifications() {
         $data = [];
         $this->setActivePage('notifications');
-        $this->view->rendor('officer/notifications', $data);
-    }
-
-    public function register(){
-        $this->view->rendor('officer/register');
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('officer/notifications', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
     }
 
     //view list of officers by the admin
@@ -150,7 +166,12 @@ class Officer extends Controller {
             'officerData' => $officerData,
         ];
         $this->setActivePage('userMgt');
-        $this->view->rendor('officer/officers', $pageData);
+        if((Session::get('role') == 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('officer/officers', $pageData);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
     }
 
     public function sendmail() {

@@ -1,21 +1,21 @@
 <?php
-
+        
 class Farmer extends Controller {
 
     public function __construct() {
         parent::__construct();
         Session::init();
+        $logged = Session::get('loggedIn');
+        $role = Session::get('role');
     }
 
     
     public function index() {
-        $logged = Session::get('loggedIn');
-        $role = Session::get('role');
         $data = array(
             'role' => $role
         );
-        if(($role=='farmer'|| 'admin') && $logged==true)
 
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
             $this->view->rendor('farmer/index', $data);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
@@ -27,30 +27,27 @@ class Farmer extends Controller {
     public function farmerMng() {
        
         $farmerData = $this->model->farmerList();
-        /*print_r($farmerData);
-        echo '<hr>';
-        
-        foreach($farmerData as $farmer) {
-            // echo print_r($farmer) . '<hr>' ;
-            foreach($farmer as $f) {
-                echo "$f ,";
-            }
-            echo '<hr>';
 
-        }*/
-
-        //echo "tels -> " . $farmerData[1]['telNos'];
-        
-        
         $data['farmerData'] = $farmerData;
         $this->setActivePage('farmerMng');
-        // $this->setActivePage('userMgt');
-        $this->view->rendor('farmer/farmerMng', $data);
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('farmer/farmerMng', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
     }
 
    
     public function damageclaim($arg = false) {
-        $this->view->rendor('farmer/damageclaim');
+        
+
+        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+            $this->view->rendor('farmer/farmerMng', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
+            $this->view->rendor('farmer/damageclaim');
+        }
     }
      
     //display damageclaim
@@ -90,14 +87,6 @@ class Farmer extends Controller {
         $this->view->rendor('farmer/sellyourcrops');
     }
    
-  /*  public function vendOffers($arg = false) {
-        $this->view->rendor('farmer/vendOffers');
-    }
-
-*/
-
-
-
     //instert damage claim information to the database
     public function creates($arg = false)
     {
@@ -194,94 +183,6 @@ class Farmer extends Controller {
     $this->setActivePage('vendOffers');
     $this->view->rendor('farmer/vendOffers', $pageData);
 }
-
-/*
- public function damageclaimif() {
-    $damageclaimData= [
-        [
-            'dmgdate' => "10-05-2020",
-            'district' => "Kandy",
-          //  'weight' => "7 weeks",
-            'address' => "12,kandy rd,Kandy", 
-            'approval'=>"pending",          
-        ],
-
-
-   
-
-    ];
-
-    $pageData = [
-        'role' => Session::get('role'),
-        'damageclaimData' => $damageclaimData,
-    ];
-    // Session::set('activePage', 'cropReq');
-    $this->view->js = 'officer/js/default';
-    $this->setActivePage('damageclaimif');
-    $this->view->rendor('farmer/damageclaimif', $pageData);
-}
-
-  */
-
-/*
-public function sellyourcropsif() {
-    $sellurcropsData= [
-        [
-            
-            'district' => "Colombo",
-            'state' => "After Harvest",
-          //  'weight' => "7 weeks",
-            'croptype' => "Potatoe-CG1", 
-            'exptprice'=>"45",
-            'totalweight' =>"560"          
-        ],
-
-
-    
-
-    ];
-
-    $pageData = [
-        'role' => Session::get('role'),
-        'sellurcropsData' => $sellurcropsData,
-    ];
-    // Session::set('activePage', 'cropReq');
-    $this->view->js = 'officer/js/default';
-    $this->setActivePage('sellyourcropsif');
-    $this->view->rendor('farmer/sellyourcropsif', $pageData);
-}
-*/
-
-/*
-public function cropReqif() {
-    $cropReqifData= [
-        [
-            
-            'district' => "Kandy",
-            'address' => "12,kandy rd,Kandy",
-          //  'weight' => "7 weeks",
-            'areasize' => "20", 
-            'expectdate'=>"10-05-2020",
-            'croptype' =>"Potatoe-CG1"          
-        ],
-
-
-   
-
-    ];
-
-    $pageData = [
-        'role' => Session::get('role'),
-        'cropReqifData' => $cropReqifData,
-    ];
-    // Session::set('activePage', 'cropReq');
-    $this->view->js = 'officer/js/default';
-    $this->setActivePage('cropReqif');
-    $this->view->rendor('farmer/cropReqif', $pageData);
-}
-
-*/
-
 
 //remove damage claim data
 public function deletedmg($dmgid){

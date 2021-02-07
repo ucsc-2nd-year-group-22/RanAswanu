@@ -98,7 +98,7 @@ class Crop_Model extends Model
     //delete a crop
     public function delete($id)
     {
-        $st = $this->db->prepare('DELETE FROM crops WHERE id = :id');
+        $st = $this->db->prepare('DELETE FROM crop WHERE crop_id = :id');
         $st->execute(array(
             ':id' => $id
         ));

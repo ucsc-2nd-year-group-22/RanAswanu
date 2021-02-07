@@ -42,11 +42,12 @@ class Crop_Model extends Model
     }
 
     //getting single col. center
-    public function singleCropList($id)
+    public function singleCropList($crop_id)
     {
-        $st = $this->db->prepare("SELECT * FROM crops WHERE id = :id");
+        $st = $this->db->prepare("SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, crop.description, district.ds_name, district.district_id FROM
+        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.crop_id = :crop_id");
         $st->execute(array(
-            ':id' => $id,
+            ':crop_id' => $crop_id,
         ));
         return $st->fetch();
     }
@@ -54,7 +55,7 @@ class Crop_Model extends Model
     //retrieve all crops
     public function crops()
     {
-        $crops = $this->db->prepare("SELECT crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
+        $crops = $this->db->prepare("SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
         ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id)");
         $crops->execute();
 
@@ -65,16 +66,24 @@ class Crop_Model extends Model
     //update crop
     public function update($data)
     {
-        $st = $this->db->prepare('UPDATE crops SET `crop_name` = :crop_name, `best_area` = :best_area, `harvest_per_land` = :harvest_per_land, `harvest_period` = :harvest_period, `discription` = :discription WHERE id = :id');
+        $st = $this->db->prepare('UPDATE crop SET `crop_type` = :crop_type, `crop_varient` = :crop_varient, `harvest_per_land` = :harvest_per_land, `harvest_period` = :harvest_period, `description` = :description, admin_user_id = :admin_user_id WHERE crop_id = :id');
         $st->execute(array(
             ':id' => $data['id'],
-            ':crop_name' => $data['crop_name'],
-            ':best_area' => $data['best_area'],
+            ':crop_type' => $data['crop_type'],
+            ':crop_varient' => $data['crop_varient'],
             ':harvest_per_land' => $data['harvest_per_land'],
             ':harvest_period' => $data['harvest_period'],
-            ':discription' => $data['discription'],
+            ':admin_user_id' => $data['admin_user_id'],
+            ':description' => $data['description']
+        ));
+
+        $bestArea = $this->db->prepare('UPDATE best_area SET `district_id` = :district_id WHERE crop_id = :id');
+        $bestArea->execute(array(
+            ':id' => $data['id'],
+            ':district_id' => $data['best_area']
         ));
     }
+    
 
     //get crop varients
     public function cropVarients($id)

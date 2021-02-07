@@ -60,7 +60,13 @@ class Crop extends Controller{
     // route to the edit form with retrieved data
     public function edit($id){
         $this->view->crop = $this->model->singleCropList($id);
-        $this->view->rendor('crop/edit');
+        $districts = $this->model->getAllDistricts();
+
+        $pageData = [
+            'id' => $id,
+            'districts' => $districts,
+        ];
+        $this->view->rendor('crop/edit', $pageData);
     }
 
     //routing to crop varients configuration
@@ -84,11 +90,13 @@ class Crop extends Controller{
         $data = array();
 
         $data['id'] = $id;
-        $data['crop_name'] = $_POST['crop_name'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['crop_varient'] = $_POST['crop_varient'];
         $data['best_area'] = $_POST['best_area'];
         $data['harvest_per_land'] = $_POST['harvest_per_land'];
         $data['harvest_period'] = $_POST['harvest_period'];
-        $data['discription'] = $_POST['discription'];
+        $data['description'] = $_POST['description'];
+        $data['admin_user_id'] = Session::get('user_id');
 
         $this->model->update($data);
         header('location: ' . URL . 'crop/crops');

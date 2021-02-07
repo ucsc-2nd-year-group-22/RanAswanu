@@ -51,7 +51,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="discription">Description</label>
+                <label for="description">Description</label>
             </div>
             <div class="col-75">
                 <textarea id="description" name="description" placeholder="Enter if any..." style="height:200px"></textarea>

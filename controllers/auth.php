@@ -108,6 +108,8 @@ class Auth extends Controller {
             }
 
             $resetResult = $this->model->getPwSelector($selector, $validator);
+            
+
             if($resetResult == 0) {
                 echo 'not valid';
                 // header("Location :".URL."auth/resetPw?reset=timeout");
@@ -122,9 +124,9 @@ class Auth extends Controller {
                 echo "Eroooor";
                 exit();
             } elseif ($tokenCheck === true) {
-                // echo "hoy $email";
+                echo "hoy" . $_POST['email'];
                 $userData = $this->model->checkEmail($email);
-                $userId = $userData['id'];
+                $userId = $userData['user_id'];
                 // print_r($userData);
                 $this->model->updatePw($userId, $pwd);
                 Session::set('alert', 'Your password has been reset!');
@@ -140,7 +142,7 @@ class Auth extends Controller {
 
     function getNewPwLogged($userId) {
 
-        $data['id'] = $userId;
+        $data['user_id'] = $userId;
         $this->view->rendor('auth/getNewPwLogged', $data);
 
     }

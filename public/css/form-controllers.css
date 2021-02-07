@@ -97,18 +97,22 @@ label {
 
 .main-form .row {
   border-radius: 6px;
+  transition: all .5s;
 }
 
 .main-form .row:hover{
   background-color: #c0d8c0;
+  transition: all .5s;
 }
 
 .main-form .row:nth-child(odd):hover {
   background-color: #c0d8c0;
+  transition: all .5s;
 }
 
 .main-form .row:nth-child(odd) {
   background-color: rgb(233, 233, 233);
+  transition: all .5s;
 }
 
 /* For button groups (Radio Buttons) -------------------------------------- */

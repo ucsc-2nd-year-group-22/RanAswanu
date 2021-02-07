@@ -11,15 +11,31 @@ class Crop_Model extends Model
     //register new collecting center into the  database col. center table
     public function create($data)
     {
-        $st = $this->db->prepare("INSERT INTO crop (`harvest_per_land`, `harvest_period`, `crop_type`, `crop_varient`, `description`, `admin_user_id`, `best_district`) VALUES (:harvest_per_land, :harvest_period, :crop_type, :crop_varient, :description, :admin_user_id, :best_area)");
+        $st = $this->db->prepare("INSERT INTO crop (`harvest_per_land`, `harvest_period`, `crop_type`, `crop_varient`, `admin_user_id`, `description`) VALUES (:harvest_per_land, :harvest_period, :crop_type, :crop_varient, :admin_user_id, :description)");
         $st->execute(array(
             ':crop_type' => $data['crop_type'],
             ':crop_varient' => $data['crop_varient'],
-            ':best_area' => $data['best_area'],
             ':harvest_per_land' => $data['harvest_per_land'],
             ':harvest_period' => $data['harvest_period'],
-            ':description' => $data['description'],
-            ':admin_user_id' => $data['admin_user_id']
+            ':admin_user_id' => $data['admin_user_id'],
+            ':description' => $data['description']
+        ));
+
+        $this->getLastCropId($data['best_area']);
+    }
+    //adding district as best area
+    public function getLastCropId($district_id){
+        $st = $this->db->prepare("SELECT crop_id FROM crop ORDER BY crop_id DESC LIMIT 1");
+        $st->execute();
+        $result = $st->fetch();
+        $this->updateBestCropArea($result['crop_id'], $district_id);
+    }
+    //update best area
+    public function updateBestCropArea($crop_id, $district_id){
+        $st = $this->db->prepare("INSERT INTO best_area (`crop_id`, `district_id`) VALUES (:crop_id, :district_id)");
+        $st->execute(array(
+            ':crop_id' => $crop_id,
+            ':district_id' => $district_id
         ));
     }
 

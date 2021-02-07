@@ -44,12 +44,6 @@ class Crop extends Controller{
     public function crops(){
 
         $cropData = $this->model->crops();
-        
-        $varientData = [];
-        foreach($cropData as $crop){
-            // print_r($this->model->cropVarients($crop['id']));
-            array_push($varientData, $this->model->cropVarients($crop['id']));
-        } 
 
         $pageData = [
             'role' => Session::get('role'),
@@ -57,11 +51,9 @@ class Crop extends Controller{
                           'path' => 'crop/register'
                         ]            
                       ],
-            'cropData' => $cropData,
-            'allVarients' => $varientData,
+            'cropData' => $cropData
         ];
-        $this->setActivePage('crops');
-        // print_r($varientData);      
+        $this->setActivePage('crops');      
         $this->view->rendor('crop/crops', $pageData);
     }
 

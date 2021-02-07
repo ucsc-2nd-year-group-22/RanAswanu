@@ -24,14 +24,16 @@ class Crop_Model extends Model
         $this->getLastCropId($data['best_area']);
     }
     //adding district as best area
-    public function getLastCropId($district_id){
+    public function getLastCropId($district_id)
+    {
         $st = $this->db->prepare("SELECT crop_id FROM crop ORDER BY crop_id DESC LIMIT 1");
         $st->execute();
         $result = $st->fetch();
         $this->updateBestCropArea($result['crop_id'], $district_id);
     }
     //update best area
-    public function updateBestCropArea($crop_id, $district_id){
+    public function updateBestCropArea($crop_id, $district_id)
+    {
         $st = $this->db->prepare("INSERT INTO best_area (`crop_id`, `district_id`) VALUES (:crop_id, :district_id)");
         $st->execute(array(
             ':crop_id' => $crop_id,
@@ -49,16 +51,18 @@ class Crop_Model extends Model
         return $st->fetch();
     }
 
-    //retrieve all col centers
+    //retrieve all crops
     public function crops()
     {
-        $st = $this->db->prepare("SELECT * FROM crops");
-        $st->execute();
-        return $st->fetchAll();
+        $crops = $this->db->prepare("SELECT crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
+        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id)");
+        $crops->execute();
+
+        return $crops->fetchAll();
     }
 
 
-    //update col. center
+    //update crop
     public function update($data)
     {
         $st = $this->db->prepare('UPDATE crops SET `crop_name` = :crop_name, `best_area` = :best_area, `harvest_per_land` = :harvest_per_land, `harvest_period` = :harvest_period, `discription` = :discription WHERE id = :id');

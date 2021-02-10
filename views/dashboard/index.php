@@ -17,7 +17,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select crop_name as label, harvest_per_land as y from crops'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         
@@ -44,7 +44,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select text as label, id as y from data'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         
@@ -72,7 +72,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select text as label, id as y from data'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         
@@ -99,7 +99,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select text as label, id as y from data'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         

@@ -106,9 +106,9 @@ if(isset($oldUserTel[1])) echo '2 set';
             </div>
             <div class="col-75">
             <select id="sex" name="sex">
-                <option value="none">None</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="none" <?php if ($userData['sex'] == 'none') echo 'selected'; ?>>None</option>
+                <option value="male" <?php if ($userData['sex'] == 'male') echo 'selected'; ?>>Male</option>
+                <option value="female" <?php if ($userData['sex'] == 'female') echo 'selected'; ?>>Female</option>
             </select>
             </div>
         </div>

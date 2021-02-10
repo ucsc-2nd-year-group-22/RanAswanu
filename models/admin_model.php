@@ -45,7 +45,7 @@ class Admin_Model extends Model
         return;
     }
 
-    //delete a adminx
+    //delete an admin
     public function delete($id)
     {
         $st = $this->db->prepare('DELETE FROM user WHERE user_id = :id');

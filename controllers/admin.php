@@ -35,6 +35,7 @@ class Admin extends Controller {
             'adminData' => $adminData,
         ];
         $this->setActivePage('userMgt');
+        // var_dump($adminData);
         $this->view->rendor('admin/admins', $pageData);
     }
 

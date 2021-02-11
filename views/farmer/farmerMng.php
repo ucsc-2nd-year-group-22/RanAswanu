@@ -1,23 +1,46 @@
 <script>
 
 $(function() {
+    var selectedSearchCategory = $('#searchField').val();
+
+    $('#searchField').change(function() {
+        selectedSearchCategory = $(this).val();
+        $('#test').html(selectedCategory);
+    });
 
     $("#searchInput").keyup(function() {
         var inputVal = $(this).val();
-        //$("#box").html(inputVal);
 
         if(inputVal != '') {
             $('#box').html('');
-            $.ajax({
-                url:"ajxSearchFarmerName",
-                method:"post",
-                data:{search:inputVal},
-                dataType:"text",
-                success:function(data) {
-                    $('#box').html(data);
-                },
-                async:true,
-            });
+            switch(selectedSearchCategory) {
+                case 'fname': {
+                    $.ajax({
+                        url:"ajxSearchFarmerName",
+                        method:"post",
+                        data:{search:inputVal},
+                        dataType:"text",
+                        success:function(data) {
+                            $('#box').html(data);
+                        },
+                        async:true,
+                    });
+                    break;
+                }
+                case 'nic' : {
+                    $.ajax({
+                        url:"ajxSearchFarmerNic",
+                        method:"post",
+                        data:{search:inputVal},
+                        dataType:"text",
+                        success:function(data) {
+                            $('#box').html(data);
+                        },
+                        async:true,
+                    });
+                    break;
+                }
+            }
         } else {
             location.reload();
         }
@@ -27,7 +50,9 @@ $(function() {
 });
 
 </script>
+<div id="test">
 
+</div>
 <h1>Farmer Management</h1>
 
 <div class="user-tabs">
@@ -48,11 +73,11 @@ $(function() {
 
         <form class="search-bar">
             <label>Search crop requests by : </label>
-            <select placeholder="Search ...">
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
-                </select>
+            <select id = "searchField">
+                <option value="fname">Name</option>
+                <option value="nic">NIC</option>
+                
+            </select>
             <input type="text" id="searchInput" placeholder="Search ...">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>

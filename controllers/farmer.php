@@ -24,9 +24,18 @@ class Farmer extends Controller {
             
     }
 
+    public function farmerAjx() {
+        $d = $this->model->ajaxFarmerName($_POST['search']);
+        $data['farmerData'] = $d;
+        $this->view->rendor('farmer/ajxFarmers', $data, true);
+
+    }
+
     public function farmerMng() {
        
         $farmerData = $this->model->farmerList();
+
+        // if(isset($_GET))
 
         $data['farmerData'] = $farmerData;
         $this->setActivePage('farmerMng');

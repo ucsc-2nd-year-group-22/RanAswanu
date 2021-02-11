@@ -1,3 +1,32 @@
+<script>
+
+$(function() {
+
+    $("#searchInput").keyup(function() {
+        var inputVal = $(this).val();
+        //$("#box").html(inputVal);
+
+        if(inputVal != '') {
+            $('#box').html('');
+            $.ajax({
+                url:"farmerAjx",
+                method:"post",
+                data:{search:inputVal},
+                dataType:"text",
+                success:function(data) {
+                    $('#box').html(data);
+                }
+            });
+        } else {
+            location.reload();
+        }
+
+    });
+     
+});
+
+</script>
+
 <h1>Farmer Management</h1>
 
 <div class="user-tabs">
@@ -23,7 +52,7 @@
                     <option>Farmer name</option>
                     <option>Crop</option>
                 </select>
-            <input type="text" placeholder="Search ...">
+            <input type="text" id="searchInput" placeholder="Search ...">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>
 
@@ -52,7 +81,12 @@
         <label>Empty pane</label>
     </div> -->
 </div> 
-    <div class="main-table">
+
+<!-- <div id="box" style="border:1px solid">
+    This is box
+</div> -->
+
+    <div id="box" class="main-table">
         <table>
             <tr>
                 <th>#</th>

@@ -24,10 +24,18 @@ class Farmer extends Controller {
             
     }
 
-    public function farmerAjx() {
-        $d = $this->model->ajaxFarmerName($_POST['search']);
+    public function ajxSearchFarmerName() {
+        $d = $this->model->ajxSearchFarmerName($_POST['search']);
         $data['farmerData'] = $d;
-        $this->view->rendor('farmer/ajxFarmers', $data, true);
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+        
+
 
     }
 

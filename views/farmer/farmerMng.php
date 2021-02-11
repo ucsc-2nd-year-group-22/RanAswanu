@@ -9,13 +9,14 @@ $(function() {
         if(inputVal != '') {
             $('#box').html('');
             $.ajax({
-                url:"farmerAjx",
+                url:"ajxSearchFarmerName",
                 method:"post",
                 data:{search:inputVal},
                 dataType:"text",
                 success:function(data) {
                     $('#box').html(data);
-                }
+                },
+                async:true,
             });
         } else {
             location.reload();

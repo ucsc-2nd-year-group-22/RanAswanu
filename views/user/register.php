@@ -1,5 +1,41 @@
 <script src="<?php echo URL;?>views/user/js/default.js"></script>
 
+<script>
+
+$(function() {
+   // Load provinces in to the form
+    $.ajax({ 
+        type: 'GET', 
+        url: 'ajxGetProvinces', 
+        success: function (data) { 
+            var json = $.parseJSON(data);
+            $(json).each(function (i, val) {
+                $.each(val, function (k, v) {
+                    // console.log(k + " : " + v);
+                    $('#test').append(v + ' ');
+                    var newOp = new Option(v, v);
+                    $(newOp).html(v);
+                    $('#provinces').append(newOp);
+                });
+            }); 
+
+        }
+    });
+
+    $('#province').change(function() {
+        // selectedProvince = $(this).val();
+        // alert(selectedProvince);
+        
+    });
+
+});
+
+</script>
+
+<div id="test">
+     
+</div>
+
 <div class="subHeader">
 <?php if(Session::get('role')== 'admin'):?>
     <h1>Admin & Officer Registration</h1>
@@ -106,20 +142,8 @@
             <label for="province">Province</label>
             </div>
             <div class="col-75">
-            <select id="province" name="province">
-                <?php $provinces = [
-                    '1-western',
-                    'North Western',
-                    'North Central',
-                    'Central',
-                    'Sabaragamuwa',
-                    'Eastern',
-                    'Uva',
-                    'Southern'
-                ]; ?>
-                <?php foreach ($provinces as $provinceItem): ?>
-                    <option value="<?= $provinceItem?>" > <?= $provinceItem?> </option>
-                <?php endforeach; ?>
+            <select id="provinces">
+                <option>== select province ==</option>
             </select>
             </div>
         </div>

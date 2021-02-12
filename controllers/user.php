@@ -234,6 +234,11 @@ class User extends Controller {
         $this->view->rendor('user/profile', $data);
     }
 
+    function ajxGetProvinces() {
+        $provinces = $this->model->ajxGetProvinces();
+        echo json_encode($provinces);
+    }
+
 
 ////////////////////////////////////////////////
 // Moved authentication functions to another module

@@ -213,4 +213,10 @@ class User_Model extends Model {
         return $data;
     }
 
+    public function ajxGetProvinces() {
+        $st = $this->db->prepare("SELECT province_name FROM province");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 } 

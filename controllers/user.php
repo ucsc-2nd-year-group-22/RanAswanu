@@ -41,8 +41,14 @@ class User extends Controller
     //route to the register user
     public function register()
     {
+        $provinces = $this->model->getProvinces();
+
+        $pageData = [
+            'provinces' => $provinces
+        ];
+
         $this->destroyActivePage();
-        $this->view->rendor('user/register');
+        $this->view->rendor('user/register', $pageData);
     }
 
     //instert new user in to the database
@@ -54,7 +60,7 @@ class User extends Controller
         $data['last_name'] = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
         $data['user_name'] = filter_var($_POST['user_name'], FILTER_SANITIZE_STRING);
         $data['password'] = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-        $data['nic'] = filter_var($_POST['nic'], FILTER_SANITIZE_STRING);        
+        $data['nic'] = filter_var($_POST['nic'], FILTER_SANITIZE_STRING);
         $data['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $data['dob'] = filter_var($_POST['dob'], FILTER_SANITIZE_STRING);
         $data['sex'] = filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
@@ -100,22 +106,23 @@ class User extends Controller
     }
 
     //fetch individual user
-    public function edit($user_id){
+    public function edit($user_id)
+    {
 
         $data['user_id'] = $user_id;
         // echo $user_id . '=> ' . Session::get('user_id');
-        
-        if(Session::get('user_id') != $user_id){
+
+        if (Session::get('user_id') != $user_id) {
             $this->view->user = $this->model->userSingleList($user_id);
             // print_r($this->view->user['user']);
             // echo $this->view->user['user']['role'];
-            if(Session::get('isadmin') == 1 || ($this->view->user['user']['role'] == 'farmer' && Session::get('role') == 'officer')){
+            if (Session::get('isadmin') == 1 || ($this->view->user['user']['role'] == 'farmer' && Session::get('role') == 'officer')) {
                 $this->view->rendor('user/edit', $data);
-            }else{
+            } else {
                 echo '<hr>logout';
                 //$this->logout();
             }
-        }else{
+        } else {
             $this->view->user = $this->model->userSingleList($user_id);
             $this->view->rendor('user/edit', $data);
         }
@@ -127,7 +134,7 @@ class User extends Controller
         echo $id;
 
         switch (Session::get('role')) {
-            
+
             case 'officer':
                 header('location: ' . URL . 'farmer/farmerMng');
                 break;
@@ -138,13 +145,14 @@ class User extends Controller
         }
     }
 
-    public function editSave($user_id){
+    public function editSave($user_id)
+    {
 
         // Sanitize variables before db update
         $data['first_name'] = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
         $data['last_name'] = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
         $data['user_name'] = filter_var($_POST['user_name'], FILTER_SANITIZE_STRING);
-        $data['nic'] = filter_var($_POST['nic'], FILTER_SANITIZE_STRING);        
+        $data['nic'] = filter_var($_POST['nic'], FILTER_SANITIZE_STRING);
         $data['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $data['dob'] = filter_var($_POST['dob'], FILTER_SANITIZE_STRING);
         $data['sex'] = filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
@@ -162,7 +170,7 @@ class User extends Controller
         /////// FOR TESTING INSERTION ONLY
         /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
         $data['grama'] = 5;
-        
+
         $data['user_id'] = $user_id;
 
         //: Do error checking
@@ -172,7 +180,7 @@ class User extends Controller
 
         // print_r($data);
 
-        if($user_id == Session::get('user_id')) {
+        if ($user_id == Session::get('user_id')) {
             header('location: ' . URL . 'user/viewUser/' . $user_id);
         } else {
 
@@ -240,7 +248,26 @@ class User extends Controller
         $this->view->rendor('user/profile', $data);
     }
 
+    //get districts
+    public function getDistricts($id)
+    {
+        $districts = $this->model->getDistricts($id);
+        echo json_encode($districts);
+    }
 
+    //get divisional secratariast
+    public function getDivSec($id)
+    {
+        $divSecs = $this->model->getDivSec($id);
+        echo json_encode($divSecs);
+    }
+    
+    //get gramasewa division
+    public function getGramaSewa($id)
+    {
+        $gramaSewas = $this->model->getGramaSewa($id);
+        echo json_encode($gramaSewas);
+    }
     ////////////////////////////////////////////////
     // Moved authentication functions to another module
 

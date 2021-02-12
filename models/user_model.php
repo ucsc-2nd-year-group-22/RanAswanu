@@ -219,4 +219,16 @@ class User_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxGetDistricts($province) {
+        $st = $this->db->prepare("SELECT district.ds_name FROM district JOIN province ON province.province_id = district.province_id WHERE province.province_name = '$province'");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajxGetDivSec($province) {
+        $st = $this->db->prepare("SELECT district.ds_name FROM district JOIN province ON province.province_id = district.province_id WHERE province.province_name = '$province'");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 } 

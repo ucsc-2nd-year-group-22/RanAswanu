@@ -12,7 +12,7 @@ $(function() {
             $(json).each(function (i, val) {
                 $.each(val, function (k, v) {
                     // console.log(k + " : " + v);
-                    $('#test').append(v + ' ');
+                    // $('#test').append(v + ' ');
                     var newOp = new Option(v, v);
                     $(newOp).html(v);
                     $('#provinces').append(newOp);
@@ -22,10 +22,27 @@ $(function() {
         }
     });
 
-    $('#province').change(function() {
-        // selectedProvince = $(this).val();
-        // alert(selectedProvince);
-        
+    // when province changes, load relevent district, divsec and grama from ajax
+    $('#provinces').change(function() {
+       var province = $(this).val();
+       $('#districts').empty();
+        $.ajax({ 
+            type: 'GET', 
+            url: 'ajxGetDistricts', 
+            data: {province:province},
+            success: function (data) { 
+                var json = $.parseJSON(data);
+                $(json).each(function (i, val) {
+                    $.each(val, function (k, v) {
+                        console.log(k + " : " + v);
+                        // $('#test').append(v + ' ');
+                        var newOp = new Option(v, v);
+                        $(newOp).html(v);
+                        $('#districts').append(newOp);
+                    });
+                }); 
+            }
+        });
     });
 
 });
@@ -143,7 +160,7 @@ $(function() {
             </div>
             <div class="col-75">
             <select id="provinces">
-                <option>== select province ==</option>
+                <option disabled selected>== Select Province ==</option>
             </select>
             </div>
         </div>
@@ -152,28 +169,9 @@ $(function() {
             <label for="district">District</label>
             </div>
             <div class="col-75">
-            <select id="district" name="district">
-                <?php $districts = [
-                    '1-Gampaha',
-                    'Anuradhapura',
-                    'Polonnaruwa',
-                    'Gampaha',
-                    'Matale',
-                    'Kandy',
-                    'NuwaraEliya',
-                    'Kegalle',
-                    'Ratnapura',
-                    'Hambantota',
-                    'Matara',
-                    'Galle',
-                    'Trincomalee',
-                    'Jaffna',
-                    'Kurunegala'
-                ]; ?>
-
-                <?php foreach ($districts as $districtItem): ?>
-                    <option value="<?= $districtItem?>" > <?= $districtItem?> </option>
-                <?php endforeach; ?>
+            <select id="districts">
+                <!-- load districts with ajax -->
+                <option disabled selected >== select District</option>
             </select>
             </div>
         </div>

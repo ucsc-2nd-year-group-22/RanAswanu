@@ -239,6 +239,12 @@ class User extends Controller {
         echo json_encode($provinces);
     }
 
+    function ajxGetDistricts() {
+        $province = $_GET['province'];
+        $dists = $this->model->ajxGetDistricts($province);
+        echo json_encode($dists);
+    }
+
 
 ////////////////////////////////////////////////
 // Moved authentication functions to another module

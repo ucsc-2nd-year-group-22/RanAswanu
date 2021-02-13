@@ -48,6 +48,19 @@ class Farmer extends Controller {
         }
     }
 
+    public function ajxFilterFarmer() {
+        $d = $this->model->ajxFilterFarmer($_POST['filter']);
+        $data['farmerData'] = $d;
+
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
     public function farmerMng() {
        
         $farmerData = $this->model->farmerList();

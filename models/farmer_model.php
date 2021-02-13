@@ -30,6 +30,18 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxFilterFarmer($filter) {
+       
+        $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id ORDER BY $filter ASC";
+        $st = $this->db->prepare($sql);
+
+        $st->execute();
+        // echo '<hr>';
+        // echo $filter . ' - ' . '<br>';
+        // print_r($st->fetchAll(PDO::FETCH_ASSOC));
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     
     public function ajxSearchFarmerNic($nic) {
         $escaped_name = addcslashes($nic, '%');

@@ -55,7 +55,24 @@ $(function() {
         }
     });
 
-    
+    var selectedSort = 'first_name';
+    $('#sortby').change(function() {
+        selectedSort = $('#sortby :selected').attr('val');
+    });
+
+    $('#ascSort').click(function() {
+        // alert(selectedSort);
+        $.ajax({
+            url:"ajxFilterFarmer",
+            method:"post",
+            data:{filter:selectedSort},
+            dataType:"text",
+            success:function(data) {
+                $('#box').html(data);
+            },
+            async:true
+        });
+    });
      
 });
 
@@ -96,16 +113,14 @@ $(function() {
     <div class="pane2">
     <!-- sort bar -->
         <form class="normal-select">
-            <label>Sort crop requests by : </label>
-            <select placeholder="other">
-                    <option>Date</option>
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
-                <option>111</option>
+            <label>Sort farmers by : </label>
+            <select id="sortby">
+                <option val="first_name" selected>First name</option>
+                <option val="last_name">Last name</option>
+                <option val="regdate">Registered Data</option>
             </select>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+            <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
+            <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
         </form>
     </div>
 

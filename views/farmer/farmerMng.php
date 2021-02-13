@@ -8,9 +8,18 @@ $(function() {
         $('#test').html(selectedCategory);
     });
 
+    $('#searchBtn').click(function(event){
+        event.preventDefault();
+        var input = $('#searchInput').val();
+        if(input != '') {
+            $('#searchInput').val('');
+            location.reload();
+        }
+        
+    });
+
     $("#searchInput").keyup(function() {
         var inputVal = $(this).val();
-
         if(inputVal != '') {
             $('#box').html('');
             switch(selectedSearchCategory) {
@@ -44,8 +53,9 @@ $(function() {
         } else {
             location.reload();
         }
-
     });
+
+    
      
 });
 
@@ -70,7 +80,7 @@ $(function() {
     
     <div class="panel-container">
     <div class="pane1">
-
+    <!-- Search bar -->
         <form class="search-bar">
             <label>Search crop requests by : </label>
             <select id = "searchField">
@@ -79,11 +89,12 @@ $(function() {
                 
             </select>
             <input type="text" id="searchInput" placeholder="Search ...">
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
         </form>
 
     </div>
     <div class="pane2">
+    <!-- sort bar -->
         <form class="normal-select">
             <label>Sort crop requests by : </label>
             <select placeholder="other">

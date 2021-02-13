@@ -88,6 +88,10 @@
     float:left;
 }
 
+.panel-container .active-btn {
+    background-color: var(--main-theme-color);
+}
+
 
 /* Tab -------------------------------------------------------- */
 

@@ -49,7 +49,8 @@ class Farmer extends Controller {
     }
 
     public function ajxFilterFarmer() {
-        $d = $this->model->ajxFilterFarmer($_POST['filter']);
+
+        $d = $this->model->ajxFilterFarmer($_POST['filter'], $_POST['ascOrDsc']);
         $data['farmerData'] = $d;
 
         // print_r($data['farmerData']);

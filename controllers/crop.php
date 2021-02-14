@@ -13,18 +13,26 @@ class Crop extends Controller{
 
     //route to the crop register form
     public function register($arg = false) {
-        $this->view->rendor('crop/register');
+        
+        $districts = $this->model->getAllDistricts();
+        $pageData = [
+            'districts' => $districts
+        ];
+
+        $this->view->rendor('crop/register', $pageData);
     }
 
     //get the post data and create the crop in the database
     public function create(){
         $data = array();
 
-        $data['crop_name'] = $_POST['crop_name'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['crop_varient'] = $_POST['crop_varient'];
         $data['best_area'] = $_POST['best_area'];
         $data['harvest_per_land'] = $_POST['harvest_per_land'];
         $data['harvest_period'] = $_POST['harvest_period'];
-        $data['discription'] = $_POST['discription'];
+        $data['description'] = $_POST['description'];
+        $data['admin_user_id'] = Session::get('user_id');
 
         // TODO: Do error checking
 
@@ -36,12 +44,6 @@ class Crop extends Controller{
     public function crops(){
 
         $cropData = $this->model->crops();
-        
-        $varientData = [];
-        foreach($cropData as $crop){
-            // print_r($this->model->cropVarients($crop['id']));
-            array_push($varientData, $this->model->cropVarients($crop['id']));
-        } 
 
         $pageData = [
             'role' => Session::get('role'),
@@ -49,18 +51,22 @@ class Crop extends Controller{
                           'path' => 'crop/register'
                         ]            
                       ],
-            'cropData' => $cropData,
-            'allVarients' => $varientData,
+            'cropData' => $cropData
         ];
-        $this->setActivePage('crops');
-        // print_r($varientData);      
+        $this->setActivePage('crops');      
         $this->view->rendor('crop/crops', $pageData);
     }
 
     // route to the edit form with retrieved data
     public function edit($id){
         $this->view->crop = $this->model->singleCropList($id);
-        $this->view->rendor('crop/edit');
+        $districts = $this->model->getAllDistricts();
+
+        $pageData = [
+            'id' => $id,
+            'districts' => $districts,
+        ];
+        $this->view->rendor('crop/edit', $pageData);
     }
 
     //routing to crop varients configuration
@@ -84,11 +90,13 @@ class Crop extends Controller{
         $data = array();
 
         $data['id'] = $id;
-        $data['crop_name'] = $_POST['crop_name'];
+        $data['crop_type'] = $_POST['crop_type'];
+        $data['crop_varient'] = $_POST['crop_varient'];
         $data['best_area'] = $_POST['best_area'];
         $data['harvest_per_land'] = $_POST['harvest_per_land'];
         $data['harvest_period'] = $_POST['harvest_period'];
-        $data['discription'] = $_POST['discription'];
+        $data['description'] = $_POST['description'];
+        $data['admin_user_id'] = Session::get('user_id');
 
         $this->model->update($data);
         header('location: ' . URL . 'crop/crops');

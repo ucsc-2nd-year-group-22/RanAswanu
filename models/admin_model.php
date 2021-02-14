@@ -1,24 +1,32 @@
-<?php 
+<?php
 
-class Admin_Model extends Model {
-    
-    public function __construct() {
+class Admin_Model extends Model
+{
+
+    public function __construct()
+    {
         parent::__construct();
     }
 
     //retrieve all admins
-    public function adminList() {
-        $st = $this->db->prepare("SELECT id, firstname, address, tel FROM users WHERE role = :role");
+    public function adminList()
+    {
+        $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'admin' GROUP BY user.user_id");
+
+        // SELECT user.user_name, user.first_name, group_concat(user_tel.tel_no) FROM user JOIN user_tel on user.user_id =user_tel.user_id GROUP BY user.user_id
         $st->execute(array(
             ':role' => 'admin'
         ));
-        return $st->fetchAll();
+        // print_r($st->fetchAll());
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     //update role to officer
-    public function toofficer($data){
-        
-        $st = $this->db->prepare('UPDATE users SET `role` = :role WHERE id = :id');
+    public function toofficer($data)
+    {
+
+        $st = $this->db->prepare('UPDATE user SET `role` = :role WHERE id = :id');
         $st->execute(array(
             ':id' => $data['id'],
             ':role' => $data['role']
@@ -26,9 +34,10 @@ class Admin_Model extends Model {
         return;
     }
     //update role to admin
-    public function toadmin($data){
-        
-        $st = $this->db->prepare('UPDATE users SET `role` = :role WHERE id = :id');
+    public function toadmin($data)
+    {
+
+        $st = $this->db->prepare('UPDATE user SET `role` = :role WHERE id = :id');
         $st->execute(array(
             ':id' => $data['id'],
             ':role' => $data['role']
@@ -36,12 +45,12 @@ class Admin_Model extends Model {
         return;
     }
 
-    //delete a adminx
-    public function delete($id){
-        $st = $this->db->prepare('DELETE FROM users WHERE id = :id');
+    //delete an admin
+    public function delete($id)
+    {
+        $st = $this->db->prepare('DELETE FROM user WHERE user_id = :id');
         $st->execute(array(
             ':id' => $id
         ));
     }
-
-} 
+}

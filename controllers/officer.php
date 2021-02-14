@@ -176,6 +176,12 @@ class Officer extends Controller {
 
     }
 
+    //remove a officer
+    public function delete($id){
+        $this->model->delete($id);
+        header('location: ' . URL . 'officer/officers');
+    }
+
 }
 
         

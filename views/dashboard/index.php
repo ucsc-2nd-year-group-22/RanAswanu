@@ -8,7 +8,7 @@ $dataPoints = array();
 try{
      // Creating a new connection.
     // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=mvc;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
                         'root', //'root',
                         '', //'',
                         array(
@@ -17,7 +17,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select crop_name as label, harvest_per_land as y from crops'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         
@@ -35,7 +35,7 @@ $dataPoints1 = array();
 try{
      // Creating a new connection.
     // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=mvc;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
                         'root', //'root',
                         '', //'',
                         array(
@@ -44,7 +44,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select text as label, id as y from data'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         
@@ -63,7 +63,7 @@ $dataPoints2 = array();
 try{
      // Creating a new connection.
     // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=mvc;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
                         'root', //'root',
                         '', //'',
                         array(
@@ -72,7 +72,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select text as label, id as y from data'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         
@@ -90,7 +90,7 @@ $dataPoints3 = array();
 try{
      // Creating a new connection.
     // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=mvc;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
                         'root', //'root',
                         '', //'',
                         array(
@@ -99,7 +99,7 @@ try{
                         )
                     );
     
-    $handle = $link->prepare('select text as label, id as y from data'); 
+    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
         

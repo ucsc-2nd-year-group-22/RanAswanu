@@ -106,9 +106,9 @@ $locationData = $this->user['locationData'];
             </div>
             <div class="col-75">
             <select id="sex" name="sex">
-                <option value="other">Other</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="other" <?php if ($userData['sex'] == 'other') echo 'selected'; ?>>None</option>
+                <option value="male" <?php if ($userData['sex'] == 'male') echo 'selected'; ?>>Male</option>
+                <option value="female" <?php if ($userData['sex'] == 'female') echo 'selected'; ?>>Female</option>
             </select>
             </div>
         </div>
@@ -127,18 +127,9 @@ $locationData = $this->user['locationData'];
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <?php $provinces = [
-                    '1-western',
-                    'North Western',
-                    'North Central',
-                    'Central',
-                    'Sabaragamuwa',
-                    'Eastern',
-                    'Uva',
-                    'Southern'
-                ]; ?>
-                <?php foreach ($provinces as $provinceItem): ?>
-                    <option value="<?= $provinceItem?>" > <?= $provinceItem?> </option>
+
+                <?php foreach ($allProvinces as $provinceItem): ?>
+                    <option value="<?= $provinceItem['province_id']?>"      <?php if($userLocationData['province_name'] == $provinceItem['province_name']) echo 'selected'; ?> > <?php echo $provinceItem['province_name']; ?></option>
                 <?php endforeach; ?>
             </select>
             </div>
@@ -149,45 +140,9 @@ $locationData = $this->user['locationData'];
             </div>
             <div class="col-75">
             <select id="district" name="district">
-                <?php $districts = [
-                    '1-Gampaha',
-                    'Anuradhapura',
-                    'Polonnaruwa',
-                    'Gampaha',
-                    'Matale',
-                    'Kandy',
-                    'NuwaraEliya',
-                    'Kegalle',
-                    'Ratnapura',
-                    'Hambantota',
-                    'Matara',
-                    'Galle',
-                    'Trincomalee',
-                    'Jaffna',
-                    'Kurunegala'
-                ]; ?>
 
-                <?php foreach ($districts as $districtItem): ?>
-                    <option value="<?= $districtItem?>" > <?= $districtItem?> </option>
-                <?php endforeach; ?>
-            </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-            <label for="province">Divisional secratariast</label>
-            </div>
-            <div class="col-75">
-            <select id="div_sec" name="div_sec">
-                <?php $div_secs = [
-                    '1-Gampaha',
-                    'Dompe',
-                    'ds-3',
-                    'ds-4',
-                    'ds-5'
-                ]; ?>
-                <?php foreach ($div_secs as $div_secItem): ?>
-                    <option value="<?= $div_secItem?>" > <?= $div_secItem?> </option>
+                <?php foreach ($allDistricts as $districtItem): ?>
+                    <option value="<?= $districtItem['district_id']?>"      <?php if($userLocationData['ds_name'] == $districtItem['ds_name']) echo 'selected'; ?> > <?= $districtItem['ds_name']?></option>
                 <?php endforeach; ?>
             </select>
             </div>
@@ -198,26 +153,14 @@ $locationData = $this->user['locationData'];
             </div>
             <div class="col-75">
             <select id="grama" name="grama">
-                <?php $gramas = [
-                   '5- Parakandeniya',
-                   'Parakandeniya',
-                   'Mahiyanganaya',
-                   'Udawela',
-                   'Kahatagasdeigiliya',
-                   'Horowpathana',
-                   'Ambewela',
-                   'Haten',
-                   'Kalmune'
-                ]; ?>
 
-                <?php foreach ($gramas as $gramaItem): ?>
-                    <option value="<?= $gramaItem?>" > <?= $gramaItem?></option>
+                <?php foreach ($allGrama as $gramaItem): ?>
+                    <option value="<?= $gramaItem['gs_id']?>"      <?php if($userLocationData['gs_name']== $gramaItem['gs_name']) echo 'selected'; ?> > <?= $gramaItem['gs_name']?></option>
                 <?php endforeach; ?>
             </select>
             </div>
         </div>
-
-        
+           
         <div class="row">
             <div class="col-25">
             <label for="role">Role</label>

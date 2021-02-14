@@ -1,23 +1,31 @@
-<?php 
+<?php
 
-class Vendor_Model extends Model {
-    
-    public function __construct() {
+class Vendor_Model extends Model
+{
+
+    public function __construct()
+    {
         parent::__construct();
     }
-    
+
     //retrieve all vendors
-    public function vendorList() {
-        $st = $this->db->prepare("SELECT id, firstname, address, tel FROM users WHERE role = :role");
+    public function vendorList()
+    {
+        $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'vendor' GROUP BY user.user_id");
+
+        // SELECT user.user_name, user.first_name, group_concat(user_tel.tel_no) FROM user JOIN user_tel on user.user_id =user_tel.user_id GROUP BY user.user_id
         $st->execute(array(
             ':role' => 'vendor'
         ));
-        return $st->fetchAll();
+        // print_r($st->fetchAll());
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     //delete a vendor
-    public function delete($id){
-        $st = $this->db->prepare('DELETE FROM users WHERE id = :id');
+    public function delete($id)
+    {
+        $st = $this->db->prepare('DELETE FROM user WHERE user_id = :id');
         $st->execute(array(
             ':id' => $id
         ));
@@ -25,8 +33,9 @@ class Vendor_Model extends Model {
 
     //Thishan's functions
     //show details of farmers
-    public function farmerDetail($id){
-        
+    public function farmerDetail($id)
+    {
+
         $st = $this->db->prepare("SELECT   firstname, id, sex, email, address, tel FROM users WHERE id = :id");
         $st->execute(array(
             ':id' => $id,
@@ -56,11 +65,11 @@ class Vendor_Model extends Model {
     //update sent offers
     public function updateOffer($data)
     {
-     $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE reqid = :reqid');
-            $st->execute(array(
-                ':reqid' => $data['reqid'],
-                ':amount' => $data['amount'],
-            ));
+        $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE reqid = :reqid');
+        $st->execute(array(
+            ':reqid' => $data['reqid'],
+            ':amount' => $data['amount'],
+        ));
     }
 
     //delete sent offers
@@ -81,5 +90,4 @@ class Vendor_Model extends Model {
         ));
         return $st->fetchAll();
     }
-
-} 
+}

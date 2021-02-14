@@ -152,7 +152,7 @@
             
             </div>
             <div class="col-75">
-                <a class="btn mini-button" href="<?php echo URL . 'user/edit/' . $id ;?>">Update farmer</a>
+                <a class="btn mini-button" href="<?php echo URL . 'user/edit/' . $user_id ;?>">Update farmer</a>
             </div>
         </div>
         <?php endif;?>

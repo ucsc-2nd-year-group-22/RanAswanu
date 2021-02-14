@@ -5,8 +5,8 @@ $userData = $this->user['user'];
 $oldUserTel = $this->user['userTel'];
 $locationData = $this->user['locationData'];
 
-print_r($oldUserTel);
-if(isset($oldUserTel[1])) echo '2 set'; 
+// print_r($oldUserTel);
+// if(isset($oldUserTel[1])) echo '2 set'; 
 
 ?>
 <div class="subHeader">
@@ -106,7 +106,7 @@ if(isset($oldUserTel[1])) echo '2 set';
             </div>
             <div class="col-75">
             <select id="sex" name="sex">
-                <option value="none" <?php if ($userData['sex'] == 'none') echo 'selected'; ?>>None</option>
+                <option value="other" <?php if ($userData['sex'] == 'other') echo 'selected'; ?>>None</option>
                 <option value="male" <?php if ($userData['sex'] == 'male') echo 'selected'; ?>>Male</option>
                 <option value="female" <?php if ($userData['sex'] == 'female') echo 'selected'; ?>>Female</option>
             </select>

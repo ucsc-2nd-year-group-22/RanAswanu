@@ -79,7 +79,7 @@ class User_Model extends Model
     {
         print_r($data);
         $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex, gs_id = :gs_id, address = :address, role = :role WHERE user_id = :user_id");
-
+       
         $stmt->execute(array(
             ':first_name' => $data['first_name'],
             ':last_name' => $data['last_name'],
@@ -110,9 +110,16 @@ class User_Model extends Model
                 ));
             }
         }
+       
 
-        echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
-        print_r($insertTelNos);
+
+//         echo '<hr>' . $stmt->rowCount() . '<hr>';
+//         print_r($stmt);
+
+
+//         echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
+//         print_r($insertTelNos);
+
     }
 
     public function delete($id)

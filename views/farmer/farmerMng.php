@@ -1,3 +1,103 @@
+<script>
+
+$(function() {
+    var selectedSearchCategory = $('#searchField').val();
+
+    $('#searchField').change(function() {
+        selectedSearchCategory = $(this).val();
+        $('#test').html(selectedCategory);
+    });
+
+    $('#searchBtn').click(function(event){
+        event.preventDefault();
+        var input = $('#searchInput').val();
+        if(input != '') {
+            $('#searchInput').val('');
+            location.reload();
+        }
+        
+    });
+
+    $("#searchInput").keyup(function() {
+        var inputVal = $(this).val();
+        if(inputVal != '') {
+            $('#box').html('');
+            switch(selectedSearchCategory) {
+                case 'fname': {
+                    $.ajax({
+                        url:"ajxSearchFarmerName",
+                        method:"post",
+                        data:{search:inputVal},
+                        dataType:"text",
+                        success:function(data) {
+                            $('#box').html(data);
+                        },
+                        async:true,
+                    });
+                    break;
+                }
+                case 'nic' : {
+                    $.ajax({
+                        url:"ajxSearchFarmerNic",
+                        method:"post",
+                        data:{search:inputVal, ascOrDesc:asc},
+                        dataType:"text",
+                        success:function(data) {
+                            $('#box').html(data);
+                        },
+                        async:true,
+                    });
+                    break;
+                }
+            }
+        } else {
+            location.reload();
+        }
+    });
+
+    var selectedSort = 'first_name';
+    $('#sortby').change(function() {
+        selectedSort = $('#sortby :selected').attr('val');
+    });
+    // asc
+    $('#ascSort').click(function() {
+        // alert(selectedSort);
+        $('#descSort').removeClass("active-btn");
+        $(this).addClass("active-btn");
+        $.ajax({
+            url:"ajxFilterFarmer",
+            method:"post",
+            data:{filter:selectedSort, ascOrDsc:'ASC'},
+            dataType:"text",
+            success:function(data) {
+                
+                $('#box').html(data);
+            },
+            async:true
+        });
+    });
+    // desc
+    $('#descSort').click(function() {
+        $('#ascSort').removeClass("active-btn");
+        $(this).addClass("active-btn");
+        $.ajax({
+            url:"ajxFilterFarmer",
+            method:"post",
+            data:{filter:selectedSort, ascOrDsc:'DESC'},
+            dataType:"text",
+            success:function(data) {
+                $('#box').html(data);
+            },
+            async:true
+        });
+    });
+     
+});
+
+</script>
+<div id="test">
+
+</div>
 <h1>Farmer Management</h1>
 
 <div class="user-tabs">
@@ -15,31 +115,30 @@
     
     <div class="panel-container">
     <div class="pane1">
-
+    <!-- Search bar -->
         <form class="search-bar">
             <label>Search crop requests by : </label>
-            <select placeholder="Search ...">
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
-                </select>
-            <input type="text" placeholder="Search ...">
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <select id = "searchField">
+                <option value="fname">Name</option>
+                <option value="nic">NIC</option>
+                
+            </select>
+            <input type="text" id="searchInput" placeholder="Search ...">
+            <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
         </form>
 
     </div>
     <div class="pane2">
+    <!-- sort bar -->
         <form class="normal-select">
-            <label>Sort crop requests by : </label>
-            <select placeholder="other">
-                    <option>Date</option>
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
-                <option>111</option>
+            <label>Sort farmers by : </label>
+            <select id="sortby">
+                <option val="first_name" selected>First name</option>
+                <option val="last_name">Last name</option>
+                <option val="regdate">Registered Data</option>
             </select>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+            <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
+            <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
         </form>
     </div>
 
@@ -52,7 +151,12 @@
         <label>Empty pane</label>
     </div> -->
 </div> 
-    <div class="main-table">
+
+<!-- <div id="box" style="border:1px solid">
+    This is box
+</div> -->
+
+    <div id="box" class="main-table">
         <table>
             <tr>
                 <th>#</th>

@@ -1,5 +1,38 @@
 <?php
-        
+
+
+/////////////////////// Naming Conventions for Farmer Controller
+
+///////// dipslay and manage
+
+// sellCropMng
+// offerMng
+// damageMng
+// cropReqMng
+
+///////// Forms - Create new 
+
+// newSellCropForm
+// newDmgClaimForm
+// newCropReqForm
+
+///////// Forms - Update existing
+
+// editSellCropForm
+// editDmgClaimForm
+// editCropReqForm
+
+///////// Views - View content of one item
+
+// viewSellCrop
+// viewDmg
+// viewCropReq
+// viewOtherCrops
+// viewFarmer
+
+
+
+
 class Farmer extends Controller {
 
     public function __construct() {
@@ -21,6 +54,8 @@ class Farmer extends Controller {
         //     $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
         //     $this->view->rendor('error/index', $data);
         // }
+        $data = array();
+        $this->view->rendor('farmer/viewSellCrop', $data);
             
     }
 
@@ -78,6 +113,10 @@ class Farmer extends Controller {
         }
     }
 
+
+
+
+    // Damges Claim ============================================================
    
     public function damageclaim($arg = false) {
         
@@ -95,38 +134,9 @@ class Farmer extends Controller {
         $dmgclaimData = $this->model->damageclaimList();
         $data['damageclaimData'] = $dmgclaimData;
         $this->setActivePage('damageMng');
-        $this->view->rendor('farmer/damageclaimif', $data);
+        $this->view->rendor('farmer/damageMng', $data);
     }
     
-    //Display croprequest
-    public function cropReqMng($arg = false) {
-        $cropReqifData= $this->model->cropReqList();  
-        $data['cropRequestData'] = $cropReqifData;
-        $this->setActivePage('cropReqMng');
-        $this->view->rendor('farmer/cropReqif', $data);
-        
-
-    }
-
-    //Display sellyourcrops
-    public function sellCropMng() {
-        $sellcropsData=$this->model->sellcropsList();
-        $data['sellurcropsData'] = $sellcropsData;
-        $this->setActivePage('sellCropMng');
-        $this->view->rendor('farmer/sellyourcropsif', $data);
-     
-
-    }    
-
-
-    public function cropReq($arg = false) {
-        $this->view->rendor('farmer/cropReq');
-    }
-    
-    public function sellyourcrops() {
-        $this->view->rendor('farmer/sellyourcrops');
-    }
-   
     //instert damage claim information to the database
     public function creates($arg = false)
     {
@@ -148,10 +158,57 @@ class Farmer extends Controller {
        
     }
 
-    
-    
-     //insterting crop details of farmers' which expect to sell
-   public function sellurcropsA()
+
+    // Crop Request ============================================================
+
+    //Display croprequest
+    public function cropReqMng($arg = false) {
+        $cropReqifData= $this->model->cropReqList();  
+        $data['cropRequestData'] = $cropReqifData;
+        $this->setActivePage('cropReqMng');
+        $this->view->rendor('farmer/cropReqif', $data);
+    }
+
+    public function cropReq($arg = false) {
+        $this->view->rendor('farmer/cropReq');
+    }
+
+    //inserting crop request details
+    public function cropRequest()
+    {
+        $data=array();
+
+        $data['province'] = $_POST['province'];
+        $data['district'] = $_POST['district'];
+        $data['gramasewa'] = $_POST['gramasewa'];
+        $data['address'] = $_POST['address'];
+        $data['areasize'] = $_POST['areasize'];
+        $data['exptdate'] = $_POST['exptdate'];
+        $data['croptype'] = $_POST['croptype'];
+        $data['selectCrop'] = $_POST['selectCrop'];
+        $data['cropVariety'] = $_POST['cropVariety'];
+        $data['otherdetails'] = $_POST['otherdetails'];
+        //  $data['conditions'] = $_POST['conditions'];
+
+        $this->model->cropRequest($data);
+        header('location: ' . URL . 'farmer/cropReqif');
+
+
+    }
+
+    // Sell Crops ============================================================
+
+    //Display sellyourcrops
+    public function sellCropMng() {
+        $sellcropsData=$this->model->sellcropsList();
+        $data['sellurcropsData'] = $sellcropsData;
+        $this->setActivePage('sellCropMng');
+        $this->view->rendor('farmer/sellyourcropsif', $data);
+    }    
+
+
+    //insterting crop details of farmers' which expect to sell
+    public function sellurcropsA()
     {
         $data=array();
 
@@ -170,32 +227,11 @@ class Farmer extends Controller {
 
     }
 
-       //inserting crop request details
-    public function cropRequest()
-    {
-        $data=array();
-
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['gramasewa'] = $_POST['gramasewa'];
-        $data['address'] = $_POST['address'];
-        $data['areasize'] = $_POST['areasize'];
-        $data['exptdate'] = $_POST['exptdate'];
-        $data['croptype'] = $_POST['croptype'];
-        $data['selectCrop'] = $_POST['selectCrop'];
-        $data['cropVariety'] = $_POST['cropVariety'];
-        $data['otherdetails'] = $_POST['otherdetails'];
-      //  $data['conditions'] = $_POST['conditions'];
-
-      $this->model->cropRequest($data);
-      header('location: ' . URL . 'farmer/cropReqif');
-
-
-
+    public function sellCropsForm() {
+        $this->view->rendor('farmer/sellyourcrops');
     }
 
- 
-
+    // Vendor Offer ============================================================
 
   public function offerMng() {
     $verdoffersData= [

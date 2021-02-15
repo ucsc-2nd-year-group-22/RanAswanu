@@ -2,7 +2,7 @@
        
 
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/cropRequest" method="post">	
+    <form action="<?= URL;?>/farmer/insertCropReq" method="post">	
   
        
         <div class="row">

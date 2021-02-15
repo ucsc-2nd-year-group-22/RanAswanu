@@ -6,59 +6,6 @@ class Farmer_Model extends Model {
         parent::__construct();
     }
 
-    public function farmerList() {
-        $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id");
-
-        // SELECT user.user_name, user.first_name, group_concat(user_tel.tel_no) FROM user JOIN user_tel on user.user_id =user_tel.user_id GROUP BY user.user_id
-        $st->execute(array(
-            ':role' => 'farmer'
-        ));
-        // print_r($st->fetchAll());
-        
-        return $st->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function ajxSearchFarmerName($farmerName) {
-        $escaped_name = addcslashes($farmerName, '%');
-        $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name GROUP BY user.user_id";
-        $st = $this->db->prepare($sql);
-        // print_r($sql);
-        $st->execute(array(
-            ':first_name' => "$farmerName%"
-        ));
-        
-        return $st->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function ajxFilterFarmer($filter, $ascOrDsc) {
-    //    echo $ascOrDsc;
-
-        if($ascOrDsc == 'ASC') {
-            $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id ORDER BY $filter ASC";
-        } else if ($ascOrDsc == 'DESC') {
-            $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id ORDER BY $filter DESC";
-        }
-
-        
-        $st = $this->db->prepare($sql);
-        $st->execute();
-
-        return $st->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    
-    public function ajxSearchFarmerNic($nic) {
-        $escaped_name = addcslashes($nic, '%');
-        $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.nic LIKE :nic  GROUP BY user.user_id";
-        $st = $this->db->prepare($sql);
-        // print_r($sql);
-        $st->execute(array(
-            ':nic' => "$nic%"
-        ));
-        
-        return $st->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
     //Display damageclaim
     public function damageclaimList(){
         $st = $this->db->prepare("SELECT * FROM dmgclaim  ");
@@ -275,7 +222,70 @@ class Farmer_Model extends Model {
  
          ));
      }
+
+
+
+
+    /// !!!!!!!!!!!!!!! Handled by OFficer !!!!!!!!!!!!!!!!!!!!!!1
+    public function farmerList() {
+        $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id");
+
+        // SELECT user.user_name, user.first_name, group_concat(user_tel.tel_no) FROM user JOIN user_tel on user.user_id =user_tel.user_id GROUP BY user.user_id
+        $st->execute(array(
+            ':role' => 'farmer'
+        ));
+        // print_r($st->fetchAll());
+        
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    ////////////// AJAX CALLS /////////////////////////////////////////////////////////////
+
+    public function ajxSearchFarmerName($farmerName) {
+        $escaped_name = addcslashes($farmerName, '%');
+        $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name GROUP BY user.user_id";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':first_name' => "$farmerName%"
+        ));
+        
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajxFilterFarmer($filter, $ascOrDsc) {
+    //    echo $ascOrDsc;
+
+        if($ascOrDsc == 'ASC') {
+            $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id ORDER BY $filter ASC";
+        } else if ($ascOrDsc == 'DESC') {
+            $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id ORDER BY $filter DESC";
+        }
+
+        
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
     
+    public function ajxSearchFarmerNic($nic) {
+        $escaped_name = addcslashes($nic, '%');
+        $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.nic LIKE :nic  GROUP BY user.user_id";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':nic' => "$nic%"
+        ));
+        
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
+
+
+    ##################################### END OF FARMER MODEL ##############################################################################
 }
 
 

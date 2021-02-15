@@ -11,16 +11,16 @@ class Farmer extends Controller {
 
     
     public function index() {
-        $data = array(
-            'role' => $role
-        );
+        // $data = array(
+        //     'role' => $role
+        // );
 
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
-            $this->view->rendor('farmer/index', $data);
-        else {
-            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
-            $this->view->rendor('error/index', $data);
-        }
+        // if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+        //     $this->view->rendor('farmer/index', $data);
+        // else {
+        //     $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
+        //     $this->view->rendor('error/index', $data);
+        // }
             
     }
 
@@ -91,28 +91,28 @@ class Farmer extends Controller {
     }
      
     //display damageclaim
-    public function damageclaimif($arg = false) {
+    public function damageMng($arg = false) {
         $dmgclaimData = $this->model->damageclaimList();
         $data['damageclaimData'] = $dmgclaimData;
-        $this->setActivePage('damageclaimif');
+        $this->setActivePage('damageMng');
         $this->view->rendor('farmer/damageclaimif', $data);
     }
     
     //Display croprequest
-    public function cropReqif($arg = false) {
+    public function cropReqMng($arg = false) {
         $cropReqifData= $this->model->cropReqList();  
         $data['cropRequestData'] = $cropReqifData;
-        $this->setActivePage('cropReqif');
+        $this->setActivePage('cropReqMng');
         $this->view->rendor('farmer/cropReqif', $data);
         
 
     }
 
     //Display sellyourcrops
-    public function sellyourcropsif() {
+    public function sellCropMng() {
         $sellcropsData=$this->model->sellcropsList();
         $data['sellurcropsData'] = $sellcropsData;
-        $this->setActivePage('sellyourcropsif');
+        $this->setActivePage('sellCropMng');
         $this->view->rendor('farmer/sellyourcropsif', $data);
      
 
@@ -197,7 +197,7 @@ class Farmer extends Controller {
  
 
 
-  public function vendOffers() {
+  public function offerMng() {
     $verdoffersData= [
         [
             'vendername' => "Nimal Siripala",
@@ -220,7 +220,7 @@ class Farmer extends Controller {
     ];
     // Session::set('activePage', 'cropReq');
     $this->view->js = 'officer/js/default';
-    $this->setActivePage('vendOffers');
+    $this->setActivePage('offerMng');
     $this->view->rendor('farmer/vendOffers', $pageData);
 }
 

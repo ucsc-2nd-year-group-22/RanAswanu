@@ -7,7 +7,7 @@
             success: function (data) { 
                 var json = $.parseJSON(data);
                 $(json).each(function (i, val) {
-                    console.log(val.crop_type);
+                    // console.log(val.crop_type);
                     var newOp = new Option(val.crop_type, val.crop_type);
                     $(newOp).html(val.crop_typeal);
                     $('#cropType').append(newOp);
@@ -15,11 +15,22 @@
             }
         });
 
-
-
-
-        $('#areaSize').change(function () {
-           
+        $('#cropType').change(function () {
+            var type = $(this).val();
+            $('#cropVart').empty();
+            $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetCropVart', 
+                data: {type:type},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        var newOp = new Option(val.crop_varient, val.crop_varient);
+                        $(newOp).html(val.crop_varient);
+                        $('#cropVart').append(newOp);
+                    }); 
+                }
+            });
         });
 
 
@@ -92,6 +103,29 @@
 
         <div class="row">
             <div class="col-25">
+                <label for="croptype">Crop type:</label>
+            </div>
+
+            <div class="col-75">
+                <select id="cropType" name="croptype" required>
+                    <option selected disabled>-- Select Crops --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="selectCrop">Crop Varient:</label>
+            </div>
+            <div class="col-75">
+                <select id="cropVart" name="selectCrop" required>
+                    <option value="" disabled selected>-- Select crop varient --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
                 <label for="areaSize">Expect area size to cultivate -Acres</label>
             </div>
 
@@ -112,56 +146,6 @@
         </div>
 
         <div style="background:yellow" id="harvestMonth">harvestMonth : kgs</div>
-
-        <div class="row">
-            <div class="col-25">
-                <label for="croptype">Crop type:</label>
-            </div>
-
-            <div class="col-75">
-                <select id="cropType" name="croptype" required>
-                    <option selected disabled>Select Crops</option>
-
-                </select>
-
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-25">
-                <label for="selectCrop">Select Crop:</label>
-            </div>
-
-            <div class="col-75">
-                <select id="selectCrop" name="selectCrop" required>
-                    <option value="" disabled selected>select crop</option>
-                    <option value="carret">carret</option>
-                    <option value="cucumber">cucumber</option>
-                    <option value="tomatoes">tomatoes</option>
-                    <option value="Onion">Onion</option>
-                </select>
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-25">
-                <!--        <label for="cropVariety">Select Crop Variety:</label>       -->
-            </div>
-
-            <div class="col-75">
-                <select id="cropVariety" name="cropVariety" required>
-                    <option value="" disabled selected>Crop variety</option>
-                    <option value="Variety1">Variety1</option>
-                    <option value="Variety2">Variety2</option>
-                    <option value="Variety3">Variety3</option>
-                </select>
-            </div>
-
-        </div>
 
 
         <div class="row">

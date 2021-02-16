@@ -257,6 +257,12 @@ class Farmer extends Controller {
         echo json_encode($cropsTypes);
     }
 
+    public function ajxGetCropVart() {
+        $varats = $this->model->ajxGetCropVart($_GET['type']);
+        // print_r($varats);
+        echo json_encode($varats);
+    }
+
 
     //######################################## END OF Farmer ###################################################################################################
 }

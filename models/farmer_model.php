@@ -7,8 +7,14 @@ class Farmer_Model extends Model {
     }
 
     public function ajxGetCropTypes() {
-        $st = $this->db->prepare("SELECT * FROM `crop`");
+        $st = $this->db->prepare("SELECT * FROM `crop` GROUP BY crop_type");
         $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajxGetCropVart($vart) {
+        $st = $this->db->prepare("SELECT crop_varient, crop_type FROM crop WHERE crop_type = :vart");
+        $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 

@@ -115,6 +115,14 @@ label {
   transition: all .5s;
 }
 
+.main-form .ajxToolTip {
+  background-color: #beffbc;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 /* For button groups (Radio Buttons) -------------------------------------- */
 .container {
   display: block;

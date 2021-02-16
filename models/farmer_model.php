@@ -18,6 +18,12 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxGetHarvPerLand($vart) {
+        $st = $this->db->prepare("SELECT harvest_per_land, harvest_period FROM crop WHERE crop_varient = :vart");
+        $st->execute(['vart' => $vart]);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getProvinces() {
         $st = $this->db->prepare("SELECT province_id, province_name FROM province");
         $st->execute();

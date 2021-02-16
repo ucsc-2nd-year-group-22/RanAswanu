@@ -263,6 +263,12 @@ class Farmer extends Controller {
         echo json_encode($varats);
     }
 
+    public function ajxGetHarvPerLand() {
+        // echo $_GET['vart'];
+        $hpl = $this->model->ajxGetHarvPerLand($_GET['vart']);
+        echo json_encode($hpl);
+    }
+
 
     //######################################## END OF Farmer ###################################################################################################
 }

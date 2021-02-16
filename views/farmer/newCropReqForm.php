@@ -1,6 +1,6 @@
 <Script>
     $(function () {
-
+        $('#expectedHarv').hide();
         $.ajax({ 
             type: 'GET', 
             url: 'ajxGetCropTypes', 
@@ -31,6 +31,32 @@
                     }); 
                 }
             });
+        });
+
+
+        $('#areaSize').keyup(function() {
+            var area = $(this).val();
+            var vart = $('#cropVart').val();
+            if(vart != null) {
+                if(area != 0) {
+                    $('#expectedHarv').show();
+                    $.ajax({ 
+                        type: 'GET', 
+                        url: 'ajxGetHarvPerLand', 
+                        data: {vart:vart},
+                        success: function (data) { 
+                            var json = $.parseJSON(data);
+                            $(json).each(function (i, val) {
+                                $('#expectedHarv').html(val.harvest_per_land * area + ' kgs of ' + vart);
+                            }); 
+                        }
+                    });
+                } else {
+                    $('#expectedHarv').hide();
+                }
+            } else {
+                alert('Please select crop type and varient !');
+            }
         });
 
 
@@ -96,8 +122,7 @@
             </div>
 
             <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana"
-                    required>
+                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana"        required>
             </div>
         </div>
 
@@ -126,15 +151,15 @@
 
         <div class="row">
             <div class="col-25">
-                <label for="areaSize">Expect area size to cultivate -Acres</label>
+                <label for="areaSize">Size of the area (Acres)</label>
             </div>
 
             <div class="col-75">
-                <input type="number" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
+                <input type="text" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
             </div>
         </div>
 
-        <div style="background:yellow" id="expectedHarv">Expected : kgs</div>
+        <div class="ajxToolTip" id="expectedHarv">Expected : kgs</div>
 
         <div class="row">
             <div class="col-25">
@@ -145,7 +170,7 @@
             </div>
         </div>
 
-        <div style="background:yellow" id="harvestMonth">harvestMonth : kgs</div>
+        <div class="ajxToolTip" id="harvestMonth">harvestMonth : kgs</div>
 
 
         <div class="row">

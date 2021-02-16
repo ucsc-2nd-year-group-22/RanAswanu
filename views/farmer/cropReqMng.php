@@ -5,7 +5,9 @@
         $.ajax({
             url: "ajxListCropReq",
             method: "post",
-            data: {farmer_id: <?php echo Session::get('user_id');?>},
+            data: {
+                farmer_id: <?php echo Session::get('user_id'); ?>
+            },
             dataType: "text",
             success: function(data) {
                 $('#box').html(data);

@@ -1,179 +1,191 @@
+<Script>
+    $(function () {
+
+        $.ajax({ 
+            type: 'GET', 
+            url: 'ajxGetCropTypes', 
+            success: function (data) { 
+                var json = $.parseJSON(data);
+                $(json).each(function (i, val) {
+                    console.log(val.crop_type);
+                    var newOp = new Option(val.crop_type, val.crop_type);
+                    $(newOp).html(val.crop_typeal);
+                    $('#cropType').append(newOp);
+                }); 
+            }
+        });
+
+
+
+
+        $('#areaSize').change(function () {
+           
+        });
+
+
+    });
+</Script>
+
 <h1>Crop Reqeust Form</h1>
-       
+
 
 <div class="main-form">
-    <form action="<?= URL;?>/farmer/insertCropReq" method="post">	
-  
-       
+    <form action="<?= URL; ?>/farmer/insertCropReq" method="post">
+
+
         <div class="row">
             <div class="col-25">
-            <label for="province">Province</label>
+                <label for="province">Province</label>
             </div>
             <div class="col-75">
-            <select id="province" name="province" required>
-            <option value ="" disabled selected>select province</option>
-                <option value="province1">Province 1</option>
-                <option value="province2">Province 2</option>
-                <option value="province3">Province 3</option>
-            </select>
+                <select id="province" name="province">
+                    <option value="null"> -- SELECT PROVINCE -- </option>
+                    <?php foreach ($provinces as $provinceItem) : ?>
+                    <option value="<?= $provinceItem['province_id'] ?>">
+                        <?= $provinceItem['province_name'] ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
-        
         <div class="row">
             <div class="col-25">
-            <label for="district">District</label>
+                <label for="district">District</label>
             </div>
             <div class="col-75">
-            <select id="district" name="district" required>
-            <option value ="" disabled selected>select district</option>
-                <option value="district1">District 1</option>
-                <option value="district2">District 2</option>
-                <option value="district3">District 3</option>
-            </select>
+                <select id="district" name="district">
+                    <option value="null"> -- SELECT DISTRICT --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="province">Divisional secratariast</label>
+            </div>
+            <div class="col-75">
+                <select id="divisional_secratariast" name="divisional_secratariast">
+                    <option value="null"> -- SELECT DIVISIONAL SECT. --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="grama">Gramasewa Division</label>
+            </div>
+            <div class="col-75">
+                <select id="gramaSewa" name="gramaSewa">
+                    <option value="null"> -- SELECT GRAMASEWA DIV. --</option>
+                </select>
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-            <label for="gramasewa">Gramasewa Division</label>
+                <label for="address">Address of the land</label>
             </div>
 
             <div class="col-75">
-            <select id="gramasewa" name="gramasewa" required>
-            <option value ="" disabled selected>select gramasewa division</option>
-                <option value="grama1">Grama 1</option>
-                <option value="grama2">Grama 2</option>
-                <option value="grama3">Grama 3</option>
-            </select>
+                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana"
+                    required>
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-            <label for="address">Address of the land</label>
+                <label for="areaSize">Expect area size to cultivate -Acres</label>
             </div>
 
             <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana" required>
+                <input type="number" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
             </div>
-        </div>  
+        </div>
+
+        <div style="background:yellow" id="expectedHarv">Expected : kgs</div>
 
         <div class="row">
             <div class="col-25">
-			    <label for="areasize">Expect area size to cultivate -Acres</label>
-			</div>	
-				  
-		    <div class="col-75">
-                <input type="number" placeholder="ex: 2 Acres" name="areasize" max="100" required>
-			</div>
-        </div>
-        
-        <div class="row">
-            <div class="col-25">
-            <label for="exptdate">Expecting Date To Cultivate</label>
+                <label for="exptdate">Cultivating date (start month)</label>
             </div>
             <div class="col-75">
-            <input type="date" id="exptdate" name="exptdate" placeholder="Month/Date/Year " required>
+                <input type="date" id="exptDate" name="exptdate" placeholder="Month/Date/Year " required>
             </div>
         </div>
-        
-        <div class="row">                                                                             
+
+        <div style="background:yellow" id="harvestMonth">harvestMonth : kgs</div>
+
+        <div class="row">
             <div class="col-25">
                 <label for="croptype">Crop type:</label>
             </div>
 
             <div class="col-75">
-                <select id="croptype" name="croptype" required>
-                   <option value="vegetables">Vegetables</option>
-                   <option value="fruits">Fruits</option>                
+                <select id="cropType" name="croptype" required>
+                    <option selected disabled>Select Crops</option>
+
                 </select>
-              <!--  <select id="croptype" name="croptype">
-				<label for="type">Type</label>
-                <input type="radio" id="Vegatable" name="Type" >
-                <label for="vegatable">Vegatable</label><br>
-                <input type="radio" id="Fruit" name="Type" >
-                <label for="fruit">Fruit</label><br><br>   
-                </select>   -->
+
             </div>
         </div>
-				
-			
+
+
 
         <div class="row">
             <div class="col-25">
-                <label for="selectCrop">Select Crop:</label>                                                
+                <label for="selectCrop">Select Crop:</label>
             </div>
 
             <div class="col-75">
                 <select id="selectCrop" name="selectCrop" required>
-				<option value ="" disabled selected>select crop</option>
-                <option value="carret">carret</option>
-				<option value="cucumber">cucumber</option>
-                <option value="tomatoes">tomatoes</option>
-                <option value="Onion">Onion</option>
+                    <option value="" disabled selected>select crop</option>
+                    <option value="carret">carret</option>
+                    <option value="cucumber">cucumber</option>
+                    <option value="tomatoes">tomatoes</option>
+                    <option value="Onion">Onion</option>
                 </select>
             </div>
         </div>
-				
-				
-            
+
+
+
         <div class="row">
             <div class="col-25">
-        <!--        <label for="cropVariety">Select Crop Variety:</label>       -->                                
+                <!--        <label for="cropVariety">Select Crop Variety:</label>       -->
             </div>
 
             <div class="col-75">
                 <select id="cropVariety" name="cropVariety" required>
-				<option value ="" disabled selected>Crop variety</option>
-                <option value="Variety1">Variety1</option>
-                <option value="Variety2">Variety2</option>
-                <option value="Variety3">Variety3</option>
+                    <option value="" disabled selected>Crop variety</option>
+                    <option value="Variety1">Variety1</option>
+                    <option value="Variety2">Variety2</option>
+                    <option value="Variety3">Variety3</option>
                 </select>
             </div>
 
-        </div>   
-
-
-        <div class="row">
-            <div class="col-25"> 
-                <label for="otherdetails">Other details:</label>
-            </div>
-            <div class="col-75">
-                <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details " style="height:200px " ></textarea>
-            </div>
         </div>
-				
-			 
-  <!--      <div class="row">
-            <div class="col-25">   
-                <label for="conditions">I Agree to Terms & conditions:</label>
-            </div>   
 
-            <div class="col-75">
-                <input type="checkbox" id="yes" name="confirm" value="yes">
-                <label for="yes"> Yes</label><br>
-                <input type="checkbox" id="no" name="confirm" value="no">
-                <label for="no"> No</label><br>
-                    
-                </select>
-            </div>
-        </div>      -->
-        
 
         <div class="row">
             <div class="col-25">
-            
+                <label for="otherdetails">Other details:</label>
             </div>
             <div class="col-75">
-            <input type="submit" value="Submit">
+                <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details "
+                    style="height:200px "></textarea>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-25">
+
+            </div>
+            <div class="col-75">
+                <input type="submit" value="Submit">
             </div>
         </div>
 
 
     </form>
-</div> 
+</div>
 
-        
-
-        
-        
+<script src="<?php echo URL; ?>/views/user/js/locations.js"></script>

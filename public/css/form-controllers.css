@@ -57,7 +57,7 @@ input[type=number], input[type=date], input[type=email], input[type=text], input
   color:var(--main-font-color);
 }
 
-input[type=number], input[type=text]:focus, textarea:focus, select:hover, input[type=email]:focus, input[type=password]:focus, input[type=date]:focus {
+input[type=number]:focus, input[type=text]:focus, textarea:focus, select:hover, input[type=email]:focus, input[type=password]:focus, input[type=date]:focus {
   border: 2px solid var(--main-light-green);
 }
 

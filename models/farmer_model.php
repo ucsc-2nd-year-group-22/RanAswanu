@@ -1,19 +1,25 @@
 <?php
 
-class Farmer_Model extends Model
-{
+class Farmer_Model extends Model {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
+    public function ajxGetCropTypes() {
+        $st = $this->db->prepare("SELECT * FROM `crop`");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-
+    public function getProvinces() {
+        $st = $this->db->prepare("SELECT province_id, province_name FROM province");
+        $st->execute();
+        return $st->fetchAll();
+    }
 
     /// !!!!!!!!!!!!!!! Handled by OFficer !!!!!!!!!!!!!!!!!!!!!!1
-    public function farmerList()
-    {
+    public function farmerList() {
         $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id");
 
         // SELECT user.user_name, user.first_name, group_concat(user_tel.tel_no) FROM user JOIN user_tel on user.user_id =user_tel.user_id GROUP BY user.user_id
@@ -28,8 +34,7 @@ class Farmer_Model extends Model
 
     ////////////// AJAX CALLS /////////////////////////////////////////////////////////////
 
-    public function ajxSearchFarmerName($farmerName)
-    {
+    public function ajxSearchFarmerName($farmerName) {
         $escaped_name = addcslashes($farmerName, '%');
         $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name GROUP BY user.user_id";
         $st = $this->db->prepare($sql);
@@ -41,8 +46,7 @@ class Farmer_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxFilterFarmer($filter, $ascOrDsc)
-    {
+    public function ajxFilterFarmer($filter, $ascOrDsc) {
         //    echo $ascOrDsc;
 
         if ($ascOrDsc == 'ASC') {
@@ -58,8 +62,7 @@ class Farmer_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxSearchFarmerNic($nic)
-    {
+    public function ajxSearchFarmerNic($nic) {
         $escaped_name = addcslashes($nic, '%');
         $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.nic LIKE :nic  GROUP BY user.user_id";
         $st = $this->db->prepare($sql);
@@ -71,8 +74,7 @@ class Farmer_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxListCropReq($farmer_id)
-    {
+    public function ajxListCropReq($farmer_id) {
         $st = $this->db->prepare("
         SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
         JOIN crop On harvest.crop_id = crop.crop_id 

@@ -38,11 +38,9 @@
 // insertOffer
 
 
-class Farmer extends Controller
-{
+class Farmer extends Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         Session::init();
         $logged = Session::get('loggedIn');
@@ -50,8 +48,7 @@ class Farmer extends Controller
     }
 
 
-    public function index()
-    {
+    public function index() {
         // $data = array(
         //     'role' => $role
         // );
@@ -68,22 +65,19 @@ class Farmer extends Controller
 
     // Damges Claim ============================================================
 
-    public function damageMng($arg = false)
-    {
+    public function damageMng($arg = false) {
         $dmgclaimData = $this->model->damageclaimList();
         $data['damageclaimData'] = $dmgclaimData;
         $this->setActivePage('damageMng');
         $this->view->rendor('farmer/damageMng', $data);
     }
 
-    public function newDmgClaimForm()
-    {
+    public function newDmgClaimForm() {
         $this->view->rendor('farmer/newDmgClaimForm', $data);
     }
 
     //instert damage claim information to the database
-    public function insertDmg($arg = false)
-    {
+    public function insertDmg($arg = false) {
         $data['dmgdate'] = $_POST['dmgdate'];
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
@@ -99,21 +93,23 @@ class Farmer extends Controller
     // Crop Request ============================================================
 
     //Display croprequest
-    public function cropReqMng()
-    {
+    public function cropReqMng() {
         // $cropReqifData= $this->model->cropReqList();  
         // $data['cropRequestData'] = $cropReqifData;
         $this->setActivePage('cropReqMng');
         $this->view->rendor('farmer/cropReqMng');
     }
 
-    public function newCropReqForm()
-    {
-        $this->view->rendor('farmer/newCropReqForm');
+    public function newCropReqForm() {
+        $provinces = $this->model->getProvinces();
+
+        $pageData = [
+            'provinces' => $provinces
+        ];
+        $this->view->rendor('farmer/newCropReqForm', $pageData);
     }
 
-    public function insertCropReq()
-    {
+    public function insertCropReq() {
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
         $data['gramasewa'] = $_POST['gramasewa'];
@@ -133,16 +129,14 @@ class Farmer extends Controller
     // Sell Crops ============================================================
 
     //Display sellyourcrops
-    public function sellCropMng()
-    {
-        $sellcropsData = $this->model->sellcropsList();
+    public function sellCropMng() {
+        // $sellcropsData = $this->model->sellcropsList();
         $data['sellurcropsData'] = $sellcropsData;
         $this->setActivePage('sellCropMng');
         $this->view->rendor('farmer/sellCropMng', $data);
     }
 
-    public function insertSellCrop()
-    {
+    public function insertSellCrop() {
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
         $data['state'] = $_POST['state'];
@@ -156,15 +150,13 @@ class Farmer extends Controller
         header('location: ' . URL . 'farmer/sellyourcropsif');
     }
 
-    public function sellCropsForm()
-    {
+    public function sellCropsForm() {
         $this->view->rendor('farmer/sellyourcrops');
     }
 
     // Vendor Offer ============================================================
 
-    public function offerMng()
-    {
+    public function offerMng() {
         $verdoffersData = [
             [
                 'vendername' => "Nimal Siripala",
@@ -192,8 +184,7 @@ class Farmer extends Controller
     }
 
     // !!!!!!!!!!!!!!!!!  Handled by Officer role --------------- !!!!!!!!!!!!
-    public function farmerMng()
-    {
+    public function farmerMng() {
 
         $farmerData = $this->model->farmerList();
 
@@ -211,8 +202,7 @@ class Farmer extends Controller
 
     // AJAX CALLS ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public function ajxSearchFarmerName()
-    {
+    public function ajxSearchFarmerName() {
         $d = $this->model->ajxSearchFarmerName($_POST['search']);
         $data['farmerData'] = $d;
         // print_r($data['farmerData']);
@@ -224,8 +214,7 @@ class Farmer extends Controller
         }
     }
 
-    public function ajxSearchFarmerNic()
-    {
+    public function ajxSearchFarmerNic() {
         $d = $this->model->ajxSearchFarmerNic($_POST['search']);
         $data['farmerData'] = $d;
         // print_r($data['farmerData']);
@@ -237,8 +226,7 @@ class Farmer extends Controller
         }
     }
 
-    public function ajxFilterFarmer()
-    {
+    public function ajxFilterFarmer() {
 
         $d = $this->model->ajxFilterFarmer($_POST['filter'], $_POST['ascOrDsc']);
         $data['farmerData'] = $d;
@@ -252,8 +240,7 @@ class Farmer extends Controller
         }
     }
 
-    public function ajxListCropReq()
-    {
+    public function ajxListCropReq() {
         $d = $this->model->ajxListCropReq($_POST['farmer_id']);
         $data['cropReqs'] = $d;
         // print_r($data['cropReqs']);
@@ -265,6 +252,10 @@ class Farmer extends Controller
         }
     }
 
+    public function ajxGetCropTypes() {
+        $cropsTypes = $this->model->ajxGetCropTypes();
+        echo json_encode($cropsTypes);
+    }
 
 
     //######################################## END OF Farmer ###################################################################################################

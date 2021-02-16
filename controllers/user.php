@@ -261,7 +261,7 @@ class User extends Controller
         $divSecs = $this->model->getDivSec($id);
         echo json_encode($divSecs);
     }
-    
+
     //get gramasewa division
     public function getGramaSewa($id)
     {

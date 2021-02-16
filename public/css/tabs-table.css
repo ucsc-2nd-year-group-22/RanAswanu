@@ -25,9 +25,9 @@
 .user-tabs {
     width: 100%;
     text-decoration: none;
-    padding: 20px 0;
-    border-bottom: 2px solid rgb(175, 175, 175);
-    margin-bottom: 20px;
+    padding: 0 0 10px 0;
+    /* border-bottom: 2px solid rgb(175, 175, 175);
+    margin-bottom: 20px; */
 }
 
 .user-tabs .active-tab {

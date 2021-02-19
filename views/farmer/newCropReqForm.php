@@ -18,6 +18,11 @@
             }
         });
 
+
+        function harvestDate() {
+
+        }
+
         $('#cropType').change(function () {
             type = $(this).val();
             $('#cropVart').empty();
@@ -40,12 +45,14 @@
 
         $('#cropVart').change(function() {
             $('#harvestMonth').empty();
+            $('#startMonth').empty();
             $('#harvestMonth').hide();
         });
 
         $('#areaSize').keyup(function() {
             var area = $(this).val();
             $('#harvestMonth').empty();
+            
             vart = $('#cropVart').val();
             if(vart != null) {
                 if(area != 0) {
@@ -82,13 +89,19 @@
                 success: function (data) { 
                     var json = $.parseJSON(data);
                     $(json).each(function (i, val) {
-                        // alert(val);
-                        $('#harvestMonth').html(val.harvest_period + startMonth);
+                        var date1 = new Date(startMonth);
+                        var weeks = val.harvest_period;
+                        date1.setDate(date1.getDate() + weeks*7);
+                        var formattedDate = date1.getFullYear()+ '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
+                        // document.getElementById("demo").innerHTML = formattedDate;
+                        $('#harvestMonth').html("Harvesting Period :" + val.harvest_period + ' weeks<br> Harvesting month =>' + formattedDate);
                     }); 
                 }
             });
-
         });
+
+
+
 
 
     });

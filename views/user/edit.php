@@ -1,4 +1,5 @@
 <script src="<?php echo URL; ?>views/user/js/default.js"></script>
+
 <?php
 $userData = $this->user['user'];
 $oldUserTel = $this->user['userTel'];
@@ -165,10 +166,10 @@ $allGramaSewas = $this->user['allGramaSewas'];
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="grama">Gramasewa Division</label>
+                <label for="gramaSewa">Gramasewa Division</label>
             </div>
             <div class="col-75">
-                <select id="grama" name="grama">
+                <select id="gramaSewa" name="gramaSewa">
 
                     <?php foreach ($allGramaSewas as $gramaItem) : ?>
                         <option value="<?= $gramaItem['gs_id'] ?>" <?php if ($userLocationData['gs_name'] == $gramaItem['gs_name']) echo 'selected'; ?>> <?= $gramaItem['gs_name'] ?></option>
@@ -209,7 +210,6 @@ $allGramaSewas = $this->user['allGramaSewas'];
             </div>
         </div>
     </form>
-
-
-
 </div>
+
+<script src="<?php echo URL; ?>/views/user/js/locations.js"></script>

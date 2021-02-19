@@ -117,6 +117,7 @@ class User extends Controller
             // print_r($this->view->user['user']);
             // echo $this->view->user['user']['role'];
             if (Session::get('isadmin') == 1 || ($this->view->user['user']['role'] == 'farmer' && Session::get('role') == 'officer')) {
+                // print_r($this->view->user['allProvinces']);
                 $this->view->rendor('user/edit', $data);
             } else {
                 echo '<hr>logout';

@@ -79,7 +79,7 @@ class User_Model extends Model
     {
         print_r($data);
         $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex, gs_id = :gs_id, address = :address, role = :role WHERE user_id = :user_id");
-       
+
         $stmt->execute(array(
             ':first_name' => $data['first_name'],
             ':last_name' => $data['last_name'],
@@ -110,15 +110,15 @@ class User_Model extends Model
                 ));
             }
         }
-       
 
 
-//         echo '<hr>' . $stmt->rowCount() . '<hr>';
-//         print_r($stmt);
+
+        //         echo '<hr>' . $stmt->rowCount() . '<hr>';
+        //         print_r($stmt);
 
 
-//         echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
-//         print_r($insertTelNos);
+        //         echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
+        //         print_r($insertTelNos);
 
     }
 
@@ -213,6 +213,12 @@ class User_Model extends Model
             ':user_id' => $user_id,
         ));
 
+        //loading all locations for dropdowns
+        $data['allProvinces'] = $this->getProvinces();
+        $data['allDistricts'] = $this->getAllDistricts();
+        $data['allDivSecs'] = $this->getAllDivSecs();
+        $data['allGramaSewas'] = $this->getAllGramaSewas();
+
         $data['locationData'] = $getLocationData->fetch();
         $data['user'] = $getUserSql->fetch(PDO::FETCH_ASSOC);
         $data['userTel'] = $getTel->fetchAll(PDO::FETCH_COLUMN);        // FETCH_CULUMN : To return an array that contains a single column from all of the remaining rows in the result set
@@ -240,6 +246,12 @@ class User_Model extends Model
         ));
         return $st->fetchAll();
     }
+    public function getAllDistricts()
+    {
+        $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
+        $st->execute();
+        return $st->fetchAll();
+    }
 
     //retrieve divisional secretariat list
     public function getDivSec($id)
@@ -250,6 +262,12 @@ class User_Model extends Model
         ));
         return $st->fetchAll();
     }
+    public function getAllDivSecs()
+    {
+        $st = $this->db->prepare("SELECT ds_id, ds_name FROM divisional_secratariast");
+        $st->execute();
+        return $st->fetchAll();
+    }
 
     //retrieve gramasewa division list
     public function getGramaSewa($id)
@@ -258,6 +276,12 @@ class User_Model extends Model
         $st->execute(array(
             ':id' => $id
         ));
+        return $st->fetchAll();
+    }
+    public function getAllGramaSewas()
+    {
+        $st = $this->db->prepare("SELECT gs_id, gs_name FROM gramasewa_division");
+        $st->execute();
         return $st->fetchAll();
     }
 }

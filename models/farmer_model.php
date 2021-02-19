@@ -13,13 +13,13 @@ class Farmer_Model extends Model {
     }
 
     public function ajxGetCropVart($vart) {
-        $st = $this->db->prepare("SELECT crop_varient, crop_type FROM crop WHERE crop_type = :vart");
+        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_type = :vart");
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function ajxGetHarvPerLand($vart) {
-        $st = $this->db->prepare("SELECT harvest_per_land, harvest_period FROM crop WHERE crop_varient = :vart");
+        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_varient = :vart");
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -1,6 +1,9 @@
 <Script>
     $(function () {
         $('#expectedHarv').hide();
+        $('#harvestMonth').hide();
+        var vart;
+        var type;
         $.ajax({ 
             type: 'GET', 
             url: 'ajxGetCropTypes', 
@@ -16,8 +19,10 @@
         });
 
         $('#cropType').change(function () {
-            var type = $(this).val();
+            type = $(this).val();
             $('#cropVart').empty();
+            $('#harvestMonth').empty();
+            $('#harvestMonth').hide();
             $.ajax({ 
                 type: 'GET', 
                 url: 'ajxGetCropVart', 
@@ -33,10 +38,15 @@
             });
         });
 
+        $('#cropVart').change(function() {
+            $('#harvestMonth').empty();
+            $('#harvestMonth').hide();
+        });
 
         $('#areaSize').keyup(function() {
             var area = $(this).val();
-            var vart = $('#cropVart').val();
+            $('#harvestMonth').empty();
+            vart = $('#cropVart').val();
             if(vart != null) {
                 if(area != 0) {
                     $('#expectedHarv').show();
@@ -57,6 +67,27 @@
             } else {
                 alert('Please select crop type and varient !');
             }
+        });
+
+
+        $('#startMonth').change(function() {
+            $('#harvestMonth').show();
+            var startMonth = $(this).val();
+            vart = $('#cropVart').val();
+            $('#harvestMonth').html(startMonth);
+            $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetHarvPerLand', 
+                data: {vart:vart},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        // alert(val);
+                        $('#harvestMonth').html(val.harvest_period + startMonth);
+                    }); 
+                }
+            });
+
         });
 
 
@@ -166,7 +197,7 @@
                 <label for="exptdate">Cultivating date (start month)</label>
             </div>
             <div class="col-75">
-                <input type="date" id="exptDate" name="exptdate" placeholder="Month/Date/Year " required>
+                <input type="date" id="startMonth" name="startMonth" placeholder="Month/Date/Year " required>
             </div>
         </div>
 

@@ -4,6 +4,8 @@
         $('#harvestMonth').hide();
         var vart;
         var type;
+
+        // Load crop types
         $.ajax({ 
             type: 'GET', 
             url: 'ajxGetCropTypes', 
@@ -19,40 +21,33 @@
         });
 
 
-        function harvestDate() {
-
-        }
 
         $('#cropType').change(function () {
-            type = $(this).val();
-            $('#cropVart').empty();
+            getCropTypes($(this));
             $('#harvestMonth').empty();
             $('#harvestMonth').hide();
-            $.ajax({ 
-                type: 'GET', 
-                url: 'ajxGetCropVart', 
-                data: {type:type},
-                success: function (data) { 
-                    var json = $.parseJSON(data);
-                    $(json).each(function (i, val) {
-                        var newOp = new Option(val.crop_varient, val.crop_varient);
-                        $(newOp).html(val.crop_varient);
-                        $('#cropVart').append(newOp);
-                    }); 
-                }
-            });
         });
 
         $('#cropVart').change(function() {
             $('#harvestMonth').empty();
             $('#startMonth').empty();
             $('#harvestMonth').hide();
+            $('#expectedHarv').empty();
+            $('#expectedHarv').hide();
+        });
+
+
+        $('#startMonth').change(function() {
+            getHarvestData($(this));
         });
 
         $('#areaSize').keyup(function() {
-            var area = $(this).val();
+            getHarvestPerLand($(this));
+        });
+
+        function getHarvestPerLand(e) {
+            var area = e.val();
             $('#harvestMonth').empty();
-            
             vart = $('#cropVart').val();
             if(vart != null) {
                 if(area != 0) {
@@ -74,12 +69,11 @@
             } else {
                 alert('Please select crop type and varient !');
             }
-        });
+        }
 
-
-        $('#startMonth').change(function() {
+        function getHarvestData(e) {
             $('#harvestMonth').show();
-            var startMonth = $(this).val();
+            var startMonth = e.val();
             vart = $('#cropVart').val();
             $('#harvestMonth').html(startMonth);
             $.ajax({ 
@@ -93,16 +87,31 @@
                         var weeks = val.harvest_period;
                         date1.setDate(date1.getDate() + weeks*7);
                         var formattedDate = date1.getFullYear()+ '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
-                        // document.getElementById("demo").innerHTML = formattedDate;
                         $('#harvestMonth').html("Harvesting Period :" + val.harvest_period + ' weeks<br> Harvesting month =>' + formattedDate);
                     }); 
                 }
+            })
+        }
+
+        function getCropTypes(e) {
+            type = e.val();
+            $('#cropVart').empty();
+            $('#harvestMonth').empty();
+            $('#harvestMonth').hide();
+            $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetCropVart', 
+                data: {type:type},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        var newOp = new Option(val.crop_varient, val.crop_varient);
+                        $(newOp).html(val.crop_varient);
+                        $('#cropVart').append(newOp);
+                    }); 
+                }
             });
-        });
-
-
-
-
+        }
 
     });
 </Script>
@@ -164,9 +173,8 @@
             <div class="col-25">
                 <label for="address">Address of the land</label>
             </div>
-
             <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana"        required>
+                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana" required>
             </div>
         </div>
 
@@ -174,7 +182,6 @@
             <div class="col-25">
                 <label for="croptype">Crop type:</label>
             </div>
-
             <div class="col-75">
                 <select id="cropType" name="croptype" required>
                     <option selected disabled>-- Select Crops --</option>
@@ -197,7 +204,6 @@
             <div class="col-25">
                 <label for="areaSize">Size of the area (Acres)</label>
             </div>
-
             <div class="col-75">
                 <input type="text" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
             </div>
@@ -222,21 +228,10 @@
                 <label for="otherdetails">Other details:</label>
             </div>
             <div class="col-75">
-                <textarea id="otherdetails" name="otherdetails" placeholder="Enter other details "
+                <textarea id="otherDetails" name="otherDetails" placeholder="Enter other details "
                     style="height:200px "></textarea>
             </div>
         </div>
-
-
-        <div class="row">
-            <div class="col-25">
-
-            </div>
-            <div class="col-75">
-                <input type="submit" value="Submit">
-            </div>
-        </div>
-
 
     </form>
 </div>

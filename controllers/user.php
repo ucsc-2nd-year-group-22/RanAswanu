@@ -158,7 +158,7 @@ class User extends Controller
         $data['dob'] = filter_var($_POST['dob'], FILTER_SANITIZE_STRING);
         $data['sex'] = filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
         $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
-        $data['grama'] = filter_var($_POST['grama'], FILTER_SANITIZE_STRING);
+        $data['grama'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
         $data['role'] = filter_var($_POST['role'], FILTER_SANITIZE_STRING);
 
         // Updated
@@ -170,7 +170,7 @@ class User extends Controller
 
         /////// FOR TESTING INSERTION ONLY
         /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
-        $data['grama'] = 5;
+        // $data['grama'] = 5;
 
         $data['user_id'] = $user_id;
 

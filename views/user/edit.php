@@ -152,6 +152,19 @@ $allGramaSewas = $this->user['allGramaSewas'];
         </div>
         <div class="row">
             <div class="col-25">
+                <label for="divisional_secratariast">Divisional Secratariast</label>
+            </div>
+            <div class="col-75">
+                <select id="divisional_secratariast" name="divisional_secratariast">
+
+                    <?php foreach ($allDivSecs as $divSecItem) : ?>
+                        <option value="<?= $divSecItem['ds_id'] ?>" <?php if ($userLocationData['ds_name'] == $divSecItem['ds_name']) echo 'selected'; ?>> <?= $divSecItem['ds_name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
                 <label for="grama">Gramasewa Division</label>
             </div>
             <div class="col-75">

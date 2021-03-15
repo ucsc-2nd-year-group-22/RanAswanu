@@ -16,12 +16,12 @@ function CheckPassword() {
     }
     
     //name validation
-    let fname  = document.getElementById("fname");
-    let lname  = document.getElementById("lname");
-    if(hasNumbers(fname.value)){
+    let first_name  = document.getElementById("first_name");
+    let last_name  = document.getElementById("last_name");
+    if(hasNumbers(first_name.value)){
         validateErrors.push("Invalid First Name");
     }
-    if(hasNumbers(lname.value)){
+    if(hasNumbers(last_name.value)){
         validateErrors.push("Invalid Last Name");
     }
 
@@ -44,6 +44,16 @@ function CheckPassword() {
         if(password.value.length < 6){
             validateErrors.push("Password should include at least 6 characters!")
         }
+    }
+
+    //location validations
+    let province = document.getElementById('province');
+    let district = document.getElementById('district');
+    let divSec = document.getElementById('divisional_secratariast');
+    let gramaSewa = document.getElementById('gramaSewa');
+
+    if(province.value || district.value || divSec.value || gramaSewa.value == "null"){
+        validateErrors.push("Please check all the location dropdowns!");
     }
 
     validateErrors.forEach(error => {                           //view errors

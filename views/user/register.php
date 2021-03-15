@@ -1,4 +1,4 @@
-<script src="<?php echo URL; ?>views/user/js/default.js"></script>
+
 
 <div class="subHeader">
     <?php if (Session::get('role') == 'admin') : ?>
@@ -178,3 +178,4 @@
 </div>
 
 <script src="<?php echo URL; ?>/views/user/js/locations.js"></script>
+<script src="<?php echo URL; ?>views/user/js/default.js"></script>

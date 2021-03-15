@@ -1,4 +1,3 @@
-<script src="<?php echo URL; ?>views/user/js/default.js"></script>
 
 <?php
 $userData = $this->user['user'];
@@ -213,3 +212,4 @@ $allGramaSewas = $this->user['allGramaSewas'];
 </div>
 
 <script src="<?php echo URL; ?>/views/user/js/locations.js"></script>
+<script src="<?php echo URL; ?>views/user/js/default.js"></script>

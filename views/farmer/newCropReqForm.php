@@ -20,8 +20,7 @@
                 success: function (data) { 
                     var json = $.parseJSON(data);
                     $(json).each(function (i, val) {
-                        // console.log(val.crop_type);
-                        
+                        // console.log(val.crop_id);
                         var newOp = new Option(val.crop_type, val.crop_type);
                         $(newOp).html(val.crop_typeal);
                         $('#cropType').append(newOp);

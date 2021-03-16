@@ -6,9 +6,11 @@ class Farmer_Model extends Model {
         parent::__construct();
     }
 
-    public function ajxGetCropTypes() {
-        $st = $this->db->prepare("SELECT * FROM `crop` GROUP BY crop_type");
+    public function ajxGetCropTypes($district) {
+        $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON crop.crop_id = best_area.crop_id WHERE best_area.district_id = $district");
         $st->execute();
+        // $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON 
+        // crop.crop_id = best_area.crop_id WHERE best_area.district_id = (SELECT district.district_id FROM district WHERE district.ds_name = $dist)");
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 

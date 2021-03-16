@@ -5,23 +5,32 @@
         var vart;
         var type;
 
-        // Load crop types
-        $.ajax({ 
-            type: 'GET', 
-            url: 'ajxGetCropTypes', 
-            success: function (data) { 
-                var json = $.parseJSON(data);
-                $(json).each(function (i, val) {
-                    // console.log(val.crop_type);
-                    var newOp = new Option(val.crop_type, val.crop_type);
-                    $(newOp).html(val.crop_typeal);
-                    $('#cropType').append(newOp);
-                }); 
-            }
+        $('#province').change(function() {
+            $('#cropType').html('ssss');
         });
 
+        $('#district').change(function() {
+            var district = ($(this).val());
+            $('#cropType').empty();
+            // Load crop types
+            $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetCropTypes', 
+                data: {district:district},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        // console.log(val.crop_type);
+                        
+                        var newOp = new Option(val.crop_type, val.crop_type);
+                        $(newOp).html(val.crop_typeal);
+                        $('#cropType').append(newOp);
+                    }); 
+                }
+            });
+        });
 
-
+        
         $('#cropType').change(function () {
             getCropTypes($(this));
             $('#harvestMonth').empty();
@@ -60,6 +69,7 @@
                             var json = $.parseJSON(data);
                             $(json).each(function (i, val) {
                                 $('#expectedHarv').html(val.harvest_per_land * area + ' kgs of ' + vart);
+                                $('#expected_harvest').val(val.harvest_per_land * area);
                             }); 
                         }
                     });
@@ -94,6 +104,7 @@
         }
 
         function getCropTypes(e) {
+
             type = e.val();
             $('#cropVart').empty();
             $('#harvestMonth').empty();
@@ -113,6 +124,8 @@
             });
         }
 
+        
+        
     });
 </Script>
 
@@ -120,7 +133,7 @@
 
 
 <div class="main-form">
-    <form action="<?= URL; ?>/farmer/insertCropReq" method="post">
+    <form action="<?= URL; ?>farmer/insertCropReq" method="post">
 
 
         <div class="row">
@@ -219,7 +232,7 @@
                 <input type="date" id="startMonth" name="startMonth" placeholder="Month/Date/Year " required>
             </div>
         </div>
-
+        
         <div class="ajxToolTip" id="harvestMonth">harvestMonth : kgs</div>
 
 
@@ -233,6 +246,17 @@
             </div>
         </div>
 
+        <input type="hidden" id="expected_harvest" name="expected_harvest" value="">
+        <input type="hidden" id="starting_month" name="starting_month" value="">
+        <input type="hidden" id="harvesting_month" name="harvesting_month" value="">
+
+        <div class="row">
+            <div class="col-25">
+            </div>
+            <div class="col-75">
+                <button type="submit">Create </button>
+            </div>
+        </div>
     </form>
 </div>
 

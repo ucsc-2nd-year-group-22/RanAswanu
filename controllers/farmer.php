@@ -110,20 +110,19 @@ class Farmer extends Controller {
     }
 
     public function insertCropReq() {
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['gramasewa'] = $_POST['gramasewa'];
-        $data['address'] = $_POST['address'];
-        $data['areasize'] = $_POST['areasize'];
-        $data['exptdate'] = $_POST['exptdate'];
-        $data['croptype'] = $_POST['croptype'];
-        $data['selectCrop'] = $_POST['selectCrop'];
-        $data['cropVariety'] = $_POST['cropVariety'];
-        $data['otherdetails'] = $_POST['otherdetails'];
-        //  $data['conditions'] = $_POST['conditions'];
-
-        $this->model->cropRequest($data);
-        header('location: ' . URL . 'farmer/cropReqif');
+        print_r($_POST);
+        // $data['starting_month'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
+        // $data['harvesting_month'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
+        // $data['expected_harvest'] = filter_var($_POST['expected_harvest'], FILTER_SANITIZE_STRING);
+        // $data['gs_id'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
+        // $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+        // $data['crop_id'] = filter_var($_POST['cropType'], FILTER_SANITIZE_STRING);
+        // $data['cropVart'] = filter_var($_POST['cropVart'], FILTER_SANITIZE_STRING);
+        // $data['center_id'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
+        // $data['farmer_id'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
+        // $data['officer_id'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
+        // $this->model->insertCropReq($data);
+        // header('location: ' . URL . 'farmer/cropReqMng');
     }
 
     // Sell Crops ============================================================
@@ -253,7 +252,7 @@ class Farmer extends Controller {
     }
 
     public function ajxGetCropTypes() {
-        $cropsTypes = $this->model->ajxGetCropTypes();
+        $cropsTypes = $this->model->ajxGetCropTypes($_GET['district']);
         echo json_encode($cropsTypes);
     }
 

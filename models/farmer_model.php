@@ -15,13 +15,13 @@ class Farmer_Model extends Model {
     }
 
     public function ajxGetCropVart($vart) {
-        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_type = :vart");
+        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function ajxGetHarvPerLand($vart) {
-        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_varient = :vart");
+        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -104,6 +104,25 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxGetCenters() {
+        $sql = "SELECT * FROM `collecting_center`";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function insertCropReq($data) {
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        $data['officer_user_id'] = $st->fetchColumn();
+        
+        
+        print_r($data);
+    }
 
 
 

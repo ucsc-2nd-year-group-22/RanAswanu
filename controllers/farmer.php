@@ -110,18 +110,26 @@ class Farmer extends Controller {
     }
 
     public function insertCropReq() {
-        print_r($_POST);
-        // $data['starting_month'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
-        // $data['harvesting_month'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
-        // $data['expected_harvest'] = filter_var($_POST['expected_harvest'], FILTER_SANITIZE_STRING);
-        // $data['gs_id'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
+        // print_r($_POST);
+        $data['harvesting_month'] = filter_var($_POST['harvesting_month'], FILTER_SANITIZE_STRING);
+        $data['harvesting_month'] = date("m",strtotime($data['harvesting_month']));
+        $data['starting_month'] = filter_var($_POST['startMonth'], FILTER_SANITIZE_STRING);
+        $data['starting_month']  = date("m",strtotime($data['starting_month']));
+        
+        $data['expected_harvest'] = filter_var($_POST['expected_harvest'], FILTER_SANITIZE_STRING);
+        $data['is_accept'] = 0;
+        $data['gs_id'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
+        $data['crop_id'] = filter_var($_POST['selectCrop'], FILTER_SANITIZE_STRING);
+        $data['center_id'] = filter_var($_POST['selectCenter'], FILTER_SANITIZE_STRING);
         // $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
-        // $data['crop_id'] = filter_var($_POST['cropType'], FILTER_SANITIZE_STRING);
         // $data['cropVart'] = filter_var($_POST['cropVart'], FILTER_SANITIZE_STRING);
-        // $data['center_id'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
-        // $data['farmer_id'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
-        // $data['officer_id'] = filter_var($_POST['province'], FILTER_SANITIZE_STRING);
-        // $this->model->insertCropReq($data);
+        $data['farmer_user_id'] = Session::get('user_id');
+        $data['officer_user_id'] = '';
+
+        // print_r($data);
+        $this->model->insertCropReq($data);
+
+
         // header('location: ' . URL . 'farmer/cropReqMng');
     }
 
@@ -266,6 +274,11 @@ class Farmer extends Controller {
         // echo $_GET['vart'];
         $hpl = $this->model->ajxGetHarvPerLand($_GET['vart']);
         echo json_encode($hpl);
+    }
+
+    public function ajxGetCenters() {
+        $centers = $this->model->ajxGetCenters();
+        echo json_encode($centers);
     }
 
 

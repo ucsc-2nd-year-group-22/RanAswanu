@@ -5,9 +5,9 @@
         var vart;
         var type;
 
-        $('#province').change(function() {
-            $('#cropType').html('ssss');
-        });
+        // $('#province').change(function() {
+        //     $('#cropType').html('ssss');
+        // });
 
         $('#district').change(function() {
             var district = ($(this).val());
@@ -21,8 +21,8 @@
                     var json = $.parseJSON(data);
                     $(json).each(function (i, val) {
                         // console.log(val.crop_id);
-                        var newOp = new Option(val.crop_type, val.crop_type);
-                        $(newOp).html(val.crop_typeal);
+                        var newOp = new Option(val.crop_type, val.crop_id);
+                        $(newOp).html(val.crop_type);
                         $('#cropType').append(newOp);
                     }); 
                 }
@@ -81,10 +81,12 @@
         }
 
         function getHarvestData(e) {
+            
             $('#harvestMonth').show();
             var startMonth = e.val();
             vart = $('#cropVart').val();
             $('#harvestMonth').html(startMonth);
+            var formattedDate;
             $.ajax({ 
                 type: 'GET', 
                 url: 'ajxGetHarvPerLand', 
@@ -95,16 +97,19 @@
                         var date1 = new Date(startMonth);
                         var weeks = val.harvest_period;
                         date1.setDate(date1.getDate() + weeks*7);
-                        var formattedDate = date1.getFullYear()+ '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
+                        formattedDate = date1.getFullYear()+ '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
                         $('#harvestMonth').html("Harvesting Period :" + val.harvest_period + ' weeks<br> Harvesting month =>' + formattedDate);
+                        $('#harvesting_month').val(formattedDate);
                     }); 
                 }
             })
+            
         }
 
         function getCropTypes(e) {
 
             type = e.val();
+            // alert(type);
             $('#cropVart').empty();
             $('#harvestMonth').empty();
             $('#harvestMonth').hide();
@@ -115,13 +120,32 @@
                 success: function (data) { 
                     var json = $.parseJSON(data);
                     $(json).each(function (i, val) {
-                        var newOp = new Option(val.crop_varient, val.crop_varient);
+                        var newOp = new Option(val.crop_varient, val.crop_id);
+                        // console.log(val.crop_id);
                         $(newOp).html(val.crop_varient);
                         $('#cropVart').append(newOp);
                     }); 
                 }
             });
         }
+
+        // get center data
+        $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetCenters', 
+                // data: {type:type},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        var newOp = new Option(val.center_name, val.center_id);
+                        console.log(val.center_name);
+                        $(newOp).html(val.center_name);
+                        $('#selectCenter').append(newOp);
+                    }); 
+                }
+            });
+        
+
 
         
         
@@ -234,8 +258,18 @@
         
         <div class="ajxToolTip" id="harvestMonth">harvestMonth : kgs</div>
 
-
         <div class="row">
+            <div class="col-25">
+                <label for="selectCenter">Collecting Center:</label>
+            </div>
+            <div class="col-75">
+                <select id="selectCenter" name="selectCenter" required>
+                    <option value="" disabled selected>-- Select center --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- <div class="row">
             <div class="col-25">
                 <label for="otherdetails">Other details:</label>
             </div>
@@ -243,10 +277,10 @@
                 <textarea id="otherDetails" name="otherDetails" placeholder="Enter other details "
                     style="height:200px "></textarea>
             </div>
-        </div>
+        </div> -->
 
         <input type="hidden" id="expected_harvest" name="expected_harvest" value="">
-        <input type="hidden" id="starting_month" name="starting_month" value="">
+        <!-- <input type="hidden" id="starting_month" name="starting_month" value=""> -->
         <input type="hidden" id="harvesting_month" name="harvesting_month" value="">
 
         <div class="row">

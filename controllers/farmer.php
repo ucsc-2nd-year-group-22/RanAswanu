@@ -130,7 +130,7 @@ class Farmer extends Controller {
         $this->model->insertCropReq($data);
 
 
-        // header('location: ' . URL . 'farmer/cropReqMng');
+        header('location: ' . URL . 'farmer/cropReqMng');
     }
 
     // Sell Crops ============================================================

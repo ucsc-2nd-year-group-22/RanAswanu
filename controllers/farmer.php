@@ -94,8 +94,6 @@ class Farmer extends Controller {
 
     //Display croprequest
     public function cropReqMng() {
-        // $cropReqifData= $this->model->cropReqList();  
-        // $data['cropRequestData'] = $cropReqifData;
         $this->setActivePage('cropReqMng');
         $this->view->rendor('farmer/cropReqMng');
     }
@@ -280,6 +278,20 @@ class Farmer extends Controller {
         $centers = $this->model->ajxGetCenters();
         echo json_encode($centers);
     }
+
+    public function ajxSortCropReqs() {
+        $d = $this->model->ajxSortCropReqs($_POST['filter'], $_POST['ascOrDsc']);
+        $data['cropReqs'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxCropMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+
 
 
     //######################################## END OF Farmer ###################################################################################################

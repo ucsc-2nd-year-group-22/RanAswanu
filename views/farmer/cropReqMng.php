@@ -15,6 +15,43 @@
             async: true,
         });
 
+        var selectedSort = 'expected_harvest';
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');
+        });
+        // asc
+        $('#ascSort').click(function() {
+            // alert(selectedSort);
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxSortCropReqs",
+                method:"post",
+                data:{filter:selectedSort, ascOrDsc:'ASC'},
+                dataType:"text",
+                success:function(data) {
+                    
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+        // desc
+        $('#descSort').click(function() {
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxSortCropReqs",
+                method:"post",
+                data:{filter:selectedSort, ascOrDsc:'DESC'},
+                dataType:"text",
+                success:function(data) {
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+
 
     });
 </script>
@@ -36,28 +73,24 @@
 
 <div class="tabContainer" id="tab1C">
     <div class="panel-container">
-        <div class="pane1">
-            <!-- Search bar -->
-            <form class="search-bar">
-                <label>Search crop requests by : </label>
-                <select id="searchField">
-                    <option value="fname">Name</option>
-                    <option value="nic">NIC</option>
+        <!-- accepted/ rejected filter -->
+        <form class="pane1 ">
+            <label>Show accepted / rejected </label>
+            <div class="normal-select">
+                <button type="button" id="showAccepted" class="half"><i class="fas fa-sort-amount-down-alt"></i> Accepted </button>
+                <button type="button" id="showRejected" class="half"><i class="fas fa-sort-amount-down"></i> Rejected</button>
+                <button type="button" id="showAll" style="width:100%" class="half"><i class="fas fa-sort-amount-down"></i> Show All</button>
+            </div>
+        </form>
 
-                </select>
-                <input type="text" id="searchInput" placeholder="Search ...">
-                <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
-            </form>
-
-        </div>
         <div class="pane2">
             <!-- sort bar -->
             <form class="normal-select">
-                <label>Sort farmers by : </label>
+                <label>Sort crop requests by : </label>
                 <select id="sortby">
-                    <option val="first_name" selected>First name</option>
-                    <option val="last_name">Last name</option>
-                    <option val="regdate">Registered Data</option>
+                    <!-- <option val="crop_type" selected>Crop type</option>
+                    <option val="cetner">Collectin center</option> -->
+                    <option val="expected_harvest">Expected harvest</option>
                 </select>
                 <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
                 <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
@@ -75,6 +108,6 @@
     </div>
 
     <div id="box" class="main-table">
-        ss
+        
     </div>
 </div>

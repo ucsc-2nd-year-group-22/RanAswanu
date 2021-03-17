@@ -164,6 +164,33 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxFilterCropReq($filter) {
+        $farmer_id = Session::get('user_id');
+        if ($filter == 'accepted') {
+            $sql = "SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+            JOIN crop On harvest.crop_id = crop.crop_id 
+            JOIN collecting_center ON harvest.center_id = collecting_center.center_id
+            JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
+            JOIN month as start_month ON start_month.month_id = harvest.starting_month_id
+            JOIN month as harvest_month ON harvest_month.month_id = harvest.harvesting_month_id WHERE is_accept = 1 AND farmer_user_id = $farmer_id";
+        } else if ($filter == 'rejected') {
+            $sql = "SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+            JOIN crop On harvest.crop_id = crop.crop_id 
+            JOIN collecting_center ON harvest.center_id = collecting_center.center_id
+            JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
+            JOIN month as start_month ON start_month.month_id = harvest.starting_month_id
+            JOIN month as harvest_month ON harvest_month.month_id = harvest.harvesting_month_id WHERE is_accept = 0 AND farmer_user_id = $farmer_id";
+        }
+
+
+    $st = $this->db->prepare($sql);
+    $st->execute();
+
+    return $st->fetchAll(PDO::FETCH_ASSOC);
+}
+
+    
+
 
     ##################################### END OF FARMER MODEL ##############################################################################
 }

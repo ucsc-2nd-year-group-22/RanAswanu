@@ -291,6 +291,18 @@ class Farmer extends Controller {
         }
     }
 
+    public function ajxFilterCropReq() {
+        $d = $this->model->ajxFilterCropReq($_POST['filter']);
+        $data['cropReqs'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxCropMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
 
 
 

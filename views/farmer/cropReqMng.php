@@ -53,6 +53,61 @@
         });
 
 
+        // show accepted
+        var selectedFilter;
+        $('#showAccepted').click(function() {
+            selectedFilter = 'accepted';
+            $('#showRejected').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxFilterCropReq",
+                method:"post",
+                data:{filter:selectedFilter},
+                dataType:"text",
+                success:function(data) {
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+
+        $('#showRejected').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxFilterCropReq",
+                method:"post",
+                data:{filter:selectedFilter},
+                dataType:"text",
+                success:function(data) {
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+
+        $('#showAll').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showRejected').removeClass("active-btn");
+            $(this).addClass("active-btn");
+                $.ajax({
+                url: "ajxListCropReq",
+                method: "post",
+                data: {
+                    farmer_id: <?php echo Session::get('user_id'); ?>
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true,
+            });
+        });
+      
     });
 </script>
 <div id="test">

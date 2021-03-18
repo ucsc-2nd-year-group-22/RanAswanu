@@ -80,12 +80,12 @@
                 <input type="date" id="dob" name="dob" required placeholder="Month/Date/Year ">
             </div>
         </div>
+        
         <div class="row">
             <div class="col-25">
                 <label for="sex">Gender</label>
             </div>
             <div class="col-75">
-
                 <select id="sex" name="sex">
                     <option value="other">Other</option>
                     <option value="male">Male</option>
@@ -93,6 +93,7 @@
                 </select>
             </div>
         </div>
+
         <div class="row">
             <div class="col-25">
                 <label for="address">Address</label>

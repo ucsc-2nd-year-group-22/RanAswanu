@@ -229,6 +229,21 @@ class Officer extends Controller {
             $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
         }
     }
+
+    //Sort officers
+    public function ajxFilterOfficer() {
+
+        $d = $this->model->ajxFilterOfficer($_POST['filter'], $_POST['ascOrDsc']);
+        $data['farmerData'] = $d;
+
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
 }
 
         

@@ -68,7 +68,7 @@
             $('#descSort').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url: "ajxFilterFarmer",
+                url: "ajxFilterOfficer",
                 method: "post",
                 data: {
                     filter: selectedSort,
@@ -87,7 +87,7 @@
             $('#ascSort').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url: "ajxFilterFarmer",
+                url: "ajxFilterOfficer",
                 method: "post",
                 data: {
                     filter: selectedSort,
@@ -114,7 +114,7 @@
     </ul>
 </div>
 <div class="filter-panel">
-<!-- <div class="tabContainer" id="tab1C"> -->
+    <!-- <div class="tabContainer" id="tab1C"> -->
 
     <div class="panel-container">
         <div class="pane1">
@@ -133,16 +133,14 @@
         </div>
         <div class="pane2">
             <form class="normal-select">
-                <label>Sort crop requests by : </label>
-                <select placeholder="other">
-                    <option>Date</option>
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
-                    <option>111</option>
+                <label>Sort farmers by : </label>
+                <select id="sortby">
+                    <option val="first_name" selected>First name</option>
+                    <option val="last_name">Last name</option>
+                    <option val="regdate">Registered Data</option>
                 </select>
-                <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-                <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+                <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
+                <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
             </form>
         </div>
 

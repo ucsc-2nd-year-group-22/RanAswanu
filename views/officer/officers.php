@@ -1,3 +1,111 @@
+<script>
+    $(function() {
+        var selectedSearchCategory = $('#searchField').val();
+
+        $('#searchField').change(function() {
+            selectedSearchCategory = $(this).val();
+            $('#test').html(selectedCategory);
+        });
+
+        $('#searchBtn').click(function(event) {
+            event.preventDefault();
+            var input = $('#searchInput').val();
+            if (input != '') {
+                $('#searchInput').val('');
+                location.reload();
+            }
+
+        });
+
+        $("#searchInput").keyup(function() {
+            var inputVal = $(this).val();
+            if (inputVal != '') {
+                $('#box').html('');
+                switch (selectedSearchCategory) {
+                    case 'fname': {
+                        console.log(inputVal);
+                        $.ajax({
+                            url: "ajxSearchOfficerName",
+                            method: "post",
+                            data: {
+                                search: inputVal
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                    case 'nic': {
+                        $.ajax({
+                            url: "ajxSearchFarmerNic",
+                            method: "post",
+                            data: {
+                                search: inputVal,
+                                ascOrDesc: asc
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                }
+            } else {
+                location.reload();
+            }
+        });
+
+        var selectedSort = 'first_name';
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');
+        });
+        // asc
+        $('#ascSort').click(function() {
+            // alert(selectedSort);
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxFilterFarmer",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'ASC'
+                },
+                dataType: "text",
+                success: function(data) {
+
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+        // desc
+        $('#descSort').click(function() {
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxFilterFarmer",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'DESC'
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+    });
+</script>
+
 <h1>Manage Officers</h1>
 
 <div class="user-tabs">
@@ -8,19 +116,20 @@
     </ul>
 </div>
 <div class="filter-panel">
+<!-- <div class="tabContainer" id="tab1C"> -->
 
     <div class="panel-container">
         <div class="pane1">
 
             <form class="search-bar">
-                <label>Search crop requests by : </label>
-                <select placeholder="Search ...">
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
+                <label>Search officers by : </label>
+                <select id="searchField">
+                    <option value="fname">Name</option>
+                    <option value="nic">NIC</option>
+
                 </select>
-                <input type="text" placeholder="Search ...">
-                <button type="submit"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="Search ...">
+                <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
             </form>
 
         </div>
@@ -41,16 +150,16 @@
 
         <!-- Comment pane 3 & 4 If they are empty -->
 
-        <div class="pane3">
+        <!-- <div class="pane3">
             <label>Empty pane</label>
         </div>
         <div class="pane4">
             <label>Empty pane</label>
-        </div>
+        </div> -->
     </div>
 </div>
 
-<div class="main-table">
+<div id="box" class="main-table">
     <table>
         <tr>
             <th>#</th>

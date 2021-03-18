@@ -203,6 +203,19 @@ class Officer extends Controller {
         header('location: ' . URL . 'officer/officers');
     }
 
+    //Search officers by name
+    public function ajxSearchOfficerName() {
+        
+        $d = $this->model->ajxSearchOfficerName($_POST['search']);
+        $data['farmerData'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
 }
 
         

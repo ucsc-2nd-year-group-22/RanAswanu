@@ -1,5 +1,4 @@
 
-
 <div class="subHeader">
     <?php if (Session::get('role') == 'admin') : ?>
         <h1>Admin & Officer Registration</h1>

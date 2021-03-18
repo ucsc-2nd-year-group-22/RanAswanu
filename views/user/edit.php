@@ -1,4 +1,3 @@
-
 <?php
 $userData = $this->user['user'];
 $oldUserTel = $this->user['userTel'];
@@ -12,6 +11,7 @@ $allGramaSewas = $this->user['allGramaSewas'];
 // if(isset($oldUserTel[1])) echo '2 set'; 
 
 ?>
+
 <div class="subHeader">
     <?php if (Session::get('role') == 'admin') : ?>
         <?php if ($userData['role'] == 'vendor') : ?>
@@ -211,5 +211,5 @@ $allGramaSewas = $this->user['allGramaSewas'];
     </form>
 </div>
 
-<script src="<?php echo URL; ?>/views/user/js/locations.js"></script>
+<script src="<?php echo URL; ?>views/user/js/locations.js"></script>
 <script src="<?php echo URL; ?>views/user/js/default.js"></script>

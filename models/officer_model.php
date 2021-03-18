@@ -30,4 +30,17 @@ class Officer_Model extends Model
             ':id' => $id
         ));
     }
+
+    //Search officer by name
+    public function ajxSearchOfficerName($officerName) {
+        $escaped_name = addcslashes($officerName, '%');
+        $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'officer' AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name GROUP BY user.user_id";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':first_name' => "$officerName%"
+        ));
+        
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

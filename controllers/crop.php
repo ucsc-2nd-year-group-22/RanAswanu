@@ -1,7 +1,7 @@
 <?php
 
 class Crop extends Controller{
-
+    
     function __construct() {
         parent::__construct(); 
         Session::init();
@@ -10,7 +10,7 @@ class Crop extends Controller{
     function index() {
         $this->view->rendor('crop/crops');
     }
-
+    
     //route to the crop register form
     public function register($arg = false) {
         
@@ -18,14 +18,14 @@ class Crop extends Controller{
         $pageData = [
             'districts' => $districts
         ];
-
+        
         $this->view->rendor('crop/register', $pageData);
     }
-
+    
     //get the post data and create the crop in the database
     public function create(){
         $data = array();
-
+        
         $data['crop_type'] = $_POST['crop_type'];
         $data['crop_varient'] = $_POST['crop_varient'];
         $data['best_area'] = $_POST['best_area'];
@@ -37,6 +37,16 @@ class Crop extends Controller{
         // TODO: Do error checking
 
         $this->model->create($data);
+
+        //send notifications - on testing
+        require 'controllers/notification.php';
+        $notification = new Notification();
+        $data = array();
+        $data['role'] = "role";
+        $data['title'] = "title";
+        $data['description'] = "description";
+        $notification->sendNotiRole($data);
+
         header('location: ' . URL . 'crop/crops');
     }
 

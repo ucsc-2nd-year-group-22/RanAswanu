@@ -77,7 +77,7 @@ class User_Model extends Model
     //update the user data in the database 
     public function editSave($data)
     {
-        print_r($data);
+        // print_r($data);
         $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex, gs_id = :gs_id, address = :address, role = :role WHERE user_id = :user_id");
 
         $stmt->execute(array(
@@ -94,7 +94,7 @@ class User_Model extends Model
             ':user_id' => $data['user_id']
         ));
 
-        echo '<hr>';
+        // echo '<hr>';
         $userID = $data['user_id'];
         $telNos = array($data['tel_no_1'], $data['tel_no_2']);
         $oldTels = array($data['old-tel-1'], $data['old-tel-2']);

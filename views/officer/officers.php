@@ -23,7 +23,6 @@
                 $('#box').html('');
                 switch (selectedSearchCategory) {
                     case 'fname': {
-                        console.log(inputVal);
                         $.ajax({
                             url: "ajxSearchOfficerName",
                             method: "post",
@@ -40,11 +39,10 @@
                     }
                     case 'nic': {
                         $.ajax({
-                            url: "ajxSearchFarmerNic",
+                            url: "ajxSearchOfficerNic",
                             method: "post",
                             data: {
-                                search: inputVal,
-                                ascOrDesc: asc
+                                search: inputVal
                             },
                             dataType: "text",
                             success: function(data) {

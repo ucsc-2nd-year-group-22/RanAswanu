@@ -119,26 +119,29 @@ class Farmer_Model extends Model {
         $st = $this->db->prepare($sql);
         $st->execute();
         $data['officer_user_id'] = $st->fetchColumn();
-        
+
         $sql2 = "INSERT INTO `harvest`(`starting_month_id`, `harvesting_month_id`, `expected_harvest`, `is_accept`, `gs_id`, `crop_id`, `center_id`, `farmer_user_id`, `officer_user_id`) 
         VALUES (:starting_month, :harvesting_month, :expected_harvest, :is_accept, :gs_id, :crop_id, :center_id, :farmer_user_id, :officer_user_id)";
-        
+
+        // print_r($data);
         $st2 = $this->db->prepare($sql2);
         $st2->execute(array(
             ':starting_month' => $data['starting_month'],
-            ':harvesting_month'=> $data['harvesting_month'],
-            ':expected_harvest'=> $data['expected_harvest'],
-            ':is_accept' =>$data['is_accept'],
-            ':gs_id' =>$data['gs_id'],
-            ':crop_id' =>$data['crop_id'],
-            ':center_id' =>$data['center_id'],
-            ':farmer_user_id' =>$data['farmer_user_id'],
-            ':officer_user_id'=>$data['officer_user_id']
+            ':harvesting_month' => $data['harvesting_month'],
+            ':expected_harvest' => $data['expected_harvest'],
+            ':is_accept' => $data['is_accept'],
+            ':gs_id' => $data['gs_id'],
+            ':crop_id' => $data['crop_id'],
+            ':center_id' => $data['center_id'],
+            ':farmer_user_id' => $data['farmer_user_id'],
+            ':officer_user_id' => $data['officer_user_id']
         ));
+        // echo '<hr>';
+        // print_r($st2);
     }
 
     public function ajxSortCropReqs($filter, $ascOrDsc) {
-            $farmer_id = Session::get('user_id');
+        $farmer_id = Session::get('user_id');
         if ($ascOrDsc == 'ASC') {
             $sql = "        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
             JOIN crop On harvest.crop_id = crop.crop_id 
@@ -183,13 +186,28 @@ class Farmer_Model extends Model {
         }
 
 
-    $st = $this->db->prepare($sql);
-    $st->execute();
+        $st = $this->db->prepare($sql);
+        $st->execute();
 
-    return $st->fetchAll(PDO::FETCH_ASSOC);
-}
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-    
+
+    public function deleteCropReq($harvest_id) {
+        $st = $this->db->prepare("DELETE FROM `harvest` WHERE harvest_id = $harvest_id ");
+        $st->execute();
+
+        if ($st) {
+            header('location: ' . URL . 'farmer/cropReqMng');
+        }
+    }
+
+    public function getCropReq($harvest_id) {
+        $st = $this->db->prepare("SELECT * FROM harvest WHERE harvest_id = $harvest_id");
+        $st->execute();
+        return $st->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 
     ##################################### END OF FARMER MODEL ##############################################################################

@@ -205,14 +205,14 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
                 <label for="address">Address of the land</label>
             </div>
             <div class="col-75">
                 <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana" required>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-25">

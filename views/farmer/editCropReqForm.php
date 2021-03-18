@@ -1,131 +1,296 @@
-<div class="subHeader">
-    <h1>Edit Crop Request</h1>
-</div>
+<Script>
+    $(function () {
+        $('#expectedHarv').hide();
+        $('#harvestMonth').hide();
+        var vart;
+        var type;
 
-<!-- FORM -->
-<div class="main-form">
-    <form action="<?= URL;?>/farmer/updatecropReq/<?php echo $this->farmer['cropreqid'] ?>" method="post">
-       <!-- <div class="row">
-            <div class="col-25">
-                <label for="crop_varient">Crop Varient</label>
-            </div>
-            <div class="col-75">
-                <input value="<?php echo $this->crop['crop_varient']; ?>" type="text" id="crop_varient" name="crop_varient" placeholder="Crop varient..">
-            </div>
-        </div>
--->      
-        <div class="row">
-            <div class="col-25">
-            <label for="province">Province</label>
-            </div>
-            <div class="col-75">
-            <select id="province" name="province">
-                <option value="province1" <?php if($this->farmer['province'] == 'province1') echo 'selected'; ?>>Province 1</option>
-                <option value="province2" <?php if($this->farmer['province'] == 'province2') echo 'selected'; ?>>Province 2</option>
-                <option value="province3" <?php if($this->farmer['province'] == 'province3') echo 'selected'; ?>>Province 3</option>
-            </select>
-            </div>
-        </div>
+        // $('#province').change(function() {
+        //     $('#cropType').html('ssss');
+        // });
 
-        <div class="row">
-            <div class="col-25">
-            <label for="district">District</label>
-            </div>
-            <div class="col-75">
-            <select id="district" name="district">
-                <option value="district1" <?php if($this->farmer['district'] == 'district1') echo 'selected'; ?>>District 1</option>
-                <option value="district2" <?php if($this->farmer['district'] == 'district2') echo 'selected'; ?>>District 2</option>
-                <option value="district3" <?php if($this->farmer['district'] == 'district3') echo 'selected'; ?>>District 3</option>
-            </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-25">
-            <label for="gramasewa">Gramasewa Division</label>
-            </div>
-            <div class="col-75">
-            <select id="gramasewa" name="gramasewa">
-                <option value="grama1" <?php if($this->farmer['gramasewa'] == 'grama1') echo 'selected'; ?>>Grama 1</option>
-                <option value="grama2" <?php if($this->farmer['gramasewa'] == 'grama2') echo 'selected'; ?>>Grama 2</option>
-                <option value="grama3" <?php if($this->farmer['gramasewa'] == 'grama3') echo 'selected'; ?>>Grama 3</option>
-            </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-25">
-            <label for="address">Address</label>
-            </div>
-            <div class="col-75">
-            <input type="text" value="<?php echo $this->farmer['address']; ?>" id="address" name="address" placeholder="Address">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-25">
-            <label for="areasize">Area Size</label>
-            </div>
-            <div class="col-75">
-            <input type="number" value="<?php echo $this->farmer['areasize']; ?>" id="areasize" name="areasize" placeholder="Area Size">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-25">
-            <label for="exptdate">Expecting Date To Cultivate</label>
-            </div>
-            <div class="col-75">
-            <input type="date" value="<?php echo $this->farmer['exptdate']; ?>" id="exptdate" name="exptdate" placeholder="Month/Date/Year " >
-            </div>
-        </div>
+        $('#district').change(function() {
+            var district = ($(this).val());
+            $('#cropType').empty();
+            // Load crop types
+            $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetCropTypes', 
+                data: {district:district},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        // console.log(val.crop_id);
+                        var newOp = new Option(val.crop_type, val.crop_id);
+                        $(newOp).html(val.crop_type);
+                        $('#cropType').append(newOp);
+                    }); 
+                }
+            });
+        });
 
         
-        <div class="row">
-            <div class="col-25">
-            <label for="selectCrop">Select Crop</label>
-            </div>
-            <div class="col-75">
-            <select id="selectCrop" name="selectCrop">
-                <option value="carret" <?php if($this->farmer['selectCrop'] == 'carret') echo 'selected'; ?>>carret</option>
-                <option value="cucumber" <?php if($this->farmer['selectCrop'] == 'cucumber') echo 'selected'; ?>>cucumber</option>
-                <option value="tomatoes" <?php if($this->farmer['selectCrop'] == 'tomatoes') echo 'selected'; ?>>tomatoes</option>
-                <option value="Onion" <?php if($this->farmer['selectCrop'] == 'Onion') echo 'selected'; ?>>Onion</option>
-            </select>
-            </div>
-        </div>
+        $('#cropType').change(function () {
+            getCropTypes($(this));
+            $('#harvestMonth').empty();
+            $('#harvestMonth').hide();
+        });
 
-        <div class="row">
-            <div class="col-25">
-            <label for="cropVariety">Crop variety</label>
-            </div>
-            <div class="col-75">
-            <select id="cropVariety" name="cropVariety">
-                <option value="Variety1" <?php if($this->farmer['cropVariety'] == 'Variety1') echo 'selected'; ?>>Variety1</option>
-                <option value="Variety2" <?php if($this->farmer['cropVariety'] == 'Variety2') echo 'selected'; ?>>Variety2</option>
-                <option value="Variety3" <?php if($this->farmer['cropVariety'] == 'Variety3') echo 'selected'; ?>>Variety3</option>
-            </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-25">
-            <label for="otherdetails">Other Details</label>
-            </div>
-            <div class="col-75">
-            <input type="text" value="<?php echo $this->farmer['otherdetails']; ?>" id="otherdetails" name="otherdetails" placeholder="Edit/Enter other details">
-            </div>
-        </div>
+        $('#cropVart').change(function() {
+            $('#harvestMonth').empty();
+            $('#startMonth').empty();
+            $('#harvestMonth').hide();
+            $('#expectedHarv').empty();
+            $('#expectedHarv').hide();
+        });
 
 
-        
-        <div class="row">
-            <div class="col-25">
+        $('#startMonth').change(function() {
+            getHarvestData($(this));
+        });
+
+        $('#areaSize').keyup(function() {
+            getHarvestPerLand($(this));
+        });
+
+        function getHarvestPerLand(e) {
+            var area = e.val();
+            $('#harvestMonth').empty();
+            vart = $('#cropVart').val();
+            if(vart != null) {
+                if(area != 0) {
+                    $('#expectedHarv').show();
+                    $.ajax({ 
+                        type: 'GET', 
+                        url: 'ajxGetHarvPerLand', 
+                        data: {vart:vart},
+                        success: function (data) { 
+                            var json = $.parseJSON(data);
+                            $(json).each(function (i, val) {
+                                $('#expectedHarv').html(val.harvest_per_land * area + ' kgs of ' + vart);
+                                $('#expected_harvest').val(val.harvest_per_land * area);
+                            }); 
+                        }
+                    });
+                } else {
+                    $('#expectedHarv').hide();
+                }
+            } else {
+                alert('Please select crop type and varient !');
+            }
+        }
+
+        function getHarvestData(e) {
             
+            $('#harvestMonth').show();
+            var startMonth = e.val();
+            vart = $('#cropVart').val();
+            $('#harvestMonth').html(startMonth);
+            var formattedDate;
+            $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetHarvPerLand', 
+                data: {vart:vart},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        var date1 = new Date(startMonth);
+                        var weeks = val.harvest_period;
+                        date1.setDate(date1.getDate() + weeks*7);
+                        formattedDate = date1.getFullYear()+ '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
+                        $('#harvestMonth').html("Harvesting Period :" + val.harvest_period + ' weeks<br> Harvesting month =>' + formattedDate);
+                        $('#harvesting_month').val(formattedDate);
+                    }); 
+                }
+            })
+            
+        }
+
+        function getCropTypes(e) {
+
+            type = e.val();
+            // alert(type);
+            $('#cropVart').empty();
+            $('#harvestMonth').empty();
+            $('#harvestMonth').hide();
+            $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetCropVart', 
+                data: {type:type},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        var newOp = new Option(val.crop_varient, val.crop_id);
+                        // console.log(val.crop_id);
+                        $(newOp).html(val.crop_varient);
+                        $('#cropVart').append(newOp);
+                    }); 
+                }
+            });
+        }
+
+        // get center data
+        $.ajax({ 
+                type: 'GET', 
+                url: 'ajxGetCenters', 
+                // data: {type:type},
+                success: function (data) { 
+                    var json = $.parseJSON(data);
+                    $(json).each(function (i, val) {
+                        var newOp = new Option(val.center_name, val.center_id);
+                        console.log(val.center_name);
+                        $(newOp).html(val.center_name);
+                        $('#selectCenter').append(newOp);
+                    }); 
+                }
+            });
+
+        
+
+            
+    });
+</Script>
+
+<h1>Crop Reqeust Edit Form</h1>
+
+<?php print_r($cropReqData); ?>
+
+<div class="main-form">
+    <form action="<?= URL; ?>farmer/insertCropReq" method="post">
+
+
+        <div class="row">
+            <div class="col-25">
+                <label for="province">Province</label>
             </div>
             <div class="col-75">
-                <input type="submit" value="Update">
+                <select id="province" name="province">
+                    <option value="null"> -- SELECT PROVINCE -- </option>
+                    <?php foreach ($provinces as $provinceItem) : ?>
+                    <option value="<?= $provinceItem['province_id'] ?>">
+                        <?= $provinceItem['province_name'] ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="district">District</label>
+            </div>
+            <div class="col-75">
+                <select id="district" name="district">
+                    <option value=""> -- SELECT DISTRICT --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="province">Divisional secratariast</label>
+            </div>
+            <div class="col-75">
+                <select id="divisional_secratariast" name="divisional_secratariast">
+                    <option value="null"> -- SELECT DIVISIONAL SECT. --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="grama">Gramasewa Division</label>
+            </div>
+            <div class="col-75">
+                <select id="gramaSewa" name="gramaSewa">
+                    <option value="null"> -- SELECT GRAMASEWA DIV. --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-25">
+                <label for="address">Address of the land</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana" required>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-25">
+                <label for="croptype">Crop type:</label>
+            </div>
+            <div class="col-75">
+                <select id="cropType" name="croptype" required>
+                    <option selected disabled>-- Select Crops --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="selectCrop">Crop Varient:</label>
+            </div>
+            <div class="col-75">
+                <select id="cropVart" name="selectCrop" required>
+                    <option value="" disabled selected>-- Select crop varient --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="areaSize">Size of the area (Acres)</label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
+            </div>
+        </div>
+
+        <div class="ajxToolTip" id="expectedHarv">Expected : kgs</div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="exptdate">Cultivating date (start month)</label>
+            </div>
+            <div class="col-75">
+                <input type="date" id="startMonth" name="startMonth" placeholder="Month/Date/Year " required>
+            </div>
+        </div>
+        
+        <div class="ajxToolTip" id="harvestMonth">harvestMonth : kgs</div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="selectCenter">Collecting Center:</label>
+            </div>
+            <div class="col-75">
+                <select id="selectCenter" name="selectCenter" required>
+                    <option value="" disabled selected>-- Select center --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-25">
+                <label for="otherdetails">Other details:</label>
+            </div>
+            <div class="col-75">
+                <textarea id="otherDetails" name="otherDetails" placeholder="Enter other details "
+                    style="height:200px "></textarea>
+            </div>
+        </div> -->
+
+        <input type="hidden" id="expected_harvest" name="expected_harvest" value="">
+        <!-- <input type="hidden" id="starting_month" name="starting_month" value=""> -->
+        <input type="hidden" id="harvesting_month" name="harvesting_month" value="">
+
+        <div class="row">
+            <div class="col-25">
+            </div>
+            <div class="col-75">
+                <button type="submit">Create </button>
             </div>
         </div>
     </form>
 </div>
+
+<script src="<?php echo URL; ?>/views/user/js/locations.js"></script>

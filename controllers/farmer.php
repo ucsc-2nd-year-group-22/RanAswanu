@@ -303,6 +303,23 @@ class Farmer extends Controller {
         }
     }
 
+    public function deleteCropReq($harvest_id) {
+        echo $harvest_id;
+        $this->model->deleteCropReq($harvest_id);
+       
+    }
+
+    function editCropReqForm($harvest_id) {
+        
+        $provinces = $this->model->getProvinces();
+
+        $data = [
+            'provinces' => $provinces
+        ];
+        $data['cropReqData'] = $this->model->getCropReq($harvest_id);
+        $this->view->rendor('farmer/editCropReqForm', $data);
+        // print_r($data['cropReqData']);
+    }
 
 
 

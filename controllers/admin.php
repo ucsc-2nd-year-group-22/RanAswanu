@@ -81,4 +81,46 @@ class Admin extends Controller {
         $this->model->delete($id);
         header('location: ' . URL . 'admin/admins');
     }
+
+    //Search admins by name
+    public function ajxSearchAdminName() {
+        
+        $d = $this->model->ajxSearchAdminName($_POST['search']);
+        $data['farmerData'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('admin/ajxAdminList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+    //Search admin by NIC 
+    public function ajxSearchAdminNic() {
+        $d = $this->model->ajxSearchAdminNic($_POST['search']);
+        $data['farmerData'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('admin/ajxAdminList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+    //Sort admins
+    public function ajxFilterAdmin() {
+
+        $d = $this->model->ajxFilterAdmin($_POST['filter'], $_POST['ascOrDsc']);
+        $data['farmerData'] = $d;
+
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('admin/ajxAdminList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
 }

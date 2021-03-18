@@ -39,13 +39,13 @@ class Crop extends Controller{
         $this->model->create($data);
 
         //send notifications - on testing
-        require 'controllers/notification.php';
-        $notification = new Notification();
-        $data = array();
-        $data['role'] = "role";
-        $data['title'] = "title";
-        $data['description'] = "description";
-        $notification->sendNotiRole($data);
+        // require 'controllers/notification.php';
+        // $notification = new Notification();
+        // $data = array();
+        // $data['role'] = "role";
+        // $data['title'] = "title";
+        // $data['description'] = "description";
+        // $notification->sendNotiRole($data);
 
         header('location: ' . URL . 'crop/crops');
     }

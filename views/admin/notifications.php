@@ -8,31 +8,13 @@
 </div>
 
 <div id="tab1C" class="tabContainer">
-    <dl class="notification">
-        <dd>20-02-2020</dd>
-        <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
-    </dl>
-    <dl class="notification">
-        <dd>20-02-2020</dd>
-        <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
-    </dl>
-    <dl class="notification">
-        <dd>20-02-2020</dd>
-        <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
-    </dl>
-    <dl class="notification">
-        <dd>20-02-2020</dd>
-        <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
-    </dl>
-    <dl class="notification">
-        <dd>20-02-2020</dd>
-        <dd>10.00 AM</dd>
-        <dd>Sunil Siripala submitted a crop request (Pumpking, 1.2MT, 7 weeks, below-demand) </dd>
-    </dl>
+    <?php 
+        foreach ($notifications as $notification){ ?>
+            <dl class="notification">
+                <dd><?php echo $notification['title']; ?></dd>
+                <dd><?php echo $notification['description']; ?></dd>
+            </dl>
+    <?php  } ?>
 </div>
 
 <div id="tab2C" class="tabContainer">

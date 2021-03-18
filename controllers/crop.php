@@ -38,14 +38,13 @@ class Crop extends Controller{
 
         $this->model->create($data);
 
-        //send notifications - on testing
-        // require 'controllers/notification.php';
-        // $notification = new Notification();
-        // $data = array();
-        // $data['role'] = "role";
-        // $data['title'] = "title";
-        // $data['description'] = "description";
-        // $notification->sendNotiRole($data);
+        //send notifications
+        $notiData = array();
+        $notiData['target_role'] = "admin";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "New Crops";
+        $notiData['description'] = "A new crop is added to the list. Please check it out!";
+        Notification::send($notiData);
 
         header('location: ' . URL . 'crop/crops');
     }
@@ -71,6 +70,14 @@ class Crop extends Controller{
     public function edit($id){
         $this->view->crop = $this->model->singleCropList($id);
         $districts = $this->model->getAllDistricts();
+
+        //send notifications
+        $notiData = array();
+        $notiData['target_role'] = "admin";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "Crop Edited";
+        $notiData['description'] = "A new crop has been edited. Please check it out!";
+        Notification::send($notiData);
 
         $pageData = [
             'id' => $id,
@@ -115,6 +122,14 @@ class Crop extends Controller{
     //remove a crop
     public function delete($id){
         $this->model->delete($id);
+
+        //send notifications
+        $notiData = array();
+        $notiData['target_role'] = "admin";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "Crop Removed";
+        $notiData['description'] = "A crop is removed from the list. Please check it out!";
+        Notification::send($notiData);
         header('location: ' . URL . 'crop/crops');
     }
 

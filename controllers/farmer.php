@@ -10,19 +10,19 @@ class Farmer extends Controller {
     }
 
     
-    public function index() {
-        $data = array(
-            'role' => $role
-        );
+    // public function index() {
+    //     $data = array(
+    //         'role' => $role
+    //     );
 
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
-            $this->view->rendor('farmer/index', $data);
-        else {
-            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
-            $this->view->rendor('error/index', $data);
-        }
+    //     if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+    //         $this->view->rendor('farmer/index', $data);
+    //     else {
+    //         $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
+    //         $this->view->rendor('error/index', $data);
+    //     }
             
-    }
+    // }
 
     public function ajxSearchFarmerName() {
         $d = $this->model->ajxSearchFarmerName($_POST['search']);

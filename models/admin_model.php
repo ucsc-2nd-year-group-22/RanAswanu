@@ -102,10 +102,10 @@ class Admin_Model extends Model
 
     //get notifications
     public function getNotifications($user_id){
-        $st = $this->db->prepare("SELECT * FROM notification WHERE target_role = :role OR target_user = :target_user LIMIT 5");
+        $st = $this->db->prepare("SELECT * FROM notification WHERE target_role = :target_role OR target_role = 'all' OR target_user = :target_user LIMIT 5");
 
         $st->execute(array(
-            ':role' => 'admin',
+            ':target_role' => 'admin',
             ':target_user' => $user_id
         ));
         return $st->fetchAll(PDO::FETCH_ASSOC);

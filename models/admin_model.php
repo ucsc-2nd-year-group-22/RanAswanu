@@ -102,7 +102,7 @@ class Admin_Model extends Model
 
     //get notifications
     public function getNotifications($user_id){
-        $st = $this->db->prepare("SELECT * FROM notification WHERE target_role = :target_role OR target_role = 'all' OR target_user = :target_user LIMIT 5");
+        $st = $this->db->prepare("SELECT * FROM notification WHERE target_role = :target_role OR target_role = 'all' OR target_user = :target_user ORDER BY time_stamp DESC");
 
         $st->execute(array(
             ':target_role' => 'admin',

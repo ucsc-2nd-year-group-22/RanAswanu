@@ -109,4 +109,16 @@ class Vendor extends Controller{
         $this->view->rendor('farmer/viewCrops',$Cropdata);
     }
 
+
+    public function ajxListcrop(){
+        $sd=$this->model->ajxListcrop($_POST['vendor_id']);
+        $data['cropl']=$sd;
+        if(!empty($sd)){
+            $this->view->rendor('vendor/ajxCrop',$data);
+        }else{
+            $data['errMsg']="No Result Found !";
+            $this->view->rendor('error/index',$data);
+        }
+    }
+
 }

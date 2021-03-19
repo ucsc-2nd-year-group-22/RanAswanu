@@ -90,4 +90,10 @@ class Vendor_Model extends Model
         ));
         return $st->fetchAll();
     }
+
+    public function ajxListcrop($vendor_id){
+        $st=$this->db->prepare("
+        SELECT"
+        )
+    }
 }

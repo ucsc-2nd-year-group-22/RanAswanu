@@ -93,7 +93,7 @@ class Vendor_Model extends Model
 
     public function ajxListcrop($vendor_id){
         $st=$this->db->prepare("
-        SELECT"
+        
         )
     }
 }

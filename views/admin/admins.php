@@ -1,5 +1,3 @@
-
-<!-- 
 <h1>Manage Admins</h1>
 
 <div class="user-tabs">
@@ -13,7 +11,7 @@
     <div class="panel-container">
         <div class="pane1">
 
-            <form class="search-bar"> -->
+            <form class="search-bar"> 
                 <label>Search crop requests by : </label>
                 <select placeholder="Search ...">
                     <option>Demand status</option>

@@ -53,8 +53,9 @@
             <th>#</th>
             <th>Admin-ID</th>
             <th>Admin Name</th>
+            <th>Telephone Number</th>
+            <th>NIC</th>
             <th>Address</th>
-            <th>Tel</th>
             <th><i class="fas fa-users"></i> View</th>
             <th><i class="fas fa-user-times"></i> Remove</th>
         </tr>
@@ -65,7 +66,6 @@
                 <td> <?= $i ?></td>
                 <td><?= $admin['user_id']; ?> </td>
                 <td><?= $admin['first_name']; ?> </td>
-                <td> <?= $admin['address']; ?></td>
                 <td>
                     <?php
                     $telAr = explode(',', $admin['telNos']);
@@ -74,6 +74,8 @@
                     }
                     ?>
                 </td>
+                <td> <?= $admin['nic']; ?></td>
+                <td> <?= $admin['address']; ?></td>
                 <td>
                     <a href="<?php echo URL . 'user/edit/' . $admin['user_id']; ?>" class="mini-button normal">View</a>
                 </td>

@@ -53,8 +53,9 @@
             <th>#</th>
             <th>Vendor-ID</th>
             <th>Vendor Name</th>
+            <th>Telephone Number</th>
+            <th>NIC</th>
             <th>Address</th>
-            <th>Telephone</th>
             <th><i class="fas fa-users"></i> View User</th>
             <th><i class="fas fa-user-times"></i> Remove User</th>
         </tr>
@@ -65,7 +66,6 @@
                 <td> <?php echo $i ?></td>
                 <td><?php echo $vendor['user_id']; ?> </td>
                 <td><?php echo $vendor['first_name']; ?> </td>
-                <td> <?php echo $vendor['address']; ?></td>
                 <td>
                     <?php
                     $telAr = explode(',', $vendor['telNos']);
@@ -74,6 +74,8 @@
                     }
                     ?>
                 </td>
+                <td> <?php echo $vendor['nic']; ?></td>
+                <td> <?php echo $vendor['address']; ?></td>
                 <td>
                     <a href="<?php echo URL . 'user/edit/' . $vendor['user_id']; ?>" class="mini-button normal">View</a>
                 </td>

@@ -5,6 +5,7 @@
             <th>Admin-ID</th>
             <th>Admin Name</th>
             <th>Telephone Number</th>
+            <th>NIC</th>
             <th>Address</th>
             <th><i class="fas fa-users"></i> View</th>
             <th><i class="fas fa-user-times"></i> Remove</th>
@@ -28,12 +29,13 @@
                     }
                     ?>
                 </td>
+                <td><?= $farmer['nic']; ?> </td>
                 <td><?= $farmer['address']; ?> </td>
                 <td>
-                    <a href="<?php echo URL . 'user/edit/' . $officer['user_id']; ?>" class="mini-button normal">View</a>
+                    <a href="<?php echo URL . 'user/edit/' . $farmer['user_id']; ?>" class="mini-button normal">View</a>
                 </td>
                 <td>
-                    <a href="<?php echo URL . 'officer/delete/' . $officer['user_id']; ?>" onclick="return confirm('Are you sure you want to delete this user?');" class="mini-button danger">Remove</a>
+                    <a href="<?php echo URL . 'admin/delete/' . $farmer['user_id']; ?>" onclick="return confirm('Are you sure you want to delete this user?');" class="mini-button danger">Remove</a>
                 </td>
                 <!-- <td><?= $farmer['email']; ?> </td> -->
                 <!-- <?php if (Session::get('isadmin') != 1) : ?>

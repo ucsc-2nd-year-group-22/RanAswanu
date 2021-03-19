@@ -162,6 +162,7 @@
             <th>Officer-ID</th>
             <th>Officer Name</th>
             <th>Telephone Number</th>
+            <th>NIC</th>
             <th>Address</th>
             <th><i class="fas fa-users"></i> View</th>
             <th><i class="fas fa-user-times"></i> Remove</th>
@@ -181,6 +182,7 @@
                     }
                     ?>
                 </td>
+                <td> <?= $officer['nic']; ?></td>
                 <td> <?= $officer['address']; ?></td>
                 <td>
                     <a href="<?php echo URL . 'user/edit/' . $officer['user_id']; ?>" class="mini-button normal">View</a>

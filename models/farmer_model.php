@@ -208,6 +208,19 @@ class Farmer_Model extends Model {
         return $st->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function damageClaimList($farmer_id) {
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        $officer_user_id = $st->fetchColumn();
+
+        $st2 = $this->db->prepare("SELECT * FROM `crop_damage` WHERE farmer_user_id = $farmer_id AND officer_user_id = $officer_user_id");
+        $st2->execute();
+        return $st2->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 
     ##################################### END OF FARMER MODEL ##############################################################################

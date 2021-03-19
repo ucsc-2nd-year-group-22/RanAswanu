@@ -66,10 +66,21 @@ class Farmer extends Controller {
     // Damges Claim ============================================================
 
     public function damageMng($arg = false) {
-        $dmgclaimData = $this->model->damageclaimList();
-        $data['damageclaimData'] = $dmgclaimData;
         $this->setActivePage('damageMng');
-        $this->view->rendor('farmer/damageMng', $data);
+        $this->view->rendor('farmer/damageMng');
+    }
+
+    public function damageClaimList() {
+
+        $data['dmgClaims'] = $this->model->damageClaimList(Session::get('user_id'));
+        // print_r($data['dmgClaims']);
+        if (!empty($data)) {
+            $this->view->rendor('farmer/ajxDmgClaim', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+
     }
 
     public function newDmgClaimForm() {
@@ -320,6 +331,8 @@ class Farmer extends Controller {
         $this->view->rendor('farmer/editCropReqForm', $data);
         // print_r($data['cropReqData']);
     }
+
+
 
 
 

@@ -6,6 +6,7 @@ class User_Model extends Model
     public function __construct()
     {
         parent::__construct();
+        Session::init();
     }
 
     public function userList()
@@ -68,6 +69,16 @@ class User_Model extends Model
                     ':tel' => $tel
                 ));
             }
+        }
+
+        //send notifications for relevant user
+        if (Session::get('loggedIn')) {
+            $notiData = array();
+            $notiData['target_role'] = "NULL";
+            $notiData['target_user'] = Session::get('user_id');
+            $notiData['title'] = "User added";
+            $notiData['description'] = "You have registered a new user successfully!";
+            Notification::send($notiData);
         }
     }
 

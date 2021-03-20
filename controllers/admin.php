@@ -66,7 +66,7 @@ class Admin extends Controller {
     public function notifications() {
         
         $this->setActivePage('notifications');
-        $user_id = Session::get('role');
+        $user_id = Session::get('user_id');
         $data = ['notifications' => $this->model->getNotifications($user_id)];
 
         $this->view->rendor('admin/notifications', $data);

@@ -135,7 +135,7 @@ class Crop extends Controller
     {
         $this->model->delete($id);
 
-        //send notifications
+        //send notifications -  target_role = 'admin'|'all' , target_user = 0|user_id 
         $notiData = array();
         $notiData['target_role'] = "admin";
         $notiData['target_user'] = 0;

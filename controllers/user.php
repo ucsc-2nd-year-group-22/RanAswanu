@@ -83,7 +83,7 @@ class User extends Controller
 
         /////// FOR TESTING INSERTION ONLY
         /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
-        $data['grama'] = 5;
+        $data['grama'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
 
         // TODO: Do error checking
         $this->model->create($data);
@@ -117,6 +117,7 @@ class User extends Controller
             // print_r($this->view->user['user']);
             // echo $this->view->user['user']['role'];
             if (Session::get('isadmin') == 1 || ($this->view->user['user']['role'] == 'farmer' && Session::get('role') == 'officer')) {
+                // print_r($this->view->user['allProvinces']);
                 $this->view->rendor('user/edit', $data);
             } else {
                 echo '<hr>logout';
@@ -157,7 +158,7 @@ class User extends Controller
         $data['dob'] = filter_var($_POST['dob'], FILTER_SANITIZE_STRING);
         $data['sex'] = filter_var($_POST['sex'], FILTER_SANITIZE_STRING);
         $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
-        $data['grama'] = filter_var($_POST['grama'], FILTER_SANITIZE_STRING);
+        $data['grama'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
         $data['role'] = filter_var($_POST['role'], FILTER_SANITIZE_STRING);
 
         // Updated
@@ -169,7 +170,7 @@ class User extends Controller
 
         /////// FOR TESTING INSERTION ONLY
         /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
-        $data['grama'] = 5;
+        // $data['grama'] = 5;
 
         $data['user_id'] = $user_id;
 

@@ -1,19 +1,23 @@
 <?php
 
-class Crop extends Controller{
+class Crop extends Controller
+{
 
-    function __construct() {
-        parent::__construct(); 
+    function __construct()
+    {
+        parent::__construct();
         Session::init();
     }
 
-    function index() {
+    function index()
+    {
         $this->view->rendor('crop/crops');
     }
 
     //route to the crop register form
-    public function register($arg = false) {
-        
+    public function register($arg = false)
+    {
+
         $districts = $this->model->getAllDistricts();
         $pageData = [
             'districts' => $districts
@@ -23,7 +27,8 @@ class Crop extends Controller{
     }
 
     //get the post data and create the crop in the database
-    public function create(){
+    public function create()
+    {
         $data = array();
 
         $data['crop_type'] = $_POST['crop_type'];
@@ -37,30 +42,51 @@ class Crop extends Controller{
         // TODO: Do error checking
 
         $this->model->create($data);
+
+        //send notifications
+        $notiData = array();
+        $notiData['target_role'] = "admin";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "New Crops";
+        $notiData['description'] = "A new crop is added to the list. Please check it out!";
+        Notification::send($notiData);
+
         header('location: ' . URL . 'crop/crops');
     }
 
     //route to view all crops registered in the system
-    public function crops(){
+    public function crops()
+    {
 
         $cropData = $this->model->crops();
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'+ Register New Crop',
-                          'path' => 'crop/register'
-                        ]            
-                      ],
+            'tabs' => [
+                [
+                    'label' => '+ Register New Crop',
+                    'path' => 'crop/register'
+                ]
+            ],
             'cropData' => $cropData
         ];
-        $this->setActivePage('crops');      
+        $this->setActivePage('crops');
         $this->view->rendor('crop/crops', $pageData);
     }
 
     // route to the edit form with retrieved data
-    public function edit($id){
+    public function edit($id)
+    {
         $this->view->crop = $this->model->singleCropList($id);
         $districts = $this->model->getAllDistricts();
+
+        //send notifications
+        $notiData = array();
+        $notiData['target_role'] = "admin";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "Crop Edited";
+        $notiData['description'] = "A new crop has been edited. Please check it out!";
+        Notification::send($notiData);
 
         $pageData = [
             'id' => $id,
@@ -70,7 +96,8 @@ class Crop extends Controller{
     }
 
     //routing to crop varients configuration
-    public function varients($id){
+    public function varients($id)
+    {
 
         $varientData = $this->model->cropVarients($id);
 
@@ -85,7 +112,8 @@ class Crop extends Controller{
     }
 
     //update the database
-    public function update($id){
+    public function update($id)
+    {
 
         $data = array();
 
@@ -103,19 +131,31 @@ class Crop extends Controller{
     }
 
     //remove a crop
-    public function delete($id){
+    public function delete($id)
+    {
         $this->model->delete($id);
+
+        //send notifications -  target_role = 'admin'|'all' , target_user = 0|user_id 
+        $notiData = array();
+        $notiData['target_role'] = "admin";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "Crop Removed";
+        $notiData['description'] = "A crop is removed from the list. Please check it out!";
+        Notification::send($notiData);
+
         header('location: ' . URL . 'crop/crops');
     }
 
     //remove crop varient
-    public function deleteVarient($id){
+    public function deleteVarient($id)
+    {
         $this->model->deleteVarient($id);
         header('location: ' . URL . 'crop/crops');
     }
 
     //add crop varient
-    public function addVarient($id){
+    public function addVarient($id)
+    {
 
         $data = array();
 

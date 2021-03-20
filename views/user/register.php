@@ -1,5 +1,3 @@
-<script src="<?php echo URL; ?>views/user/js/default.js"></script>
-
 <div class="subHeader">
     <?php if (Session::get('role') == 'admin') : ?>
         <h1>Admin & Officer Registration</h1>
@@ -29,6 +27,23 @@
             </div>
             <div class="col-75">
                 <input type="text" id="last_name" name="last_name" required placeholder="ex: Jayawardana">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="role">Role</label>
+            </div>
+            <div class="col-75">
+                <select id="role" name="role">
+                    <?php if (Session::get('role') == 'admin') : ?>
+                        <option value="admin">Admin</option>
+                        <option value="officer">Officer</option>
+                    <?php elseif (Session::get('role') == 'officer') : ?>
+                        <option value="farmer">Farmer</option>
+                    <?php else : ?>
+                        <option value="vendor">Vendor</option>
+                    <?php endif ?>
+                </select>
             </div>
         </div>
         <div class="row">
@@ -148,23 +163,6 @@
         </div>
 
 
-        <div class="row">
-            <div class="col-25">
-                <label for="role">Role</label>
-            </div>
-            <div class="col-75">
-                <select id="role" name="role">
-                    <?php if (Session::get('role') == 'admin') : ?>
-                        <option value="admin">Admin</option>
-                        <option value="officer">Officer</option>
-                    <?php elseif (Session::get('role') == 'officer') : ?>
-                        <option value="farmer">Farmer</option>
-                    <?php else : ?>
-                        <option value="vendor">Vendor</option>
-                    <?php endif ?>
-                </select>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-25">
@@ -179,3 +177,4 @@
 </div>
 
 <script src="<?php echo URL; ?>/views/user/js/locations.js"></script>
+<script src="<?php echo URL; ?>views/user/js/default.js"></script>

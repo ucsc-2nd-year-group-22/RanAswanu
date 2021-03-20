@@ -83,7 +83,7 @@ class User extends Controller
 
         /////// FOR TESTING INSERTION ONLY
         /////// HAVE TO USE AJAX TO GET ID'S OF Districts, Provinces, ....
-        $data['grama'] = 5;
+        $data['grama'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
 
         // TODO: Do error checking
         $this->model->create($data);

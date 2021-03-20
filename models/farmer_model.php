@@ -219,7 +219,10 @@ class Farmer_Model extends Model {
     }
 
     public function getCropReq($harvest_id) {
-        $st = $this->db->prepare("SELECT * FROM harvest WHERE harvest_id = $harvest_id");
+        $st = $this->db->prepare("SELECT harvest.*, crop.*, collecting_center.* FROM harvest
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+            WHERE harvest.harvest_id = $harvest_id");
         $st->execute();
         return $st->fetch(PDO::FETCH_ASSOC);
     }
@@ -240,6 +243,62 @@ class Farmer_Model extends Model {
         $st2->execute();
         return $st2->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getLocDataByGs($harvest_id) {
+        $sql = "SELECT 
+            harvest.harvest_id, 
+            gramasewa_division.*,
+            divisional_secratariast.ds_id,
+            divisional_secratariast.ds_name AS div_sec_name,
+            district.district_id,
+            district.ds_name AS district_name,
+            province.*
+            FROM harvest 
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+            JOIN district ON district.district_id = divisional_secratariast.district_id
+            JOIN province ON province.province_id = district.province_id
+            WHERE harvest.harvest_id = $harvest_id";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        return $st->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updateCropReq($data) {
+        // $gs_id = Session::get('gs_id');
+        // Get officer id
+        // $st1 = $this->db->prepare("SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'");
+        // $st1->execute();
+        // $data['officer_user_id'] = $st1->fetchColumn();
+
+        $sql = "UPDATE `harvest` SET `starting_month_id`=:starting_month_id,`harvesting_month_id`=:harvesting_month_id,`expected_harvest`=:expected_harvest,`gs_id`=:gs_id,`crop_id`=:crop_id,`center_id`=:center_id
+        WHERE harvest_id = :harvest_id";
+
+        $st2 = $this->db->prepare($sql);
+        $res = $st2->execute(array(
+            ':harvest_id' => $data['harvest_id'],
+            ':starting_month_id' => $data['starting_month'],
+            ':harvesting_month_id' => $data['harvesting_month'],
+            ':expected_harvest' => $data['expected_harvest'],
+            // ':is_accept' => $data['harvest_id'],
+            ':gs_id' => $data['gs_id'],
+            ':crop_id' => $data['crop_id'],
+            ':center_id' => $data['center_id'],
+            // ':farmer_user_id' => $data['farmer_user_id'],
+            // ':officer_user_id' => $data['officer_user_id'],
+        ));
+        print_r($data);
+
+        if($res) {
+            echo 'good';
+        } else {
+            echo 'bad';
+        }
+    }
+
+
+
+
 
 
 

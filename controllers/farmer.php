@@ -337,15 +337,39 @@ class Farmer extends Controller {
     }
 
     function editCropReqForm($harvest_id) {
-        
-        $provinces = $this->model->getProvinces();
-
         $data = [
-            'provinces' => $provinces
+            'provinces' => $this->model->getProvinces(),
+            'locData' => $this->model->getLocDataByGs($harvest_id),
+            'cropReqData' => $this->model->getCropReq($harvest_id),  
+                    
         ];
-        $data['cropReqData'] = $this->model->getCropReq($harvest_id);
+        
         $this->view->rendor('farmer/editCropReqForm', $data);
-        // print_r($data['cropReqData']);
+    }
+
+    public function updateCropReq($harvest_id) {
+        // print_r($_POST);
+        $data['harvest_id'] = $harvest_id;
+        
+        $data['harvesting_month'] = $_POST['harvesting_month'];
+        $data['starting_month'] = $_POST['startMonth'];
+        
+        $data['starting_month'] = date("m",strtotime($data['starting_month']));
+        $data['harvesting_month'] = date("m",strtotime($data['harvesting_month']));
+        
+        $data['expected_harvest'] = $_POST['expected_harvest'];
+        $data['is_accept'] = 0;
+        $data['gs_id'] = $_POST['gramaSewa'];
+        $data['crop_id'] = $_POST['croptype'];
+        $data['center_id'] = $_POST['selectCenter'];
+
+        $data['farmer_user_id'] = Session::get('user_id');
+        $data['officer_user_id'] = '';
+
+        $this->model->updateCropReq($data);
+
+        header('location: ' . URL . 'farmer/cropReqMng');
+
     }
 
 

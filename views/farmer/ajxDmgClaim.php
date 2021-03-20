@@ -1,9 +1,9 @@
-
 <table>
     <tr>
         <th>#</th>
         <th>Reason</th>
         <th>Damage area</th>
+        <th>Gramasewa</th>
         <th>Date</th>
         <th>Crop</th>
         <th>Accepted ?</th>
@@ -16,8 +16,9 @@
             <td> <?= $i ?></td>
             <td><?= $dmgClaim['damage_reason']; ?> </td>
             <td><?= $dmgClaim['damage_area']; ?> </td>
+            <td><?= $dmgClaim['gs_name']; ?> </td>
             <td><?= $dmgClaim['damage_date']; ?></td>
-            <td><?= $dmgClaim['harvest_id']; ?> </td>
+            <td><?= $dmgClaim['crop_type']; ?> </td>
             <td>
                 <?php if ($dmgClaim['is_accepted'] == 0) : ?>
                     <p class="danger-label" style="color:rgb(200, 78, 78);font-weight:bold">No</p>
@@ -28,8 +29,8 @@
 
             <?php if ($dmgClaim['is_accepted'] == 0) : ?>
                 <td>
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'farmer/editdmgClaimsForm/' . $dmgClaims['harvest_id']; ?>">Update</a>
-                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . 'farmer/deleteCropReq/' . $cropReq['harvest_id']; ?>">Cancel</a>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'farmer/editDmgClaimsForm/' . $dmgClaim['damage_id']; ?>">Update</a>
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . 'farmer/deleteDmgClaim/' . $dmgClaim['damage_id']; ?>">Cancel</a>
                 </td>
             <?php else : ?>
                 <td>N/A</td>

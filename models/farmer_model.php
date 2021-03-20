@@ -14,6 +14,22 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxGetCultivatedCropTypes() {
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st1 = $this->db->prepare($sql);
+        $st1->execute();
+        $officer_user_id = $st1->fetchColumn();
+        $farmer_id = Session::get('user_id');
+        $st = $this->db->prepare("SELECT harvest.*, crop.* FROM harvest 
+        JOIN crop ON crop.crop_id = harvest.crop_id
+        WHERE harvest.farmer_user_id = $farmer_id AND harvest.officer_user_id = $officer_user_id GROUP BY crop.crop_type");
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function ajxGetCropVart($vart) {
         $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
         $st->execute(['vart' => $vart]);
@@ -27,7 +43,7 @@ class Farmer_Model extends Model {
     }
 
     public function getProvinces() {
-        $st = $this->db->prepare("SELECT province_id, province_name FROM province");
+        $st = $this->db->prepare("SELECT province_id, province_name FROM province ORDER BY province_name");
         $st->execute();
         return $st->fetchAll();
     }
@@ -216,7 +232,11 @@ class Farmer_Model extends Model {
         $st->execute();
         $officer_user_id = $st->fetchColumn();
 
-        $st2 = $this->db->prepare("SELECT * FROM `crop_damage` WHERE farmer_user_id = $farmer_id AND officer_user_id = $officer_user_id");
+        $st2 = $this->db->prepare("SELECT crop_damage.*, crop.crop_type, gramasewa_division.gs_name FROM `crop_damage`
+        JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+        JOIN crop ON crop.crop_id = harvest.crop_id
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+        WHERE crop_damage.farmer_user_id = $farmer_id AND crop_damage.officer_user_id = $officer_user_id");
         $st2->execute();
         return $st2->fetchAll(PDO::FETCH_ASSOC);
     }

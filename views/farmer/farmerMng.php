@@ -40,7 +40,7 @@ $(function() {
                     $.ajax({
                         url:"ajxSearchFarmerNic",
                         method:"post",
-                        data:{search:inputVal, ascOrDesc:asc},
+                        data:{search:inputVal},
                         dataType:"text",
                         success:function(data) {
                             $('#box').html(data);

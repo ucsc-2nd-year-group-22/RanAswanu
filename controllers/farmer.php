@@ -84,11 +84,19 @@ class Farmer extends Controller {
     }
 
     public function newDmgClaimForm() {
+        $provinces = $this->model->getProvinces();
+
+        $data = [
+            'provinces' => $provinces
+        ];
         $this->view->rendor('farmer/newDmgClaimForm', $data);
     }
 
     //instert damage claim information to the database
-    public function insertDmg($arg = false) {
+    public function insertDmg() {
+        print_r($_POST);
+        filter_var($_POST['harvesting_month'], FILTER_SANITIZE_STRING);
+
         $data['dmgdate'] = $_POST['dmgdate'];
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
@@ -97,8 +105,9 @@ class Farmer extends Controller {
         $data['estdmgarea'] = $_POST['estdmgarea'];
         $data['waydmg'] = $_POST['waydmg'];
         $data['details'] = $_POST['details'];
-        $this->model->creates($data);
-        header('location: ' . URL . 'farmer/damageclaimif');
+
+        // $this->model->creates($data);
+        // header('location: ' . URL . 'farmer/damageclaimif');
     }
 
     // Crop Request ============================================================
@@ -272,6 +281,13 @@ class Farmer extends Controller {
         $cropsTypes = $this->model->ajxGetCropTypes($_GET['district']);
         echo json_encode($cropsTypes);
     }
+
+    public function ajxGetCultivatedCropTypes() {
+        $cropsTypes = $this->model->ajxGetCultivatedCropTypes($_GET['district']);
+        echo json_encode($cropsTypes);
+    }
+
+    
 
     public function ajxGetCropVart() {
         $varats = $this->model->ajxGetCropVart($_GET['type']);

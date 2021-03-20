@@ -8,14 +8,14 @@ function CheckPassword() {
     element.removeChild(element.firstChild);
   }
 
-  // return false;
   // nic validation
   let nic = document.getElementById("nic");
   let usernic = nic.value;
   if (
     usernic.length != 10 ||
     (usernic.charAt(usernic.length - 1) != "v" &&
-      usernic.charAt(usernic.length - 1) != "V")
+      usernic.charAt(usernic.length - 1) != "V") ||
+    hasChar(usernic.substr(0, usernic.length - 1))
   ) {
     validateErrors.push("Invalid NIC");
   }
@@ -45,28 +45,35 @@ function CheckPassword() {
   }
 
   //pwd validation for vendors
-  let role  = document.getElementById("role");
+  let role = document.getElementById("role");
   let password = document.getElementById("password");
-  if(role.value == 'vendor'){
-      var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+  if (role.value == "vendor") {
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
-      if(!password.value.match(passw)){
-          validateErrors.push("Password must include at least Uppsercase, Lowercase and Special Character!");
-      }
-      if(password.value.length < 6){
-          validateErrors.push("Password should include at least 6 characters!")
-      }
+    if (!password.value.match(passw)) {
+      validateErrors.push(
+        "Password must include at least Uppsercase, Lowercase and Special Character!"
+      );
+    }
+    if (password.value.length < 6) {
+      validateErrors.push("Password should include at least 6 characters!");
+    }
   }
 
-  // //location validations
-  // let province = document.getElementById('province');
-  // let district = document.getElementById('district');
-  // let divSec = document.getElementById('divisional_secratariast');
-  // let gramaSewa = document.getElementById('gramaSewa');
+  //location validations
+  let province = document.getElementById("province");
+  let district = document.getElementById("district");
+  let divSec = document.getElementById("divisional_secratariast");
+  let gramaSewa = document.getElementById("gramaSewa");
 
-  // if(province.value || district.value || divSec.value || gramaSewa.value == "null"){
-  //     validateErrors.push("Please check all the location dropdowns!");
-  // }
+  if (
+    province.value == "null" ||
+    district.value == "null" ||
+    divSec.value == "null" ||
+    gramaSewa.value == "null"
+  ) {
+    validateErrors.push("Please check all the location dropdowns!");
+  }
 
   validateErrors.forEach((error) => {
     //view errors
@@ -88,4 +95,11 @@ function CheckPassword() {
 function hasNumbers(t) {
   var regex = /\d/g;
   return regex.test(t);
+}
+
+//is contain non-numeric
+function hasChar(t) {
+  if (t.match(/[^$,.\d]/)) {
+    return true;
+  }
 }

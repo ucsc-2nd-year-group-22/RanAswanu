@@ -1,5 +1,38 @@
 <?php
-        
+
+// sellCropMng
+// offerMng
+// damageMng
+// cropReqMng
+
+///////// Forms - Create new 
+
+// newSellCropForm
+// newDmgClaimForm
+// newCropReqForm
+
+///////// Views - Forms - Update existing
+
+// editSellCropForm
+// editDmgClaimForm
+// editCropReqForm
+
+///////// Views - View content of one item
+
+// viewSellCrop
+// viewDmg
+// viewCropReq
+// viewOtherCrops
+// viewFarmer
+
+///////// Insert into DB
+
+// insertCropReq
+// insertSellCrop
+// insertDmg
+// insertOffer
+
+
 class Farmer extends Controller {
 
     public function __construct() {
@@ -9,131 +42,37 @@ class Farmer extends Controller {
         $role = Session::get('role');
     }
 
-    
-    // public function index() {
-    //     $data = array(
-    //         'role' => $role
-    //     );
 
-    //     if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
-    //         $this->view->rendor('farmer/index', $data);
-    //     else {
-    //         $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
-    //         $this->view->rendor('error/index', $data);
-    //     }
-            
-    // }
+    public function index() {
+        // $data = array(
+        //     'role' => $role
+        // );
 
-    public function ajxSearchFarmerName() {
-        $d = $this->model->ajxSearchFarmerName($_POST['search']);
-        $data['farmerData'] = $d;
-        // print_r($data['farmerData']);
-        if(!empty($d)) {
-            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter=true);
-        } else {
-            $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
-        }
+        // if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+        //     $this->view->rendor('farmer/index', $data);
+        // else {
+        //     $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
+        //     $this->view->rendor('error/index', $data);
+        // }
+        $data = array();
+        $this->view->rendor('farmer/viewSellCrop', $data);
     }
 
-    public function ajxSearchFarmerNic() {
-        $d = $this->model->ajxSearchFarmerNic($_POST['search']);
-        $data['farmerData'] = $d;
-        // print_r($data['farmerData']);
-        if(!empty($d)) {
-            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter=true);
-        } else {
-            $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
-        }
-    }
+    // Damges Claim ============================================================
 
-    public function ajxFilterFarmer() {
-
-        $d = $this->model->ajxFilterFarmer($_POST['filter'], $_POST['ascOrDsc']);
-        $data['farmerData'] = $d;
-
-        // print_r($data['farmerData']);
-        if(!empty($d)) {
-            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter=true);
-        } else {
-            $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
-        }
-    }
-
-    public function farmerMng() {
-       
-        $farmerData = $this->model->farmerList();
-
-        // if(isset($_GET))
-
-        $data['farmerData'] = $farmerData;
-        $this->setActivePage('farmerMng');
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
-            $this->view->rendor('farmer/farmerMng', $data);
-        else {
-            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
-            $this->view->rendor('error/index', $data);
-        }
-    }
-
-   
-    public function damageclaim($arg = false) {
-        
-
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
-            $this->view->rendor('farmer/farmerMng', $data);
-        else {
-            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
-            $this->view->rendor('farmer/damageclaim');
-        }
-    }
-     
-    //display damageclaim
-    public function damageclaimif($arg = false) {
+    public function damageMng($arg = false) {
         $dmgclaimData = $this->model->damageclaimList();
         $data['damageclaimData'] = $dmgclaimData;
-        $this->setActivePage('damageclaimif');
-        $this->view->rendor('farmer/damageclaimif', $data);
-    }
-    
-    //Display croprequest
-    public function cropReqif($arg = false) {
-        $cropReqifData= $this->model->cropReqList();  
-        $data['cropRequestData'] = $cropReqifData;
-        $this->setActivePage('cropReqif');
-        $this->view->rendor('farmer/cropReqif', $data);
-        
-
+        $this->setActivePage('damageMng');
+        $this->view->rendor('farmer/damageMng', $data);
     }
 
-    //Display sellyourcrops
-    public function sellyourcropsif() {
-        $sellcropsData=$this->model->sellcropsList();
-        $data['sellurcropsData'] = $sellcropsData;
-        $this->setActivePage('sellyourcropsif');
-        $this->view->rendor('farmer/sellyourcropsif', $data);
-     
-
-    }    
-
-
-    public function cropReq($arg = false) {
-        $this->view->rendor('farmer/cropReq');
+    public function newDmgClaimForm() {
+        $this->view->rendor('farmer/newDmgClaimForm', $data);
     }
-    
-    public function sellyourcrops() {
-        $this->view->rendor('farmer/sellyourcrops');
-    }
-   
+
     //instert damage claim information to the database
-    public function creates($arg = false)
-    {
-        
-        $data=array();
-
-        
+    public function insertDmg($arg = false) {
         $data['dmgdate'] = $_POST['dmgdate'];
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
@@ -142,20 +81,62 @@ class Farmer extends Controller {
         $data['estdmgarea'] = $_POST['estdmgarea'];
         $data['waydmg'] = $_POST['waydmg'];
         $data['details'] = $_POST['details'];
-
         $this->model->creates($data);
         header('location: ' . URL . 'farmer/damageclaimif');
-       
     }
 
-    
-    
-     //insterting crop details of farmers' which expect to sell
-   public function sellurcropsA()
-    {
-        $data=array();
+    // Crop Request ============================================================
 
+    //Display croprequest
+    public function cropReqMng() {
+        $this->setActivePage('cropReqMng');
+        $this->view->rendor('farmer/cropReqMng');
+    }
+
+    public function newCropReqForm() {
+        $provinces = $this->model->getProvinces();
+
+        $pageData = [
+            'provinces' => $provinces
+        ];
+        $this->view->rendor('farmer/newCropReqForm', $pageData);
+    }
+
+    public function insertCropReq() {
+        // print_r($_POST);
+        $data['harvesting_month'] = filter_var($_POST['harvesting_month'], FILTER_SANITIZE_STRING);
+        $data['harvesting_month'] = date("m",strtotime($data['harvesting_month']));
+        $data['starting_month'] = filter_var($_POST['startMonth'], FILTER_SANITIZE_STRING);
+        $data['starting_month']  = date("m",strtotime($data['starting_month']));
         
+        $data['expected_harvest'] = filter_var($_POST['expected_harvest'], FILTER_SANITIZE_STRING);
+        $data['is_accept'] = 0;
+        $data['gs_id'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
+        $data['crop_id'] = filter_var($_POST['selectCrop'], FILTER_SANITIZE_STRING);
+        $data['center_id'] = filter_var($_POST['selectCenter'], FILTER_SANITIZE_STRING);
+        // $data['address'] = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+        // $data['cropVart'] = filter_var($_POST['cropVart'], FILTER_SANITIZE_STRING);
+        $data['farmer_user_id'] = Session::get('user_id');
+        $data['officer_user_id'] = '';
+
+        // print_r($data);
+        $this->model->insertCropReq($data);
+
+
+        header('location: ' . URL . 'farmer/cropReqMng');
+    }
+
+    // Sell Crops ============================================================
+
+    //Display sellyourcrops
+    public function sellCropMng() {
+        // $sellcropsData = $this->model->sellcropsList();
+        $data['sellurcropsData'] = $sellcropsData;
+        $this->setActivePage('sellCropMng');
+        $this->view->rendor('farmer/sellCropMng', $data);
+    }
+
+    public function insertSellCrop() {
         $data['province'] = $_POST['province'];
         $data['district'] = $_POST['district'];
         $data['state'] = $_POST['state'];
@@ -167,230 +148,175 @@ class Farmer extends Controller {
         // print_r($data);
         $this->model->sellurcrops($data);
         header('location: ' . URL . 'farmer/sellyourcropsif');
-
     }
 
-       //inserting crop request details
-    public function cropRequest()
-    {
-        $data=array();
-
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['gramasewa'] = $_POST['gramasewa'];
-        $data['address'] = $_POST['address'];
-        $data['areasize'] = $_POST['areasize'];
-        $data['exptdate'] = $_POST['exptdate'];
-        $data['croptype'] = $_POST['croptype'];
-        $data['selectCrop'] = $_POST['selectCrop'];
-        $data['cropVariety'] = $_POST['cropVariety'];
-        $data['otherdetails'] = $_POST['otherdetails'];
-      //  $data['conditions'] = $_POST['conditions'];
-
-      $this->model->cropRequest($data);
-      header('location: ' . URL . 'farmer/cropReqif');
-
-
-
+    public function sellCropsForm() {
+        $this->view->rendor('farmer/sellyourcrops');
     }
 
- 
+    // Vendor Offer ============================================================
 
+    public function offerMng() {
+        $verdoffersData = [
+            [
+                'vendername' => "Nimal Siripala",
+                'croptype' => "Potatoe-CG1",
+                //  'weight' => "7 weeks",
+                'price' => "34",
+                'district' => "Colombo",
+                'dateTime' => "10-05-2020 | 10.00 AM",
 
-  public function vendOffers() {
-    $verdoffersData= [
-        [
-            'vendername' => "Nimal Siripala",
-            'croptype' => "Potatoe-CG1",
-          //  'weight' => "7 weeks",
-            'price' => "34",
-            'district' => "Colombo",
-            'dateTime' => "10-05-2020 | 10.00 AM",
-            
-        ],
-
-
-    
-
-    ];
-
-    $pageData = [
-        'role' => Session::get('role'),
-        'verdoffersData' => $verdoffersData,
-    ];
-    // Session::set('activePage', 'cropReq');
-    $this->view->js = 'officer/js/default';
-    $this->setActivePage('vendOffers');
-    $this->view->rendor('farmer/vendOffers', $pageData);
-}
-
-//remove damage claim data
-public function deletedmg($dmgid){
-    $this->model->deletedmg($dmgid);
-    header('location: ' . URL . 'farmer/damageclaimif');
-}
-
-//remove sellcrops data
-public function deletesellcrops($cropsid){
-    $this->model->deletesellcrops($cropsid);
-    header('location: ' . URL . 'farmer/sellyourcropsif');
-}
-
-//remove crop request data
-public function deletecropreq($cropreqid){
-    $this->model->deletecropreq($cropreqid);
-    header('location: ' . URL . 'farmer/cropReqif');
-}
+            ],
 
 
 
 
+        ];
 
+        $pageData = [
+            'role' => Session::get('role'),
+            'verdoffersData' => $verdoffersData,
+        ];
+        // Session::set('activePage', 'cropReq');
+        $this->view->js = 'officer/js/default';
+        $this->setActivePage('offerMng');
+        $this->view->rendor('farmer/offerMng', $pageData);
+    }
 
-// route to the edit croprequest form with retrieved data
-public function editcropReq($cropreqid){
-    $data['cropreqid']=$cropreqid;
-    $this->view->farmer = $this->model->cropRequestList($cropreqid);
-    $this->view->rendor('farmer/editcropReq',$data);
-}
+    // !!!!!!!!!!!!!!!!!  Handled by Officer role --------------- !!!!!!!!!!!!
+    public function farmerMng() {
 
-//update the database(cropreq)
-public function updatecropReq($aId){
+        $farmerData = $this->model->farmerList();
 
-    $data = array();
+        // if(isset($_GET))
 
-  
+        $data['farmerData'] = $farmerData;
+        $this->setActivePage('farmerMng');
+        if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
+            $this->view->rendor('farmer/farmerMng', $data);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Farmers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
+    }
 
-   /* $data['district'] = $_POST['district'];
-    $data['address'] = $_POST['address'];
-    $data['areasize'] = $_POST['areasize'];
-    $data['exptdate'] = $_POST['exptdate'];                
-    $data['selectCrop'] = $_POST['selectCrop'];
-    $data['cropVariety'] = $_POST['cropVariety'];
-    $data['cropreqid']=$cropreqid;  */
-  
+    // AJAX CALLS ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    $data['province'] = $_POST['province'];
-    $data['district'] = $_POST['district'];
-    $data['gramasewa'] = $_POST['gramasewa'];
-    $data['address'] = $_POST['address'];
-    $data['areasize'] = $_POST['areasize'];
-    $data['exptdate'] = $_POST['exptdate'];
-   // $data['croptype'] = $_POST['croptype'];
-    $data['selectCrop'] = $_POST['selectCrop'];
-    $data['cropVariety'] = $_POST['cropVariety'];
-    $data['otherdetails'] = $_POST['otherdetails'];
-    $data['aId']=$aId;
+    public function ajxSearchFarmerName() {
+        $d = $this->model->ajxSearchFarmerName($_POST['search']);
+        $data['farmerData'] = $d;
+        // print_r($data['farmerData']);
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
-    
-    $this->model->updatecropReq($data);
-    header('location: ' . URL . 'farmer/cropReqif');
-}
+    public function ajxSearchFarmerNic() {
+        $d = $this->model->ajxSearchFarmerNic($_POST['search']);
+        $data['farmerData'] = $d;
+        // print_r($data['farmerData']);
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
-// route to the edit sellurcrops form with retrieved data
-public function editsellyourcrops($aId){
-    $data['aId']=$aId;
-    $this->view->farmer = $this->model->sellurcropsList($aId);
-    $this->view->rendor('farmer/editsellyourcrops',$data);
-    
-}
+    public function ajxFilterFarmer() {
 
-//update the database(cropreq)
-public function updatesellyourcrops($aId){
+        $d = $this->model->ajxFilterFarmer($_POST['filter'], $_POST['ascOrDsc']);
+        $data['farmerData'] = $d;
 
-    $data = array();
+        // print_r($data['farmerData']);
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxFarmerList', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
+    public function ajxListCropReq() {
+        $d = $this->model->ajxListCropReq($_POST['farmer_id']);
+        $data['cropReqs'] = $d;
+        // print_r($data['cropReqs']);
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxCropMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
+    public function ajxGetCropTypes() {
+        $cropsTypes = $this->model->ajxGetCropTypes($_GET['district']);
+        echo json_encode($cropsTypes);
+    }
 
+    public function ajxGetCropVart() {
+        $varats = $this->model->ajxGetCropVart($_GET['type']);
+        // print_r($varats);
+        echo json_encode($varats);
+    }
 
-    $data['province'] =$_POST['province'];
-    $data['district'] = $_POST['district'];
-    $data['state'] =$_POST['state'];
-    $data['selectCrop'] =$_POST['selectCrop'];
-    $data['cropVariety'] = $_POST['cropVariety'];
-    $data['exprice'] = $_POST ['exprice'];
-    $data['weight'] = $_POST['weight'];
-  //  $data['display']= $_POST['display'];
-    $data['cropsid']= 111;
-    $data['aId'] = $aId;
+    public function ajxGetHarvPerLand() {
+        // echo $_GET['vart'];
+        $hpl = $this->model->ajxGetHarvPerLand($_GET['vart']);
+        echo json_encode($hpl);
+    }
 
-    
+    public function ajxGetCenters() {
+        $centers = $this->model->ajxGetCenters();
+        echo json_encode($centers);
+    }
 
-    // print_r($data);
-    
-    $this->model->updatesellyourcrops($data);
-    
-    header('location: ' . URL . 'farmer/sellyourcropsif');
-}
+    public function ajxSortCropReqs() {
+        $d = $this->model->ajxSortCropReqs($_POST['filter'], $_POST['ascOrDsc']);
+        $data['cropReqs'] = $d;
 
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxCropMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
+    public function ajxFilterCropReq() {
+        $d = $this->model->ajxFilterCropReq($_POST['filter']);
+        $data['cropReqs'] = $d;
 
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxCropMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
-// route to the edit dmgclaim form with retrieved data
-public function editdmgclaim($dmgid){
-    $data['dmgid']=$dmgid;
-    $this->view->farmer = $this->model-> dmgclaimList($dmgid);
-    $this->view->rendor('farmer/editdmgclaim',$data);
-}
+    public function deleteCropReq($harvest_id) {
+        echo $harvest_id;
+        $this->model->deleteCropReq($harvest_id);
+       
+    }
 
-    //update the database(dmgclaim)
-public function updatedmgclaim($dmgid){
-
-    $data = array();
-
-
-        $data['dmgdate'] = $_POST['dmgdate'];
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['gramasewa'] = $_POST['gramasewa'];
-        $data['address'] = $_POST['address'];
-        $data['estdmgarea'] = $_POST['estdmgarea'];
-        $data['waydmg'] = $_POST['waydmg'];
-        $data['details'] = $_POST['details'];
-        $data['dmgid'] =$dmgid;
+    function editCropReqForm($harvest_id) {
         
+        $provinces = $this->model->getProvinces();
+
+        $data = [
+            'provinces' => $provinces
+        ];
+        $data['cropReqData'] = $this->model->getCropReq($harvest_id);
+        $this->view->rendor('farmer/editCropReqForm', $data);
+        // print_r($data['cropReqData']);
+    }
 
 
 
-    
-    $this->model->updatedmgclaim($data);
-    header('location: ' . URL . 'farmer/damageclaimif');
-}
-
-
-
-//view damageclaim
-/*public function viewdamageclaim($arg = false) {
-    $dmgclaimData = $this->model->damageclaimList();
-    $data['damageclaimData'] = $dmgclaimData;
-    $this->setActivePage('viewdamageclaim');
-    $this->view->rendor('farmer/viewdamageclaim', $data);
-}
-
-
-*/
-
-// route to the viwe dmgclaim form with retrieved data
-public function viewdamageclaim($dmgid){
-    $data['dmgid']=$dmgid;
-    $this->view->farmer = $this->model-> dmgclaimList($dmgid);
-    $this->view->rendor('farmer/viewdamageclaim',$data);
-}
-
-
-// route to the view cropreq form with retrieved data
-public function viewcropReq($cropreqid){
-    $data['cropreqid']=$cropreqid;
-    $this->view->farmer = $this->model-> cropRequestList($cropreqid);
-    $this->view->rendor('farmer/viewcropReq',$data);
-}
-
-// route to the view cropreq form with retrieved data
-public function viewsellyourcrops($cropsid){
-    $data['cropsid']=$cropsid;
-    $this->view->farmer = $this->model-> sellurcropsList($cropsid);
-    $this->view->rendor('farmer/viewsellyourcrops',$data);
-}
-
-
+    //######################################## END OF Farmer ###################################################################################################
 }

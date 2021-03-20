@@ -177,9 +177,7 @@ class User extends Controller
         //: Do error checking
 
         $this->model->editSave($data);
-        // print_r($data);
 
-        // print_r($data);
 
         if ($user_id == Session::get('user_id')) {
             header('location: ' . URL . 'user/viewUser/' . $user_id);
@@ -262,7 +260,7 @@ class User extends Controller
         $divSecs = $this->model->getDivSec($id);
         echo json_encode($divSecs);
     }
-    
+
     //get gramasewa division
     public function getGramaSewa($id)
     {

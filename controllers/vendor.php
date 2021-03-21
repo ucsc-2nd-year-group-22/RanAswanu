@@ -2,10 +2,11 @@
 
 class Vendor extends Controller{
 
-    function __construct() {
-        parent::__construct(); 
+    public function __construct() {
+        parent::__construct();
         Session::init();
-
+        $logged = Session::get('loggedIn');
+        $role = Session::get('role');
     }
 
     function index() {
@@ -16,11 +17,72 @@ class Vendor extends Controller{
         $data['myOffers'] = $myOffers;
         
         // print_r($data);
-        $this->setActivePage('index');
-        $this->view->rendor('vendor/sellingReq', $data);
+        //$this->setActivePage('index');
+       // $this->view->rendor('vendor/sellingReq', $data);
 
     }
 
+    //Display Cropsmng
+    Public function allCrops(){
+        $this->setActivePage('allCrops');
+        $this->view->rendor('vendor/allCrops');
+
+    } 
+
+    //Display Offermng
+    public function OffersMng(){
+        $this->setActivePage('OffersMng');
+        $this->view->rendor('vendor/OffersMng');
+    }
+
+    Public function viewfarmerprofile($user_id){
+        // $data=['user_id'=>$user_id];
+        $data['user_id']=$user_id;
+        
+        // $data['farmerprofiledata']=$this->model->viewprofile($user_id);
+        $ss=$this->view->vendr=$this->model->viewprofile($user_id);
+        $data['details']=$ss;
+        $this->view->rendor('vendor/viewfarmerprofile',$data);
+        //print_r($data['ccc']);
+    } 
+
+    // public function countsellingreqid($user_id){
+    //     $data['user_id']=$user_id;
+        
+    //     // $data['farmerprofiledata']=$this->model->viewprofile($user_id);
+    //     $ss=$this->model->countsellingreq($user_id);
+    //     $data['sellingreq']=$ss;
+    //     $this->view->rendor('vendor/viewfarmerprofile',$data);
+
+    // }
+
+
+    //////////////////////////AJAX///////////////////
+    public function ajxListCrop() {
+        // $d = $this->model->ajxListCrop($_POST['harvest_id']);
+        $d = $this->model->ajxListCrop();
+        $data['crops'] = $d;
+       // print_r($data['crops']);
+        
+        if (!empty($d)) {
+            
+            $this->view->rendor('vendor/ajxCrop', $data,$withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data,$withoutHeaderFooter = true);
+        }
+    }
+    
+
+
+    
+
+
+
+
+
+    ///////////////////////////PREVIOUS FUNCTIONS/////////////////////////
+    /*
     public function register($arg = false) {
         $this->view->rendor('vendor/register');
     }
@@ -62,11 +124,7 @@ class Vendor extends Controller{
         header('location: ' . URL . 'vendor/index');
     }
 
-    public function updateOffer($id)
-    {
-        $data['reqid']= $id;
-        $this->view->rendor('vendor/updateOffer',$data);
-    }
+ 
 
     public function update($reqid)
     {
@@ -108,5 +166,32 @@ class Vendor extends Controller{
         $Cropdata = ['Cdata'=>$crop];
         $this->view->rendor('farmer/viewCrops',$Cropdata);
     }
+
+    public function ajxListcrop(){
+        $d=$this->model->ajxListcrop($_POST['vendor_id']);
+        $data['crops']=$d;
+        if(!empty($d)){
+            $this->view->rendor('vendor/ajxCrop',$data);
+        }else{
+            $data['errMsg']="No Result Found !";
+            $this->view->rendor('error/index',$data);
+        }
+    }
+
+    
+    public function ajxSortCrop() {
+        $d = $this->model->ajxSortCrop($_POST['filter'], $_POST['ascOrDsc']);
+        $data['crops'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxCrop', $data);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data);
+        }
+    }
+
+    */
+
 
 }

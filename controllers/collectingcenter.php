@@ -37,6 +37,15 @@ class CollectingCenter extends Controller
         // TODO: Do error checking
 
         $this->model->create($data);
+
+        //send notifications
+        $notiData = array();
+        $notiData['target_role'] = "all";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "New Col. Center";
+        $notiData['description'] = "A new collecting center was added to the list!";
+        Notification::send($notiData);
+
         header('location: ' . URL . 'collectingcenter/collectingcenters');
     }
 
@@ -92,6 +101,15 @@ class CollectingCenter extends Controller
     public function delete($id)
     {
         $this->model->delete($id);
+
+        //send notifications
+        $notiData = array();
+        $notiData['target_role'] = "all";
+        $notiData['target_user'] = 0;
+        $notiData['title'] = "Col. Center Removed";
+        $notiData['description'] = "A new collecting center was removed from the list!";
+        Notification::send($notiData);
+
         header('location: ' . URL . 'collectingcenter/collectingcenters');
     }
 

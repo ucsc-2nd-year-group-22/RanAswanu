@@ -6,6 +6,7 @@ class User_Model extends Model
     public function __construct()
     {
         parent::__construct();
+        Session::init();
     }
 
     public function userList()
@@ -69,6 +70,16 @@ class User_Model extends Model
                 ));
             }
         }
+
+        //send notifications for relevant user
+        if (Session::get('loggedIn')) {
+            $notiData = array();
+            $notiData['target_role'] = "NULL";
+            $notiData['target_user'] = Session::get('user_id');
+            $notiData['title'] = "User added";
+            $notiData['description'] = "You have registered a new user successfully!";
+            Notification::send($notiData);
+        }
     }
 
 
@@ -77,9 +88,9 @@ class User_Model extends Model
     //update the user data in the database 
     public function editSave($data)
     {
-        print_r($data);
+        // print_r($data);
         $stmt = $this->db->prepare("UPDATE user SET first_name = :first_name, last_name = :last_name, user_name = :user_name, nic = :nic, email = :email, dob = :dob, sex = :sex, gs_id = :gs_id, address = :address, role = :role WHERE user_id = :user_id");
-       
+
         $stmt->execute(array(
             ':first_name' => $data['first_name'],
             ':last_name' => $data['last_name'],
@@ -94,7 +105,7 @@ class User_Model extends Model
             ':user_id' => $data['user_id']
         ));
 
-        echo '<hr>';
+        // echo '<hr>';
         $userID = $data['user_id'];
         $telNos = array($data['tel_no_1'], $data['tel_no_2']);
         $oldTels = array($data['old-tel-1'], $data['old-tel-2']);
@@ -110,15 +121,15 @@ class User_Model extends Model
                 ));
             }
         }
-       
 
 
-//         echo '<hr>' . $stmt->rowCount() . '<hr>';
-//         print_r($stmt);
+
+        //         echo '<hr>' . $stmt->rowCount() . '<hr>';
+        //         print_r($stmt);
 
 
-//         echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
-//         print_r($insertTelNos);
+        //         echo '<hr>' . $insertTelNos->rowCount() . '<hr>';
+        //         print_r($insertTelNos);
 
     }
 
@@ -214,6 +225,12 @@ class User_Model extends Model
             ':user_id' => $user_id,
         ));
 
+        //loading all locations for dropdowns
+        $data['allProvinces'] = $this->getProvinces();
+        $data['allDistricts'] = $this->getAllDistricts();
+        $data['allDivSecs'] = $this->getAllDivSecs();
+        $data['allGramaSewas'] = $this->getAllGramaSewas();
+
         $data['locationData'] = $getLocationData->fetch();
         $data['user'] = $getUserSql->fetch(PDO::FETCH_ASSOC);
         $data['userTel'] = $getTel->fetchAll(PDO::FETCH_COLUMN);        // FETCH_CULUMN : To return an array that contains a single column from all of the remaining rows in the result set
@@ -241,6 +258,12 @@ class User_Model extends Model
         ));
         return $st->fetchAll();
     }
+    public function getAllDistricts()
+    {
+        $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
+        $st->execute();
+        return $st->fetchAll();
+    }
 
     //retrieve divisional secretariat list
     public function getDivSec($id)
@@ -251,6 +274,12 @@ class User_Model extends Model
         ));
         return $st->fetchAll();
     }
+    public function getAllDivSecs()
+    {
+        $st = $this->db->prepare("SELECT ds_id, ds_name FROM divisional_secratariast");
+        $st->execute();
+        return $st->fetchAll();
+    }
 
     //retrieve gramasewa division list
     public function getGramaSewa($id)
@@ -259,6 +288,12 @@ class User_Model extends Model
         $st->execute(array(
             ':id' => $id
         ));
+        return $st->fetchAll();
+    }
+    public function getAllGramaSewas()
+    {
+        $st = $this->db->prepare("SELECT gs_id, gs_name FROM gramasewa_division");
+        $st->execute();
         return $st->fetchAll();
     }
 }

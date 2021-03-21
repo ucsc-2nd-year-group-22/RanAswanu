@@ -30,7 +30,6 @@
                 data:{filter:selectedSort, ascOrDsc:'ASC'},
                 dataType:"text",
                 success:function(data) {
-                    
                     $('#box').html(data);
                 },
                 async:true

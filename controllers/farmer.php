@@ -1,10 +1,5 @@
 <?php
 
-
-/////////////////////// Naming Conventions for Farmer Controller
-
-///////// dipslay and manage
-
 // sellCropMng
 // offerMng
 // damageMng

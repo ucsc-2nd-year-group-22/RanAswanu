@@ -203,6 +203,47 @@ class Officer extends Controller {
         header('location: ' . URL . 'officer/officers');
     }
 
+    //Search officers by name
+    public function ajxSearchOfficerName() {
+        
+        $d = $this->model->ajxSearchOfficerName($_POST['search']);
+        $data['farmerData'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+    //Search officer by NIC 
+    public function ajxSearchOfficerNic() {
+        $d = $this->model->ajxSearchOfficerNic($_POST['search']);
+        $data['farmerData'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+    //Sort officers
+    public function ajxFilterOfficer() {
+
+        $d = $this->model->ajxFilterOfficer($_POST['filter'], $_POST['ascOrDsc']);
+        $data['farmerData'] = $d;
+
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
 }
 
         

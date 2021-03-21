@@ -9,7 +9,7 @@
         //     $('#cropType').html('ssss');
         // });
 
-        $('#district').click(function() {
+        $('#district').change(function() {
             var district = ($(this).val());
             $('#cropType').empty();
             $('#cropType').append('-- Select district first --');
@@ -161,12 +161,8 @@
 
 <h1>Crop Reqeust Edit Form</h1>
 
-<?php print_r($cropReqData);
-echo '<hr><br>';
-print_r($locData); ?>
-
 <div class="main-form">
-    <form action="<?= URL; ?>farmer/updateCropReq/<?= $cropReqData['harvest_id'];?>" method="post">
+    <form action="<?= URL; ?>farmer/updateCropReq/<?= $cropReqData['harvest_id']; ?>" method="post">
 
 
         <div class="row">
@@ -175,11 +171,8 @@ print_r($locData); ?>
             </div>
             <div class="col-75">
                 <select id="province" name="province">
-                    <option value="<?= $locData['province_id']; ?>"> <?= $locData['province_name']; ?> </option>
-                    <?php foreach ($provinces as $provinceItem) : ?>
-                        <option value="<?= $provinceItem['province_id'] ?>">
-                            <?= $provinceItem['province_name'] ?>
-                        </option>
+                    <?php foreach ($allProvinces as $provinceItem) : ?>
+                        <option value="<?= $provinceItem['province_id'] ?>" <?php if ($locData['province_name'] == $provinceItem['province_name']) echo 'selected'; ?>> <?php echo $provinceItem['province_name']; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -190,7 +183,9 @@ print_r($locData); ?>
             </div>
             <div class="col-75">
                 <select id="district" name="district">
-                    <option value="<?= $locData['district_id']; ?>"> <?= $locData['district_name']; ?></option>
+                    <?php foreach ($allDistricts as $districtItem) : ?>
+                        <option value="<?= $districtItem['district_id'] ?>" <?php if ($locData['district_name'] == $districtItem['ds_name']) echo 'selected'; ?>> <?php echo $districtItem['ds_name']; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -200,7 +195,9 @@ print_r($locData); ?>
             </div>
             <div class="col-75">
                 <select id="divisional_secratariast" name="divisional_secratariast">
-                    <option value="<?= $locData['ds_id']; ?>"> <?= $locData['div_sec_name']; ?></option>
+                    <?php foreach ($allDivSecs as $divSecItem) : ?>
+                        <option value="<?= $divSecItem['ds_id'] ?>" <?php if ($locData['div_sec_name'] == $divSecItem['ds_name']) echo 'selected'; ?>> <?= $divSecItem['ds_name'] ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -210,19 +207,12 @@ print_r($locData); ?>
             </div>
             <div class="col-75">
                 <select id="gramaSewa" name="gramaSewa">
-                    <option value="<?= $locData['gs_id']; ?>"> <?= $locData['gs_name']; ?></option>
+                    <?php foreach ($allGramaSewas as $gramaItem) : ?>
+                        <option value="<?= $gramaItem['gs_id'] ?>" <?php if ($locData['gs_name'] == $gramaItem['gs_name']) echo 'selected'; ?>> <?= $gramaItem['gs_name'] ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
-
-        <!-- <div class="row">
-            <div class="col-25">
-                <label for="address">Address of the land</label>
-            </div>
-            <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana" required>
-            </div>
-        </div> -->
 
         <div class="row">
             <div class="col-25">
@@ -230,7 +220,10 @@ print_r($locData); ?>
             </div>
             <div class="col-75">
                 <select id="cropType" name="croptype" required>
-                    <option value="<?= $cropReqData['crop_id']; ?>" selected ><?= $cropReqData['crop_type']; ?></option>
+                    <!-- <option value="<?= $cropReqData['crop_id']; ?>" selected><?= $cropReqData['crop_type']; ?></option> -->
+                    <?php foreach ($allCropTypes as $cropTypeItem) : ?>
+                        <option value="<?= $cropTypeItem['crop_id'] ?>" <?php if ($cropReqData['crop_type'] == $cropTypeItem['crop_type']) echo 'selected'; ?>> <?= $cropTypeItem['crop_type'] ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -241,7 +234,7 @@ print_r($locData); ?>
             </div>
             <div class="col-75">
                 <select id="cropVart" name="selectCrop" required>
-                    <option value="<?= $cropReqData['crop_id']; ?>"  > <?= $cropReqData['crop_varient']; ?></option>
+                    <option value="<?= $cropReqData['crop_id']; ?>"> <?= $cropReqData['crop_varient']; ?></option>
                 </select>
             </div>
         </div>
@@ -274,7 +267,7 @@ print_r($locData); ?>
             </div>
             <div class="col-75">
                 <select id="selectCenter" name="selectCenter" required>
-                    <option value="<?= $cropReqData['center_id']; ?>"  selected><?= $cropReqData['center_name']; ?></option>
+                    <option value="<?= $cropReqData['center_id']; ?>" selected><?= $cropReqData['center_name']; ?></option>
                 </select>
             </div>
         </div>
@@ -302,5 +295,5 @@ print_r($locData); ?>
         </div>
     </form>
 </div>
-
-<script src="<?php echo URL; ?>/views/user/js/locations.js"></script>
+<script src="<?php echo URL; ?>views/user/js/locations.js"></script>
+<script src="<?php echo URL; ?>views/user/js/default.js"></script>

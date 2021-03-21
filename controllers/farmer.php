@@ -75,7 +75,6 @@ class Farmer extends Controller {
             $data['errMsg'] = "No Result Found !";
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
-
     }
 
     public function newDmgClaimForm() {
@@ -125,10 +124,10 @@ class Farmer extends Controller {
     public function insertCropReq() {
         // print_r($_POST);
         $data['harvesting_month'] = filter_var($_POST['harvesting_month'], FILTER_SANITIZE_STRING);
-        $data['harvesting_month'] = date("m",strtotime($data['harvesting_month']));
+        $data['harvesting_month'] = date("m", strtotime($data['harvesting_month']));
         $data['starting_month'] = filter_var($_POST['startMonth'], FILTER_SANITIZE_STRING);
-        $data['starting_month']  = date("m",strtotime($data['starting_month']));
-        
+        $data['starting_month']  = date("m", strtotime($data['starting_month']));
+
         $data['expected_harvest'] = filter_var($_POST['expected_harvest'], FILTER_SANITIZE_STRING);
         $data['is_accept'] = 0;
         $data['gs_id'] = filter_var($_POST['gramaSewa'], FILTER_SANITIZE_STRING);
@@ -277,12 +276,14 @@ class Farmer extends Controller {
         echo json_encode($cropsTypes);
     }
 
+    public function getAllCropTypes($district) {
+        return $this->model->ajxGetCropTypes($district);
+    }
+
     public function ajxGetCultivatedCropTypes() {
         $cropsTypes = $this->model->ajxGetCultivatedCropTypes($_GET['district']);
         echo json_encode($cropsTypes);
     }
-
-    
 
     public function ajxGetCropVart() {
         $varats = $this->model->ajxGetCropVart($_GET['type']);
@@ -328,16 +329,22 @@ class Farmer extends Controller {
     public function deleteCropReq($harvest_id) {
         echo $harvest_id;
         $this->model->deleteCropReq($harvest_id);
-       
     }
 
     function editCropReqForm($harvest_id) {
+        $allLocations = $this->model->getAllLocations();
         $data = [
             'provinces' => $this->model->getProvinces(),
             'locData' => $this->model->getLocDataByGs($harvest_id),
-            'cropReqData' => $this->model->getCropReq($harvest_id),  
-                    
+            'cropReqData' => $this->model->getCropReq($harvest_id),
+            'allProvinces' => $allLocations['allProvinces'],
+            'allDistricts' => $allLocations['allDistricts'],
+            'allDivSecs' => $allLocations['allDivSecs'],
+            'allGramaSewas' => $allLocations['allGramaSewas'],
         ];
+        $district = $data['locData']['district_id'];
+        // echo "<b>$district</b>";
+        $data['allCropTypes'] = $this->getAllCropTypes($district);
         
         $this->view->rendor('farmer/editCropReqForm', $data);
     }
@@ -345,13 +352,13 @@ class Farmer extends Controller {
     public function updateCropReq($harvest_id) {
         // print_r($_POST);
         $data['harvest_id'] = $harvest_id;
-        
+
         $data['harvesting_month'] = $_POST['harvesting_month'];
         $data['starting_month'] = $_POST['startMonth'];
-        
-        $data['starting_month'] = date("m",strtotime($data['starting_month']));
-        $data['harvesting_month'] = date("m",strtotime($data['harvesting_month']));
-        
+
+        $data['starting_month'] = date("m", strtotime($data['starting_month']));
+        $data['harvesting_month'] = date("m", strtotime($data['harvesting_month']));
+
         $data['expected_harvest'] = $_POST['expected_harvest'];
         $data['is_accept'] = 0;
         $data['gs_id'] = $_POST['gramaSewa'];
@@ -364,7 +371,10 @@ class Farmer extends Controller {
         $this->model->updateCropReq($data);
 
         header('location: ' . URL . 'farmer/cropReqMng');
+    }
 
+    public function getAllLocations() {
+        $allLocations = $this->model->getAllLocations();
     }
 
 

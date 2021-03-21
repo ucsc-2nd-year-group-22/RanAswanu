@@ -42,12 +42,6 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProvinces() {
-        $st = $this->db->prepare("SELECT province_id, province_name FROM province ORDER BY province_name");
-        $st->execute();
-        return $st->fetchAll();
-    }
-
     /// !!!!!!!!!!!!!!! Handled by OFficer !!!!!!!!!!!!!!!!!!!!!!1
     public function farmerList() {
         $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id");
@@ -60,7 +54,6 @@ class Farmer_Model extends Model {
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     ////////////// AJAX CALLS /////////////////////////////////////////////////////////////
 
@@ -289,16 +282,45 @@ class Farmer_Model extends Model {
         ));
         print_r($data);
 
-        if($res) {
+        if ($res) {
             echo 'good';
         } else {
             echo 'bad';
         }
     }
 
+    public function getAllLocations() {
+        $data['allProvinces'] = $this->getProvinces();
+        $data['allDistricts'] = $this->getAllDistricts();
+        $data['allDivSecs'] = $this->getAllDivSecs();
+        $data['allGramaSewas'] = $this->getAllGramaSewas();
 
+        return $data;
+    }
 
+    public function getAllGramaSewas() {
+        $st = $this->db->prepare("SELECT gs_id, gs_name FROM gramasewa_division");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    public function getAllDivSecs() {
+        $st = $this->db->prepare("SELECT ds_id, ds_name FROM divisional_secratariast");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllDistricts() {
+        $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getProvinces() {
+        $st = $this->db->prepare("SELECT province_id, province_name FROM province");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
 

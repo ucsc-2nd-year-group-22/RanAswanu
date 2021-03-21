@@ -26,7 +26,7 @@ class Vendor_Model extends Model
     {      
 
        
-        $st=$this->db->prepare("SELECT selling_request.* , user.*, crop.crop_type ,divisional_secratariast.ds_name FROM harvest 
+        $st=$this->db->prepare("SELECT selling_request.* , user.user_id, crop.crop_type ,divisional_secratariast.ds_name FROM harvest 
         JOIN crop ON crop.crop_id=harvest.harvest_id 
         JOIN divisional_secratariast ON divisional_secratariast.ds_id=harvest.gs_id 
         JOIN selling_request ON selling_request.harvest_id=harvest.harvest_id JOIN user ON user.user_id=harvest.farmer_user_id
@@ -54,7 +54,7 @@ class Vendor_Model extends Model
         
        // $st=$this->db->prepare("SELECT user.*,selling_request.* From user JOIN selling_request on selling_request.farmer_user_id=user.user_id WHERE user_id=$user_id");  
         
-       $st=$this->db->prepare("SELECT selling_request.* ,user.*,user_tel.tel_no FROM user 
+       $st=$this->db->prepare("SELECT selling_request.* ,user.user_id ,user.first_name,user.last_name,user_tel.tel_no FROM user 
        JOIN selling_request ON selling_request.farmer_user_id= user.user_id
        JOIN user_tel ON user_tel.user_id=user.user_id
        where user.user_id=$user_id");

@@ -189,7 +189,7 @@ class User_Model extends Model
                     break;
 
                 case 'vendor':
-                    header('location: ' . URL . 'vendor');
+                    header('location: ' . URL . 'vendor/allCrops');
                     break;
             }
         } else {

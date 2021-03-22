@@ -96,14 +96,14 @@ class Farmer extends Controller {
         $data['damage_area'] = $_POST['estdmgarea'];
         $data['damage_date'] = $_POST['dmgdate'];
         $data['harvest_id'] = $_POST['harvest_id'];
-        
+
         $this->model->insertDmg($data);
         // header('location: ' . URL . 'farmer/damageclaimif');
     }
 
     public function deleteDmgClaim($dmg_id) {
         $this->model->deleteDmgClaim($dmg_id);
-    } 
+    }
 
     public function editDmgClaimsForm($dmg_id) {
         $provinces = $this->model->getProvinces();
@@ -368,7 +368,7 @@ class Farmer extends Controller {
         $district = $data['locData']['district_id'];
         // echo "<b>$district</b>";
         $data['allCropTypes'] = $this->getAllCropTypes($district);
-        
+
         $this->view->rendor('farmer/editCropReqForm', $data);
     }
 
@@ -400,6 +400,30 @@ class Farmer extends Controller {
         $allLocations = $this->model->getAllLocations();
     }
 
+
+    public function ajxFilterDmg() {
+ 
+        $data['dmgClaims'] = $this->model->ajxFilterDmg($_POST['filter']);
+
+        if (!empty($data['dmgClaims'])) {
+            $this->view->rendor('farmer/ajxDmgClaim', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function ajxSortDmg() {
+        $d = $this->model->ajxSortDmg($_POST['filter'], $_POST['ascOrDsc']);
+        $data['dmgClaims'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('farmer/ajxDmgClaim', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
 
 

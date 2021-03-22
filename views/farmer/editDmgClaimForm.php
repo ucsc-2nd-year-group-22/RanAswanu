@@ -54,7 +54,7 @@
 </script>
 
 <h1>Damage claim form</h1>
-<?php print_r($editDmgData); ?>
+
 
 <!-- FORM -->
 <div class="main-form">

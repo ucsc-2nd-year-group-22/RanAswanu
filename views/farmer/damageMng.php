@@ -1,8 +1,7 @@
 <script>
+    $(function() {
 
-$(function() {
-
-    $('#box').html('');
+        $('#box').html('');
         $.ajax({
             url: "damageClaimList",
             method: "post",
@@ -13,8 +12,109 @@ $(function() {
             async: true,
         });
 
-});
+        // show accepted
+        var selectedFilter;
+        $('#showAccepted').click(function() {
+            selectedFilter = 'accepted';
+            $('#showRejected').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxFilterDmg",
+                method: "post",
+                data: {
+                    filter: selectedFilter
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
 
+        $('#showRejected').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxFilterDmg",
+                method: "post",
+                data: {
+                    filter: selectedFilter
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+        $('#showAll').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showRejected').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "damageClaimList",
+                method: "post",
+                data: {
+                    farmer_id: <?php echo Session::get('user_id'); ?>
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true,
+            });
+        });
+
+
+
+        var selectedSort = 'damage_area';
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');
+        });
+        // asc
+        $('#ascSort').click(function() {
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortDmg",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'ASC'
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+        // desc
+        $('#descSort').click(function() {
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortDmg",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'DESC'
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+    });
 </script>
 
 <div id="test">
@@ -50,9 +150,8 @@ $(function() {
             <form class="normal-select">
                 <label>Sort damage claims by : </label>
                 <select id="sortby">
-                    <!-- <option val="crop_type" selected>Crop type</option>
-                    <option val="cetner">Collectin center</option> -->
-                    <option val="expected_harvest">Area size</option>
+                    <option val="damage_area">Damage area</option>
+                    <option val="damage_date">Date</option>
                 </select>
                 <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
                 <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
@@ -70,6 +169,6 @@ $(function() {
     </div>
 
     <div id="box" class="main-table">
-        
+
     </div>
 </div>

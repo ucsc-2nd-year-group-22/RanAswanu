@@ -432,6 +432,66 @@ class Farmer_Model extends Model {
         // print_r($data);
     }
 
+    public function ajxFilterDmg($filter) {
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        $officer_user_id = $st->fetchColumn();
+
+        $farmer_id = Session::get('user_id');
+        if ($filter == 'accepted') {
+            $sql = "SELECT crop_damage.*, crop.crop_type, gramasewa_division.gs_name FROM `crop_damage`
+            JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            WHERE crop_damage.farmer_user_id = $farmer_id AND crop_damage.officer_user_id = $officer_user_id AND crop_damage.is_accepted = 1 ";
+        } else if ($filter == 'rejected') {
+            $sql = "SELECT crop_damage.*, crop.crop_type, gramasewa_division.gs_name FROM `crop_damage`
+            JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            WHERE crop_damage.farmer_user_id = $farmer_id AND crop_damage.officer_user_id = $officer_user_id  AND crop_damage.is_accepted = 0 ";
+        }
+
+
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajxSortDmg($filter, $ascOrDsc) {
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        $officer_user_id = $st->fetchColumn();
+
+        $farmer_id = Session::get('user_id');
+        if ($ascOrDsc == 'ASC') {
+            $sql = "SELECT crop_damage.*, crop.crop_type, gramasewa_division.gs_name FROM `crop_damage`
+            JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            WHERE crop_damage.farmer_user_id = $farmer_id AND crop_damage.officer_user_id = $officer_user_id ORDER BY crop_damage.$filter  ASC";
+        } else if ($ascOrDsc == 'DESC') {
+            $sql = "SELECT crop_damage.*, crop.crop_type, gramasewa_division.gs_name FROM `crop_damage`
+            JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            WHERE crop_damage.farmer_user_id = $farmer_id AND crop_damage.officer_user_id = $officer_user_id ORDER BY crop_damage.$filter  DESC";
+        }
+
+
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     ##################################### END OF FARMER MODEL ##############################################################################
 }

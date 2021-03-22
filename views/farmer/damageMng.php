@@ -28,7 +28,7 @@ $(function() {
         <?php if (Session::get('isadmin') != 1) : ?>
             <!-- <li><a id="tab2" href="#" ><i class="fas fa-user-edit"></i> Update</a></li>
         <li><a id="tab3" href="#" ><i class="fas fa-user-times"></i> Delete</a></li> -->
-            <li><a id="tab4" href="newDmgClaimForm"" ><i class=" fas fa-plus-circle"></i> New damage claim</a></li>
+            <!-- <li><a id="tab4" href="newDmgClaimForm"" ><i class=" fas fa-plus-circle"></i> New damage claim</a></li> -->
         <?php endif ?>
     </ul>
 </div>

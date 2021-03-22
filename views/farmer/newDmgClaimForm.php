@@ -1,16 +1,18 @@
 <script>
-  $(function () {
-    $("#district").change(function () {
+  $(function() {
+    $("#district").change(function() {
       var district = $(this).val();
       $("#cropType").empty();
       // Load crop types
       $.ajax({
         type: "GET",
         url: "ajxGetCultivatedCropTypes",
-        data: { district: district },
-        success: function (data) {
+        data: {
+          district: district
+        },
+        success: function(data) {
           var json = $.parseJSON(data);
-          $(json).each(function (i, val) {
+          $(json).each(function(i, val) {
             // console.log(val.crop_id);
             var newOp = new Option(val.crop_type, val.crop_id);
             $(newOp).html(val.crop_type);
@@ -20,7 +22,7 @@
       });
     });
 
-    $("#cropType").change(function () {
+    $("#cropType").change(function() {
       getCropTypes($(this));
     });
 
@@ -33,10 +35,13 @@
       $.ajax({
         type: "GET",
         url: "ajxGetCropVart",
-        data: { type: type },
-        success: function (data) {
+        data: {
+          type: type
+        },
+        success: function(data) {
+
           var json = $.parseJSON(data);
-          $(json).each(function (i, val) {
+          $(json).each(function(i, val) {
             var newOp = new Option(val.crop_varient, val.crop_id);
             // console.log(val.crop_id);
             $(newOp).html(val.crop_varient);
@@ -49,6 +54,10 @@
 </script>
 
 <h1>Damage claim form</h1>
+<?php $locDataForDmg = $locDataForDmg[0];
+print_r($locDataForDmg);
+echo $locDataForDmg['province_name']; ?>
+
 <!-- FORM -->
 <div class="main-form">
   <form action="<?= URL; ?>/farmer/insertDmg" method="post">
@@ -57,13 +66,7 @@
         <label for="dmgdate">Date That Damage Is Happend</label>
       </div>
       <div class="col-75">
-        <input
-          type="date"
-          id="dmgdate"
-          name="dmgdate"
-          placeholder="Month/Date/Year "
-          required
-        />
+        <input type="date" id="dmgdate" name="dmgdate" placeholder="Month/Date/Year " required />
       </div>
     </div>
 
@@ -73,12 +76,7 @@
       </div>
       <div class="col-75">
         <select id="province" name="province">
-          <option value="null">-- SELECT PROVINCE --</option>
-          <?php foreach ($provinces as $provinceItem) : ?>
-          <option value="<?= $provinceItem['province_id'] ?>">
-            <?= $provinceItem['province_name'] ?>
-          </option>
-          <?php endforeach; ?>
+          <option value="<?= $locDataForDmg['province_id'] ?>" readonly><?= $locDataForDmg['province_name'] ?></option>
         </select>
       </div>
     </div>
@@ -88,7 +86,7 @@
       </div>
       <div class="col-75">
         <select id="district" name="district">
-          <option value="null">-- SELECT DISTRICT --</option>
+          <option value="<?= $locDataForDmg['district_id'] ?>" readonly><?= $locDataForDmg['district_name'] ?></option>
         </select>
       </div>
     </div>
@@ -97,8 +95,8 @@
         <label for="province">Divisional secratariast</label>
       </div>
       <div class="col-75">
-        <select id="divisional_secratariast" name="divisional_secratariast">
-          <option value="null">-- SELECT DIVISIONAL SECT. --</option>
+        <select id="div_sec" name="div_sec">
+          <option value="<?= $locDataForDmg['div_sec_id'] ?>" readonly><?= $locDataForDmg['div_sec_name'] ?></option>
         </select>
       </div>
     </div>
@@ -108,19 +106,10 @@
       </div>
       <div class="col-75">
         <select id="gramaSewa" name="gramaSewa">
-          <option value="null">-- SELECT GRAMASEWA DIV. --</option>
+          <option value="<?= $locDataForDmg['gs_id'] ?>" readonly><?= $locDataForDmg['gs_name'] ?></option>
         </select>
       </div>
     </div>
-
-    <!-- <div class="row">
-            <div class="col-25">
-                <label for="address">Address</label>
-            </div>
-            <div class="col-75">
-                <input type="text" id="address" name="address" placeholder="ex: No. 32, Atha watunu wava, Horawpathana" required>
-            </div>
-        </div> -->
 
     <div class="row">
       <div class="col-25">
@@ -128,7 +117,7 @@
       </div>
       <div class="col-75">
         <select id="cropType" name="croptype" required>
-          <option selected disabled>-- Select Crops --</option>
+          <option value="<?= $locDataForDmg['crop_id'] ?>" readonly><?= $locDataForDmg['crop_type'] ?></option>
         </select>
       </div>
     </div>
@@ -139,7 +128,7 @@
       </div>
       <div class="col-75">
         <select id="cropVart" name="selectCrop" required>
-          <option value="" disabled selected>-- Select crop varient --</option>
+          <option value="<?= $locDataForDmg['crop_id'] ?>" readonly><?= $locDataForDmg['crop_varient'] ?></option>
         </select>
       </div>
     </div>
@@ -149,31 +138,20 @@
         <label for="dmgArea">Estimated Damage Area -Acres</label>
       </div>
       <div class="col-75">
-        <input
-          type="number"
-          id="estdmgarea"
-          name="estdmgarea"
-          placeholder="ex: 3 acres"
-          max="100"
-          required
-        />
+        <input type="number" id="estdmgarea" name="estdmgarea" placeholder="ex: 3 acres" max="100" required />
       </div>
     </div>
 
     <div class="row">
       <div class="col-25">
-        <label for="waydmg">Way Of Damage</label>
+        <label for="waydmg">Reason for the damage: </label>
       </div>
       <div class="col-75">
-        <textarea
-          id="waydmg"
-          name="waydmg"
-          placeholder="Enter the way that damage is happend"
-          style="height: 200px"
-          required
-        ></textarea>
+        <textarea id="reason" name="reason" placeholder="How the damage is happend" style="height: 200px" required></textarea>
       </div>
     </div>
+
+    <input type="hidden" id="harvest_id" name="harvest_id" value="<?= $locDataForDmg['harvest_id']; ?>">
 
     <div class="row">
       <div class="col-25"></div>

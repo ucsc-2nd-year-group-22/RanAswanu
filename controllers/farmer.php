@@ -42,7 +42,6 @@ class Farmer extends Controller {
         $role = Session::get('role');
     }
 
-
     public function index() {
         // $data = array(
         //     'role' => $role
@@ -77,11 +76,13 @@ class Farmer extends Controller {
         }
     }
 
-    public function newDmgClaimForm() {
+    public function newDmgClaimForm($harvest_id) {
         $provinces = $this->model->getProvinces();
 
         $data = [
-            'provinces' => $provinces
+            'provinces' => $provinces,
+            'harvest_id' => $harvest_id,
+            'locDataForDmg' => $this->model->locDataForDmg($harvest_id)
         ];
         $this->view->rendor('farmer/newDmgClaimForm', $data);
     }
@@ -89,18 +90,14 @@ class Farmer extends Controller {
     //instert damage claim information to the database
     public function insertDmg() {
         print_r($_POST);
-        filter_var($_POST['harvesting_month'], FILTER_SANITIZE_STRING);
 
-        $data['dmgdate'] = $_POST['dmgdate'];
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['gramasewa'] = $_POST['gramasewa'];
-        $data['address'] = $_POST['address'];
-        $data['estdmgarea'] = $_POST['estdmgarea'];
-        $data['waydmg'] = $_POST['waydmg'];
-        $data['details'] = $_POST['details'];
-
-        // $this->model->creates($data);
+        $data['reason'] = $_POST['reason'];
+        $data['is_accepted'] = 0;
+        $data['damage_area'] = $_POST['estdmgarea'];
+        $data['damage_date'] = $_POST['dmgdate'];
+        $data['harvest_id'] = $_POST['harvest_id'];
+        
+        $this->model->insertDmg($data);
         // header('location: ' . URL . 'farmer/damageclaimif');
     }
 

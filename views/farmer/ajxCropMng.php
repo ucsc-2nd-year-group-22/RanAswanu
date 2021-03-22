@@ -34,9 +34,10 @@
             <td>
                 <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'farmer/editCropReqForm/' . $cropReq['harvest_id']; ?>">Update</a>
                 <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . 'farmer/deleteCropReq/' . $cropReq['harvest_id']; ?>">Cancel</a>
+                
             </td>
             <?php else: ?>
-               <td>N/A</td>
+               <td><a class="mini-button normal btn" onclick="return confirm('Are you sure you want claim new damage?');" href="<?php echo URL . 'farmer/newDmgClaimForm/' . $cropReq['harvest_id']; ?>">Damage claim</a></td>
             <?php endif;?>
         </tr>
     <?php endforeach; ?>

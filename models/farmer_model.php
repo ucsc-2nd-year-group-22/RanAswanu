@@ -322,6 +322,54 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function locDataForDmg($harvest_id) {
+        $st = $this->db->prepare("SELECT 
+        harvest.*, 
+        gramasewa_division.*,
+        divisional_secratariast.ds_id AS div_sec_id, divisional_secratariast.ds_name AS div_sec_name,
+        district.district_id, district.ds_name AS district_name,
+        province.*,
+        crop.*
+        FROM `harvest`
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id 
+            JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+            JOIN district ON district.district_id = divisional_secratariast.district_id
+            JOIN province ON province.province_id = district.province_id
+           	JOIN crop ON crop.crop_id = harvest.crop_id
+           
+           WHERE harvest.harvest_id = $harvest_id");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function insertDmg($data) {
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql1 = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st = $this->db->prepare($sql1);
+        $st->execute();
+        $data['officer_user_id'] = $st->fetchColumn();
+        $data['farmer_user_id'] = Session::get('user_id');
+
+        echo '<hr>'; print_r($data);
+
+        $sql = "INSERT INTO `crop_damage`( `damage_reason`, `is_accepted`, `damage_area`, `damage_date`, `farmer_user_id`, `officer_user_id`, `harvest_id`) VALUES (:reason, :is_accepted, :damage_area, :damage_date, :farmer_user_id, :officer_user_id, :harvest_id)";
+        $st2 = $this->db->prepare($sql);
+        $res = $st2->execute(array(
+            ':reason' => $data['reason'],
+            ':is_accepted' => $data['is_accepted'],
+            ':damage_area' => $data['damage_area'],
+            ':damage_date' => $data['damage_date'],
+            ':farmer_user_id' => $data['farmer_user_id'],
+            ':officer_user_id' => $data['officer_user_id'],
+            ':harvest_id' => $data['harvest_id'],
+        ));
+
+        if($res) {
+            header('location: ' . URL . 'farmer/cropReqMng');
+        }
+    }
+
 
 
     ##################################### END OF FARMER MODEL ##############################################################################

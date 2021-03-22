@@ -1,3 +1,115 @@
+<script>
+    $(function() {
+
+        $('#box').html('');
+        $.ajax({
+            url: "AllCrops",
+            method: "post",
+            data: {
+            
+            },
+            dataType: "text",
+            success: function(data) {
+                $('#box').html(data);
+            },
+            async: true,
+        });
+
+        var selectedSort = 'expected_harvest';
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');
+        });
+        // asc
+        $('#ascSort').click(function() {
+            // alert(selectedSort);
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxSortCropReqs",
+                method:"post",
+                data:{filter:selectedSort, ascOrDsc:'ASC'},
+                dataType:"text",
+                success:function(data) {
+                    
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+        // desc
+        $('#descSort').click(function() {
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxSortCropReqs",
+                method:"post",
+                data:{filter:selectedSort, ascOrDsc:'DESC'},
+                dataType:"text",
+                success:function(data) {
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+
+
+        // show accepted
+        var selectedFilter;
+        $('#showAccepted').click(function() {
+            selectedFilter = 'accepted';
+            $('#showRejected').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxFilterCropReq",
+                method:"post",
+                data:{filter:selectedFilter},
+                dataType:"text",
+                success:function(data) {
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+
+        $('#showRejected').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxFilterCropReq",
+                method:"post",
+                data:{filter:selectedFilter},
+                dataType:"text",
+                success:function(data) {
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+
+        $('#showAll').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showRejected').removeClass("active-btn");
+            $(this).addClass("active-btn");
+                $.ajax({
+                url: "ajxListCropReq",
+                method: "post",
+                data: {
+                    farmer_id: <?php echo Session::get('user_id'); ?>
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true,
+            });
+        });
+      
+    });
+</script>
 
 <!--<?php echo $sellingReq['name'];?>-->
 <div class="user-tabs">
@@ -54,41 +166,8 @@
 <div id="tab1C" class="tabContainer">
     <h2>All</h2>
     
-    <div class="main-table">
-        <table>
-            <tr>
-                <th>#</th>
-                <!-- <th>ID</th> -->
-            <!--  <th>Farmer </th> -->
-                <th>Crop Name</th>
-                <th>Weight</th>
-                <th>Price</th>
-                <th>District</th>
-                <!--<th>Date</th> -->
-                <th>Action</th>
-                <th>View Profile</th>
-                
-            </tr>
-    <?php $i = 0; foreach($Req as $dt) :; $i++;?>
-            <tr>
-                <td> <?= $i ?></td>
-                <td> <?=$dt['selectCrop'];?></td>
-                <td> <?=$dt['weight'];?></td>
-                <td> <?=$dt['exprice'];?></td>
-                <td> <?=$dt['district'];?></td>
-                <td>
-                    <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['aId']?>" class="mini-button normal">Offer</a> 
-                </td>
-            
-                <td style="text-align:left;">
-                    <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'user/viewUser/' . $dt['id'] ;?>"> 
-                        <i class="fas fa-address-card"></i>
-                    </a>
-                </td>     
+    <div id = "box" class="main-table">
         
-            </tr>
-    <?php endforeach;?>
-        </table>
     </div>
 
 </div>

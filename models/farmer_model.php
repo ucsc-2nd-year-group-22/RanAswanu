@@ -366,7 +366,15 @@ class Farmer_Model extends Model {
         ));
 
         if($res) {
-            header('location: ' . URL . 'farmer/cropReqMng');
+            header('location: ' . URL . 'farmer/damageMng');
+        }
+    }
+
+    public function deleteDmgClaim($dmg_id) {
+        $st = $this->db->prepare("DELETE FROM `crop_damage` WHERE damage_id = $dmg_id");
+        $res = $st->execute();
+        if($res) {
+            header('location: ' . URL . 'farmer/damageMng');
         }
     }
 

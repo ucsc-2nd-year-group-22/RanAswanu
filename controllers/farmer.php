@@ -101,6 +101,10 @@ class Farmer extends Controller {
         // header('location: ' . URL . 'farmer/damageclaimif');
     }
 
+    public function deleteDmgClaim($dmg_id) {
+        $this->model->deleteDmgClaim($dmg_id);
+    } 
+
     // Crop Request ============================================================
 
     //Display croprequest

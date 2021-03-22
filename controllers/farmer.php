@@ -105,6 +105,28 @@ class Farmer extends Controller {
         $this->model->deleteDmgClaim($dmg_id);
     } 
 
+    public function editDmgClaimsForm($dmg_id) {
+        $provinces = $this->model->getProvinces();
+
+        $pageData = [
+            'provinces' => $provinces,
+            'editDmgData' => $this->model->editDmgData($dmg_id),
+            'damage_id' => $dmg_id
+        ];
+        $this->view->rendor('farmer/editDmgClaimForm', $pageData);
+    }
+
+    public function updateDmg($dmg_id) {
+        // print_r($_POST);
+        $data['reason'] = $_POST['reason'];
+        $data['is_accepted'] = 0;
+        $data['damage_area'] = $_POST['estdmgarea'];
+        $data['damage_date'] = $_POST['dmgdate'];
+        $data['harvest_id'] = $_POST['harvest_id'];
+        $data['damage_id'] = $dmg_id;
+        $this->model->updateDmg($data);
+    }
+
     // Crop Request ============================================================
 
     //Display croprequest

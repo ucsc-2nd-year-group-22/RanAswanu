@@ -351,7 +351,8 @@ class Farmer_Model extends Model {
         $data['officer_user_id'] = $st->fetchColumn();
         $data['farmer_user_id'] = Session::get('user_id');
 
-        echo '<hr>'; print_r($data);
+        echo '<hr>';
+        print_r($data);
 
         $sql = "INSERT INTO `crop_damage`( `damage_reason`, `is_accepted`, `damage_area`, `damage_date`, `farmer_user_id`, `officer_user_id`, `harvest_id`) VALUES (:reason, :is_accepted, :damage_area, :damage_date, :farmer_user_id, :officer_user_id, :harvest_id)";
         $st2 = $this->db->prepare($sql);
@@ -365,7 +366,7 @@ class Farmer_Model extends Model {
             ':harvest_id' => $data['harvest_id'],
         ));
 
-        if($res) {
+        if ($res) {
             header('location: ' . URL . 'farmer/damageMng');
         }
     }
@@ -373,11 +374,63 @@ class Farmer_Model extends Model {
     public function deleteDmgClaim($dmg_id) {
         $st = $this->db->prepare("DELETE FROM `crop_damage` WHERE damage_id = $dmg_id");
         $res = $st->execute();
-        if($res) {
+        if ($res) {
             header('location: ' . URL . 'farmer/damageMng');
         }
     }
 
+    public function editDmgData($dmg_id) {
+        $sql = "SELECT 
+        crop_damage.*,
+        harvest.*, 
+        gramasewa_division.*,
+        divisional_secratariast.ds_id AS div_sec_id, divisional_secratariast.ds_name AS div_sec_name,
+        district.district_id, district.ds_name AS district_name,
+        province.*,
+        crop.*
+        FROM crop_damage 
+        	JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id 
+            JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+            JOIN district ON district.district_id = divisional_secratariast.district_id
+            JOIN province ON province.province_id = district.province_id
+           	JOIN crop ON crop.crop_id = harvest.crop_id
+            WHERE crop_damage.damage_id = $dmg_id";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+        if ($res) {
+            // echo 'good';
+        }
+        return $st->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updateDmg($data) {
+        echo '<hr>';
+
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql1 = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st = $this->db->prepare($sql1);
+        $st->execute();
+        $data['officer_user_id'] = $st->fetchColumn();
+        $data['farmer_user_id'] = Session::get('user_id');
+
+
+        $sql = "UPDATE `crop_damage` SET `damage_reason`=:damage_reason, `damage_area`=:damage_area,`damage_date`=:damage_date WHERE `damage_id` = :damage_id ";
+        $st2 = $this->db->prepare($sql);
+        $res = $st2->execute(array(
+            ':damage_reason' => $data['reason'],
+            ':damage_area' => $data['damage_area'],
+            ':damage_date' => $data['damage_date'],
+            ':damage_id' => $data['damage_id'],
+        ));
+
+        if($res) {
+            header('location: ' . URL . 'farmer/damageMng');
+        }
+
+        // print_r($data);
+    }
 
 
     ##################################### END OF FARMER MODEL ##############################################################################

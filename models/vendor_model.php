@@ -84,7 +84,8 @@ class Vendor_Model extends Model
     //getting offers sent by vendor (logged in)
     public function myOffers($id)
     {
-        $st = $this->db->prepare("SELECT * FROM request WHERE vid = :id");
+        $st = $this->db->prepare("SELECT * FROM offer WHERE vid = :id");
+        
         $st->execute(array(
             ':id' => $id
         ));

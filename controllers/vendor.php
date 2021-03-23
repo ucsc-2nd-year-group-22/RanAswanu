@@ -11,8 +11,14 @@ class Vendor extends Controller
 
     function index()
     {
+        // $sellData = $this->model->cropDetails();
+        // $data['Req'] = $sellData;
+
+        $myOffers = $this->model->myOffers(Session::get('id'));
+        $data['myOffers'] = $myOffers;
+        //print_r($data);
         $this->setActivePage('index');
-        $this->view->rendor('vendor/sellingReq');
+        $this->view->rendor('vendor/sellingReq',$data);
     }
 
     public function register($arg = false)
@@ -163,4 +169,17 @@ class Vendor extends Controller
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
+    //AllOffers
+    public function AllOffers() {
+        $myOffers = $this->model->myOffers(Session::get('id'));
+        $data['myOffers'] = $myOffers;
+        // print_r($data['cropReqs']);
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxViewOffer', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
 }

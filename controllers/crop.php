@@ -165,4 +165,46 @@ class Crop extends Controller
 
         $this->varients($id);
     }
+
+    //Search crops by type
+    public function ajxSearchCropType() {
+        
+        $d = $this->model->ajxSearchCropType($_POST['search']);
+        $data['cropItems'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('crop/ajxCropList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+    //Search crops by varient
+    public function ajxSearchCropVar() {
+        
+        $d = $this->model->ajxSearchCropVar($_POST['search']);
+        $data['cropItems'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('crop/ajxCropList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+    //Sort crops
+    public function ajxFilterCrop() {
+
+        $d = $this->model->ajxFilterCrop($_POST['filter'], $_POST['ascOrDsc']);
+        $data['cropItems'] = $d;
+
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('crop/ajxCropList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
 }

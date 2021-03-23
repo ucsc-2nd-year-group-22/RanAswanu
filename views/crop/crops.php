@@ -12,29 +12,26 @@
         <div class="pane1">
 
             <form class="search-bar">
-                <label>Search crop requests by : </label>
-                <select placeholder="Search ...">
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
+                <label>Search crops by : </label>
+                <select id="searchField">
+                    <option value="crop_type">Crop Name</option>
+                    <option value="crop_varient">Crop Varient</option>
                 </select>
-                <input type="text" placeholder="Search ...">
-                <button type="submit"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="Search ...">
+                <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
             </form>
 
         </div>
         <div class="pane2">
             <form class="normal-select">
-                <label>Sort crop requests by : </label>
-                <select placeholder="other">
-                    <option>Date</option>
-                    <option>Demand status</option>
-                    <option>Farmer name</option>
-                    <option>Crop</option>
-                    <option>111</option>
+                <label>Sort crops by : </label>
+                <select id="sortby">
+                    <option val="harvest_per_land" selected>Harvest per land</option>
+                    <option val="harvest_period">Harvest period</option>
+                    <option val="crop_type">Crop Name</option>
                 </select>
-                <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-                <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+                <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
+                <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
             </form>
         </div>
 
@@ -49,7 +46,7 @@
     </div>
 </div>
 
-<div class="main-table">
+<div id="box" class="main-table">
     <table>
         <tr>
             <th>#</th>
@@ -82,3 +79,109 @@
         <?php endforeach; ?>
     </table>
 </div>
+
+<script>
+    $(function() {
+        var selectedSearchCategory = $('#searchField').val();
+
+        $('#searchField').change(function() {
+            selectedSearchCategory = $(this).val();
+            $('#test').html(selectedCategory);
+        });
+
+        $('#searchBtn').click(function(event) {
+            event.preventDefault();
+            var input = $('#searchInput').val();
+            if (input != '') {
+                $('#searchInput').val('');
+                location.reload();
+            }
+
+        });
+
+        $("#searchInput").keyup(function() {
+            var inputVal = $(this).val();
+            if (inputVal != '') {
+                $('#box').html('');
+                switch (selectedSearchCategory) {
+                    case 'crop_type': {
+                        $.ajax({
+                            url: "ajxSearchCropType",
+                            method: "post",
+                            data: {
+                                search: inputVal
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                    case 'crop_varient': {
+                        $.ajax({
+                            url: "ajxSearchCropVar",
+                            method: "post",
+                            data: {
+                                search: inputVal
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                }
+            } else {
+                location.reload();
+            }
+        });
+
+        var selectedSort = 'harvest_per_land';
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');
+        });
+        // asc
+        $('#ascSort').click(function() {
+            // alert(selectedSort);
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxFilterCrop",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'ASC'
+                },
+                dataType: "text",
+                success: function(data) {
+
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+        // desc
+        $('#descSort').click(function() {
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxFilterCrop",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'DESC'
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+    });
+</script>

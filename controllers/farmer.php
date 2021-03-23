@@ -172,10 +172,18 @@ class Farmer extends Controller {
 
     //Display sellyourcrops
     public function sellCropMng() {
-        // $sellcropsData = $this->model->sellcropsList();
-        $data['sellurcropsData'] = $sellcropsData;
         $this->setActivePage('sellCropMng');
-        $this->view->rendor('farmer/sellCropMng', $data);
+        $this->view->rendor('farmer/sellCropMng');
+    }
+
+    public function listSellCrops() {
+        $data['sellCrops'] = $this->model->listSellCrops($_POST['farmer_id']);
+        if (!empty($data)) {
+            $this->view->rendor('farmer/ajxSellCropMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
     }
 
     public function insertSellCrop() {
@@ -402,7 +410,7 @@ class Farmer extends Controller {
 
 
     public function ajxFilterDmg() {
- 
+
         $data['dmgClaims'] = $this->model->ajxFilterDmg($_POST['filter']);
 
         if (!empty($data['dmgClaims'])) {

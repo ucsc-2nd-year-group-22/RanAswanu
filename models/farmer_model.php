@@ -492,6 +492,26 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function listSellCrops($farmer_id) {
+
+        $sql = "SELECT 
+        selling_request.*,
+        harvest.*,
+        crop.crop_type, crop.crop_varient,
+        gramasewa_division.gs_name,
+        district.ds_name AS district_name 
+        FROM selling_request
+        JOIN harvest ON harvest.harvest_id = selling_request.harvest_id
+        JOIN crop ON crop.crop_id = harvest.crop_id
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+        JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+        JOIN district ON district.district_id = divisional_secratariast.district_id
+        WHERE selling_request.farmer_user_id = $farmer_id AND harvest.is_accept = 1";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     ##################################### END OF FARMER MODEL ##############################################################################
 }

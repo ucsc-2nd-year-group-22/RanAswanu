@@ -47,7 +47,7 @@
             <label for="login">Passowrd</label>
             </div>
             <div class="col-75">
-            <a class="mini-button" href="<?php echo URL . 'auth/getNewPwLogged/' . $id ;?>">Update password</a>
+            <a class="mini-button" href="<?php echo URL.'auth/getNewPwLogged/'.$user_id ;?>">Update password</a>
             </div>
         </div>
         <?php endif; ?>

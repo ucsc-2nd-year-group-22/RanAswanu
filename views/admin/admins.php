@@ -29,7 +29,7 @@
                 <select id="sortby">
                     <option val="first_name" selected>First name</option>
                     <option val="last_name">Last name</option>
-                    <option val="regdate">Registered Data</option>
+                    <option val="user_registered_time">Registered Date</option>
                 </select>
                 <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
                 <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>

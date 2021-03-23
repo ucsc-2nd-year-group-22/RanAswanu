@@ -26,11 +26,23 @@ class Vendor_Model extends Model
     {      
 
        
-        $st=$this->db->prepare("SELECT selling_request.* , user.user_id, crop.crop_type ,divisional_secratariast.ds_name FROM harvest 
-        JOIN crop ON crop.crop_id=harvest.harvest_id 
-        JOIN divisional_secratariast ON divisional_secratariast.ds_id=harvest.gs_id 
-        JOIN selling_request ON selling_request.harvest_id=harvest.harvest_id JOIN user ON user.user_id=harvest.farmer_user_id
-        ");
+        // $st=$this->db->prepare("SELECT selling_request.* , user.user_id, crop.crop_type ,divisional_secratariast.ds_name FROM harvest 
+        // JOIN crop ON crop.crop_id=harvest.harvest_id 
+        // JOIN divisional_secratariast ON divisional_secratariast.ds_id=harvest.gs_id 
+        // JOIN selling_request ON selling_request.harvest_id=harvest.harvest_id JOIN user ON user.user_id=harvest.farmer_user_id
+        // ");
+
+        $st=$this->db->prepare("SELECT selling_request.*,crop.*,user.user_id,user.first_name,user.last_name, district.ds_name 
+        FROM `selling_request` 
+        JOIN harvest ON harvest.harvest_id = selling_request.harvest_id 
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id 
+        JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id 
+        JOIN district ON district.district_id = divisional_secratariast.district_id
+        JOIN user ON user.user_id=harvest.farmer_user_id 
+        JOIN crop ON crop.crop_id=harvest.harvest_id");
+        // JOIN user_tel ON user_tel.user_id=user.user_id
+
+
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);
         

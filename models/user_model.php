@@ -145,7 +145,7 @@ class User_Model extends Model
     //make user logged into the system
     public function loginto()
     {
-        $st = $this->db->prepare("SELECT user_id, role, isadmin, first_name FROM user WHERE user_name = :user_name AND password = MD5(:password) ");
+        $st = $this->db->prepare("SELECT * FROM user WHERE user_name = :user_name AND password = MD5(:password) ");
         $st->execute(array(
             ':user_name' => $_POST['user_name'],
             ':password' => $_POST['password']
@@ -159,6 +159,7 @@ class User_Model extends Model
             // login
             Session::init();
             Session::set('user_id', $data['user_id']);
+            Session::set('gs_id', $data['gs_id']);
             Session::set('first_name', $data['first_name']);
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
@@ -184,7 +185,7 @@ class User_Model extends Model
                     break;
 
                 case 'farmer':
-                    header('location: ' . URL . 'farmer/sellyourcropsif');
+                    header('location: ' . URL . 'farmer/sellCropMng');
                     break;
 
                 case 'vendor':

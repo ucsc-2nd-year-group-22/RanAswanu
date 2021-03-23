@@ -1,11 +1,38 @@
-<?php 
+<?php
 
 class Farmer_Model extends Model {
-    
+
     public function __construct() {
         parent::__construct();
     }
 
+    public function ajxGetCropTypes($district) {
+        $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON crop.crop_id = best_area.crop_id WHERE best_area.district_id = $district");
+        $st->execute();
+        // $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON 
+        // crop.crop_id = best_area.crop_id WHERE best_area.district_id = (SELECT district.district_id FROM district WHERE district.ds_name = $dist)");
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajxGetCropVart($vart) {
+        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
+        $st->execute(['vart' => $vart]);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajxGetHarvPerLand($vart) {
+        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
+        $st->execute(['vart' => $vart]);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getProvinces() {
+        $st = $this->db->prepare("SELECT province_id, province_name FROM province");
+        $st->execute();
+        return $st->fetchAll();
+    }
+
+    /// !!!!!!!!!!!!!!! Handled by OFficer !!!!!!!!!!!!!!!!!!!!!!1
     public function farmerList() {
         $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id");
 
@@ -14,9 +41,12 @@ class Farmer_Model extends Model {
             ':role' => 'farmer'
         ));
         // print_r($st->fetchAll());
-        
+
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    ////////////// AJAX CALLS /////////////////////////////////////////////////////////////
 
     public function ajxSearchFarmerName($farmerName) {
         $escaped_name = addcslashes($farmerName, '%');
@@ -26,27 +56,26 @@ class Farmer_Model extends Model {
         $st->execute(array(
             ':first_name' => "$farmerName%"
         ));
-        
+
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function ajxFilterFarmer($filter, $ascOrDsc) {
-    //    echo $ascOrDsc;
+        //    echo $ascOrDsc;
 
-        if($ascOrDsc == 'ASC') {
+        if ($ascOrDsc == 'ASC') {
             $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id ORDER BY $filter ASC";
         } else if ($ascOrDsc == 'DESC') {
             $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id ORDER BY $filter DESC";
         }
 
-        
+
         $st = $this->db->prepare($sql);
         $st->execute();
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    
     public function ajxSearchFarmerNic($nic) {
         $escaped_name = addcslashes($nic, '%');
         $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.nic LIKE :nic  GROUP BY user.user_id";
@@ -55,235 +84,131 @@ class Farmer_Model extends Model {
         $st->execute(array(
             ':nic' => "$nic%"
         ));
-        
+
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    //Display damageclaim
-    public function damageclaimList(){
-        $st = $this->db->prepare("SELECT * FROM dmgclaim  ");
-        $st->execute(array(
-            ':dmgid' => 'dmgid'
-        ));
-        // print_r($st->fetchAll());
-        return $st->fetchAll();
 
+    public function ajxListCropReq($farmer_id) {
+        $st = $this->db->prepare("
+        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+        JOIN crop On harvest.crop_id = crop.crop_id 
+        JOIN collecting_center ON harvest.center_id = collecting_center.center_id
+        JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
+        JOIN month as start_month ON start_month.month_id = harvest.starting_month_id
+        JOIN month as harvest_month ON harvest_month.month_id = harvest.harvesting_month_id
+        WHERE harvest.farmer_user_id = :farmer
+        ");
+        $st->execute(array(
+            ':farmer' => $farmer_id
+        ));
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //edit damageclaim
-    public function dmgclaimList($dmgid){
-        $st = $this->db->prepare("SELECT * FROM dmgclaim WHERE dmgid=:dmgid");
-        $st->execute(array(
-            ':dmgid' => $dmgid,
-        ));
-        // print_r($st->fetchAll());
-        return $st->fetch();
-
-    }
-
-    //Display croprequest
-    public function cropReqList(){
-        $st = $this->db->prepare("SELECT * FROM croprequest  ");
-        $st->execute(array(
-            ':cropreqid' => 'cropreqid'
-        ));
-        // print_r($st->fetchAll());
-        return $st->fetchAll();
-
-    }
-    
-    //Edit croprequest
-    public function cropRequestList($cropreqid){
-        $st = $this->db->prepare("SELECT * FROM croprequest WHERE cropreqid =:cropreqid ");
-        $st->execute(array(
-            ':cropreqid' => $cropreqid,
-        ));
-        // print_r($st->fetchAll());
-        return $st->fetch();
-
-    }
-
-    public function sellcropsList(){
-        $st = $this->db->prepare("SELECT * FROM sellcrops  ");
-        $st->execute(array(
-            ':cropsid' => 'cropsid'
-        ));
-        // print_r($st->fetchAll());
-        return $st->fetchAll();
-
-    }
-    
-    //edit sellyourcrops
-    public function sellurcropsList($aId){
-        $st = $this->db->prepare("SELECT * FROM sellcrops WHERE aId=:aId");
-        $st->execute(array(
-            ':aId' => $aId,
-        ));
-        // print_r($st->fetchAll());
-        return $st->fetch();
-
+    public function ajxGetCenters() {
+        $sql = "SELECT * FROM `collecting_center`";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
+    public function insertCropReq($data) {
+        $gs_id = Session::get('gs_id');
+        // Get officer id
+        $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        $data['officer_user_id'] = $st->fetchColumn();
 
-    public function creates($data)
-    {
+        $sql2 = "INSERT INTO `harvest`(`starting_month_id`, `harvesting_month_id`, `expected_harvest`, `is_accept`, `gs_id`, `crop_id`, `center_id`, `farmer_user_id`, `officer_user_id`) 
+        VALUES (:starting_month, :harvesting_month, :expected_harvest, :is_accept, :gs_id, :crop_id, :center_id, :farmer_user_id, :officer_user_id)";
+
         // print_r($data);
-    $st = $this->db->prepare("INSERT INTO dmgclaim ( `dmgdate` , `province` , `district` , `gramasewa` , `address` , `estdmgarea` , `waydmg` , `details`) VALUES ( :dmgdate , :province , :district , :gramasewa , :address , :estdmgarea , :waydmg , :details)");
-        $st-> execute(array(
-            
-            ':dmgdate' => $data['dmgdate'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':gramasewa' => $data['gramasewa'],
-            ':address' => $data['address'],
-            ':estdmgarea' => $data['estdmgarea'],
-            ':waydmg' => $data['waydmg'],
-            ':details' => $data['details']
-
-
+        $st2 = $this->db->prepare($sql2);
+        $st2->execute(array(
+            ':starting_month' => $data['starting_month'],
+            ':harvesting_month' => $data['harvesting_month'],
+            ':expected_harvest' => $data['expected_harvest'],
+            ':is_accept' => $data['is_accept'],
+            ':gs_id' => $data['gs_id'],
+            ':crop_id' => $data['crop_id'],
+            ':center_id' => $data['center_id'],
+            ':farmer_user_id' => $data['farmer_user_id'],
+            ':officer_user_id' => $data['officer_user_id']
         ));
+        // echo '<hr>';
+        // print_r($st2);
     }
 
-  
+    public function ajxSortCropReqs($filter, $ascOrDsc) {
+        $farmer_id = Session::get('user_id');
+        if ($ascOrDsc == 'ASC') {
+            $sql = "        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+            JOIN crop On harvest.crop_id = crop.crop_id 
+            JOIN collecting_center ON harvest.center_id = collecting_center.center_id
+            JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
+            JOIN month as start_month ON start_month.month_id = harvest.starting_month_id
+            JOIN month as harvest_month ON harvest_month.month_id = harvest.harvesting_month_id
+            WHERE harvest.farmer_user_id = $farmer_id ORDER BY harvest.$filter  ASC";
+        } else if ($ascOrDsc == 'DESC') {
+            $sql = "        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+            JOIN crop On harvest.crop_id = crop.crop_id 
+            JOIN collecting_center ON harvest.center_id = collecting_center.center_id
+            JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
+            JOIN month as start_month ON start_month.month_id = harvest.starting_month_id
+            JOIN month as harvest_month ON harvest_month.month_id = harvest.harvesting_month_id
+            WHERE harvest.farmer_user_id = $farmer_id ORDER BY harvest.$filter  DESC";
+        }
 
-    public function sellurcrops($data)
-    {
-    print_r($data);
-    $st=$this->db->prepare("INSERT INTO sellcrops ( `province` , `district` , `state` , `selectCrop`  , `cropVariety` , `exprice` , `weight` , `display`, `cropsid` ) VALUES (  :province , :district  ,:state , :selectCrop , :cropVariety , :exprice , :weight , :display, :cropsid)");
-        $st-> execute(array(
-    
-            ':province' =>$data['province'],
-            ':district' => $data['district'],
-            ':state' =>$data['state'],
-            ':selectCrop' =>$data['selectCrop'],
-            ':cropVariety' => $data['cropVariety'],
-            ':exprice' => $data ['exprice'],
-            ':weight' => $data['weight'],
-            ':display'=> $data['display'],
-            ':cropsid' => 111
 
-        ));
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxFilterCropReq($filter) {
+        $farmer_id = Session::get('user_id');
+        if ($filter == 'accepted') {
+            $sql = "SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+            JOIN crop On harvest.crop_id = crop.crop_id 
+            JOIN collecting_center ON harvest.center_id = collecting_center.center_id
+            JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
+            JOIN month as start_month ON start_month.month_id = harvest.starting_month_id
+            JOIN month as harvest_month ON harvest_month.month_id = harvest.harvesting_month_id WHERE is_accept = 1 AND farmer_user_id = $farmer_id";
+        } else if ($filter == 'rejected') {
+            $sql = "SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+            JOIN crop On harvest.crop_id = crop.crop_id 
+            JOIN collecting_center ON harvest.center_id = collecting_center.center_id
+            JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
+            JOIN month as start_month ON start_month.month_id = harvest.starting_month_id
+            JOIN month as harvest_month ON harvest_month.month_id = harvest.harvesting_month_id WHERE is_accept = 0 AND farmer_user_id = $farmer_id";
+        }
 
-    public function cropRequest($data)
-    {
-        $st=$this->db->prepare("INSERT INTO croprequest ( `province` , `district` , `gramasewa` , `address` , `areasize` , `exptdate` , `croptype` , `selectCrop` , `cropVariety` , `otherdetails`) VALUES (  :province , :district , :gramasewa , :address , :areasize , :exptdate , :croptype , :selectCrop , :cropVariety , :otherdetails)");
-        $st->execute(array(           
-            
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':gramasewa' => $data['gramasewa'],
-            ':address' => $data['address'],
-            ':areasize' => $data['areasize'],
-            ':exptdate' => $data['exptdate'],
-            ':croptype' => $data['croptype'],
-            ':selectCrop' => $data['selectCrop'],
-            ':cropVariety' => $data['cropVariety'],
-            ':otherdetails' => $data['otherdetails']
-       //     ':conditions' => $data['conditions']
 
-        ));
-    }
+        $st = $this->db->prepare($sql);
+        $st->execute();
 
-    //deleting dmgclaim data
-    public function deletedmg($dmgid){
-        $st = $this->db->prepare("DELETE FROM dmgclaim WHERE dmgid = :dmgid ");
-        $st->execute(array(
-            ':dmgid' => $dmgid
-        ));
-       
-    }
-    
-    //deleting sellcrops data
-    public function deletesellcrops($cropsid){
-        $st = $this->db->prepare("DELETE FROM sellcrops WHERE aId = :cropsid ");
-        $st->execute(array(
-            ':cropsid' => $cropsid
-        ));
-       
-    }
-
-    //deleting cropreq data
-    public function deletecropreq($cropreqid){
-        $st = $this->db->prepare("DELETE FROM croprequest WHERE cropreqid = :cropreqid ");
-        $st->execute(array(
-            ':cropreqid' => $cropreqid
-        ));
-
-    }
-
-    
-
-    //update cropreq
-    public function updatecropReq($data){
-        $st = $this->db->prepare("UPDATE croprequest SET `province`=:province, `district` = :district,`gramasewa`=:gramasewa, `address` = :address, `areasize` = :areasize, `exptdate` = :exptdate, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `otherdetails`=:otherdetails WHERE `cropreqid` = :cropreqid");
-        $st->execute(array(
-           // ':id' => $data['id'],
-           // ':cropreqid' =>$data['cropreqid'],
-           ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':gramasewa' => $data['gramasewa'],
-            ':address' => $data['address'],
-            ':areasize' => $data['areasize'],
-            ':exptdate' => $data['exptdate'],
-            ':selectCrop' => $data['selectCrop'],
-            ':cropVariety' => $data['cropVariety'],
-            ':otherdetails' => $data['otherdetails'],
-            ':cropreqid' =>$data['cropreqid']
-
-        ));
-    }
-
-    //update sellcrops
-    public function updatesellyourcrops($data){
-       // $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district ,`state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `display` = :display, `otherdetails`=:otherdetails WHERE `cropsid` = :cropsid");
-        $st = $this->db->prepare("UPDATE sellcrops SET `province` = :province, `district` = :district, `state` = :state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `cropsid` = :cropsid WHERE `aId` = :aId");
-        $st->execute(array(
-            ':province' =>$data['province'],
-            ':district' => $data['district'],
-            ':state' =>$data['state'],
-            ':selectCrop' =>$data['selectCrop'],
-            ':cropVariety' => $data['cropVariety'],
-            ':exprice' => $data ['exprice'],
-            ':weight' => $data['weight'],
-           // ':display'=> $data['display'],
-            ':cropsid' =>$data['cropsid'],
-            ':aId' => $data['aId']
-        ));
-        // print_r($st);
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
-    //update dmgclaim
-    public function updatedmgclaim($data){
-        // $st = $this->db->prepare("UPDATE sellcrops SET `province`=:province, `district` = :district ,`state`=:state, `selectCrop` = :selectCrop, `cropVariety` = :cropVariety, `exprice` = :exprice, `weight` = :weight, `display` = :display, `otherdetails`=:otherdetails WHERE `cropsid` = :cropsid");
-         $st = $this->db->prepare("UPDATE dmgclaim SET `dmgdate`=:dmgdate, `province`=:province, `district` = :district, `gramasewa`=:gramasewa, `address`=:address, `estdmgarea`=:estdmgarea, `waydmg`=:waydmg, `details`=:details  WHERE `dmgid` = :dmgid");
-         $st->execute(array(
-           
-            ':dmgdate' => $data['dmgdate'],
-            ':province' => $data['province'],
-            ':district' => $data['district'],
-            ':gramasewa' => $data['gramasewa'],
-            ':address' => $data['address'],
-            ':estdmgarea' => $data['estdmgarea'],
-            ':waydmg' => $data['waydmg'],
-            ':details' => $data['details'],
-            ':dmgid' =>$data['dmgid']
-            
- 
-         ));
-     }
-    
+    public function deleteCropReq($harvest_id) {
+        $st = $this->db->prepare("DELETE FROM `harvest` WHERE harvest_id = $harvest_id ");
+        $st->execute();
+
+        if ($st) {
+            header('location: ' . URL . 'farmer/cropReqMng');
+        }
+    }
+
+    public function getCropReq($harvest_id) {
+        $st = $this->db->prepare("SELECT * FROM harvest WHERE harvest_id = $harvest_id");
+        $st->execute();
+        return $st->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
+    ##################################### END OF FARMER MODEL ##############################################################################
 }
-
-
-
-   
-
-
-
-        
-    
-    

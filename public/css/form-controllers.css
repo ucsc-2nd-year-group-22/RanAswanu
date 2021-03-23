@@ -57,7 +57,7 @@ input[type=number], input[type=date], input[type=email], input[type=text], input
   color:var(--main-font-color);
 }
 
-input[type=number], input[type=text]:focus, textarea:focus, select:hover, input[type=email]:focus, input[type=password]:focus, input[type=date]:focus {
+input[type=number]:focus, input[type=text]:focus, textarea:focus, select:hover, input[type=email]:focus, input[type=password]:focus, input[type=date]:focus {
   border: 2px solid var(--main-light-green);
 }
 
@@ -113,6 +113,14 @@ label {
 .main-form .row:nth-child(odd) {
   background-color: rgb(233, 233, 233);
   transition: all .5s;
+}
+
+.main-form .ajxToolTip {
+  background-color: #beffbc;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 /* For button groups (Radio Buttons) -------------------------------------- */

@@ -14,9 +14,9 @@
             async:true,
         });
 
-        var selectedSort = 'max_offer';                    //From where ???
+        var selectedSort = 'max_offer';                    
         $('#sortby').change(function() {
-            selectedSort = $('#sortby :selected').attr('val');    //what is selected?? attr used for?? val ??
+            selectedSort = $('#sortby :selected').attr('val');   
         });
         // asc
         $('#ascSort').click(function() {
@@ -94,7 +94,9 @@
                 <select id="sortby">
                   
                     <option val="max_offer">Price</option>
+                    <option val="harvest_amount">Weight</option>
                 </select>
+                
                 <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
                 <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
             </form>

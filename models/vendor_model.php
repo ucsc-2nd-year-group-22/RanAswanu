@@ -104,6 +104,17 @@ class Vendor_Model extends Model
             JOIN crop ON crop.crop_id=harvest.crop_id ORDER BY selling_request.$filter ASC";
             }
 
+        if ($ascOrDsc == 'DESC') {
+                $det="SELECT selling_request.*,crop.*,user.user_id,user.first_name,user.last_name, district.ds_name 
+                FROM `selling_request` 
+                JOIN harvest ON harvest.harvest_id = selling_request.harvest_id 
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id 
+                JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id 
+                JOIN district ON district.district_id = divisional_secratariast.district_id
+                JOIN user ON user.user_id=harvest.farmer_user_id 
+                JOIN crop ON crop.crop_id=harvest.crop_id ORDER BY selling_request.$filter DESC";
+                }
+
             $st=$this->db->prepare($det);
             $st->execute();
            // print_r($st->fetchAll);

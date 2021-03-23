@@ -14,6 +14,27 @@
             async:true,
         });
 
+        var selectedSort = 'max_offer';                    //From where ???
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');    //what is selected?? attr used for?? val ??
+        });
+        // asc
+        $('#ascSort').click(function() {
+            // alert(selectedSort);
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxSortCrops",
+                method:"post",
+                data:{filter:selectedSort, ascOrDsc:'ASC'},
+                dataType:"text",
+                success:function(data) {
+                    
+                    $('#box').html(data);
+                },
+                async:true
+            });
+
        /*
         var amount = 'expected_harvest';
         $('#sorts').change(function() {
@@ -24,12 +45,47 @@
         })*/
 
     });
+});
 
 
 </Script>
+
+<h1>Crop Advertisements</h1>
+
+<div class="user-tabs">
+    <ul>
+
+    <li><a id="tab1" href="#" class="active-tab">All</a></li>
+
+    </ul>
+
+
+</div> 
+
+<div class="tabContainer" id="tab1C">
+    <div class="panel-container">
+        
+
+        <div class="pane2">
+            <form class="normal-select">
+                <label>Sort crop requests by : </label>
+                <select id="sortby">
+                  
+                    <option val="max_offer">Price</option>
+                </select>
+                <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
+                <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
+            </form>
+        </div>
+
+       
+    </div>
 
 
 
     <div id="box" class="main-table">
         
     </div>
+    
+</div>
+    

@@ -33,7 +33,7 @@
                     <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . 'farmer/deleteDmgClaim/' . $dmgClaim['damage_id']; ?>">Cancel</a>
                 </td>
             <?php else : ?>
-                <td>N/A</td>
+                <td><i class="fas fa-ban"></i></td>
             <?php endif; ?>
         </tr>
     <?php endforeach; ?>

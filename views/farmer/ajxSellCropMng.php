@@ -22,14 +22,17 @@
             <td><?= $sellCrop['crop_type']; ?> <?= $sellCrop['crop_varient']; ?> </td>
             <td><?= $sellCrop['min_offer']; ?> </td>
             <td>
-                <?php if($sellCrop['max_offer'] == 0): ?>
-                <p style="color:rgb(200, 78, 78);font-weight:bold;">None</p>
-                <?php else: ?>
-                <?= $sellCrop['max_offer']; ?>
+                <?php if ($sellCrop['max_offer'] == 0) : ?>
+                    <p style="color:rgb(200, 78, 78);font-weight:bold;">None</p>
+                <?php else : ?>
+                    <?= $sellCrop['max_offer']; ?>
                 <?php endif; ?>
             </td>
             <td><?= $sellCrop['harvest_amount']; ?> </td>
             <td>
+            <?php if ($sellCrop['max_offer'] > 0) : ?>
+            <a class="mini-button normal btn" onclick="return confirm('Are you sure you want to delete this sellcrops data?');" href="<?php echo URL . '/farmer/deletesellcrops/' . $sellCrop['aId']; ?>">Accept</a>
+            <?php endif; ?>
                 <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this sellcrops data?');" href="<?php echo URL . '/farmer/deletesellcrops/' . $sellCrop['aId']; ?>">Cancel</a>
             </td>
         </tr>

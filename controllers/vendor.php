@@ -89,4 +89,32 @@ class Vendor extends Controller{
 
         }
     }
+
+    //Search Crops by name
+    public function ajxSearchCrops() {
+        
+        $d = $this->model->ajxSearchCrops($_POST['search']);
+        $data['crops'] = $d;
+    
+        if(!empty($d)) {
+            $this->view->rendor('vendor/ajxCrop', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+     //Search Crops by district_name
+     public function ajxSearchCrops() {
+        
+        $d = $this->model->ajxSearchCrops($_POST['search']);
+        $data['crops'] = $d;
+    
+        if(!empty($d)) {
+            $this->view->rendor('vendor/ajxCrop', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
 }

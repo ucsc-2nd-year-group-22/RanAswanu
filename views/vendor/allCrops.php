@@ -20,7 +20,7 @@
         });
         // asc
         $('#ascSort').click(function() {
-            // alert(selectedSort);
+            
             $('#descSort').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
@@ -34,6 +34,28 @@
                 },
                 async:true
             });
+        });
+
+        //descending 
+        $('#descSort').click(function() {
+            //alert(selectedSort)
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url:"ajxSortCrops",
+                method:"post",
+                data:{filter:selectedSort, ascOrDsc:'DESC'},
+                dataType:"text",
+                success:function(data) {
+                    
+                    $('#box').html(data);
+                },
+                async:true
+            });
+        });
+
+
+            
 
        /*
         var amount = 'expected_harvest';
@@ -44,7 +66,7 @@
 
         })*/
 
-    });
+    
 });
 
 
@@ -66,7 +88,7 @@
     <div class="panel-container">
         
 
-        <div class="pane2">
+        <div class="pane1">
             <form class="normal-select">
                 <label>Sort crop requests by : </label>
                 <select id="sortby">

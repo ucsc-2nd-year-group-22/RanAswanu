@@ -54,6 +54,65 @@
             });
         });
 
+         //search
+        var selectedSearchCategory = $('#searchField').val();
+
+        $('#searchField').change(function() {
+            selectedSearchCategory = $(this).val();
+            // $('#test').html(selectedCategory);
+        });
+
+        $('#searchBtn').click(function(event) {
+            event.preventDefault();
+            var input = $('#searchInput').val();
+            if (input != '') {
+            location.reload();
+                $('#searchInput').val('');
+            }
+
+        });
+
+        $("#searchInput").keyup(function() {
+            var inputVal = $(this).val();
+            if (inputVal != '') {
+                $('#box').html('');
+                switch (selectedSearchCategory) {
+                    case 'crop_type': {
+                        $.ajax({
+                            url: "ajxSearchCrops",
+                            method: "post",
+                            data: {
+                                search: inputVal
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                    case 'ds_name': {
+                        $.ajax({
+                            url: "ajxSearchCropsdistrict",
+                            method: "post",
+                            data: {
+                                search: inputVal
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                }
+            } else {
+                location.reload();
+            }
+        });
+
 
             
 
@@ -87,8 +146,23 @@
 <div class="tabContainer" id="tab1C">
     <div class="panel-container">
         
+            <div class="pane1">
 
-        <div class="pane1">
+                <form class="search-bar">
+                    <label>Search Crops by : </label>
+                    <select id="searchField">
+                        <option value="crop_type">Crops Name</option>
+                        <option value="ds_name">District</option>
+
+                    </select>
+                    <input type="text" id="searchInput" placeholder="Search ...">
+                    <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
+                </form>
+
+            </div>
+        
+
+        <div class="pane2">
             <form class="normal-select">
                 <label>Sort crop requests by : </label>
                 <select id="sortby">

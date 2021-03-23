@@ -39,7 +39,7 @@ class Vendor_Model extends Model
         JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id 
         JOIN district ON district.district_id = divisional_secratariast.district_id
         JOIN user ON user.user_id=harvest.farmer_user_id 
-        JOIN crop ON crop.crop_id=harvest.harvest_id");
+        JOIN crop ON crop.crop_id=harvest.crop_id");
         // JOIN user_tel ON user_tel.user_id=user.user_id
 
 

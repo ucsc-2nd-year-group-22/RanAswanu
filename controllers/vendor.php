@@ -14,7 +14,7 @@ class Vendor extends Controller
         // $sellData = $this->model->cropDetails();
         // $data['Req'] = $sellData;
 
-        $myOffers = $this->model->myOffers(Session::get('id'));
+        $myOffers = $this->model->myOffers(Session::get('user_id'));
         $data['myOffers'] = $myOffers;
         //print_r($data);
         $this->setActivePage('index');
@@ -159,10 +159,10 @@ class Vendor extends Controller
     }
 
     public function AllCrops() {
-        $d = $this->model->AllCrops();
-        $data['AllCrops'] = $d;
-        // print_r($data['cropReqs']);
-        if (!empty($d)) {
+
+        $data['AllCrops'] = $this->model->AllCrops();
+        // print_r($data['AllCrops']);
+        if (!empty($data['AllCrops'])) {
             $this->view->rendor('vendor/ajxAllCrops', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";

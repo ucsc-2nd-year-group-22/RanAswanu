@@ -142,6 +142,27 @@ class Vendor_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
+    public function ajxSearchCropsdistrict($crop_dis){
+        $st="SELECT selling_request.*,crop.*,user.user_id,user.first_name,user.last_name, district.ds_name 
+        FROM `selling_request` 
+        JOIN harvest ON harvest.harvest_id = selling_request.harvest_id 
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id 
+        JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id 
+        JOIN district ON district.district_id = divisional_secratariast.district_id
+        JOIN user ON user.user_id=harvest.farmer_user_id 
+        JOIN crop ON crop.crop_id=harvest.crop_id
+        WHERE district.ds_name LIKE :district";
+
+        $st=$this->db->prepare($st);
+        $st->execute(array(
+            'district'=>"$crop_dis%"
+        ));
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+      
         
 
 

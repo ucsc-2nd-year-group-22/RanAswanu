@@ -67,7 +67,7 @@ print_r($dataForSellCrop);
     <div class="row">
       <div class="col-25"></div>
       <div class="col-75">
-        <input type="submit" value="Submit" />
+        <input type="submit" onclick="return confirm('Once you make a selling request for your crops you can not edit it. You may delete it later if something is wrong.');" value="Submit" />
       </div>
     </div>
   </form>

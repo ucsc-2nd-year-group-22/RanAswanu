@@ -425,7 +425,7 @@ class Farmer_Model extends Model {
             ':damage_id' => $data['damage_id'],
         ));
 
-        if($res) {
+        if ($res) {
             header('location: ' . URL . 'farmer/damageMng');
         }
 
@@ -511,6 +511,41 @@ class Farmer_Model extends Model {
         $res = $st->execute();
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function dataForSellCrop($harvest_id) {
+        $sql = "SELECT
+        harvest.*,
+        crop.crop_type, crop.crop_varient,
+        gramasewa_division.gs_name, 
+        district.ds_name AS district_name
+        FROM harvest 
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+        JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+        JOIN district ON district.district_id = divisional_secratariast.ds_id
+        JOIN crop ON crop.crop_id = harvest.crop_id
+        WHERE harvest_id = $harvest_id AND harvest.is_accept = 1";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function insertSellCrop($data) {
+        $sql = "INSERT INTO `selling_request`(`date`, `valid_time_period`, `harvest_amount`, `max_offer`, `min_offer`, `farmer_user_id`, `harvest_id`) VALUES (:date, :valid_time_period, :harvest_amount, :max_offer, :min_offer, :farmer_user_id, :harvest_id)";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute(array(
+            ':date' => $data['date'],
+            ':valid_time_period' => $data['valid_time_period'],
+            ':harvest_amount' => $data['harvest_amount'],
+            ':max_offer' => $data['max_offer'],
+            ':min_offer' => $data['min_offer'],
+            ':farmer_user_id' => Session::get('user_id'),
+            ':harvest_id' => $data['harvest_id'],
+        ));
+        if($res) {
+            header('location: ' . URL . 'farmer/sellCropMng');
+        }
     }
 
     ##################################### END OF FARMER MODEL ##############################################################################

@@ -56,7 +56,7 @@
 <h1>Damage claim form</h1>
 <?php $locDataForDmg = $locDataForDmg[0];
 
-echo $locDataForDmg['province_name']; ?>
+?>
 
 <!-- FORM -->
 <div class="main-form">

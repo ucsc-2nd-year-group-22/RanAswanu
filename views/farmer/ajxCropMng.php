@@ -39,7 +39,7 @@
             <?php else: ?>
                <td>
                    <a class="mini-button warning btn" onclick="return confirm('Are you sure you want to claim a damage?');" href="<?php echo URL . 'farmer/newDmgClaimForm/' . $cropReq['harvest_id']; ?>">Claim Damage</a>
-                   <a class="mini-button normal btn" onclick="return confirm('Are you sure you want to sell the harvest?');" href="<?php echo URL . 'farmer/newDmgClaimForm/' . $cropReq['harvest_id']; ?>">Sell Harvest</a>
+                   <a class="mini-button normal btn" onclick="return confirm('Are you sure you want to sell the harvest?');" href="<?php echo URL . 'farmer/newSellCropForm/' . $cropReq['harvest_id']; ?>">Sell Harvest</a>
                 </td>
             <?php endif;?>
         </tr>

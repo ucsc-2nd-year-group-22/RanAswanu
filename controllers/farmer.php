@@ -77,6 +77,7 @@ class Farmer extends Controller {
     }
 
     public function newDmgClaimForm($harvest_id) {
+        $this->setActivePage('damageMng');
         $provinces = $this->model->getProvinces();
 
         $data = [
@@ -106,6 +107,7 @@ class Farmer extends Controller {
     }
 
     public function editDmgClaimsForm($dmg_id) {
+        $this->setActivePage('damageMng');
         $provinces = $this->model->getProvinces();
 
         $pageData = [
@@ -187,21 +189,25 @@ class Farmer extends Controller {
     }
 
     public function insertSellCrop() {
-        $data['province'] = $_POST['province'];
-        $data['district'] = $_POST['district'];
-        $data['state'] = $_POST['state'];
-        $data['selectCrop'] = $_POST['selectCrop'];
-        $data['cropVariety'] = $_POST['cropVariety'];
-        $data['exprice'] = $_POST['exprice'];
-        $data['weight'] = $_POST['weight'];
-        $data['display'] = $_POST['display'];
-        // print_r($data);
-        $this->model->sellurcrops($data);
-        header('location: ' . URL . 'farmer/sellyourcropsif');
+        $data['date'] = $_POST['date'];
+        $data['valid_time_period'] = $_POST['valid_time_period'];
+        $data['harvest_amount'] = $_POST['harvest_amount'];
+        $data['max_offer'] = 0;
+        $data['min_offer'] = $_POST['min_offer'];
+        $data['harvest_id'] = $_POST['harvest_id'];
+        
+        print_r($data);
+        $this->model->insertSellCrop($data);
+        // header('location: ' . URL . 'farmer/sellyourcropsif');
     }
 
-    public function sellCropsForm() {
-        $this->view->rendor('farmer/sellyourcrops');
+    public function newSellCropForm($harvest_id) {
+        $this->setActivePage('sellCropMng');
+        $data = [
+            'harvest_id' => $harvest_id,
+            'dataForSellCrop' => $this->model->dataForSellCrop($harvest_id),
+        ];
+        $this->view->rendor('farmer/newSellCropForm', $data);
     }
 
     // Vendor Offer ============================================================

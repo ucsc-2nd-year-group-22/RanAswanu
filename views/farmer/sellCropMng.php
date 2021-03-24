@@ -121,7 +121,7 @@
 </script>
 
 <h1>Sell Your Crops </h1>
-
+<?php /*
 <div class="user-tabs">
     <!--copied from vender offers-->
     <ul>
@@ -130,7 +130,7 @@
         <li><a id="tab4" href="<?php URL; ?>../farmer/sellyourcrops"><i class="fas fa-user-plus"></i> New </a></li>
         <!--    <?php endif ?> -->
     </ul>
-</div>
+</div> */ ?>
 
 <div class="panel-container">
     <div class="pane1">

@@ -1,3 +1,5 @@
+<?php print_r($AllCrops); ?>
+
 <table>
             <tr>
                 <th>#</th>
@@ -20,7 +22,11 @@
                 <td> <?=$dt['min_offer'];?></td>
                 <td> <?=$dt['ds_name'];?></td>
                 <td>
-                    <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['selling_req_id']?>" class="mini-button normal">Offer</a> 
+                <?php if($dt['offer_sent'] == 1): ?>
+                    <a href="<?php echo URL. 'vendor/placeaOffer/'. $dt['selling_req_id']?>" class="mini-button normal">Offer</a>
+                <?php else: ?>
+                    Offer already sent
+                <?php endif; ?>
                 </td>
             
                 <td style="text-align:left;">

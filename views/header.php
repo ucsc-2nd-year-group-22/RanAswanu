@@ -78,6 +78,7 @@
                     <!-- Vendor configurations for the navigation bar =============================================================== -->
                     <?php elseif(Session::get('role') == 'vendor'): ?>
                         <li><a href="<?php echo URL; ?>vendor/index" class="<?php View::getActivePage('index'); ?>">Buy Crops</a></li>
+                        <li><a href="<?php echo URL; ?>vendor/MyOffers" class="<?php View::getActivePage('MyOffers'); ?>">My Offers</a></li>
 
                         <!-- Farmer configurations for the navigation bar =============================================================== -->
                     <?php elseif ((Session::get('role') == 'farmer')): ?>

@@ -156,7 +156,7 @@ class Vendor_Model extends Model
 
     public function AllCrops() {
         $st = $this->db->prepare("
-        SELECT crop.crop_type, selling_request.min_offer, selling_request.farmer_user_id, selling_request.harvest_amount, selling_request.selling_req_id, divisional_secratariast.ds_name FROM selling_request 
+        SELECT crop.crop_type, selling_request.*, divisional_secratariast.ds_name FROM selling_request 
 JOIN harvest ON selling_request.harvest_id=harvest.harvest_id
 JOIN crop ON harvest.crop_id=crop.crop_id
 JOIN gramasewa_division ON harvest.gs_id=gramasewa_division.gs_id

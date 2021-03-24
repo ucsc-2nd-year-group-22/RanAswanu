@@ -13,12 +13,20 @@ class Vendor extends Controller
     {
         // $sellData = $this->model->cropDetails();
         // $data['Req'] = $sellData;
-
-        $myOffers = $this->model->myOffers(Session::get('user_id'));
-        $data['myOffers'] = $myOffers;
+        // $myOffers = $this->model->myOffers(Session::get('user_id'));
+        // $data['myOffers'] = $myOffers;
+        
         //print_r($data);
         $this->setActivePage('index');
-        $this->view->rendor('vendor/sellingReq',$data);
+        $this->view->rendor('vendor/sellingReq');
+    }
+
+    function MyOffers()
+    {
+        // $myOffers = $this->model->myOffers(Session::get('user_id'));
+        // $data['myOffers'] = $myOffers;
+        $this->setActivePage('MyOffers');
+        $this->view->rendor('vendor/myOffers');
     }
 
     public function register($arg = false)
@@ -170,12 +178,12 @@ class Vendor extends Controller
         }
     }
     //AllOffers
-    public function AllOffers() {
-        $myOffers = $this->model->myOffers(Session::get('id'));
+    public function loadOffers() {
+        $myOffers = $this->model->myOffers(Session::get('user_id'));
         $data['myOffers'] = $myOffers;
-        // print_r($data['cropReqs']);
-        if (!empty($d)) {
-            $this->view->rendor('vendor/ajxViewOffer', $data, $withoutHeaderFooter = true);
+        print_r($data['myOffers']);
+        if (!empty($data['myOffers'])) {
+            $this->view->rendor('vendor/ajxViewOffers', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);

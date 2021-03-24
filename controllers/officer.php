@@ -5,8 +5,6 @@ class Officer extends Controller {
     public function __construct() {
         parent::__construct();
         Session::init();
-
-
     }
 
     public function index() {
@@ -15,13 +13,12 @@ class Officer extends Controller {
         $data = array(
             'role' => $role
         );
-        if(($role=='officer'|| 'admin') && $logged==true)
+        if (($role == 'officer' || 'admin') && $logged == true)
             $this->view->rendor('officer/index', $data);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
             $this->view->rendor('error/index', $data);
         }
-            
     }
 
     public function cropReq() {
@@ -73,7 +70,7 @@ class Officer extends Controller {
         $this->view->js = 'officer/js/default';
         $this->setActivePage('cropReq');
 
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+        if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('officer/cropReq', $pageData);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
@@ -104,9 +101,10 @@ class Officer extends Controller {
             ]
         ];
         $data = [
-            'dmgClaimData' => $dmgClaimData ];
+            'dmgClaimData' => $dmgClaimData
+        ];
         $this->setActivePage('damageClaims');
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+        if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('officer/damageClaims', $data);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
@@ -115,18 +113,18 @@ class Officer extends Controller {
     }
 
     function editDmg() {
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+        if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('officer/editDmg');
     }
 
     function saveDmg() {
-        header('location: '. URL .'officer/damageClaims');
+        header('location: ' . URL . 'officer/damageClaims');
     }
 
     public function reports() {
         $data = [];
         $this->setActivePage('reports');
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+        if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('officer/reports', $data);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
@@ -137,7 +135,7 @@ class Officer extends Controller {
     public function notifications() {
         $data = [];
         $this->setActivePage('notifications');
-        if((Session::get('role') =='farmer'|| 'admin') && Session::get('loggedIn')==true)
+        if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('officer/notifications', $data);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
@@ -146,27 +144,29 @@ class Officer extends Controller {
     }
 
     //view list of officers by the admin
-    public function officers(){
+    public function officers() {
 
         //only for admin can execute this
-        if( Session::get('loggedIn') == false || Session::get('role') != 'admin') {
+        if (Session::get('loggedIn') == false || Session::get('role') != 'admin') {
             Session::destroy();
-            header('location: '. URL .'user/login');
+            header('location: ' . URL . 'user/login');
             exit;
         }
-        
+
         $officerData = $this->model->officerList();
 
         $pageData = [
             'role' => Session::get('role'),
-            'tabs' => [ ['label' =>'<i class="fas fa-user-plus"></i> Register New Officer',
-                          'path' => 'user/register'
-                        ]        
-                      ],
+            'tabs' => [
+                [
+                    'label' => '<i class="fas fa-user-plus"></i> Register New Officer',
+                    'path' => 'user/register'
+                ]
+            ],
             'officerData' => $officerData,
         ];
         $this->setActivePage('userMgt');
-        if((Session::get('role') == 'admin') && Session::get('loggedIn')==true)
+        if ((Session::get('role') == 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('officer/officers', $pageData);
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
@@ -198,22 +198,22 @@ class Officer extends Controller {
     }
 
     //remove a officer
-    public function delete($id){
+    public function delete($id) {
         $this->model->delete($id);
         header('location: ' . URL . 'officer/officers');
     }
 
     //Search officers by name
     public function ajxSearchOfficerName() {
-        
+
         $d = $this->model->ajxSearchOfficerName($_POST['search']);
         $data['farmerData'] = $d;
         // print_r($data['farmerData']);
-        if(!empty($d)) {
-            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        if (!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
 
@@ -222,11 +222,11 @@ class Officer extends Controller {
         $d = $this->model->ajxSearchOfficerNic($_POST['search']);
         $data['farmerData'] = $d;
         // print_r($data['farmerData']);
-        if(!empty($d)) {
-            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        if (!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
 
@@ -237,13 +237,11 @@ class Officer extends Controller {
         $data['farmerData'] = $d;
 
         // print_r($data['farmerData']);
-        if(!empty($d)) {
-            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter=true);
+        if (!empty($d)) {
+            $this->view->rendor('officer/ajxOfficerList', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
 }
-
-        

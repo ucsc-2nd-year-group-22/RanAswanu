@@ -543,7 +543,7 @@ class Farmer_Model extends Model {
             ':farmer_user_id' => Session::get('user_id'),
             ':harvest_id' => $data['harvest_id'],
         ));
-        if($res) {
+        if ($res) {
             header('location: ' . URL . 'farmer/sellCropMng');
         }
     }
@@ -552,7 +552,7 @@ class Farmer_Model extends Model {
         $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
-        if($res) {
+        if ($res) {
             header('location: ' . URL . 'farmer/sellCropMng');
         }
     }

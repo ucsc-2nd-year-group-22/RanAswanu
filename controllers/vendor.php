@@ -105,9 +105,9 @@ class Vendor extends Controller{
     }
 
      //Search Crops by district_name
-     public function ajxSearchCrops() {
+     public function ajxSearchCropsdistrict() {
         
-        $d = $this->model->ajxSearchCrops($_POST['search']);
+        $d = $this->model->ajxSearchCropsdistrict($_POST['search']);
         $data['crops'] = $d;
     
         if(!empty($d)) {

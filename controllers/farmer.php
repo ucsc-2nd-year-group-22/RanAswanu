@@ -210,6 +210,11 @@ class Farmer extends Controller {
         $this->view->rendor('farmer/newSellCropForm', $data);
     }
 
+    public function deleteSellCrop($sell_req_id) {
+        $this->setActivePage('sellCropMng');
+        $this->model->deleteSellCrop($sell_req_id);
+    }
+
     // Vendor Offer ============================================================
 
     public function offerMng() {

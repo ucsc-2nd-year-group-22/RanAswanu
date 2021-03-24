@@ -548,5 +548,14 @@ class Farmer_Model extends Model {
         }
     }
 
+    public function deleteSellCrop($selling_req_id) {
+        $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+        if($res) {
+            header('location: ' . URL . 'farmer/sellCropMng');
+        }
+    }
+
     ##################################### END OF FARMER MODEL ##############################################################################
 }

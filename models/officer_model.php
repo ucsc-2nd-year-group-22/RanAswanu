@@ -186,4 +186,26 @@ class Officer_Model extends Model {
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function ajxSearchCropReq($farmerName) {
+        $officer_id = Session::get('user_id');
+        $escaped_name = addcslashes($farmerName, '%');
+        $sql = "SELECT 
+        harvest.*, crop.crop_type, crop.crop_varient,
+        user.user_id, user.first_name, user.last_name,
+        gramasewa_division.gs_name,
+        collecting_center.center_name
+        FROM harvest 
+        JOIN user ON user.user_id = harvest.farmer_user_id
+        JOIN crop ON crop.crop_id = harvest.crop_id
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+        JOIN collecting_center ON collecting_center.center_id = harvest.center_id WHERE harvest.officer_user_id = $officer_id AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':first_name' => "$farmerName%"
+        ));
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

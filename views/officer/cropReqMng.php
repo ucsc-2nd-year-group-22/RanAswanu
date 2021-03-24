@@ -142,9 +142,9 @@
             if (inputVal != "") {
                 $("#box").html("");
                 switch (selectedSearchCategory) {
-                    case "fname": {
+                    case "first_name": {
                         $.ajax({
-                            url: "ajxSearchFarmerName",
+                            url: "<?= URL ?>/officer/ajxSearchCropReq",
                             method: "post",
                             data: {
                                 search: inputVal,
@@ -175,7 +175,7 @@
         <form class="search-bar">
             <label>Search crop requests by : </label>
             <select id="searchField">
-                <option value="fname">Farmer name</option>
+                <option value="first_name">Farmer name</option>
             </select>
             <input type="text" id="searchInput" placeholder="Search ..." />
             <button type="button" id="searchBtn">

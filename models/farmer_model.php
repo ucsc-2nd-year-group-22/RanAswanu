@@ -98,8 +98,7 @@ class Farmer_Model extends Model {
     }
 
     public function ajxListCropReq($farmer_id) {
-        $st = $this->db->prepare("
-        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+        $st = $this->db->prepare("        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
         JOIN crop On harvest.crop_id = crop.crop_id 
         JOIN collecting_center ON harvest.center_id = collecting_center.center_id
         JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id

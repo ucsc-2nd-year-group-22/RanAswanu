@@ -1,5 +1,3 @@
-<?php print_r($sellCrops[0]); ?>
-
 <table>
     <tr>
         <th>#</th>

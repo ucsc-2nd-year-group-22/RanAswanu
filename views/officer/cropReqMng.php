@@ -1,6 +1,7 @@
 <script>
     $(function() {
-
+        var selectedSort = "first_name";
+        var selectedFilter;
         $('#box').html('');
         $.ajax({
             url: "ajxCropReqList",
@@ -16,10 +17,10 @@
         ///////////////////////////// SHow accepted/ pending
 
         // show accepted
-        var selectedFilter;
+
         $('#showAccepted').click(function() {
             selectedFilter = 'accepted';
-            $('#showRejected').removeClass("active-btn");
+            $('#showPending').removeClass("active-btn");
             $('#showAll').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
@@ -71,6 +72,98 @@
             });
         });
 
+
+        ////////////////// sorting ////////
+
+        $("#sortby").change(function() {
+            selectedSort = $("#sortby :selected").attr("value");
+            // alert(selectedSort);
+        });
+
+        // asc
+        $("#ascSort").click(function() {
+            // alert(selectedSort);
+            $("#descSort").removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortCropReqs",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: "ASC",
+                },
+                dataType: "text",
+                success: function(data) {
+                    $("#box").html(data);
+                },
+                async: true,
+            });
+        });
+
+        // desc
+        $("#descSort").click(function() {
+            $("#ascSort").removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortCropReqs",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: "DESC",
+                },
+                dataType: "text",
+                success: function(data) {
+                    $("#box").html(data);
+                },
+                async: true,
+            });
+        });
+
+
+
+        ///// searching ////////////
+
+        var selectedSearchCategory = $("#searchField").val();
+
+        $("#searchField").change(function() {
+            selectedSearchCategory = $(this).val();
+        });
+
+        $("#searchBtn").click(function(event) {
+            event.preventDefault();
+            var input = $("#searchInput").val();
+            if (input != "") {
+                $("#searchInput").val("");
+                location.reload();
+            }
+        });
+        $("#searchInput").keyup(function() {
+            var inputVal = $(this).val();
+            if (inputVal != "") {
+                $("#box").html("");
+                switch (selectedSearchCategory) {
+                    case "fname": {
+                        $.ajax({
+                            url: "ajxSearchFarmerName",
+                            method: "post",
+                            data: {
+                                search: inputVal,
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $("#box").html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                }
+            } else {
+                location.reload();
+            }
+        });
+
+
     });
 </script>
 
@@ -81,27 +174,37 @@
 
         <form class="search-bar">
             <label>Search crop requests by : </label>
-            <select placeholder="Search ...">
-                <option value="first_name">Farmer's name</option>
+            <select id="searchField">
+                <option value="fname">Farmer name</option>
             </select>
-            <input type="text" placeholder="Search ...">
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <input type="text" id="searchInput" placeholder="Search ..." />
+            <button type="button" id="searchBtn">
+                <i class="fas fa-eraser"></i>
+            </button>
         </form>
 
     </div>
     <div class="pane2">
         <form class="normal-select">
-            <label>Sort crop requests by : </label>
-            <select placeholder="other">
-                <option value="first_name">Farmer's name</option>
+            <label>Sort farmers by : </label>
+            <select id="sortby">
+                <option value="first_name" selected>Farmer's name</option>
+                <option value="last_name">Last name</option>
                 <option value="expected_harvest">expected_harvest</option>
                 <option value="crop_type">crop_type</option>
                 <option value="center_name">center_name</option>
             </select>
-            <button type="submit" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-            <button type="submit" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+            <button type="button" id="ascSort" class="half">
+                <i class="fas fa-sort-amount-down-alt"></i> Ascending
+            </button>
+            <button type="button" id="descSort" class="half">
+                <i class="fas fa-sort-amount-down"></i> Descending
+            </button>
         </form>
     </div>
+
+
+
 
     <!-- Comment pane 3 & 4 If they are empty -->
 

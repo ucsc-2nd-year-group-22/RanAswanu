@@ -123,6 +123,67 @@ class Officer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function ajxSortCropReqs($filter, $ascOrDsc) {
+        $officer_id = Session::get('user_id');
+
+        if ($ascOrDsc == 'ASC') {
+            if ($filter == "first_name" || $filter == "last_name") {
+                $sql = "SELECT 
+                harvest.*, crop.crop_type, crop.crop_varient,
+                user.user_id, user.first_name, user.last_name,
+                gramasewa_division.gs_name,
+                collecting_center.center_name
+                FROM harvest 
+                JOIN user ON user.user_id = harvest.farmer_user_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter ASC";
+            } else {
+                $sql = "SELECT 
+                harvest.*, crop.crop_type, crop.crop_varient,
+                user.user_id, user.first_name, user.last_name,
+                gramasewa_division.gs_name,
+                collecting_center.center_name
+                FROM harvest 
+                JOIN user ON user.user_id = harvest.farmer_user_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                WHERE harvest.officer_user_id = $officer_id ORDER BY $filter ASC";
+            }
+        } else if ($ascOrDsc == 'DESC') {
+            if ($filter == "first_name" || $filter == "last_name") {
+                $sql = "SELECT 
+                harvest.*, crop.crop_type, crop.crop_varient,
+                user.user_id, user.first_name, user.last_name,
+                gramasewa_division.gs_name,
+                collecting_center.center_name
+                FROM harvest 
+                JOIN user ON user.user_id = harvest.farmer_user_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter  DESC";
+            } else {
+                $sql = "SELECT 
+                harvest.*, crop.crop_type, crop.crop_varient,
+                user.user_id, user.first_name, user.last_name,
+                gramasewa_division.gs_name,
+                collecting_center.center_name
+                FROM harvest 
+                JOIN user ON user.user_id = harvest.farmer_user_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                WHERE harvest.officer_user_id = $officer_id ORDER BY $filter  DESC";
+            }
+        }
 
 
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

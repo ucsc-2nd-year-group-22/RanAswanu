@@ -22,59 +22,28 @@ class Officer extends Controller {
     }
 
     public function cropReq() {
-        $cropReqData = [
-            [
-                'farmer' => "Nimal Siripala",
-                'crop' => "Potatoe-CG1",
-                'period' => "7 weeks",
-                'area' => "Udawalawe-north",
-                'harvest' => "1.2 MT",
-                'demand' => "Below",
-                'dateTime' => "10-05-2020 | 10.00 AM"
-            ],
-            [
-                'farmer' => "Namal Wijesuriya",
-                'crop' => "Potatoe-CG5",
-                'period' => "6 weeks",
-                'area' => "Horowpathana",
-                'harvest' => "1.0 MT",
-                'demand' => "Below",
-                'dateTime' => "10-05-2020 | 10.00 AM"
-            ],
-            [
-                'farmer' => "Sunil Ariyarthne",
-                'crop' => "Potatoe-CG1",
-                'period' => "7 weeks",
-                'area' => "Ambanpola-south",
-                'harvest' => "600 Kg",
-                'demand' => "Above",
-                'dateTime' => "10-05-2020 | 10.00 AM"
-            ],
-            [
-                'farmer' => "Suresh Punchihewa",
-                'crop' => "Cucumber-T.S.1",
-                'period' => "8 weeks",
-                'area' => "Suriyawawa",
-                'harvest' => "3.2 MT",
-                'demand' => "Below",
-                'dateTime' => "10-05-2020 | 10.00 AM"
-            ],
 
-        ];
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'cropReqData' => $cropReqData,
-        ];
-        // Session::set('activePage', 'cropReq');
         $this->view->js = 'officer/js/default';
         $this->setActivePage('cropReq');
 
         if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
-            $this->view->rendor('officer/cropReq', $pageData);
+            $this->view->rendor('officer/cropReqMng');
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
-            $this->view->rendor('error/index', $data);
+            $this->view->rendor('error/index');
+        }
+    }
+
+    public function ajxCropReqList() {
+        $data = [
+            'role' => Session::get('role'),
+            'cropReqData' => $this->model->cropReqList(),
+        ];
+        if (!empty($data['cropReqData'])) {
+            $this->view->rendor('officer/ajxCropReqMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
 

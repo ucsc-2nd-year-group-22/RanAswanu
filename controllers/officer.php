@@ -47,6 +47,18 @@ class Officer extends Controller {
         }
     }
 
+    public function ajxFilterCropReq() {
+
+        $data['cropReqData'] = $this->model->ajxFilterCropReq($_POST['filter']);
+        $data['role'] = Session::get('role');
+        if (!empty($data['cropReqData'])) {
+            $this->view->rendor('officer/ajxCropReqMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
     public function damageClaims() {
 
         $dmgClaimData = [

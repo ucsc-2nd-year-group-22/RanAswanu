@@ -87,4 +87,42 @@ class Officer_Model extends Model {
         $st2->execute();
         return $st2->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function ajxFilterCropReq($filter) {
+        $officer_id = Session::get('user_id');
+        if ($filter == 'accepted') {
+            $sql = "SELECT 
+            harvest.*, crop.crop_type, crop.crop_varient,
+            user.user_id, user.first_name, user.last_name,
+            gramasewa_division.gs_name,
+            collecting_center.center_name
+            FROM harvest 
+            JOIN user ON user.user_id = harvest.farmer_user_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+            WHERE harvest.officer_user_id = $officer_id AND harvest.is_accept = 1";
+        } else if ($filter == 'pending') {
+            $sql = "SELECT 
+            harvest.*, crop.crop_type, crop.crop_varient,
+            user.user_id, user.first_name, user.last_name,
+            gramasewa_division.gs_name,
+            collecting_center.center_name
+            FROM harvest 
+            JOIN user ON user.user_id = harvest.farmer_user_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+            WHERE harvest.officer_user_id = $officer_id AND harvest.is_accept = 0";
+        }
+
+
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
 }

@@ -18,12 +18,39 @@
 
         <div class="row">
             <div class="col-25">
-                <label for="tele_no">Telephone No:</label>
+                <label for="phone_no">Telephone No:</label>
             </div> 
             <div class="col-75">  
-                <?php echo  $this->vendr['tel_no'];?>
+                <?php echo  $this->vendr['phone_no'];?>
             </div>
         </div> 
+
+        <div class="row">
+            <div class="col-25">
+                <label for="email">E-mail:</label>
+            </div> 
+            <div class="col-75">  
+                <?php echo  $this->vendr['email'];?>
+            </div>
+        </div> 
+
+        <div class="row">
+            <div class="col-25">
+                <label for="ds_name">District:</label>
+            </div> 
+            <div class="col-75">  
+                <?php echo  $this->vendr['ds_name'];?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="gs_name">Gramasewa Division:</label>
+            </div> 
+            <div class="col-75">  
+                <?php echo  $this->vendr['gs_name'];?>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-25">

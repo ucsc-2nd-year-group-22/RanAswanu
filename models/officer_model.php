@@ -208,4 +208,26 @@ class Officer_Model extends Model {
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function acceptCropReq($harvest_id) {
+        $sql = "UPDATE `harvest` SET is_accept = 1 WHERE harvest_id = $harvest_id";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+        if($res) {
+            header('location: ' . URL . 'officer/cropReq');
+        }
+    }
+
+    public function deleteCropReq($harvest_id) {
+        $sql = "DELETE FROM `harvest` WHERE harvest_id = $harvest_id";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+        if($res) {
+            header('location: ' . URL . 'officer/cropReq');
+        }
+    }
+
+
+
+
 }

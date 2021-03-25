@@ -19,6 +19,9 @@
                 data: {district:district},
                 success: function (data) { 
                     var json = $.parseJSON(data);
+                    var x = new Option('s', 't' );
+                        $(x).html('-- Select Crops --');
+                        $('#cropType').append(x);
                     $(json).each(function (i, val) {
                         // console.log(val.crop_id);
                         var newOp = new Option(val.crop_type, val.crop_id);
@@ -220,7 +223,7 @@
             </div>
             <div class="col-75">
                 <select id="cropType" name="croptype" required>
-                    <option selected disabled>-- Select Crops --</option>
+                    <option selected >-- Select Crops --</option>
                 </select>
             </div>
         </div>
@@ -231,7 +234,7 @@
             </div>
             <div class="col-75">
                 <select id="cropVart" name="selectCrop" required>
-                    <option value="" disabled selected>-- Select crop varient --</option>
+                    <option value="" selected>-- Select crop varient --</option>
                 </select>
             </div>
         </div>

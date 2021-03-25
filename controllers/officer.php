@@ -84,6 +84,14 @@ class Officer extends Controller {
         }
     }
 
+    public function acceptCropReq($harvest_id) {
+        $this->model->acceptCropReq($harvest_id);
+    }
+
+    public function deleteCropReq($harvest_id) {
+        $this->model->deleteCropReq($harvest_id);
+    }
+
     public function damageClaims() {
 
         $dmgClaimData = [

@@ -195,7 +195,7 @@ class Farmer extends Controller {
         $data['max_offer'] = 0;
         $data['min_offer'] = $_POST['min_offer'];
         $data['harvest_id'] = $_POST['harvest_id'];
-        
+
         print_r($data);
         $this->model->insertSellCrop($data);
         // header('location: ' . URL . 'farmer/sellyourcropsif');

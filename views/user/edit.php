@@ -6,7 +6,6 @@ $allProvinces = $this->user['allProvinces'];
 $allDistricts = $this->user['allDistricts'];
 $allDivSecs = $this->user['allDivSecs'];
 $allGramaSewas = $this->user['allGramaSewas'];
-
 // print_r($oldUserTel);
 // if(isset($oldUserTel[1])) echo '2 set'; 
 

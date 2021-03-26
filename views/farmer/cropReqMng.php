@@ -25,15 +25,17 @@
             $('#descSort').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url:"ajxSortCropReqs",
-                method:"post",
-                data:{filter:selectedSort, ascOrDsc:'ASC'},
-                dataType:"text",
-                success:function(data) {
-                    
+                url: "ajxSortCropReqs",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'ASC'
+                },
+                dataType: "text",
+                success: function(data) {
                     $('#box').html(data);
                 },
-                async:true
+                async: true
             });
         });
         // desc
@@ -41,14 +43,17 @@
             $('#ascSort').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url:"ajxSortCropReqs",
-                method:"post",
-                data:{filter:selectedSort, ascOrDsc:'DESC'},
-                dataType:"text",
-                success:function(data) {
+                url: "ajxSortCropReqs",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'DESC'
+                },
+                dataType: "text",
+                success: function(data) {
                     $('#box').html(data);
                 },
-                async:true
+                async: true
             });
         });
 
@@ -61,14 +66,16 @@
             $('#showAll').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url:"ajxFilterCropReq",
-                method:"post",
-                data:{filter:selectedFilter},
-                dataType:"text",
-                success:function(data) {
+                url: "ajxFilterCropReq",
+                method: "post",
+                data: {
+                    filter: selectedFilter
+                },
+                dataType: "text",
+                success: function(data) {
                     $('#box').html(data);
                 },
-                async:true
+                async: true
             });
         });
 
@@ -78,14 +85,16 @@
             $('#showAll').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url:"ajxFilterCropReq",
-                method:"post",
-                data:{filter:selectedFilter},
-                dataType:"text",
-                success:function(data) {
+                url: "ajxFilterCropReq",
+                method: "post",
+                data: {
+                    filter: selectedFilter
+                },
+                dataType: "text",
+                success: function(data) {
                     $('#box').html(data);
                 },
-                async:true
+                async: true
             });
         });
 
@@ -94,7 +103,7 @@
             $('#showAccepted').removeClass("active-btn");
             $('#showRejected').removeClass("active-btn");
             $(this).addClass("active-btn");
-                $.ajax({
+            $.ajax({
                 url: "ajxListCropReq",
                 method: "post",
                 data: {
@@ -107,13 +116,13 @@
                 async: true,
             });
         });
-      
+
     });
 </script>
 <div id="test">
 
 </div>
-<h1>Crop Requests</h1>
+<h1>Harvest & Crop Requests</h1>
 
 <div class="user-tabs">
     <ul>
@@ -162,7 +171,7 @@
     </div> -->
     </div>
 
-    <div id="box" class="main-table">
-        
-    </div>
+</div>
+<div id="box" class="main-table">
+
 </div>

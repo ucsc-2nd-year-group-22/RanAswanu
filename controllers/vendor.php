@@ -69,9 +69,9 @@ class Vendor extends Controller
     public function viewfarmerprofile($user_id)
     {
         // $data=['user_id'=>$user_id];
-          $data['user_id'] = $user_id;
+        $data['user_id'] = $user_id;
 
-        $ss=$this->view->vendr = $this->model->viewprofile($user_id);
+        $ss = $this->view->vendr = $this->model->viewprofile($user_id);
         $data['details'] = $ss;
         // print_r($data['details']);
         $this->view->rendor('vendor/viewfarmerprofile', $data);
@@ -84,19 +84,8 @@ class Vendor extends Controller
     public function acceptedOffers()
     {
 
-
-
-
-        $d = $this->model->acceptedOffersList();
-        $data['accepted_offers'] = $d;
-        print_r($data['accepted_offers']);
         $this->setActivePage('acceptedOffers');
-        if (!empty($d)) {
-            $this->view->rendor('vendor/acceptedOffers', $data);
-        } else {
-            $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data);
-        }
+        $this->view->rendor('vendor/acceptedOffers');
     }
 
 
@@ -157,6 +146,20 @@ class Vendor extends Controller
 
         if (!empty($d)) {
             $this->view->rendor('vendor/ajxCrop', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+
+    public function ajxacceptedOffers()
+    {
+        $d = $this->model->acceptedOffersList();
+        $data['accepted_offers'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxacceptedOffers', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);

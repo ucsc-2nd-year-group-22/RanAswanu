@@ -347,11 +347,8 @@ class Farmer_Model extends Model {
         $sql1 = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
         $st = $this->db->prepare($sql1);
         $st->execute();
-        $data['officer_user_id'] = $st->fetchColumn();
+        $data['officer_user_id'] = $st->execute();
         $data['farmer_user_id'] = Session::get('user_id');
-
-        echo '<hr>';
-        print_r($data);
 
         $sql = "INSERT INTO `crop_damage`( `damage_reason`, `is_accepted`, `damage_area`, `damage_date`, `farmer_user_id`, `officer_user_id`, `harvest_id`) VALUES (:reason, :is_accepted, :damage_area, :damage_date, :farmer_user_id, :officer_user_id, :harvest_id)";
         $st2 = $this->db->prepare($sql);
@@ -365,9 +362,11 @@ class Farmer_Model extends Model {
             ':harvest_id' => $data['harvest_id'],
         ));
 
-        if ($res) {
-            header('location: ' . URL . 'farmer/damageMng');
-        }
+        // print_r($res);
+
+        // if ($res) {
+        header('location: ' . URL . 'farmer/damageMng');
+        // }
     }
 
     public function deleteDmgClaim($dmg_id) {

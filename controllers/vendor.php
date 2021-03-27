@@ -43,49 +43,63 @@ class Vendor extends Controller
     //trasfer data from db to giveoffer page
     public function giveOffer($selling_req_id, $user_id)
     {
-        
+
         $data['selling_req_id'] = $selling_req_id;
         $this->view->offer = $this->model->giveOffer($selling_req_id, $user_id);
-         //$data['selling_req_id'] = $selling_req_id;
+        //$data['selling_req_id'] = $selling_req_id;
         $this->view->rendor('vendor/giveOffer', $data);
-          // print_r($this->view->offer);
+        // print_r($this->view->offer);
         // $this->setActivePage('giveOffer');
         // $this->view->rendor('vendor/giveOffer');
     }
 
-    public function updategiveOffer($selling_req__id)
+    public function updateOffer($selling_req__id)
     {
         $data = array();
 
-        $data['max_offer']=$_POST('max_offer');
-        $data['selling_req_id']=$selling_req__id;
+        $data['max_offer'] = $_POST('max_offer');
+        $data['selling_req_id'] = $selling_req__id;
 
 
-        $this->model->updategiveOffer($data);
+        $this->model->updateOffer($data);
+        $this->model->inserttosellingreq($data);
         header('location:' . URL . 'vendor/allCrops');
     }
 
     public function viewfarmerprofile($user_id)
     {
         // $data=['user_id'=>$user_id];
-        $data['user_id'] = $user_id;
+          $data['user_id'] = $user_id;
 
-        // $data['farmerprofiledata']=$this->model->viewprofile($user_id);
-        $ss = $this->view->vendr = $this->model->viewprofile($user_id);
+        $ss=$this->view->vendr = $this->model->viewprofile($user_id);
         $data['details'] = $ss;
+        // print_r($data['details']);
         $this->view->rendor('vendor/viewfarmerprofile', $data);
         //print_r($data['ccc']);
     }
 
-    // public function countsellingreqid($user_id){
-    //     $data['user_id']=$user_id;
 
-    //     // $data['farmerprofiledata']=$this->model->viewprofile($user_id);
-    //     $ss=$this->model->countsellingreq($user_id);
-    //     $data['sellingreq']=$ss;
-    //     $this->view->rendor('vendor/viewfarmerprofile',$data);
 
-    // }
+    //display accepted offers from the farmer
+    public function acceptedOffers()
+    {
+
+
+
+
+        $d = $this->model->acceptedOffersList();
+        $data['accepted_offers'] = $d;
+        print_r($data['accepted_offers']);
+        $this->setActivePage('acceptedOffers');
+        if (!empty($d)) {
+            $this->view->rendor('vendor/acceptedOffers', $data);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data);
+        }
+    }
+
+
 
 
     //////////////////////////AJAX///////////////////

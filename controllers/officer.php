@@ -106,6 +106,19 @@ class Officer extends Controller
         }
     }
 
+    public function ajxSearchDmgClaim()
+    {
+        $data['dmgClaimData'] = $this->model->ajxSearchDmgClaim($_POST['search']);
+        $data['role'] = Session::get('role');
+        // print_r($data['farmerData']);
+        if (!empty($data['dmgClaimData'])) {
+            $this->view->rendor('officer/ajxDamageClaims', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
     public function acceptCropReq($harvest_id)
     {
         $this->model->acceptCropReq($harvest_id);

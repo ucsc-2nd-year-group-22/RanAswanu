@@ -144,7 +144,7 @@
                 switch (selectedSearchCategory) {
                     case "first_name": {
                         $.ajax({
-                            url: "<?= URL ?>/officer/ajxSearchCropReq",
+                            url: "<?= URL ?>/officer/ajxSearchDmgClaim",
                             method: "post",
                             data: {
                                 search: inputVal,
@@ -175,39 +175,53 @@
 
         <form class="search-bar">
             <label>Search crop requests by : </label>
-            <select placeholder="Search ...">
-                <option>Demand status</option>
-                <option>Farmer name</option>
-                <option>Crop</option>
+            <select id="searchField">
+                <option value="first_name">Farmer name</option>
             </select>
-            <input type="text" placeholder="Search ...">
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <input type="text" id="searchInput" placeholder="Search ..." />
+            <button type="button" id="searchBtn">
+                <i class="fas fa-eraser"></i>
+            </button>
         </form>
 
     </div>
     <div class="pane2">
         <form class="normal-select">
-            <label>Sort crop requests by : </label>
-            <select placeholder="other">
-                <option>Date</option>
-                <option>Demand status</option>
-                <option>Farmer name</option>
-                <option>Crop</option>
-                <option>111</option>
+            <label>Sort farmers by : </label>
+            <select id="sortby">
+                <option value="first_name" selected>Farmer's name</option>
+                <option value="last_name">Last name</option>
+                <option value="expected_harvest">expected_harvest</option>
+                <option value="crop_type">crop_type</option>
+                <option value="center_name">center_name</option>
             </select>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+            <button type="button" id="ascSort" class="half">
+                <i class="fas fa-sort-amount-down-alt"></i> Ascending
+            </button>
+            <button type="button" id="descSort" class="half">
+                <i class="fas fa-sort-amount-down"></i> Descending
+            </button>
         </form>
     </div>
 
+
+
+
     <!-- Comment pane 3 & 4 If they are empty -->
 
-    <!-- <div class="pane3">
-            <label>Empty pane</label>
-        </div>
-        <div class="pane4">
-            <label>Empty pane</label>
-        </div> -->
+    <div class="pane3">
+        <form class="pane1 ">
+            <label>Show accepted / pending </label>
+            <div class="normal-select">
+                <button type="button" id="showAccepted" class="half"><i class="fas fa-sort-amount-down-alt"></i> Accepted </button>
+                <button type="button" id="showPending" class="half"><i class="fas fa-sort-amount-down"></i> Pending</button>
+                <button type="button" id="showAll" style="width:100%" class="half"><i class="fas fa-sort-amount-down"></i> Show All</button>
+            </div>
+        </form>
+    </div>
+    <!-- <div class="pane4">
+        <label>Empty pane</label>
+    </div> -->
 </div>
 
 <div id="box" class="main-table">

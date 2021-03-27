@@ -219,31 +219,44 @@ class Farmer extends Controller {
     // Vendor Offer ============================================================
 
     public function offerMng() {
-        $verdoffersData = [
-            [
-                'vendername' => "Nimal Siripala",
-                'croptype' => "Potatoe-CG1",
-                //  'weight' => "7 weeks",
-                'price' => "34",
-                'district' => "Colombo",
-                'dateTime' => "10-05-2020 | 10.00 AM",
-
-            ],
-
-
-
-
-        ];
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'verdoffersData' => $verdoffersData,
-        ];
-        // Session::set('activePage', 'cropReq');
-        $this->view->js = 'officer/js/default';
         $this->setActivePage('offerMng');
-        $this->view->rendor('farmer/offerMng', $pageData);
+        $this->view->rendor('farmer/offerMng');
     }
+
+    public function offerList() {
+        $data['offerData'] = $this->model->offerList(Session::get('user_id'));
+        // print_r($data['dmgClaims']);
+        if (!empty($data['offerData'])) {
+            $this->view->rendor('farmer/ajxOfferMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function ajxSortOffers() {
+        $data['offerData'] = $this->model->ajxSortOffers($_POST['filter'], $_POST['ascOrDsc']);
+
+        if (!empty($data['offerData'])) {
+            $this->view->rendor('farmer/ajxOfferMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function filterOffers() {
+        $data['offerData'] = $this->model->filterOffers($_POST['filter']);
+
+        if (!empty($data['offerData'])) {
+            $this->view->rendor('farmer/ajxOfferMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+
 
     // !!!!!!!!!!!!!!!!!  Handled by Officer role --------------- !!!!!!!!!!!!
     public function farmerMng() {

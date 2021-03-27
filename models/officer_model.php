@@ -235,9 +235,34 @@ class Officer_Model extends Model
         $sql = "UPDATE `crop_damage` SET is_accepted = 1 WHERE damage_id = $damage_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
-        if ($res) {
+        
+        $sql = "SELECT crop_damage.harvest_id, harvest.crop_id, crop_damage.damage_area FROM crop_damage 
+        JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id 
+        WHERE crop_damage.damage_id = $damage_id";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        $res = $st->fetchAll(PDO::FETCH_ASSOC);
+        
+        // print_r($res[0]['harvest_id']);
+        $harvest_id = $res[0]['harvest_id'];
+        $crop_id = $res[0]['crop_id'];
+        $damage_area = $res[0]['damage_area'];
+
+        $sql = "SELECT harvest_per_land FROM `crop` WHERE crop_id = $crop_id";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        $res = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        $calDmg = $res[0]['harvest_per_land']*$damage_area;
+        
+        $sql = "UPDATE `harvest` SET expected_harvest = expected_harvest - $calDmg WHERE harvest_id = $harvest_id";
+        $st = $this->db->prepare($sql);
+        $st->execute();
+        // $res = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        // if ($res) {
             header('location: ' . URL . 'officer/damageClaims');
-        }
+        // }
     }
 
     public function deleteCropReq($harvest_id)

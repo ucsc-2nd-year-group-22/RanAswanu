@@ -591,15 +591,6 @@ class Farmer_Model extends Model
         }
     }
 
-<<<<<<< HEAD
-    public function deleteSellCrop($selling_req_id)
-    {
-        $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
-        $st = $this->db->prepare($sql);
-        $res = $st->execute();
-        if ($res) {
-            header('location: ' . URL . 'farmer/sellCropMng');
-=======
     public function deleteSellCrop($selling_req_id) {
         $sql2 = "SELECT harvest_amount, harvest_id FROM selling_request WHERE selling_req_id = $selling_req_id";
         $st2  = $this->db->prepare($sql2);
@@ -623,7 +614,6 @@ class Farmer_Model extends Model
                 header('location: ' . URL . 'farmer/sellCropMng');
             }
 
->>>>>>> 95177f28b18789b415f85f8b3a74afc6402ef344
         }
 
     }

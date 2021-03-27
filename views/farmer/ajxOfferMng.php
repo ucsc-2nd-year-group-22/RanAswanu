@@ -1,4 +1,4 @@
-<?php print_r($offerData); ?>
+
 <table>
         <tr>
             <th>#</th>
@@ -22,7 +22,7 @@
                 <td>
                 <?php if($offerDataItem['transaction_flag'] == 0) :?>
                     <a type="button" class="mini-button normal btn" onclick="return confirm('Are you sure you want to accept this offer?');" href="<?php echo URL . 'farmer/acceptOffer/' . $offerDataItem['offer_id']; ?>">Accept</a>
-                    <a type="button" class="mini-button danger btn" onclick="return confirm('Are you sure you want to accept this offer?');" href="<?php echo URL . 'farmer/rejectOffer/' . $offerDataItem['offer_id']; ?>">Reject</a>
+                    <a type="button" class="mini-button danger btn" onclick="return confirm('Are you sure you want to reject this offer?');" href="<?php echo URL . 'farmer/rejectOffer/' . $offerDataItem['offer_id']; ?>">Reject</a>
                 <?php else: ?>
                     <b style="color:#2aaa26"><i class="fas fa-check-circle"></i> Accepted</b>
                 <?php endif;?>

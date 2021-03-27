@@ -29,9 +29,9 @@
             <td><?= $sellCrop['harvest_amount']; ?> </td>
             <td>
             <?php if ($sellCrop['max_offer'] > 0) : ?>
-            <a class="mini-button normal btn" onclick="return confirm('Are you sure you want to accept the current offer?');" href="<?php echo URL . '/farmer/acceptSellReq/' . $sellCrop['selling_req_id']; ?>">Accept</a>
+            <a class="mini-button normal btn" onclick="return confirm('Are you sure you want to accept this offer?');" href="<?php echo URL . '/farmer/acceptSellReq/' . $sellCrop['selling_req_id']; ?>">Accept</a>
             <?php endif; ?>
-                <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to cancel the selling request?');" href="<?php echo URL . '/farmer/deleteSellCrop/' . $sellCrop['selling_req_id']; ?>">Cancel</a>
+                <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to cancel this offer?');" href="<?php echo URL . '/farmer/deleteSellCrop/' . $sellCrop['selling_req_id']; ?>">Cancel</a>
             </td>
         </tr>
     <?php endforeach; ?>

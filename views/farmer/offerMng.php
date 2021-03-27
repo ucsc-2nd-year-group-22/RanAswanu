@@ -137,7 +137,7 @@
             <label>Sort damage claims by : </label>
             <select id="sortby">
                 <option val="offer_amount">Offer price</option>
-                <option val="dateTime">Date</option>
+                <option val="date_time">Date</option>
             </select>
             <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
             <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>

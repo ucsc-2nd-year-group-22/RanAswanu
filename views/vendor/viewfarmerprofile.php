@@ -1,3 +1,4 @@
+
 <div class="subHeader">
       <h1>Farmer Name :-  <?php echo  $details['first_name'].' '.$details['last_name']; ?></h1>
       
@@ -52,11 +53,11 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
                 <label for="tele_no">Other Crop Details:</label>
             </div> 
-        </div>
+        </div> -->
         <!-- <table>
 
         <tr>
@@ -90,6 +91,6 @@
 
 
 
-    </form>
+    <!-- </form> -->
 
 </div>

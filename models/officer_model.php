@@ -229,21 +229,20 @@ class Officer_Model extends Model
             header('location: ' . URL . 'officer/cropReq');
         }
     }
-    
+
     public function acceptDmgClaim($damage_id)
     {
         $sql = "UPDATE `crop_damage` SET is_accepted = 1 WHERE damage_id = $damage_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
-        
+
         $sql = "SELECT crop_damage.harvest_id, harvest.crop_id, crop_damage.damage_area FROM crop_damage 
         JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id 
         WHERE crop_damage.damage_id = $damage_id";
         $st = $this->db->prepare($sql);
         $st->execute();
         $res = $st->fetchAll(PDO::FETCH_ASSOC);
-        
-        // print_r($res[0]['harvest_id']);
+
         $harvest_id = $res[0]['harvest_id'];
         $crop_id = $res[0]['crop_id'];
         $damage_area = $res[0]['damage_area'];
@@ -253,16 +252,13 @@ class Officer_Model extends Model
         $st->execute();
         $res = $st->fetchAll(PDO::FETCH_ASSOC);
 
-        $calDmg = $res[0]['harvest_per_land']*$damage_area;
-        
+        $calDmg = $res[0]['harvest_per_land'] * $damage_area;
+
         $sql = "UPDATE `harvest` SET expected_harvest = expected_harvest - $calDmg WHERE harvest_id = $harvest_id";
         $st = $this->db->prepare($sql);
         $st->execute();
-        // $res = $st->fetchAll(PDO::FETCH_ASSOC);
 
-        // if ($res) {
-            header('location: ' . URL . 'officer/damageClaims');
-        // }
+        header('location: ' . URL . 'officer/damageClaims');
     }
 
     public function deleteCropReq($harvest_id)
@@ -279,7 +275,7 @@ class Officer_Model extends Model
     //retrieve damage claim data
     public function dmgClaimList()
     {
-        $st = $this->db->prepare("SELECT user.first_name as farmer, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+        $st = $this->db->prepare("SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
         JOIN user ON user.user_id = crop_damage.farmer_user_id
         JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
         JOIN crop ON harvest.crop_id = crop.crop_id

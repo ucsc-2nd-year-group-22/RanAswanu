@@ -12,7 +12,7 @@
         $i++; ?>
         <tr>
             <td> <?= $i ?></td>
-            <td> <a style="font-size:1.2em; margin-right:5px;color:var(--main-theme-color);" href="#"> <i class="fas fa-address-card"></i></a> <?= $dmgClaim['farmer']; ?></a> </td>
+            <td> <a style="font-size:1.2em; margin-right:5px;color:var(--main-theme-color);" href="<?= URL; ?>/user/viewUser/ <?= $dmgClaim['farmer_id']; ?>"> <i class="fas fa-address-card"></i></a> <?= $dmgClaim['farmer']; ?></a> </td>
             <td><?= $dmgClaim['crops']; ?> </td>
             <td> <?= $dmgClaim['area']; ?></td>
             <td> <?= $dmgClaim['damageAmt']; ?></td>

@@ -546,19 +546,18 @@ class Farmer_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function dataForSellCrop($harvest_id)
-    {
-        $sql = "SELECT
+    public function dataForSellCrop($harvest_id) {
+        $sql = "SELECT 
         harvest.*,
         crop.crop_type, crop.crop_varient,
-        gramasewa_division.gs_name, 
-        district.ds_name AS district_name
-        FROM harvest 
-        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-        JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
-        JOIN district ON district.district_id = divisional_secratariast.ds_id
-        JOIN crop ON crop.crop_id = harvest.crop_id
-        WHERE harvest_id = $harvest_id AND harvest.is_accept = 1";
+        gramasewa_division.gs_name,
+        divisional_secratariast.ds_name AS district_name
+    FROM harvest
+    JOIN crop ON crop.crop_id = harvest.crop_id
+    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+    JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+    JOIN district ON district.district_id = divisional_secratariast.district_id
+    WHERE harvest.harvest_id = $harvest_id AND harvest.is_accept = 1";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
 
@@ -579,10 +578,20 @@ class Farmer_Model extends Model
             ':harvest_id' => $data['harvest_id'],
         ));
         if ($res) {
-            header('location: ' . URL . 'farmer/sellCropMng');
+            $sql2 = "UPDATE harvest SET expected_harvest = expected_harvest - :amount WHERE harvest_id = :harvest_id";
+            $st2  = $this->db->prepare($sql2);
+            $res2 = $st2->execute(array(
+                ':amount' => $data['harvest_amount'],
+                ':harvest_id' => $data['harvest_id']
+            ));
+
+            if ($res2) {
+                header('location: ' . URL . 'farmer/sellCropMng');
+            }
         }
     }
 
+<<<<<<< HEAD
     public function deleteSellCrop($selling_req_id)
     {
         $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
@@ -590,7 +599,33 @@ class Farmer_Model extends Model
         $res = $st->execute();
         if ($res) {
             header('location: ' . URL . 'farmer/sellCropMng');
+=======
+    public function deleteSellCrop($selling_req_id) {
+        $sql2 = "SELECT harvest_amount, harvest_id FROM selling_request WHERE selling_req_id = $selling_req_id";
+        $st2  = $this->db->prepare($sql2);
+        $st2->execute();
+        $sellCropData = $st2->fetch(PDO::FETCH_ASSOC);
+
+        $sql3 = "UPDATE harvest SET expected_harvest = expected_harvest + :amount WHERE harvest_id = :harvest_id";
+        $st3  = $this->db->prepare($sql3);
+        $res3 = $st3->execute(array(
+            'harvest_id' => $sellCropData['harvest_id'],
+            'amount' => $sellCropData['harvest_amount']
+        ));
+        // print_r($sellCropData);
+        // echo $res3;
+
+        if($res3) {
+            $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
+            $st = $this->db->prepare($sql);
+            $res = $st->execute();
+            if ($res) {
+                header('location: ' . URL . 'farmer/sellCropMng');
+            }
+
+>>>>>>> 95177f28b18789b415f85f8b3a74afc6402ef344
         }
+
     }
 
     ##################################### END OF FARMER MODEL ##############################################################################

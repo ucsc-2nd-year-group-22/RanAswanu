@@ -1,7 +1,6 @@
 <h1>Sell harvest form</h1>
 <?php $dataForSellCrop = $dataForSellCrop[0];
-echo $dataForSellCrop['district_name'];
-print_r($dataForSellCrop);
+
 ?>
 
 <!-- FORM -->

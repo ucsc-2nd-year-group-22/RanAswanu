@@ -1,44 +1,183 @@
+<script>
+    $(function() {
+        $('#box').html('');
+        $.ajax({
+            url: "ajxacceptedOffers",
+            method: "post",
+            data: {
+
+            },
+            dataType: "text",
+            success: function(data) {
+                $('#box').html(data);
+            },
+            async: true,
+        });
+
+
+        var selectedSort = 'max_offer';
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');
+        });
+        // asc
+        $('#ascSort').click(function() {
+
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortCrops",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'ASC'
+                },
+                dataType: "text",
+                success: function(data) {
+
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+        //descending 
+        $('#descSort').click(function() {
+            //alert(selectedSort)
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortCrops",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'DESC'
+                },
+                dataType: "text",
+                success: function(data) {
+
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+        //search
+        var selectedSearchCategory = $('#searchField').val();
+
+        $('#searchField').change(function() {
+            selectedSearchCategory = $(this).val();
+            // $('#test').html(selectedCategory);
+        });
+
+        $('#searchBtn').click(function(event) {
+            event.preventDefault();
+            var input = $('#searchInput').val();
+            if (input != '') {
+                location.reload();
+                $('#searchInput').val('');
+            }
+
+        });
+
+        $("#searchInput").keyup(function() {
+            var inputVal = $(this).val();
+            if (inputVal != '') {
+                $('#box').html('');
+                switch (selectedSearchCategory) {
+                    case 'crop_type': {
+                        $.ajax({
+                            url: "ajxSearchCrops",
+                            method: "post",
+                            data: {
+                                search: inputVal
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                    case 'ds_name': {
+                        $.ajax({
+                            url: "ajxSearchCropsdistrict",
+                            method: "post",
+                            data: {
+                                search: inputVal
+                            },
+                            dataType: "text",
+                            success: function(data) {
+                                $('#box').html(data);
+                            },
+                            async: true,
+                        });
+                        break;
+                    }
+                }
+            } else {
+                location.reload();
+            }
+        });
+
+
+
+
+
+    });
+</Script>
+
 <h1>Accepted Offers</h1>
 
-<!-- <?php echo  $accepted_offers['first_name']. " ". $accepted_offers['last_name']?> -->
-<div class="main-table">
-<table>
+<div class="user-tabs">
+    <ul>
 
-    <tr>
-        <th>#</th>
-        <th>Offer Id</th>
-        <th>Id - Farmer's Name</th>
-        <th>Crop Name</th>
-        <th>Weight</th>
-        <th>Your Accepted Offer</th>
-        <th>District</th>
-        <th>Collecting Center</th>
-        <th>Farmer's Contact details</th>
-        <!-- <th>About Offer</th> -->
-        <!-- <th>View Profile</th> -->
-    </tr>
+        <li><a id="tab1" href="#" class="active-tab">All</a></li>
 
-    <?php $i = 0;
-    foreach ($accepted_offers as $acceptedoffers) :;
-        $i++; ?>
-        <tr>
-            <td><?= $i ?> </td>
-            <td><?= $acceptedoffers['offer_id']; ?> </td>
-            <td><?= $acceptedoffers['farmer_user_id']."-". $acceptedoffers['first_name']." ". $acceptedoffers['last_name']; ?> </td>
-            <td><?= $acceptedoffers['crop_type']; ?> </td>
-            <td><?= $acceptedoffers['harvest_amount']; ?> </td>
-            <td><?= $acceptedoffers['offer_amount']; ?></td>
-            <td><?= $acceptedoffers['ds_name']; ?> </td>
-            <td><?= $acceptedoffers['center_name']; ?> </td>
-            <td><?= $acceptedoffers['phone_no']; ?></td>
-
-            <!-- <td><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'vendor/fcontactDetails/' . $acceptedoffers['farmer_user_id']; ?>"> <i class="far fa-address-card"></i></a></td> -->
-            <!-- <td><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'vendor/aboutOffer/' . $acceptedoffers['farmer_user_id']; ?>"> <i class="far fa-address-card"></i></a></td> -->
+    </ul>
 
 
-            
-        </tr>
+</div>
 
-    <?php endforeach; ?>
-</table>
+<div class="tabContainer" id="tab1C">
+    <div class="panel-container">
+
+        <div class="pane1">
+
+            <form class="search-bar">
+                <label>Search Crops by : </label>
+                <select id="searchField">
+                    <option value="crop_type">Crops Name</option>
+                    <option value="ds_name">District</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Search ...">
+                <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
+            </form>
+
+        </div>
+
+
+        <div class="pane2">
+            <form class="normal-select">
+                <label>Sort crop requests by : </label>
+                <select id="sortby">
+
+                    <option val="max_offer">Price</option>
+                    <option val="harvest_amount">Weight</option>
+                </select>
+
+                <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
+                <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+    <div id="box" class="main-table">
+
+    </div>
+
 </div>

@@ -543,17 +543,44 @@ class Farmer_Model extends Model {
             ':harvest_id' => $data['harvest_id'],
         ));
         if ($res) {
-            header('location: ' . URL . 'farmer/sellCropMng');
+            $sql2 = "UPDATE harvest SET expected_harvest = expected_harvest - :amount WHERE harvest_id = :harvest_id";
+            $st2  = $this->db->prepare($sql2);
+            $res2 = $st2->execute(array(
+                ':amount' => $data['harvest_amount'],
+                ':harvest_id' => $data['harvest_id']
+            ));
+
+            if ($res2) {
+                header('location: ' . URL . 'farmer/sellCropMng');
+            }
         }
     }
 
     public function deleteSellCrop($selling_req_id) {
-        $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
-        $st = $this->db->prepare($sql);
-        $res = $st->execute();
-        if ($res) {
-            header('location: ' . URL . 'farmer/sellCropMng');
+        $sql2 = "SELECT harvest_amount, harvest_id FROM selling_request WHERE selling_req_id = $selling_req_id";
+        $st2  = $this->db->prepare($sql2);
+        $st2->execute();
+        $sellCropData = $st2->fetch(PDO::FETCH_ASSOC);
+
+        $sql3 = "UPDATE harvest SET expected_harvest = expected_harvest + :amount WHERE harvest_id = :harvest_id";
+        $st3  = $this->db->prepare($sql3);
+        $res3 = $st3->execute(array(
+            'harvest_id' => $sellCropData['harvest_id'],
+            'amount' => $sellCropData['harvest_amount']
+        ));
+        // print_r($sellCropData);
+        // echo $res3;
+
+        if($res3) {
+            $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
+            $st = $this->db->prepare($sql);
+            $res = $st->execute();
+            if ($res) {
+                header('location: ' . URL . 'farmer/sellCropMng');
+            }
+
         }
+
     }
 
     ##################################### END OF FARMER MODEL ##############################################################################

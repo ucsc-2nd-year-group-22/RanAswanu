@@ -207,6 +207,7 @@ class Farmer extends Controller {
             'harvest_id' => $harvest_id,
             'dataForSellCrop' => $this->model->dataForSellCrop($harvest_id),
         ];
+        // print_r($data);
         $this->view->rendor('farmer/newSellCropForm', $data);
     }
 

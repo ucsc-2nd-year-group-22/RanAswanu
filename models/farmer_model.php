@@ -513,17 +513,17 @@ class Farmer_Model extends Model {
     }
 
     public function dataForSellCrop($harvest_id) {
-        $sql = "SELECT
+        $sql = "SELECT 
         harvest.*,
         crop.crop_type, crop.crop_varient,
-        gramasewa_division.gs_name, 
-        district.ds_name AS district_name
-        FROM harvest 
-        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-        JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
-        JOIN district ON district.district_id = divisional_secratariast.ds_id
-        JOIN crop ON crop.crop_id = harvest.crop_id
-        WHERE harvest_id = $harvest_id AND harvest.is_accept = 1";
+        gramasewa_division.gs_name,
+        divisional_secratariast.ds_name AS district_name
+    FROM harvest
+    JOIN crop ON crop.crop_id = harvest.crop_id
+    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+    JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+    JOIN district ON district.district_id = divisional_secratariast.district_id
+    WHERE harvest.harvest_id = $harvest_id AND harvest.is_accept = 1";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
 

@@ -394,7 +394,7 @@ class Farmer_Model extends Model
         // print_r($st2);
 
         // if ($res) {
-        // header('location: ' . URL . 'farmer/damageMng');
+        header('location: ' . URL . 'farmer/damageMng');
         // }
     }
 

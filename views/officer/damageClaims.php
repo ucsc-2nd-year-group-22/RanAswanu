@@ -24,7 +24,7 @@
             $('#showAll').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url: "<?= URL ?>/officer/ajxFilterCropReq",
+                url: "<?= URL ?>/officer/ajxFilterDmgClaim",
                 method: "post",
                 data: {
                     filter: selectedFilter
@@ -43,7 +43,7 @@
             $('#showAll').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url: "<?= URL ?>/officer/ajxFilterCropReq",
+                url: "<?= URL ?>/officer/ajxFilterDmgClaim",
                 method: "post",
                 data: {
                     filter: selectedFilter
@@ -62,7 +62,7 @@
             $('#showPending').removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url: "ajxCropReqList",
+                url: "ajxDmgClaimList",
                 method: "post",
                 dataType: "text",
                 success: function(data) {
@@ -86,7 +86,7 @@
             $("#descSort").removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url: "ajxSortCropReqs",
+                url: "ajxSortDmgClaims",
                 method: "post",
                 data: {
                     filter: selectedSort,
@@ -105,7 +105,7 @@
             $("#ascSort").removeClass("active-btn");
             $(this).addClass("active-btn");
             $.ajax({
-                url: "ajxSortCropReqs",
+                url: "ajxSortDmgClaims",
                 method: "post",
                 data: {
                     filter: selectedSort,
@@ -191,9 +191,8 @@
             <select id="sortby">
                 <option value="first_name" selected>Farmer's name</option>
                 <option value="last_name">Last name</option>
-                <option value="expected_harvest">expected_harvest</option>
-                <option value="crop_type">crop_type</option>
-                <option value="center_name">center_name</option>
+                <option value="damageAmt">Damage Amount</option>
+                <option value="area">Area</option>
             </select>
             <button type="button" id="ascSort" class="half">
                 <i class="fas fa-sort-amount-down-alt"></i> Ascending

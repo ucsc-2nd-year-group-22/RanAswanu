@@ -78,6 +78,19 @@ class Officer extends Controller
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
+    
+    public function ajxFilterDmgClaim()
+    {
+
+        $data['dmgClaimData'] = $this->model->ajxFilterDmgClaim($_POST['filter']);
+        $data['role'] = Session::get('role');
+        if (!empty($data['dmgClaimData'])) {
+            $this->view->rendor('officer/ajxDamageClaims', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
     public function ajxSortCropReqs()
     {
@@ -87,6 +100,20 @@ class Officer extends Controller
         // print_r($data['farmerData']);
         if (!empty($data['cropReqData'])) {
             $this->view->rendor('officer/ajxCropReqMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+    
+    public function ajxSortDmgClaims()
+    {
+
+        $data['dmgClaimData'] = $this->model->ajxSortDmgClaims($_POST['filter'], $_POST['ascOrDsc']);
+        $data['role'] = Session::get('role');
+        // print_r($data['farmerData']);
+        if (!empty($data['dmgClaimData'])) {
+            $this->view->rendor('officer/ajxDamageClaims', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);

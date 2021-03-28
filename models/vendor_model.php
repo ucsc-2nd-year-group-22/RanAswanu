@@ -88,6 +88,7 @@ class Vendor_Model extends Model
 
     public function acceptedOffersList(){
         $user_id = Session::get('user_id');
+        // $st=$this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type,group_concat(user_tel.tel_no) AS phone_no FROM offer
         $st=$this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
         JOIN selling_request ON selling_request.selling_req_id=offer.selling_req_id
         JOIN user ON user.user_id=selling_request.farmer_user_id
@@ -96,7 +97,7 @@ class Vendor_Model extends Model
         JOIN district ON district.district_id=collecting_center.district_id
         JOIN crop ON crop.crop_id=harvest.crop_id
         -- JOIN user_tel ON user_tel.user_id=user.user_id
-        where offer.vendor_user_id=:user_id AND offer.transaction_flag=1  ");
+        where offer.vendor_user_id=:user_id AND offer.transaction_flag=1 ");
         $st->execute(array(
             'user_id'=>$user_id,
         ));
@@ -194,6 +195,27 @@ class Vendor_Model extends Model
         $st = $this->db->prepare($st);
         $st->execute(array(
             'crops' => "$crop_name%"
+        ));
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajxSearchAcceptedCropsid($farmer_user_id)
+    {
+        $user_id = Session::get('user_id');
+        $st = "SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
+        JOIN selling_request ON selling_request.selling_req_id=offer.selling_req_id
+        JOIN user ON user.user_id=selling_request.farmer_user_id
+        JOIN harvest ON harvest.harvest_id=selling_request.harvest_id
+        JOIN collecting_center ON collecting_center.center_id=harvest.center_id
+        JOIN district ON district.district_id=collecting_center.district_id
+        JOIN crop ON crop.crop_id=harvest.crop_id
+        -- JOIN user_tel ON user_tel.user_id=user.user_id
+        where offer.vendor_user_id=$user_id AND offer.transaction_flag=1 AND selling_request.farmer_user_id LIKE :farmer_user_id";
+
+        $st = $this->db->prepare($st);
+        $st->execute(array(
+            'farmer_user_id' => "$farmer_user_id%"
         ));
 
         return $st->fetchAll(PDO::FETCH_ASSOC);

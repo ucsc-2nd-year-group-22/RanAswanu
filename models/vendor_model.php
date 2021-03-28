@@ -65,7 +65,7 @@ class Vendor_Model extends Model
     //update sent offers
     public function updateOffer($data)
     {
-        $st = $this->db->prepare('UPDATE request SET `amount` = :amount WHERE reqid = :reqid');
+        $st = $this->db->prepare('UPDATE offer SET `offer_amount` = :amount WHERE offer_id = :reqid');
         $st->execute(array(
             ':reqid' => $data['reqid'],
             ':amount' => $data['amount'],
@@ -75,16 +75,21 @@ class Vendor_Model extends Model
     //delete sent offers
     public function undoOffer($data)
     {
-        $st = $this->db->prepare('DELETE FROM request WHERE reqid = :id');
+        $st = $this->db->prepare('DELETE FROM offer WHERE offer_id = :id');
         $st->execute(array(
-            ':id' => $data['reqid']
+            ':id' => $data['offer_id']
         ));
     }
 
     //getting offers sent by vendor (logged in)
     public function myOffers($id)
     {
-        $st = $this->db->prepare("SELECT * FROM offer WHERE vendor_user_id = :id");
+        $st = $this->db->prepare("SELECT offer.*, selling_request.*,collecting_center.center_name, crop.crop_type FROM selling_request
+        JOIN offer ON selling_request.selling_req_id=offer.selling_req_id
+        JOIN user ON selling_request.farmer_user_id = user.user_id
+        JOIN harvest ON user.user_id = harvest.farmer_user_id
+        JOIN crop ON harvest.crop_id = crop.crop_id
+        JOIN collecting_center ON harvest.center_id = collecting_center.center_id where offer.vendor_user_id = :id");
         
         $st->execute(array(
             ':id' => $id

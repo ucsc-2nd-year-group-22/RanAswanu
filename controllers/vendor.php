@@ -89,7 +89,7 @@ class Vendor extends Controller
 
     public function undoOffer($id)
     {
-        $data['reqid'] = $id;
+        $data['offer_id'] = $id;
         $this->model->undoOffer($data);
         header('location: ' . URL . 'vendor/index');
     }
@@ -181,7 +181,7 @@ class Vendor extends Controller
     public function loadOffers() {
         $myOffers = $this->model->myOffers(Session::get('user_id'));
         $data['myOffers'] = $myOffers;
-        print_r($data['myOffers']);
+       // print_r($data['myOffers']);
         if (!empty($data['myOffers'])) {
             $this->view->rendor('vendor/ajxViewOffers', $data, $withoutHeaderFooter = true);
         } else {

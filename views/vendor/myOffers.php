@@ -12,22 +12,7 @@
             async: true,
         });
 
-        ///////////NEW BOX FUNCTION FOR VIEW OFFERS///////////////
-
-        // $('#boxO').html('');
-        // $.ajax({
-        //     url: "AllOffers",
-        //     method: "post",
-        //     data: {
-
-        //     },
-        //     dataType: "text",
-        //     success: function(data) {
-        //         $('#box').html(data);
-        //     },
-        //     async: true,
-        // });
-        ///////////////////////////////////////////
+    
         var selectedSort = 'expected_harvest';
         $('#sortby').change(function() {
             selectedSort = $('#sortby :selected').attr('val');

@@ -7,9 +7,9 @@
     <form action="<?= URL; ?>/vendor/updateOffer" method="post">
         <!-- <form> -->
 
-        <?php $dd = 1;
+        <!-- <?php $dd = 1;
         $newof = $this->offer['max_offer'] + $dd; ?>
-        <?php echo $newof; ?>
+        <?php echo $newof; ?> -->
         <div class="row">
             <div class="col-25">
                 <label for="max_offer">Give my Offer</label>

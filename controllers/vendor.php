@@ -55,15 +55,16 @@ class Vendor extends Controller
 
     public function updateOffer($selling_req__id)
     {
-        $data = array();
+       // $this->astActivepage();
+        // $data = array();
 
-        $data['max_offer'] = $_POST('max_offer');
-        $data['selling_req_id'] = $selling_req__id;
+        // $data['max_offer'] = $_POST('max_offer');
+        // $data['selling_req_id'] = $selling_req__id;
 
 
-        $this->model->updateOffer($data);
-        $this->model->inserttosellingreq($data);
-        header('location:' . URL . 'vendor/allCrops');
+        // $this->model->updateOffer($data);
+        // // $this->model->inserttosellingreq($data);
+        // header('location:' . URL . 'vendor/allCrops');
     }
 
     public function viewfarmerprofile($user_id)

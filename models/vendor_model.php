@@ -50,7 +50,7 @@ class Vendor_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-   
+
 
     public function giveOffer($selling_req_id)
     {
@@ -58,12 +58,12 @@ class Vendor_Model extends Model
     WHERE  selling_request.selling_req_id=:selling_req_id");
 
         $st->execute(array(
-            ':selling_req_id'=>$selling_req_id,
+            ':selling_req_id' => $selling_req_id,
         ));
         return $st->fetch();
     }
 
-    
+
 
     public function viewprofile($user_id)
     {
@@ -75,21 +75,22 @@ class Vendor_Model extends Model
         JOIN gramasewa_division ON gramasewa_division.gs_id=user.gs_id
         JOIN divisional_secratariast ON divisional_secratariast.ds_id=gramasewa_division.ds_id
         where user.user_id=:user_id");
-        
+
 
         $st->execute(array(
             ':user_id' => $user_id
         ));
         return $st->fetch();
-      //  print_r($st->fetch);
+        //  print_r($st->fetch);
         //return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
-    public function acceptedOffersList(){
+    public function acceptedOffersList()
+    {
         $user_id = Session::get('user_id');
         // $st=$this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type,group_concat(user_tel.tel_no) AS phone_no FROM offer
-        $st=$this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
+        $st = $this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
         JOIN selling_request ON selling_request.selling_req_id=offer.selling_req_id
         JOIN user ON user.user_id=selling_request.farmer_user_id
         JOIN harvest ON harvest.harvest_id=selling_request.harvest_id
@@ -99,7 +100,7 @@ class Vendor_Model extends Model
         -- JOIN user_tel ON user_tel.user_id=user.user_id
         where offer.vendor_user_id=:user_id AND offer.transaction_flag=1 ORDER BY offer.offer_id DESC");
         $st->execute(array(
-            'user_id'=>$user_id,
+            'user_id' => $user_id,
         ));
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }

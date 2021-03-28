@@ -157,6 +157,7 @@ class Vendor extends Controller
     {
         $d = $this->model->acceptedOffersList();
         $data['accepted_offers'] = $d;
+        // print_r($data['accepted_offers']);
 
         if (!empty($d)) {
             $this->view->rendor('vendor/ajxacceptedOffers', $data, $withoutHeaderFooter = true);
@@ -165,4 +166,50 @@ class Vendor extends Controller
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
+
+
+    public function ajxSearchAcceptedCrops()
+    {
+
+        $d = $this->model->ajxSearchAcceptedCrops($_POST['search']);
+        $data['accepted_offers'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxacceptedOffers', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function ajxSearchAcceptedCropsid()
+    {
+
+        $d = $this->model->ajxSearchAcceptedCropsid($_POST['search']);
+        $data['accepted_offers'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxacceptedOffers', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+
+    // public function ajxSortAcceptedCrops()
+    // {
+    //     $d = $this->model->ajxSortAcceptedCrops($_POST['filter'], $_POST['ascOrDsc']);
+    //     $data['accepted_offers'] = $d;
+
+
+    //     if (!empty($d)) {
+    //         $this->view->rendor('vendor/ajxacceptedOffers', $data, $withoutHeaderFooter = true);
+    //     } else {
+    //         $data['errMsg'] = "No Result Found !";
+    //         $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+    //     }
+    // }
+
+    
 }

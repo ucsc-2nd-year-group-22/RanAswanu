@@ -97,7 +97,7 @@ class Vendor_Model extends Model
         JOIN district ON district.district_id=collecting_center.district_id
         JOIN crop ON crop.crop_id=harvest.crop_id
         -- JOIN user_tel ON user_tel.user_id=user.user_id
-        where offer.vendor_user_id=:user_id AND offer.transaction_flag=1 ");
+        where offer.vendor_user_id=:user_id AND offer.transaction_flag=1 ORDER BY offer.offer_id DESC");
         $st->execute(array(
             'user_id'=>$user_id,
         ));
@@ -220,4 +220,39 @@ class Vendor_Model extends Model
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // public function ajxSortAcceptedCrops($filter, $ascOrDsc)
+    // {
+    //     $user_id = Session::get('user_id');
+
+    //     if ($ascOrDsc == 'ASC') {
+    //         $det = "SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
+    //         JOIN selling_request ON selling_request.selling_req_id=offer.selling_req_id
+    //         JOIN user ON user.user_id=selling_request.farmer_user_id
+    //         JOIN harvest ON harvest.harvest_id=selling_request.harvest_id
+    //         JOIN collecting_center ON collecting_center.center_id=harvest.center_id
+    //         JOIN district ON district.district_id=collecting_center.district_id
+    //         JOIN crop ON crop.crop_id=harvest.crop_id
+    //         -- JOIN user_tel ON user_tel.user_id=user.user_id
+    //         where offer.vendor_user_id=$user_id AND offer.transaction_flag=1  ORDER BY offer.$filter ASC";
+    //         //  JOIN crop ON crop.crop_id=harvest.crop_id ORDER BY selling_request.$filter ASC";
+    //     }
+
+    //     if ($ascOrDsc == 'DESC') {
+    //         $det = "SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
+    //         JOIN selling_request ON selling_request.selling_req_id=offer.selling_req_id
+    //         JOIN user ON user.user_id=selling_request.farmer_user_id
+    //         JOIN harvest ON harvest.harvest_id=selling_request.harvest_id
+    //         JOIN collecting_center ON collecting_center.center_id=harvest.center_id
+    //         JOIN district ON district.district_id=collecting_center.district_id
+    //         JOIN crop ON crop.crop_id=harvest.crop_id
+    //         -- JOIN user_tel ON user_tel.user_id=user.user_id
+    //         where offer.vendor_user_id=$user_id AND offer.transaction_flag=1  ORDER BY offer.$filter ASC";
+    //     }
+
+    //     $st = $this->db->prepare($det);
+    //     $st->execute();
+    //     // print_r($st->fetchAll);
+    //     return $st->fetchAll(PDO::FETCH_ASSOC);
+    // }
 }

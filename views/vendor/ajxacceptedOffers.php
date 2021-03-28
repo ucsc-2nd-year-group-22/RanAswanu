@@ -9,11 +9,11 @@
         <th>Crop Name</th>
         <th>Weight</th>
         <th>Your Accepted Offer</th>
+        <!-- <th>Offered time </th> -->
         <th>District</th>
         <th>Collecting Center</th>
         <th>Farmer's Contact details</th>
-        <!-- <th>About Offer</th> -->
-        <!-- <th>View Profile</th> -->
+     
     </tr>
 
     <?php $i = 0;
@@ -26,9 +26,11 @@
             <td><?= $acceptedoffers['crop_type']; ?> </td>
             <td><?= $acceptedoffers['harvest_amount']; ?> </td>
             <td><?= $acceptedoffers['offer_amount']; ?></td>
+            <!-- <td><?= $acceptedoffers['date_time']; ?></td> -->
             <td><?= $acceptedoffers['ds_name']; ?> </td>
             <td><?= $acceptedoffers['center_name']; ?> </td>
-            <td><?= $acceptedoffers['phone_no']; ?></td>
+            <!-- <td><?= $acceptedoffers['phone_no']; ?></td> -->
+
 
             <!-- <td><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'vendor/fcontactDetails/' . $acceptedoffers['farmer_user_id']; ?>"> <i class="far fa-address-card"></i></a></td> -->
             <!-- <td><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'vendor/aboutOffer/' . $acceptedoffers['farmer_user_id']; ?>"> <i class="far fa-address-card"></i></a></td> -->

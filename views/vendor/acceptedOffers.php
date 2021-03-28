@@ -15,51 +15,51 @@
         });
 
 
-        var selectedSort = 'max_offer';
-        $('#sortby').change(function() {
-            selectedSort = $('#sortby :selected').attr('val');
-        });
-        // asc
-        $('#ascSort').click(function() {
+        // var selectedSort = 'max_offer';
+        // $('#sortby').change(function() {
+        //     selectedSort = $('#sortby :selected').attr('val');
+        // });
+        // // asc
+        // $('#ascSort').click(function() {
 
-            $('#descSort').removeClass("active-btn");
-            $(this).addClass("active-btn");
-            $.ajax({
-                url: "ajxSortCrops",
-                method: "post",
-                data: {
-                    filter: selectedSort,
-                    ascOrDsc: 'ASC'
-                },
-                dataType: "text",
-                success: function(data) {
+        //     $('#descSort').removeClass("active-btn");
+        //     $(this).addClass("active-btn");
+        //     $.ajax({
+        //         url: "ajxSortAcceptedCrops",
+        //         method: "post",
+        //         data: {
+        //             filter: selectedSort,
+        //             ascOrDsc: 'ASC'
+        //         },
+        //         dataType: "text",
+        //         success: function(data) {
 
-                    $('#box').html(data);
-                },
-                async: true
-            });
-        });
+        //             $('#box').html(data);
+        //         },
+        //         async: true
+        //     });
+        // });
 
-        //descending 
-        $('#descSort').click(function() {
-            //alert(selectedSort)
-            $('#ascSort').removeClass("active-btn");
-            $(this).addClass("active-btn");
-            $.ajax({
-                url: "ajxSortCrops",
-                method: "post",
-                data: {
-                    filter: selectedSort,
-                    ascOrDsc: 'DESC'
-                },
-                dataType: "text",
-                success: function(data) {
+        // //descending 
+        // $('#descSort').click(function() {
+        //     //alert(selectedSort)
+        //     $('#ascSort').removeClass("active-btn");
+        //     $(this).addClass("active-btn");
+        //     $.ajax({
+        //         url: "ajxSortAcceptedCrops",
+        //         method: "post",
+        //         data: {
+        //             filter: selectedSort,
+        //             ascOrDsc: 'DESC'
+        //         },
+        //         dataType: "text",
+        //         success: function(data) {
 
-                    $('#box').html(data);
-                },
-                async: true
-            });
-        });
+        //             $('#box').html(data);
+        //         },
+        //         async: true
+        //     });
+        // });
 
         //search
         var selectedSearchCategory = $('#searchField').val();
@@ -86,7 +86,7 @@
                 switch (selectedSearchCategory) {
                     case 'crop_type': {
                         $.ajax({
-                            url: "ajxSearchCrops",
+                            url: "ajxSearchAcceptedCrops",
                             method: "post",
                             data: {
                                 search: inputVal
@@ -99,9 +99,9 @@
                         });
                         break;
                     }
-                    case 'ds_name': {
+                    case 'farmer_user_id': {
                         $.ajax({
-                            url: "ajxSearchCropsdistrict",
+                            url: "ajxSearchAcceptedCropsid",
                             method: "post",
                             data: {
                                 search: inputVal
@@ -148,7 +148,7 @@
                 <label>Search Crops by : </label>
                 <select id="searchField">
                     <option value="crop_type">Crops Name</option>
-                    <option value="ds_name">District</option>
+                    <option value="farmer_user_id">Farmer-id</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Search ...">
                 <button type="button" id="searchBtn"><i class="fas fa-eraser"></i></button>
@@ -157,19 +157,19 @@
         </div>
 
 
-        <div class="pane2">
+        <!-- <div class="pane2">
             <form class="normal-select">
                 <label>Sort crop requests by : </label>
                 <select id="sortby">
 
-                    <option val="max_offer">Price</option>
-                    <option val="harvest_amount">Weight</option>
+                    <option val="date_time">date_time</option>
+                    
                 </select>
 
                 <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
                 <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
             </form>
-        </div>
+        </div> -->
 
 
     </div>

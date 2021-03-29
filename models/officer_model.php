@@ -268,7 +268,6 @@ class Officer_Model extends Model {
             }
         } else {
             $officer_id = Session::get('user_id');
-
             if ($ascOrDsc == 'ASC') {
                 if ($filter == "first_name" || $filter == "last_name") {
                     $sql = "SELECT 

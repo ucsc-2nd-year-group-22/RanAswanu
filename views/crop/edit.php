@@ -4,7 +4,9 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL; ?>/crop/update/<?php echo $this->crop['crop_id'] ?>" method="post">
+    <div id="errors" class="error"></div>
+
+    <form action="<?= URL; ?>/crop/update/<?php echo $this->crop['crop_id'] ?>" onsubmit="return CheckValidate()" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="crop_name">Crop Name</label>
@@ -67,3 +69,44 @@
         </div>
     </form>
 </div>
+
+
+<script>
+    function CheckValidate() {
+        let validateErrors = [];
+
+        var element = document.getElementById("errors"); //select error section
+
+        while (element.firstChild) {
+            //remove if any previous errors
+            element.removeChild(element.firstChild);
+        }
+
+        //crop type validate
+        let cropType = document.getElementById("crop_type");
+        let name = cropType.value;
+       
+        let str = name.split(' ');
+        for (var i = 0; i < str.length; i++) {
+            if(str[i].charAt(0) !== str[i].charAt(0).toUpperCase()){
+                validateErrors.push("First letter of each word must be in uppercase");
+                break;
+            }
+        }
+
+        validateErrors.forEach((error) => {
+            //view errors
+            var tag = document.createElement("p");
+            var text = document.createTextNode(error);
+            tag.appendChild(text);
+            element.appendChild(tag);
+        });
+
+        if (validateErrors.length > 0) {
+            window.scrollTo(500, 0);
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>

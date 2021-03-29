@@ -1,20 +1,25 @@
 <?php
 
-class Farmer_Model extends Model {
+class Farmer_Model extends Model
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
+
     public function ajxGetCropTypes($district) {
         $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON crop.crop_id = best_area.crop_id  WHERE best_area.district_id = $district GROUP BY crop.crop_type ");
+
         $st->execute();
         // $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON 
         // crop.crop_id = best_area.crop_id WHERE best_area.district_id = (SELECT district.district_id FROM district WHERE district.ds_name = $dist)");
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxGetCultivatedCropTypes() {
+    public function ajxGetCultivatedCropTypes()
+    {
         $gs_id = Session::get('gs_id');
         // Get officer id
         $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
@@ -30,19 +35,23 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     public function ajxGetCropVart($vart) {
         $st = $this->db->prepare("SELECT * FROM `crop` WHERE crop.crop_type = (SELECT crop_type FROM crop WHERE crop_id = :vart) ");
+
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxGetHarvPerLand($vart) {
+    public function ajxGetHarvPerLand($vart)
+    {
         $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /// !!!!!!!!!!!!!!! Handled by OFficer !!!!!!!!!!!!!!!!!!!!!!1
+
     public function farmerList() {
         $gs_id =  Session::get('gs_id');
         if (Session::get('role') == 'admin') {
@@ -64,7 +73,8 @@ class Farmer_Model extends Model {
 
     ////////////// AJAX CALLS /////////////////////////////////////////////////////////////
 
-    public function ajxSearchFarmerName($farmerName) {
+    public function ajxSearchFarmerName($farmerName)
+    {
         $escaped_name = addcslashes($farmerName, '%');
         $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name GROUP BY user.user_id";
         $st = $this->db->prepare($sql);
@@ -76,7 +86,8 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxFilterFarmer($filter, $ascOrDsc) {
+    public function ajxFilterFarmer($filter, $ascOrDsc)
+    {
         //    echo $ascOrDsc;
 
         if ($ascOrDsc == 'ASC') {
@@ -92,7 +103,8 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxSearchFarmerNic($nic) {
+    public function ajxSearchFarmerNic($nic)
+    {
         $escaped_name = addcslashes($nic, '%');
         $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' AND user.nic LIKE :nic  GROUP BY user.user_id";
         $st = $this->db->prepare($sql);
@@ -104,8 +116,9 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     public function ajxListCropReq($farmer_id) {
-        $st = $this->db->prepare("SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+        $st = $this->db->prepare("SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest`
         JOIN crop On harvest.crop_id = crop.crop_id 
         JOIN collecting_center ON harvest.center_id = collecting_center.center_id
         JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
@@ -119,7 +132,8 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxGetCenters() {
+    public function ajxGetCenters()
+    {
         $sql = "SELECT * FROM `collecting_center`";
         $st = $this->db->prepare($sql);
         $st->execute();
@@ -127,13 +141,16 @@ class Farmer_Model extends Model {
     }
 
 
-    public function insertCropReq($data) {
+    public function insertCropReq($data)
+    {
         $gs_id = Session::get('gs_id');
         // Get officer id
         $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
         $st = $this->db->prepare($sql);
         $st->execute();
-        $data['officer_user_id'] = $st->fetchColumn();
+        // print_r($st);
+        $data['officer_user_id'] = $st->fetch()['user_id'];
+
 
         $sql2 = "INSERT INTO `harvest`(`starting_month_id`, `harvesting_month_id`, `expected_harvest`, `is_accept`, `gs_id`, `crop_id`, `center_id`, `farmer_user_id`, `officer_user_id`) 
         VALUES (:starting_month, :harvesting_month, :expected_harvest, :is_accept, :gs_id, :crop_id, :center_id, :farmer_user_id, :officer_user_id)";
@@ -155,7 +172,8 @@ class Farmer_Model extends Model {
         // print_r($st2);
     }
 
-    public function ajxSortCropReqs($filter, $ascOrDsc) {
+    public function ajxSortCropReqs($filter, $ascOrDsc)
+    {
         $farmer_id = Session::get('user_id');
         if ($ascOrDsc == 'ASC') {
             $sql = "        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
@@ -182,7 +200,8 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxFilterCropReq($filter) {
+    public function ajxFilterCropReq($filter)
+    {
         $farmer_id = Session::get('user_id');
         if ($filter == 'accepted') {
             $sql = "SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
@@ -208,7 +227,8 @@ class Farmer_Model extends Model {
     }
 
 
-    public function deleteCropReq($harvest_id) {
+    public function deleteCropReq($harvest_id)
+    {
         $st = $this->db->prepare("DELETE FROM `harvest` WHERE harvest_id = $harvest_id ");
         $st->execute();
 
@@ -217,7 +237,8 @@ class Farmer_Model extends Model {
         }
     }
 
-    public function getCropReq($harvest_id) {
+    public function getCropReq($harvest_id)
+    {
         $st = $this->db->prepare("SELECT harvest.*, crop.*, collecting_center.* FROM harvest
             JOIN crop ON crop.crop_id = harvest.crop_id
             JOIN collecting_center ON collecting_center.center_id = harvest.center_id
@@ -226,7 +247,8 @@ class Farmer_Model extends Model {
         return $st->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function damageClaimList($farmer_id) {
+    public function damageClaimList($farmer_id)
+    {
         $gs_id = Session::get('gs_id');
         // Get officer id
         $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
@@ -243,7 +265,8 @@ class Farmer_Model extends Model {
         return $st2->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getLocDataByGs($harvest_id) {
+    public function getLocDataByGs($harvest_id)
+    {
         $sql = "SELECT 
             harvest.harvest_id, 
             gramasewa_division.*,
@@ -262,6 +285,7 @@ class Farmer_Model extends Model {
         $st->execute();
         return $st->fetch(PDO::FETCH_ASSOC);
     }
+
 
     public function updateCropReq($data) {
         $sql = "UPDATE `harvest` SET `starting_month_id`=:starting_month_id,`harvesting_month_id`=:harvesting_month_id,`expected_harvest`=:expected_harvest,`gs_id`=:gs_id,`crop_id`=:crop_id,`center_id`=:center_id
@@ -290,6 +314,7 @@ class Farmer_Model extends Model {
         }
     }
 
+
     public function getAllCenters() {
         $st = $this->db->prepare("SELECT center_id, center_name FROM `collecting_center` ");
         $st->execute();
@@ -305,31 +330,36 @@ class Farmer_Model extends Model {
         return $data;
     }
 
-    public function getAllGramaSewas() {
+    public function getAllGramaSewas()
+    {
         $st = $this->db->prepare("SELECT gs_id, gs_name FROM gramasewa_division");
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllDivSecs() {
+    public function getAllDivSecs()
+    {
         $st = $this->db->prepare("SELECT ds_id, ds_name FROM divisional_secratariast");
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllDistricts() {
+    public function getAllDistricts()
+    {
         $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProvinces() {
+    public function getProvinces()
+    {
         $st = $this->db->prepare("SELECT province_id, province_name FROM province");
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function locDataForDmg($harvest_id) {
+    public function locDataForDmg($harvest_id)
+    {
         $st = $this->db->prepare("SELECT 
         harvest.*, 
         gramasewa_division.*,
@@ -349,36 +379,39 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insertDmg($data) {
+    public function insertDmg($data)
+    {
         $gs_id = Session::get('gs_id');
         // Get officer id
         $sql1 = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
         $st = $this->db->prepare($sql1);
         $st->execute();
-        $data['officer_user_id'] = $st->fetchColumn();
+        $data['officer_user_id'] = $st->fetch()['user_id'];
         $data['farmer_user_id'] = Session::get('user_id');
 
-        echo '<hr>';
-        print_r($data);
+        // print_r($data);
 
         $sql = "INSERT INTO `crop_damage`( `damage_reason`, `is_accepted`, `damage_area`, `damage_date`, `farmer_user_id`, `officer_user_id`, `harvest_id`) VALUES (:reason, :is_accepted, :damage_area, :damage_date, :farmer_user_id, :officer_user_id, :harvest_id)";
         $st2 = $this->db->prepare($sql);
-        $res = $st2->execute(array(
+        $st2->execute(array(
             ':reason' => $data['reason'],
             ':is_accepted' => $data['is_accepted'],
             ':damage_area' => $data['damage_area'],
             ':damage_date' => $data['damage_date'],
             ':farmer_user_id' => $data['farmer_user_id'],
             ':officer_user_id' => $data['officer_user_id'],
-            ':harvest_id' => $data['harvest_id'],
+            ':harvest_id' => $data['harvest_id']
         ));
 
-        if ($res) {
-            header('location: ' . URL . 'farmer/damageMng');
-        }
+        // print_r($st2);
+
+        // if ($res) {
+        header('location: ' . URL . 'farmer/damageMng');
+        // }
     }
 
-    public function deleteDmgClaim($dmg_id) {
+    public function deleteDmgClaim($dmg_id)
+    {
         $st = $this->db->prepare("DELETE FROM `crop_damage` WHERE damage_id = $dmg_id");
         $res = $st->execute();
         if ($res) {
@@ -386,7 +419,8 @@ class Farmer_Model extends Model {
         }
     }
 
-    public function editDmgData($dmg_id) {
+    public function editDmgData($dmg_id)
+    {
         $sql = "SELECT 
         crop_damage.*,
         harvest.*, 
@@ -411,7 +445,8 @@ class Farmer_Model extends Model {
         return $st->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateDmg($data) {
+    public function updateDmg($data)
+    {
         echo '<hr>';
 
         $gs_id = Session::get('gs_id');
@@ -439,7 +474,8 @@ class Farmer_Model extends Model {
         // print_r($data);
     }
 
-    public function ajxFilterDmg($filter) {
+    public function ajxFilterDmg($filter)
+    {
         $gs_id = Session::get('gs_id');
         // Get officer id
         $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
@@ -469,7 +505,8 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxSortDmg($filter, $ascOrDsc) {
+    public function ajxSortDmg($filter, $ascOrDsc)
+    {
         $gs_id = Session::get('gs_id');
         // Get officer id
         $sql = "SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'";
@@ -499,7 +536,8 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function listSellCrops($farmer_id) {
+    public function listSellCrops($farmer_id)
+    {
 
         $sql = "SELECT 
         selling_request.*,
@@ -538,7 +576,8 @@ class Farmer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insertSellCrop($data) {
+    public function insertSellCrop($data)
+    {
         $sql = "INSERT INTO `selling_request`(`date`, `valid_time_period`, `harvest_amount`, `max_offer`, `min_offer`, `farmer_user_id`, `harvest_id`) VALUES (:date, :valid_time_period, :harvest_amount, :max_offer, :min_offer, :farmer_user_id, :harvest_id)";
         $st = $this->db->prepare($sql);
         $res = $st->execute(array(

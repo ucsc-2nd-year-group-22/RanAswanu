@@ -90,7 +90,7 @@ class Farmer extends Controller {
 
     //instert damage claim information to the database
     public function insertDmg() {
-        print_r($_POST);
+        // print_r($_POST);
 
         $data['reason'] = $_POST['reason'];
         $data['is_accepted'] = 0;

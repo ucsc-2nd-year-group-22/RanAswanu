@@ -1,13 +1,16 @@
 <?php
 
-class Officer extends Controller {
+class Officer extends Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         Session::init();
     }
 
-    public function index() {
+    public function index()
+    {
         $logged = Session::get('loggedIn');
         $role = Session::get('role');
         $data = array(
@@ -21,7 +24,8 @@ class Officer extends Controller {
         }
     }
 
-    public function cropReq() {
+    public function cropReq()
+    {
 
         $this->view->js = 'officer/js/default';
         $this->setActivePage('cropReq');
@@ -34,7 +38,8 @@ class Officer extends Controller {
         }
     }
 
-    public function ajxCropReqList() {
+    public function ajxCropReqList()
+    {
         $data = [
             'role' => Session::get('role'),
             'cropReqData' => $this->model->cropReqList(),
@@ -46,8 +51,23 @@ class Officer extends Controller {
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
+    public function ajxDmgClaimList()
+    {
+        $data = [
+            'role' => Session::get('role'),
+            'dmgClaimData' => $this->model->dmgClaimList(),
+        ];
+        if (!empty($data['dmgClaimData'])) {
+            // print_r($data['dmgClaimData']);
+            $this->view->rendor('officer/ajxDamageClaims', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
 
-    public function ajxFilterCropReq() {
+    public function ajxFilterCropReq()
+    {
 
         $data['cropReqData'] = $this->model->ajxFilterCropReq($_POST['filter']);
         $data['role'] = Session::get('role');
@@ -58,8 +78,22 @@ class Officer extends Controller {
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
+    
+    public function ajxFilterDmgClaim()
+    {
 
-    public function ajxSortCropReqs() {
+        $data['dmgClaimData'] = $this->model->ajxFilterDmgClaim($_POST['filter']);
+        $data['role'] = Session::get('role');
+        if (!empty($data['dmgClaimData'])) {
+            $this->view->rendor('officer/ajxDamageClaims', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function ajxSortCropReqs()
+    {
 
         $data['cropReqData'] = $this->model->ajxSortCropReqs($_POST['filter'], $_POST['ascOrDsc']);
         $data['role'] = Session::get('role');
@@ -71,8 +105,23 @@ class Officer extends Controller {
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
+    
+    public function ajxSortDmgClaims()
+    {
 
-    public function ajxSearchCropReq() {
+        $data['dmgClaimData'] = $this->model->ajxSortDmgClaims($_POST['filter'], $_POST['ascOrDsc']);
+        $data['role'] = Session::get('role');
+        // print_r($data['farmerData']);
+        if (!empty($data['dmgClaimData'])) {
+            $this->view->rendor('officer/ajxDamageClaims', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function ajxSearchCropReq()
+    {
         $data['cropReqData'] = $this->model->ajxSearchCropReq($_POST['search']);
         $data['role'] = Session::get('role');
         // print_r($data['farmerData']);
@@ -84,58 +133,65 @@ class Officer extends Controller {
         }
     }
 
-    public function acceptCropReq($harvest_id) {
+    public function ajxSearchDmgClaim()
+    {
+        $data['dmgClaimData'] = $this->model->ajxSearchDmgClaim($_POST['search']);
+        $data['role'] = Session::get('role');
+        // print_r($data['farmerData']);
+        if (!empty($data['dmgClaimData'])) {
+            $this->view->rendor('officer/ajxDamageClaims', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function acceptCropReq($harvest_id)
+    {
         $this->model->acceptCropReq($harvest_id);
     }
 
-    public function deleteCropReq($harvest_id) {
+    public function acceptDmgClaim($damage_id)
+    {
+        $this->model->acceptDmgClaim($damage_id);
+    }
+
+    public function deleteCropReq($harvest_id)
+    {
         $this->model->deleteCropReq($harvest_id);
     }
 
-    public function damageClaims() {
+    public function damageClaims()
+    {
 
-        $dmgClaimData = [
-            [
-                'farmer' => "Amal Lakshan",
-                'crops' => "Beans, Carrot",
-                'area' => "Kandy",
-                'damageAmt' => "1 hectares",
-            ],
-            [
-                'farmer' => "Suneetha Madawala",
-                'crops' => "Pumpkin, Carrot",
-                'area' => "Horowpathana-south",
-                'damageAmt' => "2 hectares",
-            ],
-            [
-                'farmer' => "Nalin Jeewaka",
-                'crops' => "Tomatoe",
-                'area' => "Badulla",
-                'damageAmt' => "2.5 hectares",
-            ]
-        ];
-        $data = [
-            'dmgClaimData' => $dmgClaimData
-        ];
+        // $dmgClaimData = $this->model->dmgClaimData();
+        // $data = [
+        //     'dmgClaimData' => $dmgClaimData
+        // ];
+        $this->setActivePage('dmgClaim');
+
         $this->setActivePage('damageClaims');
         if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
-            $this->view->rendor('officer/damageClaims', $data);
+            $this->view->rendor('officer/damageClaims');
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
             $this->view->rendor('error/index', $data);
         }
     }
 
-    function editDmg() {
+    function editDmg()
+    {
         if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('officer/editDmg');
     }
 
-    function saveDmg() {
+    function saveDmg()
+    {
         header('location: ' . URL . 'officer/damageClaims');
     }
 
-    public function reports() {
+    public function reports()
+    {
         $data = [];
         $this->setActivePage('reports');
         if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
@@ -146,7 +202,8 @@ class Officer extends Controller {
         }
     }
 
-    public function notifications() {
+    public function notifications()
+    {
         $data = [];
         $this->setActivePage('notifications');
         if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
@@ -158,7 +215,8 @@ class Officer extends Controller {
     }
 
     //view list of officers by the admin
-    public function officers() {
+    public function officers()
+    {
 
         //only for admin can execute this
         if (Session::get('loggedIn') == false || Session::get('role') != 'admin') {
@@ -188,7 +246,8 @@ class Officer extends Controller {
         }
     }
 
-    public function sendmail() {
+    public function sendmail()
+    {
 
         $mailbody = '
             <div class="" style="background:#ccc; font-size:1.2em; padding:10px; font-family:sans-serif;">
@@ -212,13 +271,15 @@ class Officer extends Controller {
     }
 
     //remove a officer
-    public function delete($id) {
+    public function delete($id)
+    {
         $this->model->delete($id);
         header('location: ' . URL . 'officer/officers');
     }
 
     //Search officers by name
-    public function ajxSearchOfficerName() {
+    public function ajxSearchOfficerName()
+    {
 
         $d = $this->model->ajxSearchOfficerName($_POST['search']);
         $data['farmerData'] = $d;
@@ -232,7 +293,8 @@ class Officer extends Controller {
     }
 
     //Search officer by NIC 
-    public function ajxSearchOfficerNic() {
+    public function ajxSearchOfficerNic()
+    {
         $d = $this->model->ajxSearchOfficerNic($_POST['search']);
         $data['farmerData'] = $d;
         // print_r($data['farmerData']);
@@ -245,7 +307,8 @@ class Officer extends Controller {
     }
 
     //Sort officers
-    public function ajxFilterOfficer() {
+    public function ajxFilterOfficer()
+    {
 
         $d = $this->model->ajxFilterOfficer($_POST['filter'], $_POST['ascOrDsc']);
         $data['farmerData'] = $d;

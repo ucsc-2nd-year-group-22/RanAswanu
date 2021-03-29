@@ -26,6 +26,7 @@
 
 <div id="tab2C" class="tabContainer">
     <?php
+    $i = 0;
     foreach ($notifications as $notification) { ?>
         <dl class="notification">
             <dd><?php echo $notification['time_stamp']; ?></dd>
@@ -33,6 +34,10 @@
             <dd><?php echo "\t"; ?></dd>
             <dd><?php echo $notification['description']; ?></dd>
         </dl>
+        <?php $i++;
+        if ($i >= 25) {
+            break;
+        } ?>
     <?php  } ?>
 
 </div>

@@ -7,7 +7,7 @@
 </div> -->
 
 <div class="main-form">
-    <form action="#" method="post">
+    <form action="<?= URL;?>/report/generateReport" target="_blank" method="post">
         <div class="row">
             <div class="col-25">
             <label for="province">Select report type</label>

@@ -13,7 +13,7 @@ function CheckPassword() {
   let nic = document.getElementById("nic");
   let usernic = nic.value;
   if (
-    usernic.length != 10 ||
+    (usernic.length != 10 && usernic.length != 12) ||
     (usernic.charAt(usernic.length - 1) != "v" &&
       usernic.charAt(usernic.length - 1) != "V") ||
     hasChar(usernic.substr(0, usernic.length - 1))

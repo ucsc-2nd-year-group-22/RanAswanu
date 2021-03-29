@@ -31,7 +31,7 @@ class CollectingCenter extends Controller
     {
         $data = array();
 
-        $data['center_name'] = $_POST['center_name'];
+        $data['center_name'] = filter_var($_POST['center_name'], FILTER_SANITIZE_STRING);
         $data['district_id'] = $_POST['district'];
 
         // TODO: Do error checking
@@ -70,7 +70,7 @@ class CollectingCenter extends Controller
         $data = array();
 
         $data['id'] = $id;
-        $data['center_name'] = $_POST['center_name'];
+        $data['center_name'] = filter_var($_POST['center_name'], FILTER_SANITIZE_STRING);
         $data['district'] = $_POST['district'];
 
         $this->model->update($data);
@@ -118,5 +118,47 @@ class CollectingCenter extends Controller
     {
         $districts = $this->model->getDistricts($id);
         echo json_encode($districts);
+    }
+
+    //Search centers by name
+    public function ajxSearchCentName() {
+        
+        $d = $this->model->ajxSearchCentName($_POST['search']);
+        $data['centerData'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('collectingcenter/ajxCenterList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+    //Search centers by district name
+    public function ajxSearchDisName() {
+        
+        $d = $this->model->ajxSearchDisName($_POST['search']);
+        $data['centerData'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('collectingcenter/ajxCenterList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+    //Sort centers
+    public function ajxFilterCenter() {
+
+        $d = $this->model->ajxFilterCenter($_POST['filter'], $_POST['ascOrDsc']);
+        $data['centerData'] = $d;
+
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('collectingcenter/ajxCenterList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
     }
 }

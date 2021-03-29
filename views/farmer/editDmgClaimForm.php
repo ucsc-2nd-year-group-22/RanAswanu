@@ -136,7 +136,7 @@
         <label for="dmgArea">Estimated Damage Area -Acres</label>
       </div>
       <div class="col-75">
-        <input type="number" id="estdmgarea" name="estdmgarea" value="<?= $editDmgData['damage_area'] ?>" max="100" required />
+        <input type="number" id="estdmgarea" name="estdmgarea" value="<?= $editDmgData['damage_area'] ?>" min=0  max="100" required />
       </div>
     </div>
 

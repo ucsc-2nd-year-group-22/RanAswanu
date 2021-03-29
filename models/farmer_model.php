@@ -7,7 +7,7 @@ class Farmer_Model extends Model {
     }
 
     public function ajxGetCropTypes($district) {
-        $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON crop.crop_id = best_area.crop_id WHERE best_area.district_id = $district");
+        $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON crop.crop_id = best_area.crop_id  WHERE best_area.district_id = $district GROUP BY crop.crop_type ");
         $st->execute();
         // $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON 
         // crop.crop_id = best_area.crop_id WHERE best_area.district_id = (SELECT district.district_id FROM district WHERE district.ds_name = $dist)");
@@ -31,7 +31,7 @@ class Farmer_Model extends Model {
     }
 
     public function ajxGetCropVart($vart) {
-        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
+        $st = $this->db->prepare("SELECT * FROM `crop` WHERE crop.crop_type = (SELECT crop_type FROM crop WHERE crop_id = :vart) ");
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -44,13 +44,20 @@ class Farmer_Model extends Model {
 
     /// !!!!!!!!!!!!!!! Handled by OFficer !!!!!!!!!!!!!!!!!!!!!!1
     public function farmerList() {
-        $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'farmer' GROUP BY user.user_id");
+        $gs_id =  Session::get('gs_id');
+        if (Session::get('role') == 'admin') {
+            $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user 
+            JOIN user_tel on user.user_id =user_tel.user_id 
+            WHERE user.role = 'farmer' GROUP BY user.user_id";
+        } else {
+            $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user 
+            JOIN user_tel on user.user_id =user_tel.user_id 
+            WHERE user.role = 'farmer' AND user.gs_id = $gs_id GROUP BY user.user_id";
+        }
 
-        // SELECT user.user_name, user.first_name, group_concat(user_tel.tel_no) FROM user JOIN user_tel on user.user_id =user_tel.user_id GROUP BY user.user_id
-        $st->execute(array(
-            ':role' => 'farmer'
-        ));
-        // print_r($st->fetchAll());
+        $st = $this->db->prepare($sql);
+
+        $st->execute();
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -98,7 +105,7 @@ class Farmer_Model extends Model {
     }
 
     public function ajxListCropReq($farmer_id) {
-        $st = $this->db->prepare("        SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
+        $st = $this->db->prepare("SELECT harvest.*, crop.crop_type, crop.crop_varient, collecting_center.center_name, gramasewa_division.gs_name, harvest_month.month_name AS harvest_month, start_month.month_name AS start_month FROM `harvest` 
         JOIN crop On harvest.crop_id = crop.crop_id 
         JOIN collecting_center ON harvest.center_id = collecting_center.center_id
         JOIN gramasewa_division ON harvest.gs_id = gramasewa_division.gs_id
@@ -257,12 +264,6 @@ class Farmer_Model extends Model {
     }
 
     public function updateCropReq($data) {
-        // $gs_id = Session::get('gs_id');
-        // Get officer id
-        // $st1 = $this->db->prepare("SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'");
-        // $st1->execute();
-        // $data['officer_user_id'] = $st1->fetchColumn();
-
         $sql = "UPDATE `harvest` SET `starting_month_id`=:starting_month_id,`harvesting_month_id`=:harvesting_month_id,`expected_harvest`=:expected_harvest,`gs_id`=:gs_id,`crop_id`=:crop_id,`center_id`=:center_id
         WHERE harvest_id = :harvest_id";
 
@@ -282,10 +283,17 @@ class Farmer_Model extends Model {
         print_r($data);
 
         if ($res) {
-            echo 'good';
+            echo 'goog';
+            header('location: ' . URL . 'farmer/cropReqMng');
         } else {
             echo 'bad';
         }
+    }
+
+    public function getAllCenters() {
+        $st = $this->db->prepare("SELECT center_id, center_name FROM `collecting_center` ");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllLocations() {
@@ -518,12 +526,12 @@ class Farmer_Model extends Model {
         crop.crop_type, crop.crop_varient,
         gramasewa_division.gs_name,
         divisional_secratariast.ds_name AS district_name
-    FROM harvest
-    JOIN crop ON crop.crop_id = harvest.crop_id
-    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-    JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
-    JOIN district ON district.district_id = divisional_secratariast.district_id
-    WHERE harvest.harvest_id = $harvest_id AND harvest.is_accept = 1";
+            FROM harvest
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+            JOIN district ON district.district_id = divisional_secratariast.district_id
+            WHERE harvest.harvest_id = $harvest_id AND harvest.is_accept = 1";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
 
@@ -571,16 +579,121 @@ class Farmer_Model extends Model {
         // print_r($sellCropData);
         // echo $res3;
 
-        if($res3) {
+        if ($res3) {
             $sql = "DELETE FROM `selling_request` WHERE selling_req_id = $selling_req_id";
             $st = $this->db->prepare($sql);
             $res = $st->execute();
             if ($res) {
                 header('location: ' . URL . 'farmer/sellCropMng');
             }
+        }
+    }
 
+    public function offerList($farmer_id) {
+        $sql = "SELECT 
+        offer.*,
+        user.first_name, user.last_name,
+        district.ds_name AS district_name,
+        crop.crop_type, crop.crop_varient,
+        gramasewa_division.gs_name
+            FROM offer
+            JOIN selling_request ON selling_request.selling_req_id = offer.selling_req_id
+            JOIN harvest ON selling_request.harvest_id = harvest.harvest_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN user ON user.user_id = offer.vendor_user_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = user.gs_id
+            JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+            JOIN district ON district.district_id = divisional_secratariast.district_id
+            WHERE selling_request.farmer_user_id =  $farmer_id ";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function ajxSortOffers($filter, $ascOrDsc) {
+        $farmer_id = Session::get('user_id');
+        if ($ascOrDsc == 'ASC') {
+            $sql = "SELECT 
+            offer.*,
+            user.first_name, user.last_name,
+            district.ds_name AS district_name,
+            crop.crop_type, crop.crop_varient,
+            gramasewa_division.gs_name
+                FROM offer
+                JOIN selling_request ON selling_request.selling_req_id = offer.selling_req_id
+                JOIN harvest ON selling_request.harvest_id = harvest.harvest_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN user ON user.user_id = offer.vendor_user_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = user.gs_id
+                JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+                JOIN district ON district.district_id = divisional_secratariast.district_id
+                WHERE selling_request.farmer_user_id =  $farmer_id ORDER BY $filter ASC ";
+        } else {
+            $sql = "SELECT 
+            offer.*,
+            user.first_name, user.last_name,
+            district.ds_name AS district_name,
+            crop.crop_type, crop.crop_varient,
+            gramasewa_division.gs_name
+                FROM offer
+                JOIN selling_request ON selling_request.selling_req_id = offer.selling_req_id
+                JOIN harvest ON selling_request.harvest_id = harvest.harvest_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN user ON user.user_id = offer.vendor_user_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = user.gs_id
+                JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+                JOIN district ON district.district_id = divisional_secratariast.district_id
+                WHERE selling_request.farmer_user_id =  $farmer_id ORDER BY $filter DESC";
+        }
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function filterOffers($filter) {
+        $farmer_id = Session::get('user_id');
+        if ($filter == 'accepted') {
+            $sql = "SELECT 
+        offer.*,
+        user.first_name, user.last_name,
+        district.ds_name AS district_name,
+        crop.crop_type, crop.crop_varient,
+        gramasewa_division.gs_name
+            FROM offer
+            JOIN selling_request ON selling_request.selling_req_id = offer.selling_req_id
+            JOIN harvest ON selling_request.harvest_id = harvest.harvest_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN user ON user.user_id = offer.vendor_user_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = user.gs_id
+            JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+            JOIN district ON district.district_id = divisional_secratariast.district_id
+            WHERE selling_request.farmer_user_id = $farmer_id AND offer.transaction_flag = 1 ";
+        } else if ($filter == 'rejected') {
+            $sql = "SELECT 
+            offer.*,
+            user.first_name, user.last_name,
+            district.ds_name AS district_name,
+            crop.crop_type, crop.crop_varient,
+            gramasewa_division.gs_name
+                FROM offer
+                JOIN selling_request ON selling_request.selling_req_id = offer.selling_req_id
+                JOIN harvest ON selling_request.harvest_id = harvest.harvest_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN user ON user.user_id = offer.vendor_user_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = user.gs_id
+                JOIN divisional_secratariast ON divisional_secratariast.ds_id = gramasewa_division.ds_id
+                JOIN district ON district.district_id = divisional_secratariast.district_id
+                WHERE selling_request.farmer_user_id =  $farmer_id AND offer.transaction_flag = 0 ";
         }
 
+
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     ##################################### END OF FARMER MODEL ##############################################################################

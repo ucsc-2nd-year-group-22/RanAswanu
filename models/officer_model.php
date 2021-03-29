@@ -76,7 +76,9 @@ class Officer_Model extends Model {
         harvest.*, crop.crop_type, crop.crop_varient,
         user.user_id, user.first_name, user.last_name,
         gramasewa_division.gs_name,
-        collecting_center.center_name
+        collecting_center.center_name,
+        (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+        (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
         FROM harvest 
         JOIN user ON user.user_id = harvest.farmer_user_id
         JOIN crop ON crop.crop_id = harvest.crop_id
@@ -95,7 +97,9 @@ class Officer_Model extends Model {
             harvest.*, crop.crop_type, crop.crop_varient,
             user.user_id, user.first_name, user.last_name,
             gramasewa_division.gs_name,
-            collecting_center.center_name
+            collecting_center.center_name,
+            (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+            (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
             FROM harvest 
             JOIN user ON user.user_id = harvest.farmer_user_id
             JOIN crop ON crop.crop_id = harvest.crop_id
@@ -107,7 +111,9 @@ class Officer_Model extends Model {
             harvest.*, crop.crop_type, crop.crop_varient,
             user.user_id, user.first_name, user.last_name,
             gramasewa_division.gs_name,
-            collecting_center.center_name
+            collecting_center.center_name,
+            (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+            (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
             FROM harvest 
             JOIN user ON user.user_id = harvest.farmer_user_id
             JOIN crop ON crop.crop_id = harvest.crop_id
@@ -132,7 +138,9 @@ class Officer_Model extends Model {
                 harvest.*, crop.crop_type, crop.crop_varient,
                 user.user_id, user.first_name, user.last_name,
                 gramasewa_division.gs_name,
-                collecting_center.center_name
+                collecting_center.center_name,
+                (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                 FROM harvest 
                 JOIN user ON user.user_id = harvest.farmer_user_id
                 JOIN crop ON crop.crop_id = harvest.crop_id
@@ -144,7 +152,9 @@ class Officer_Model extends Model {
                 harvest.*, crop.crop_type, crop.crop_varient,
                 user.user_id, user.first_name, user.last_name,
                 gramasewa_division.gs_name,
-                collecting_center.center_name
+                collecting_center.center_name,
+                (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                 FROM harvest 
                 JOIN user ON user.user_id = harvest.farmer_user_id
                 JOIN crop ON crop.crop_id = harvest.crop_id
@@ -158,7 +168,9 @@ class Officer_Model extends Model {
                 harvest.*, crop.crop_type, crop.crop_varient,
                 user.user_id, user.first_name, user.last_name,
                 gramasewa_division.gs_name,
-                collecting_center.center_name
+                collecting_center.center_name,
+                (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                 FROM harvest 
                 JOIN user ON user.user_id = harvest.farmer_user_id
                 JOIN crop ON crop.crop_id = harvest.crop_id
@@ -170,7 +182,9 @@ class Officer_Model extends Model {
                 harvest.*, crop.crop_type, crop.crop_varient,
                 user.user_id, user.first_name, user.last_name,
                 gramasewa_division.gs_name,
-                collecting_center.center_name
+                collecting_center.center_name,
+                (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                 FROM harvest 
                 JOIN user ON user.user_id = harvest.farmer_user_id
                 JOIN crop ON crop.crop_id = harvest.crop_id
@@ -194,12 +208,15 @@ class Officer_Model extends Model {
         harvest.*, crop.crop_type, crop.crop_varient,
         user.user_id, user.first_name, user.last_name,
         gramasewa_division.gs_name,
-        collecting_center.center_name
+        collecting_center.center_name,
+        (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+        (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
         FROM harvest 
         JOIN user ON user.user_id = harvest.farmer_user_id
         JOIN crop ON crop.crop_id = harvest.crop_id
         JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-        JOIN collecting_center ON collecting_center.center_id = harvest.center_id WHERE harvest.officer_user_id = $officer_id AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
+        JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+        WHERE harvest.officer_user_id = $officer_id AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
         $st = $this->db->prepare($sql);
         // print_r($sql);
         $st->execute(array(
@@ -213,7 +230,7 @@ class Officer_Model extends Model {
         $sql = "UPDATE `harvest` SET is_accept = 1 WHERE harvest_id = $harvest_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
-        if($res) {
+        if ($res) {
             header('location: ' . URL . 'officer/cropReq');
         }
     }
@@ -222,12 +239,8 @@ class Officer_Model extends Model {
         $sql = "DELETE FROM `harvest` WHERE harvest_id = $harvest_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
-        if($res) {
+        if ($res) {
             header('location: ' . URL . 'officer/cropReq');
         }
     }
-
-
-
-
 }

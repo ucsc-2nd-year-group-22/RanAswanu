@@ -1,4 +1,3 @@
-<?php print_r($cropReqData[0]); ?>
 <table>
     <tr>
         <th>#</th>

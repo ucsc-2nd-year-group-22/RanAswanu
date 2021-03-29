@@ -219,31 +219,44 @@ class Farmer extends Controller {
     // Vendor Offer ============================================================
 
     public function offerMng() {
-        $verdoffersData = [
-            [
-                'vendername' => "Nimal Siripala",
-                'croptype' => "Potatoe-CG1",
-                //  'weight' => "7 weeks",
-                'price' => "34",
-                'district' => "Colombo",
-                'dateTime' => "10-05-2020 | 10.00 AM",
-
-            ],
-
-
-
-
-        ];
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'verdoffersData' => $verdoffersData,
-        ];
-        // Session::set('activePage', 'cropReq');
-        $this->view->js = 'officer/js/default';
         $this->setActivePage('offerMng');
-        $this->view->rendor('farmer/offerMng', $pageData);
+        $this->view->rendor('farmer/offerMng');
     }
+
+    public function offerList() {
+        $data['offerData'] = $this->model->offerList(Session::get('user_id'));
+        // print_r($data['dmgClaims']);
+        if (!empty($data['offerData'])) {
+            $this->view->rendor('farmer/ajxOfferMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function ajxSortOffers() {
+        $data['offerData'] = $this->model->ajxSortOffers($_POST['filter'], $_POST['ascOrDsc']);
+
+        if (!empty($data['offerData'])) {
+            $this->view->rendor('farmer/ajxOfferMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function filterOffers() {
+        $data['offerData'] = $this->model->filterOffers($_POST['filter']);
+
+        if (!empty($data['offerData'])) {
+            $this->view->rendor('farmer/ajxOfferMng', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+
 
     // !!!!!!!!!!!!!!!!!  Handled by Officer role --------------- !!!!!!!!!!!!
     public function farmerMng() {
@@ -253,6 +266,7 @@ class Farmer extends Controller {
         // if(isset($_GET))
 
         $data['farmerData'] = $farmerData;
+
         $this->setActivePage('farmerMng');
         if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('farmer/farmerMng', $data);
@@ -376,6 +390,7 @@ class Farmer extends Controller {
 
     function editCropReqForm($harvest_id) {
         $allLocations = $this->model->getAllLocations();
+        
         $data = [
             'provinces' => $this->model->getProvinces(),
             'locData' => $this->model->getLocDataByGs($harvest_id),
@@ -384,6 +399,7 @@ class Farmer extends Controller {
             'allDistricts' => $allLocations['allDistricts'],
             'allDivSecs' => $allLocations['allDivSecs'],
             'allGramaSewas' => $allLocations['allGramaSewas'],
+            'allCenters' => $this->model->getAllCenters()
         ];
         $district = $data['locData']['district_id'];
         // echo "<b>$district</b>";
@@ -393,7 +409,7 @@ class Farmer extends Controller {
     }
 
     public function updateCropReq($harvest_id) {
-        // print_r($_POST);
+        print_r($_POST);
         $data['harvest_id'] = $harvest_id;
 
         $data['harvesting_month'] = $_POST['harvesting_month'];
@@ -405,7 +421,7 @@ class Farmer extends Controller {
         $data['expected_harvest'] = $_POST['expected_harvest'];
         $data['is_accept'] = 0;
         $data['gs_id'] = $_POST['gramaSewa'];
-        $data['crop_id'] = $_POST['croptype'];
+        $data['crop_id'] = $_POST['selectCrop'];
         $data['center_id'] = $_POST['selectCenter'];
 
         $data['farmer_user_id'] = Session::get('user_id');
@@ -413,7 +429,7 @@ class Farmer extends Controller {
 
         $this->model->updateCropReq($data);
 
-        header('location: ' . URL . 'farmer/cropReqMng');
+        
     }
 
     public function getAllLocations() {

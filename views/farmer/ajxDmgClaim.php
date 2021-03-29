@@ -29,8 +29,8 @@
 
             <?php if ($dmgClaim['is_accepted'] == 0) : ?>
                 <td>
-                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'farmer/editDmgClaimsForm/' . $dmgClaim['damage_id']; ?>">Update</a>
-                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . 'farmer/deleteDmgClaim/' . $dmgClaim['damage_id']; ?>">Cancel</a>
+                    <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this damage claim?');" href="<?php echo URL . 'farmer/editDmgClaimsForm/' . $dmgClaim['damage_id']; ?>">Update</a>
+                    <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to cancel this damage claim?');" href="<?php echo URL . 'farmer/deleteDmgClaim/' . $dmgClaim['damage_id']; ?>">Cancel</a>
                 </td>
             <?php else : ?>
                 <td><i class="fas fa-ban"></i></td>

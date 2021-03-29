@@ -32,8 +32,8 @@
             <td><?= $cropReq['harvest_month']; ?> </td>
             <?php if ($cropReq['is_accept'] == 0) : ?>
             <td>
-                <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this user?');" href="<?php echo URL . 'farmer/editCropReqForm/' . $cropReq['harvest_id']; ?>">Update</a>
-                <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to delete this user?');" href="<?php echo URL . 'farmer/deleteCropReq/' . $cropReq['harvest_id']; ?>">Cancel</a>
+                <a type="button" class="mini-button warning btn" onclick="return confirm('Are you sure you want to update this crop request?');" href="<?php echo URL . 'farmer/editCropReqForm/' . $cropReq['harvest_id']; ?>">Update</a>
+                <a class="mini-button danger btn" onclick="return confirm('Are you sure you want to cancel this crop request?');" href="<?php echo URL . 'farmer/deleteCropReq/' . $cropReq['harvest_id']; ?>">Cancel</a>
                 
             </td>
             <?php else: ?>

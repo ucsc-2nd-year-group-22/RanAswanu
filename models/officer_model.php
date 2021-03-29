@@ -77,6 +77,7 @@ class Officer_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+  
     public function cropReqList()
     {
         if (Session::get('isadmin') == 1) {
@@ -104,6 +105,7 @@ class Officer_Model extends Model
                     JOIN collecting_center ON collecting_center.center_id = harvest.center_id
                     WHERE harvest.officer_user_id = $officer_id";
         }
+
         $st2 = $this->db->prepare($sql);
         $st2->execute();
         return $st2->fetchAll(PDO::FETCH_ASSOC);
@@ -144,7 +146,9 @@ class Officer_Model extends Model
             harvest.*, crop.crop_type, crop.crop_varient,
             user.user_id, user.first_name, user.last_name,
             gramasewa_division.gs_name,
-            collecting_center.center_name
+            collecting_center.center_name,
+            (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+            (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
             FROM harvest 
             JOIN user ON user.user_id = harvest.farmer_user_id
             JOIN crop ON crop.crop_id = harvest.crop_id
@@ -156,7 +160,9 @@ class Officer_Model extends Model
             harvest.*, crop.crop_type, crop.crop_varient,
             user.user_id, user.first_name, user.last_name,
             gramasewa_division.gs_name,
-            collecting_center.center_name
+            collecting_center.center_name,
+            (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+            (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
             FROM harvest 
             JOIN user ON user.user_id = harvest.farmer_user_id
             JOIN crop ON crop.crop_id = harvest.crop_id
@@ -206,8 +212,7 @@ class Officer_Model extends Model
                 JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id AND crop_damage.is_accepted = 0";
             }
         }
-
-
+      
         $st = $this->db->prepare($sql);
         $st->execute();
 
@@ -325,6 +330,7 @@ class Officer_Model extends Model
                     JOIN collecting_center ON collecting_center.center_id = harvest.center_id
                     WHERE harvest.officer_user_id = $officer_id ORDER BY $filter  DESC";
                 }
+
             }
         }
 
@@ -429,7 +435,9 @@ class Officer_Model extends Model
         harvest.*, crop.crop_type, crop.crop_varient,
         user.user_id, user.first_name, user.last_name,
         gramasewa_division.gs_name,
-        collecting_center.center_name
+        collecting_center.center_name,
+        (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+        (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
         FROM harvest 
         JOIN user ON user.user_id = harvest.farmer_user_id
         JOIN crop ON crop.crop_id = harvest.crop_id
@@ -522,7 +530,6 @@ class Officer_Model extends Model
             header('location: ' . URL . 'officer/cropReq');
         }
     }
-
 
     //retrieve damage claim data
     public function dmgClaimList()

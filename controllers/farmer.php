@@ -266,7 +266,7 @@ class Farmer extends Controller {
         // if(isset($_GET))
 
         $data['farmerData'] = $farmerData;
-        // print_r($farmerData);
+
         $this->setActivePage('farmerMng');
         if ((Session::get('role') == 'farmer' || 'admin') && Session::get('loggedIn') == true)
             $this->view->rendor('farmer/farmerMng', $data);

@@ -1,13 +1,16 @@
 <?php
 
-class Officer_Model extends Model {
+class Officer_Model extends Model
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
     //retrieve all officers
-    public function officerList() {
+    public function officerList()
+    {
         $st = $this->db->prepare("SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'officer' GROUP BY user.user_id");
 
         // SELECT user.user_name, user.first_name, group_concat(user_tel.tel_no) FROM user JOIN user_tel on user.user_id =user_tel.user_id GROUP BY user.user_id
@@ -20,7 +23,8 @@ class Officer_Model extends Model {
     }
 
     //delete an officer
-    public function delete($id) {
+    public function delete($id)
+    {
         $st = $this->db->prepare('DELETE FROM user WHERE user_id = :id');
         $st->execute(array(
             ':id' => $id
@@ -28,7 +32,8 @@ class Officer_Model extends Model {
     }
 
     //Search officer by name
-    public function ajxSearchOfficerName($officerName) {
+    public function ajxSearchOfficerName($officerName)
+    {
         $escaped_name = addcslashes($officerName, '%');
         $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'officer' AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name GROUP BY user.user_id";
         $st = $this->db->prepare($sql);
@@ -41,7 +46,8 @@ class Officer_Model extends Model {
     }
 
     //Search officer by NIC
-    public function ajxSearchOfficerNic($nic) {
+    public function ajxSearchOfficerNic($nic)
+    {
         $escaped_name = addcslashes($nic, '%');
         $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user JOIN user_tel on user.user_id =user_tel.user_id WHERE user.role = 'officer' AND user.nic LIKE :nic  GROUP BY user.user_id";
         $st = $this->db->prepare($sql);
@@ -54,7 +60,8 @@ class Officer_Model extends Model {
     }
 
     //Sort officers
-    public function ajxFilterOfficer($filter, $ascOrDsc) {
+    public function ajxFilterOfficer($filter, $ascOrDsc)
+    {
         //    echo $ascOrDsc;
 
         if ($ascOrDsc == 'ASC') {
@@ -71,18 +78,21 @@ class Officer_Model extends Model {
     }
 
 
-    public function cropReqList() {
+    public function cropReqList()
+    {
         if (Session::get('isadmin') == 1) {
             $sql = "SELECT 
-                    harvest.*, crop.crop_type, crop.crop_varient,
-                    user.user_id, user.first_name, user.last_name,
-                    gramasewa_division.gs_name,
-                    collecting_center.center_name
-                    FROM harvest 
-                    JOIN user ON user.user_id = harvest.farmer_user_id
-                    JOIN crop ON crop.crop_id = harvest.crop_id
-                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id";
+            harvest.*, crop.crop_type, crop.crop_varient,
+            user.user_id, user.first_name, user.last_name,
+            gramasewa_division.gs_name,
+            collecting_center.center_name,
+            (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+            (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
+            FROM harvest 
+            JOIN user ON user.user_id = harvest.farmer_user_id
+            JOIN crop ON crop.crop_id = harvest.crop_id
+            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+            JOIN collecting_center ON collecting_center.center_id = harvest.center_id";
         } else {
             $officer_id = Session::get('user_id');
             $sql = "SELECT 
@@ -105,14 +115,17 @@ class Officer_Model extends Model {
         return $st2->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxFilterCropReq($filter) {
+    public function ajxFilterCropReq($filter)
+    {
         if (Session::get('isadmin') == 1) {
             if ($filter == 'accepted') {
                 $sql = "SELECT 
                 harvest.*, crop.crop_type, crop.crop_varient,
                 user.user_id, user.first_name, user.last_name,
                 gramasewa_division.gs_name,
-                collecting_center.center_name
+                collecting_center.center_name,
+                (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                 FROM harvest 
                 JOIN user ON user.user_id = harvest.farmer_user_id
                 JOIN crop ON crop.crop_id = harvest.crop_id
@@ -124,7 +137,9 @@ class Officer_Model extends Model {
                 harvest.*, crop.crop_type, crop.crop_varient,
                 user.user_id, user.first_name, user.last_name,
                 gramasewa_division.gs_name,
-                collecting_center.center_name
+                collecting_center.center_name,
+                (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                 FROM harvest 
                 JOIN user ON user.user_id = harvest.farmer_user_id
                 JOIN crop ON crop.crop_id = harvest.crop_id
@@ -173,7 +188,8 @@ class Officer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxFilterDmgClaim($filter) {
+    public function ajxFilterDmgClaim($filter)
+    {
         if (Session::get('isadmin') == 1) {
             if ($filter == 'accepted') {
                 $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
@@ -211,7 +227,8 @@ class Officer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxSortCropReqs($filter, $ascOrDsc) {
+    public function ajxSortCropReqs($filter, $ascOrDsc)
+    {
         if (Session::get('isadmin') == 1) {
             if ($ascOrDsc == 'ASC') {
                 if ($filter == "first_name" || $filter == "last_name") {
@@ -219,7 +236,9 @@ class Officer_Model extends Model {
                     harvest.*, crop.crop_type, crop.crop_varient,
                     user.user_id, user.first_name, user.last_name,
                     gramasewa_division.gs_name,
-                    collecting_center.center_name
+                    collecting_center.center_name,
+                    (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                    (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                     FROM harvest 
                     JOIN user ON user.user_id = harvest.farmer_user_id
                     JOIN crop ON crop.crop_id = harvest.crop_id
@@ -231,7 +250,9 @@ class Officer_Model extends Model {
                     harvest.*, crop.crop_type, crop.crop_varient,
                     user.user_id, user.first_name, user.last_name,
                     gramasewa_division.gs_name,
-                    collecting_center.center_name
+                    collecting_center.center_name,
+                    (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                    (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                     FROM harvest 
                     JOIN user ON user.user_id = harvest.farmer_user_id
                     JOIN crop ON crop.crop_id = harvest.crop_id
@@ -245,7 +266,9 @@ class Officer_Model extends Model {
                     harvest.*, crop.crop_type, crop.crop_varient,
                     user.user_id, user.first_name, user.last_name,
                     gramasewa_division.gs_name,
-                    collecting_center.center_name
+                    collecting_center.center_name,
+                    (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                    (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                     FROM harvest 
                     JOIN user ON user.user_id = harvest.farmer_user_id
                     JOIN crop ON crop.crop_id = harvest.crop_id
@@ -257,7 +280,9 @@ class Officer_Model extends Model {
                     harvest.*, crop.crop_type, crop.crop_varient,
                     user.user_id, user.first_name, user.last_name,
                     gramasewa_division.gs_name,
-                    collecting_center.center_name
+                    collecting_center.center_name,
+                    (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+                    (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
                     FROM harvest 
                     JOIN user ON user.user_id = harvest.farmer_user_id
                     JOIN crop ON crop.crop_id = harvest.crop_id
@@ -338,7 +363,8 @@ class Officer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxSortDmgClaims($filter, $ascOrDsc) {
+    public function ajxSortDmgClaims($filter, $ascOrDsc)
+    {
         if (Session::get('isadmin') == 1) {
             if ($ascOrDsc == 'ASC') {
                 if ($filter == "first_name" || $filter == "last_name") {
@@ -410,19 +436,23 @@ class Officer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxSearchCropReq($farmerName) {
+    public function ajxSearchCropReq($farmerName)
+    {
         if (Session::get('isadmin') == 1) {
+            $officer_id = Session::get('user_id');
             $escaped_name = addcslashes($farmerName, '%');
             $sql = "SELECT 
         harvest.*, crop.crop_type, crop.crop_varient,
         user.user_id, user.first_name, user.last_name,
         gramasewa_division.gs_name,
-        collecting_center.center_name
+        collecting_center.center_name,
+        (SELECT gathered_harvest.harvest_amount FROM gathered_harvest WHERE gathered_harvest.crop_id = crop.crop_id AND gathered_harvest.month_id = harvest.harvesting_month_id AND gathered_harvest.center_id = harvest.center_id) AS gath_harvest,
+        (SELECT demand_for_crop_center.demant_amount FROM demand_for_crop_center WHERE demand_for_crop_center.crop_id = harvest.crop_id AND demand_for_crop_center.month_id = harvest.harvesting_month_id AND demand_for_crop_center.center_id = harvest.center_id) AS demand
         FROM harvest 
         JOIN user ON user.user_id = harvest.farmer_user_id
         JOIN crop ON crop.crop_id = harvest.crop_id
         JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-        JOIN collecting_center ON collecting_center.center_id = harvest.center_id WHERE user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
+        JOIN collecting_center ON collecting_center.center_id = harvest.center_id WHERE harvest.officer_user_id = $officer_id AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
         } else {
             $officer_id = Session::get('user_id');
             $escaped_name = addcslashes($farmerName, '%');
@@ -448,7 +478,8 @@ class Officer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajxSearchDmgClaim($farmerName) {
+    public function ajxSearchDmgClaim($farmerName)
+    {
         if (Session::get('isadmin') == 1) {
             $escaped_name = addcslashes($farmerName, '%');
             $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
@@ -474,7 +505,8 @@ class Officer_Model extends Model {
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function acceptCropReq($harvest_id) {
+    public function acceptCropReq($harvest_id)
+    {
         $sql = "UPDATE `harvest` SET is_accept = 1 WHERE harvest_id = $harvest_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
@@ -483,7 +515,8 @@ class Officer_Model extends Model {
         }
     }
 
-    public function acceptDmgClaim($damage_id) {
+    public function acceptDmgClaim($damage_id)
+    {
         $sql = "UPDATE `crop_damage` SET is_accepted = 1 WHERE damage_id = $damage_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
@@ -513,7 +546,8 @@ class Officer_Model extends Model {
         header('location: ' . URL . 'officer/damageClaims');
     }
 
-    public function deleteCropReq($harvest_id) {
+    public function deleteCropReq($harvest_id)
+    {
         $sql = "DELETE FROM `harvest` WHERE harvest_id = $harvest_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
@@ -523,7 +557,8 @@ class Officer_Model extends Model {
     }
 
     //retrieve damage claim data
-    public function dmgClaimList() {
+    public function dmgClaimList()
+    {
         $st = $this->db->prepare("SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
         JOIN user ON user.user_id = crop_damage.farmer_user_id
         JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id

@@ -7,7 +7,7 @@ class Farmer_Model extends Model {
     }
 
     public function ajxGetCropTypes($district) {
-        $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON crop.crop_id = best_area.crop_id WHERE best_area.district_id = $district");
+        $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON crop.crop_id = best_area.crop_id  WHERE best_area.district_id = $district GROUP BY crop.crop_type ");
         $st->execute();
         // $st = $this->db->prepare("SELECT * FROM crop JOIN best_area ON 
         // crop.crop_id = best_area.crop_id WHERE best_area.district_id = (SELECT district.district_id FROM district WHERE district.ds_name = $dist)");
@@ -31,7 +31,7 @@ class Farmer_Model extends Model {
     }
 
     public function ajxGetCropVart($vart) {
-        $st = $this->db->prepare("SELECT * FROM crop WHERE crop_id = :vart");
+        $st = $this->db->prepare("SELECT * FROM `crop` WHERE crop.crop_type = (SELECT crop_type FROM crop WHERE crop_id = :vart) ");
         $st->execute(['vart' => $vart]);
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }

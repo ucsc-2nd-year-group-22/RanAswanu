@@ -89,7 +89,7 @@ class Vendor_Model extends Model
         JOIN user ON selling_request.farmer_user_id = user.user_id
         JOIN harvest ON user.user_id = harvest.farmer_user_id
         JOIN crop ON harvest.crop_id = crop.crop_id
-        JOIN collecting_center ON harvest.center_id = collecting_center.center_id where offer.vendor_user_id = :id");
+        JOIN collecting_center ON harvest.center_id = collecting_center.center_id where offer.vendor_user_id = :id group by offer.offer_id" );
         
         $st->execute(array(
             ':id' => $id

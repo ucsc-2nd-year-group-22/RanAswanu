@@ -35,10 +35,10 @@
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="harvest_per_land">Harvest Per Land (kg Per acres)</label>
+                <label for="harvest_per_land">Harvest Per Land (kg Per ha)</label>
             </div>
             <div class="col-75">
-                <input type="number" id="harvest_per_land" name="harvest_per_land" required placeholder="Harvest per land (kg Per acres)..">
+                <input type="number" id="harvest_per_land" name="harvest_per_land" required placeholder="Harvest per land (kg Per ha)..">
             </div>
         </div>
         <div class="row">

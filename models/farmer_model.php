@@ -735,5 +735,15 @@ class Farmer_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getNotifications($user_id){
+        $st = $this->db->prepare("SELECT * FROM notification WHERE target_role = :target_role OR target_role = 'all' OR target_user = :target_user ORDER BY time_stamp DESC");
+
+        $st->execute(array(
+            ':target_role' => 'farmer',
+            ':target_user' => $user_id
+        ));
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     ##################################### END OF FARMER MODEL ##############################################################################
 }

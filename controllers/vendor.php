@@ -166,17 +166,6 @@ class Vendor extends Controller
         }
     }
 
-    public function AllCrops() {
-
-        $data['AllCrops'] = $this->model->AllCrops();
-        // print_r($data['AllCrops']);
-        if (!empty($data['AllCrops'])) {
-            $this->view->rendor('vendor/ajxAllCrops', $data, $withoutHeaderFooter = true);
-        } else {
-            $data['errMsg'] = "No Result Found !";
-            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
-        }
-    }
     
     //////////////////////Ajx functions in my offers///////////////////////////////////////
     public function loadOffers()

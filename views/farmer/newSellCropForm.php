@@ -39,7 +39,7 @@
         <label for="dmgArea">Harvest amount <b>(<?= $dataForSellCrop['expected_harvest'];?> kg or less)</b></label>
       </div>
       <div class="col-75">
-        <input type="number" id="harvest_amount" name="harvest_amount" value="<?= $dataForSellCrop['expected_harvest'];?>" max="<?= $dataForSellCrop['expected_harvest'];?>"  required />
+        <input type="number" id="harvest_amount" name="harvest_amount" value="<?= $dataForSellCrop['expected_harvest'];?>" max="<?= $dataForSellCrop['expected_harvest'];?>"  required min=0 />
       </div>
     </div>
 
@@ -48,7 +48,7 @@
         <label for="dmgArea">Valid time period (days)</label>
       </div>
       <div class="col-75">
-        <input type="number" id="valid_time_period" name="valid_time_period" max="30" required />
+        <input type="number" id="valid_time_period" name="valid_time_period" max="30" min=0 required />
       </div>
     </div>
 
@@ -57,7 +57,7 @@
         <label for="dmgArea">Minimum price for harvest</label>
       </div>
       <div class="col-75">
-        <input type="number" id="min_offer" name="min_offer"  required />
+        <input type="number" id="min_offer" name="min_offer" min=0  required />
       </div>
     </div>
 

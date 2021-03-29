@@ -284,7 +284,7 @@ class Farmer_Model extends Model {
 
         if ($res) {
             echo 'goog';
-            // header('location: ' . URL . 'farmer/cropReqMng');
+            header('location: ' . URL . 'farmer/cropReqMng');
         } else {
             echo 'bad';
         }

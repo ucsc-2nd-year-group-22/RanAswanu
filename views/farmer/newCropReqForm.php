@@ -74,8 +74,8 @@
                         success: function(data) {
                             var json = $.parseJSON(data);
                             $(json).each(function(i, val) {
-                                $('#expectedHarv').html((val.harvest_per_land * area).toFixed(2) + ' kgs of ' + vart);
-                                $('#expected_harvest').val((val.harvest_per_land * area).toFixed(2));
+                                $('#expectedHarv').html((val.harvest_per_land * area).toFixed(0) + ' kgs of ' + vart);
+                                $('#expected_harvest').val((val.harvest_per_land * area).toFixed(0));
                             });
                         }
                     });
@@ -252,7 +252,7 @@
                 <label for="areaSize">Size of the area (Acre)</label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
+                <input type="text" placeholder="ex: 2 Acres" min=0 id="areaSize" required>
             </div>
         </div>
 

@@ -81,4 +81,49 @@ class CollectingCenter_Model extends Model
         $st->execute();
         return $st->fetchAll();
     }
+
+    //Search centers by center name
+    public function ajxSearchCentName($centName)
+    {
+        $escaped_name = addcslashes($centName, '%');
+        $sql = "SELECT collecting_center.center_id, collecting_center.center_name, district.ds_name FROM collecting_center INNER JOIN district ON collecting_center.district_id = district.district_id WHERE collecting_center.center_name LIKE :centName";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':centName' => "$centName%"
+        ));
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+    //Search centers by district name
+    public function ajxSearchDisName($disName)
+    {
+        $escaped_name = addcslashes($disName, '%');
+        $sql = "SELECT collecting_center.center_id, collecting_center.center_name, district.ds_name FROM collecting_center INNER JOIN district ON collecting_center.district_id = district.district_id WHERE district.ds_name LIKE :disName";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':disName' => "$disName%"
+        ));
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Sort centers
+    public function ajxFilterCenter($filter, $ascOrDsc)
+    {
+        //    echo $ascOrDsc;
+
+        if ($ascOrDsc == 'ASC') {
+            $sql = "SELECT collecting_center.center_id, collecting_center.center_name, district.ds_name FROM collecting_center INNER JOIN district ON collecting_center.district_id = district.district_id ORDER BY $filter ASC";
+        } else if ($ascOrDsc == 'DESC') {
+            $sql = "SELECT collecting_center.center_id, collecting_center.center_name, district.ds_name FROM collecting_center INNER JOIN district ON collecting_center.district_id = district.district_id ORDER BY $filter DESC";
+        }
+
+
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

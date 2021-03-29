@@ -30,13 +30,13 @@ class Crop extends Controller
     public function create()
     {
         $data = array();
-
-        $data['crop_type'] = $_POST['crop_type'];
-        $data['crop_varient'] = $_POST['crop_varient'];
-        $data['best_area'] = $_POST['best_area'];
-        $data['harvest_per_land'] = $_POST['harvest_per_land'];
-        $data['harvest_period'] = $_POST['harvest_period'];
-        $data['description'] = $_POST['description'];
+        
+        $data['crop_type'] = filter_var($_POST['crop_type'], FILTER_SANITIZE_STRING);
+        $data['crop_varient'] = filter_var($_POST['crop_varient'], FILTER_SANITIZE_STRING);
+        $data['best_area'] = filter_var($_POST['best_area'], FILTER_SANITIZE_STRING);
+        $data['harvest_per_land'] = filter_var($_POST['harvest_per_land'], FILTER_SANITIZE_STRING);
+        $data['harvest_period'] = filter_var($_POST['harvest_period'], FILTER_SANITIZE_STRING);
+        $data['description'] = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
         $data['admin_user_id'] = Session::get('user_id');
 
         // TODO: Do error checking
@@ -118,12 +118,12 @@ class Crop extends Controller
         $data = array();
 
         $data['id'] = $id;
-        $data['crop_type'] = $_POST['crop_type'];
-        $data['crop_varient'] = $_POST['crop_varient'];
-        $data['best_area'] = $_POST['best_area'];
-        $data['harvest_per_land'] = $_POST['harvest_per_land'];
-        $data['harvest_period'] = $_POST['harvest_period'];
-        $data['description'] = $_POST['description'];
+        $data['crop_type'] = filter_var($_POST['crop_type'], FILTER_SANITIZE_STRING);
+        $data['crop_varient'] = filter_var($_POST['crop_varient'], FILTER_SANITIZE_STRING);
+        $data['best_area'] = filter_var($_POST['best_area'], FILTER_SANITIZE_STRING);
+        $data['harvest_per_land'] = filter_var($_POST['harvest_per_land'], FILTER_SANITIZE_STRING);
+        $data['harvest_period'] = filter_var($_POST['harvest_period'], FILTER_SANITIZE_STRING);
+        $data['description'] = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
         $data['admin_user_id'] = Session::get('user_id');
 
         $this->model->update($data);
@@ -164,5 +164,47 @@ class Crop extends Controller
         $this->model->addVarient($data);
 
         $this->varients($id);
+    }
+
+    //Search crops by type
+    public function ajxSearchCropType() {
+        
+        $d = $this->model->ajxSearchCropType($_POST['search']);
+        $data['cropItems'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('crop/ajxCropList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+    //Search crops by varient
+    public function ajxSearchCropVar() {
+        
+        $d = $this->model->ajxSearchCropVar($_POST['search']);
+        $data['cropItems'] = $d;
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('crop/ajxCropList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
+    }
+
+    //Sort crops
+    public function ajxFilterCrop() {
+
+        $d = $this->model->ajxFilterCrop($_POST['filter'], $_POST['ascOrDsc']);
+        $data['cropItems'] = $d;
+
+        // print_r($data['farmerData']);
+        if(!empty($d)) {
+            $this->view->rendor('crop/ajxCropList', $data, $withoutHeaderFooter=true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter=true);
+        }
     }
 }

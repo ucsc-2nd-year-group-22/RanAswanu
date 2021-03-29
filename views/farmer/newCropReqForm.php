@@ -57,7 +57,7 @@
         });
 
         function getHarvestPerLand(e) {
-            var area = e.val();
+            var area = e.val()/2.471;
             $('#harvestMonth').empty();
             vart = $('#cropVart').val();
             if(vart != null) {
@@ -70,8 +70,8 @@
                         success: function (data) { 
                             var json = $.parseJSON(data);
                             $(json).each(function (i, val) {
-                                $('#expectedHarv').html(val.harvest_per_land * area + ' kgs of ' + vart);
-                                $('#expected_harvest').val(val.harvest_per_land * area);
+                                $('#expectedHarv').html((val.harvest_per_land * area).toFixed(2) + ' kgs of ' + vart);
+                                $('#expected_harvest').val((val.harvest_per_land * area).toFixed(2));
                             }); 
                         }
                     });
@@ -167,8 +167,8 @@
                 <label for="province">Province</label>
             </div>
             <div class="col-75">
-                <select id="province" name="province">
-                    <option value="null"> -- SELECT PROVINCE -- </option>
+                <select id="province" name="province" required>
+                    <option value=""> -- SELECT PROVINCE -- </option>
                     <?php foreach ($provinces as $provinceItem) : ?>
                     <option value="<?= $provinceItem['province_id'] ?>">
                         <?= $provinceItem['province_name'] ?>
@@ -182,8 +182,8 @@
                 <label for="district">District</label>
             </div>
             <div class="col-75">
-                <select id="district" name="district">
-                    <option value="null"> -- SELECT DISTRICT --</option>
+                <select id="district" name="district" required>
+                    <option value=""> -- SELECT DISTRICT --</option>
                 </select>
             </div>
         </div>
@@ -192,8 +192,8 @@
                 <label for="province">Divisional secratariast</label>
             </div>
             <div class="col-75">
-                <select id="divisional_secratariast" name="divisional_secratariast">
-                    <option value="null"> -- SELECT DIVISIONAL SECT. --</option>
+                <select id="divisional_secratariast" name="divisional_secratariast" required>
+                    <option value=""> -- SELECT DIVISIONAL SECT. --</option>
                 </select>
             </div>
         </div>
@@ -202,8 +202,8 @@
                 <label for="grama">Gramasewa Division</label>
             </div>
             <div class="col-75">
-                <select id="gramaSewa" name="gramaSewa">
-                    <option value="null"> -- SELECT GRAMASEWA DIV. --</option>
+                <select id="gramaSewa" name="gramaSewa" required>
+                    <option value=""> -- SELECT GRAMASEWA DIV. --</option>
                 </select>
             </div>
         </div>
@@ -223,7 +223,7 @@
             </div>
             <div class="col-75">
                 <select id="cropType" name="croptype" required>
-                    <option selected >-- Select Crops --</option>
+                    <option value="" selected >-- Select Crops --</option>
                 </select>
             </div>
         </div>
@@ -241,7 +241,7 @@
 
         <div class="row">
             <div class="col-25">
-                <label for="areaSize">Size of the area (Acres)</label>
+                <label for="areaSize">Size of the area (Acre)</label>
             </div>
             <div class="col-75">
                 <input type="text" placeholder="ex: 2 Acres" id="areaSize" max="100" required>

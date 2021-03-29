@@ -56,7 +56,7 @@
         });
 
         function getHarvestPerLand(e) {
-            var area = e.val();
+            var area = e.val()/2.471;
             $('#harvestMonth').empty();
             vart = $('#cropVart').val();
             if (vart != null) {
@@ -71,8 +71,8 @@
                         success: function(data) {
                             var json = $.parseJSON(data);
                             $(json).each(function(i, val) {
-                                $('#expectedHarv').html(val.harvest_per_land * area + ' kgs of ' + vart);
-                                $('#expected_harvest').val(val.harvest_per_land * area);
+                                $('#expectedHarv').html((val.harvest_per_land * area).toFixed(2) + " kg");
+                                $('#expected_harvest').val((val.harvest_per_land * area).toFixed(2));
                             });
                         }
                     });
@@ -170,7 +170,7 @@
                 <label for="province">Province</label>
             </div>
             <div class="col-75">
-                <select id="province" name="province">
+                <select id="province" name="province" required>
                     <?php foreach ($allProvinces as $provinceItem) : ?>
                         <option value="<?= $provinceItem['province_id'] ?>" <?php if ($locData['province_name'] == $provinceItem['province_name']) echo 'selected'; ?>> <?php echo $provinceItem['province_name']; ?></option>
                     <?php endforeach; ?>
@@ -182,7 +182,7 @@
                 <label for="district">District</label>
             </div>
             <div class="col-75">
-                <select id="district" name="district">
+                <select id="district" name="district" required>
                     <?php foreach ($allDistricts as $districtItem) : ?>
                         <option value="<?= $districtItem['district_id'] ?>" <?php if ($locData['district_name'] == $districtItem['ds_name']) echo 'selected'; ?>> <?php echo $districtItem['ds_name']; ?></option>
                     <?php endforeach; ?>
@@ -194,7 +194,7 @@
                 <label for="province">Divisional secratariast</label>
             </div>
             <div class="col-75">
-                <select id="divisional_secratariast" name="divisional_secratariast">
+                <select id="divisional_secratariast" name="divisional_secratariast" required>
                     <?php foreach ($allDivSecs as $divSecItem) : ?>
                         <option value="<?= $divSecItem['ds_id'] ?>" <?php if ($locData['div_sec_name'] == $divSecItem['ds_name']) echo 'selected'; ?>> <?= $divSecItem['ds_name'] ?></option>
                     <?php endforeach; ?>
@@ -206,7 +206,7 @@
                 <label for="grama">Gramasewa Division</label>
             </div>
             <div class="col-75">
-                <select id="gramaSewa" name="gramaSewa">
+                <select id="gramaSewa" name="gramaSewa" required>
                     <?php foreach ($allGramaSewas as $gramaItem) : ?>
                         <option value="<?= $gramaItem['gs_id'] ?>" <?php if ($locData['gs_name'] == $gramaItem['gs_name']) echo 'selected'; ?>> <?= $gramaItem['gs_name'] ?></option>
                     <?php endforeach; ?>

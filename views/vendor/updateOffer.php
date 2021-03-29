@@ -7,7 +7,7 @@
 
 
 <div class="main-form">
-        <form action="<?= URL . '/vendor/update/' . $reqid; ?>" method="post">
+        <form action="<?= URL . '/vendor/update/' . $offer_id; ?>" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="fname">Place Your New Offer</label>

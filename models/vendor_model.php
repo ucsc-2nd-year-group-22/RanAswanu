@@ -298,12 +298,11 @@ JOIN divisional_secratariast ON gramasewa_division.ds_id = divisional_secrataria
     //Add after slove conflicts
     public function myOffers($id)
     {
-        $st = $this->db->prepare("SELECT offer.*, selling_request.*,collecting_center.center_name, crop.crop_type FROM selling_request
-        JOIN offer ON selling_request.selling_req_id=offer.selling_req_id
-        JOIN user ON selling_request.farmer_user_id = user.user_id
-        JOIN harvest ON user.user_id = harvest.farmer_user_id
-        JOIN crop ON harvest.crop_id = crop.crop_id
-        JOIN collecting_center ON harvest.center_id = collecting_center.center_id where offer.vendor_user_id = :id group by offer.offer_id" );
+        $st = $this->db->prepare("SELECT offer.*, crop.*, selling_request.*, collecting_center.* FROM offer
+        JOin selling_request ON selling_request.selling_req_id = offer.selling_req_id
+        JOIN harvest ON harvest.harvest_id = selling_request.harvest_id
+        JOIN crop ON crop.crop_id = harvest.crop_id
+        JOIN collecting_center ON collecting_center.center_id = harvest.center_id" );
         
         $st->execute(array(
             ':id' => $id

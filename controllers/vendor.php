@@ -50,7 +50,13 @@ class Vendor extends Controller
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-    public function updateOffer($reqid)
+    public function updateOffer($offer_id)
+    {
+        $data['offer_id'] = $offer_id;
+        $this->view->rendor('vendor/updateOffer',$data);
+    }
+
+    public function update($reqid)
     {
         $data['reqid'] =  $reqid;
         $data['amount'] =  $_POST['ammount'];
@@ -63,7 +69,7 @@ class Vendor extends Controller
     {
         $data['offer_id'] = $id;
         $this->model->undoOffer($data);
-        header('location: ' . URL . 'vendor/index');
+        header('location: ' . URL . 'vendor/MyOffers');
     }
 ////////////////////////////////////////////////////////////////////////////////////////////
     public function viewfarmerprofile($user_id)
@@ -203,7 +209,7 @@ class Vendor extends Controller
     {
         $myOffers = $this->model->myOffers(Session::get('user_id'));
         $data['myOffers'] = $myOffers;
-       // print_r($data['myOffers']);
+        //print_r($data['myOffers']);
         if (!empty($data['myOffers'])) {
             $this->view->rendor('vendor/ajxViewOffers', $data, $withoutHeaderFooter = true);
         } else {

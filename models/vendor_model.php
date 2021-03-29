@@ -256,4 +256,6 @@ class Vendor_Model extends Model
     //     // print_r($st->fetchAll);
     //     return $st->fetchAll(PDO::FETCH_ASSOC);
     // }
+
+    //finished
 }

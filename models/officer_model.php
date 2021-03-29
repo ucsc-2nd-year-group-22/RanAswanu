@@ -111,9 +111,36 @@ class Officer_Model extends Model
 
     public function ajxFilterCropReq($filter)
     {
-        $officer_id = Session::get('user_id');
-        if ($filter == 'accepted') {
-            $sql = "SELECT 
+        if (Session::get('isadmin') == 1) {
+            if ($filter == 'accepted') {
+                $sql = "SELECT 
+                harvest.*, crop.crop_type, crop.crop_varient,
+                user.user_id, user.first_name, user.last_name,
+                gramasewa_division.gs_name,
+                collecting_center.center_name
+                FROM harvest 
+                JOIN user ON user.user_id = harvest.farmer_user_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                WHERE harvest.is_accept = 1";
+            } else if ($filter == 'pending') {
+                $sql = "SELECT 
+                harvest.*, crop.crop_type, crop.crop_varient,
+                user.user_id, user.first_name, user.last_name,
+                gramasewa_division.gs_name,
+                collecting_center.center_name
+                FROM harvest 
+                JOIN user ON user.user_id = harvest.farmer_user_id
+                JOIN crop ON crop.crop_id = harvest.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                WHERE harvest.is_accept = 0";
+            }
+        } else {
+            $officer_id = Session::get('user_id');
+            if ($filter == 'accepted') {
+                $sql = "SELECT 
             harvest.*, crop.crop_type, crop.crop_varient,
             user.user_id, user.first_name, user.last_name,
             gramasewa_division.gs_name,
@@ -124,8 +151,8 @@ class Officer_Model extends Model
             JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
             JOIN collecting_center ON collecting_center.center_id = harvest.center_id
             WHERE harvest.officer_user_id = $officer_id AND harvest.is_accept = 1";
-        } else if ($filter == 'pending') {
-            $sql = "SELECT 
+            } else if ($filter == 'pending') {
+                $sql = "SELECT 
             harvest.*, crop.crop_type, crop.crop_varient,
             user.user_id, user.first_name, user.last_name,
             gramasewa_division.gs_name,
@@ -136,7 +163,9 @@ class Officer_Model extends Model
             JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
             JOIN collecting_center ON collecting_center.center_id = harvest.center_id
             WHERE harvest.officer_user_id = $officer_id AND harvest.is_accept = 0";
+            }
         }
+
 
 
         $st = $this->db->prepare($sql);
@@ -147,19 +176,35 @@ class Officer_Model extends Model
 
     public function ajxFilterDmgClaim($filter)
     {
-        $officer_id = Session::get('user_id');
-        if ($filter == 'accepted') {
-            $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
-            JOIN user ON user.user_id = crop_damage.farmer_user_id
-            JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
-            JOIN crop ON harvest.crop_id = crop.crop_id
-            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id AND crop_damage.is_accepted = 1";
-        } else if ($filter == 'pending') {
-            $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
-            JOIN user ON user.user_id = crop_damage.farmer_user_id
-            JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
-            JOIN crop ON harvest.crop_id = crop.crop_id
-            JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id AND crop_damage.is_accepted = 0";
+        if (Session::get('isadmin') == 1) {
+            if ($filter == 'accepted') {
+                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                JOIN user ON user.user_id = crop_damage.farmer_user_id
+                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                JOIN crop ON harvest.crop_id = crop.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE crop_damage.is_accepted = 1";
+            } else if ($filter == 'pending') {
+                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                JOIN user ON user.user_id = crop_damage.farmer_user_id
+                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                JOIN crop ON harvest.crop_id = crop.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE crop_damage.is_accepted = 0";
+            }
+        } else {
+            $officer_id = Session::get('user_id');
+            if ($filter == 'accepted') {
+                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                JOIN user ON user.user_id = crop_damage.farmer_user_id
+                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                JOIN crop ON harvest.crop_id = crop.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id AND crop_damage.is_accepted = 1";
+            } else if ($filter == 'pending') {
+                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                JOIN user ON user.user_id = crop_damage.farmer_user_id
+                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                JOIN crop ON harvest.crop_id = crop.crop_id
+                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id AND crop_damage.is_accepted = 0";
+            }
         }
 
 
@@ -171,59 +216,115 @@ class Officer_Model extends Model
 
     public function ajxSortCropReqs($filter, $ascOrDsc)
     {
-        $officer_id = Session::get('user_id');
-
-        if ($ascOrDsc == 'ASC') {
-            if ($filter == "first_name" || $filter == "last_name") {
-                $sql = "SELECT 
-                harvest.*, crop.crop_type, crop.crop_varient,
-                user.user_id, user.first_name, user.last_name,
-                gramasewa_division.gs_name,
-                collecting_center.center_name
-                FROM harvest 
-                JOIN user ON user.user_id = harvest.farmer_user_id
-                JOIN crop ON crop.crop_id = harvest.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
-                WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter ASC";
-            } else {
-                $sql = "SELECT 
-                harvest.*, crop.crop_type, crop.crop_varient,
-                user.user_id, user.first_name, user.last_name,
-                gramasewa_division.gs_name,
-                collecting_center.center_name
-                FROM harvest 
-                JOIN user ON user.user_id = harvest.farmer_user_id
-                JOIN crop ON crop.crop_id = harvest.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
-                WHERE harvest.officer_user_id = $officer_id ORDER BY $filter ASC";
+        if (Session::get('isadmin') == 1) {
+            if ($ascOrDsc == 'ASC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    ORDER BY user.$filter ASC";
+                } else {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    ORDER BY $filter ASC";
+                }
+            } else if ($ascOrDsc == 'DESC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    ORDER BY user.$filter  DESC";
+                } else {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    ORDER BY $filter  DESC";
+                }
             }
-        } else if ($ascOrDsc == 'DESC') {
-            if ($filter == "first_name" || $filter == "last_name") {
-                $sql = "SELECT 
-                harvest.*, crop.crop_type, crop.crop_varient,
-                user.user_id, user.first_name, user.last_name,
-                gramasewa_division.gs_name,
-                collecting_center.center_name
-                FROM harvest 
-                JOIN user ON user.user_id = harvest.farmer_user_id
-                JOIN crop ON crop.crop_id = harvest.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
-                WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter  DESC";
-            } else {
-                $sql = "SELECT 
-                harvest.*, crop.crop_type, crop.crop_varient,
-                user.user_id, user.first_name, user.last_name,
-                gramasewa_division.gs_name,
-                collecting_center.center_name
-                FROM harvest 
-                JOIN user ON user.user_id = harvest.farmer_user_id
-                JOIN crop ON crop.crop_id = harvest.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
-                JOIN collecting_center ON collecting_center.center_id = harvest.center_id
-                WHERE harvest.officer_user_id = $officer_id ORDER BY $filter  DESC";
+        } else {
+            $officer_id = Session::get('user_id');
+
+            if ($ascOrDsc == 'ASC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter ASC";
+                } else {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    WHERE harvest.officer_user_id = $officer_id ORDER BY $filter ASC";
+                }
+            } else if ($ascOrDsc == 'DESC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter  DESC";
+                } else {
+                    $sql = "SELECT 
+                    harvest.*, crop.crop_type, crop.crop_varient,
+                    user.user_id, user.first_name, user.last_name,
+                    gramasewa_division.gs_name,
+                    collecting_center.center_name
+                    FROM harvest 
+                    JOIN user ON user.user_id = harvest.farmer_user_id
+                    JOIN crop ON crop.crop_id = harvest.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+                    JOIN collecting_center ON collecting_center.center_id = harvest.center_id
+                    WHERE harvest.officer_user_id = $officer_id ORDER BY $filter  DESC";
+                }
             }
         }
 
@@ -236,35 +337,67 @@ class Officer_Model extends Model
 
     public function ajxSortDmgClaims($filter, $ascOrDsc)
     {
-        $officer_id = Session::get('user_id');
-
-        if ($ascOrDsc == 'ASC') {
-            if ($filter == "first_name" || $filter == "last_name") {
-                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
-                JOIN user ON user.user_id = crop_damage.farmer_user_id
-                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
-                JOIN crop ON harvest.crop_id = crop.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter ASC";
-            } else {
-                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
-                JOIN user ON user.user_id = crop_damage.farmer_user_id
-                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
-                JOIN crop ON harvest.crop_id = crop.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY $filter ASC";
+        if (Session::get('isadmin') == 1) {
+            if ($ascOrDsc == 'ASC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id ORDER BY user.$filter ASC";
+                } else {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id ORDER BY $filter ASC";
+                }
+            } else if ($ascOrDsc == 'DESC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id ORDER BY user.$filter  DESC";
+                } else {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id ORDER BY $filter  DESC";
+                }
             }
-        } else if ($ascOrDsc == 'DESC') {
-            if ($filter == "first_name" || $filter == "last_name") {
-                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
-                JOIN user ON user.user_id = crop_damage.farmer_user_id
-                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
-                JOIN crop ON harvest.crop_id = crop.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter  DESC";
-            } else {
-                $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
-                JOIN user ON user.user_id = crop_damage.farmer_user_id
-                JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
-                JOIN crop ON harvest.crop_id = crop.crop_id
-                JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY $filter  DESC";
+        } else {
+            $officer_id = Session::get('user_id');
+
+            if ($ascOrDsc == 'ASC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter ASC";
+                } else {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY $filter ASC";
+                }
+            } else if ($ascOrDsc == 'DESC') {
+                if ($filter == "first_name" || $filter == "last_name") {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY user.$filter  DESC";
+                } else {
+                    $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+                    JOIN user ON user.user_id = crop_damage.farmer_user_id
+                    JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+                    JOIN crop ON harvest.crop_id = crop.crop_id
+                    JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id ORDER BY $filter  DESC";
+                }
             }
         }
 
@@ -277,9 +410,22 @@ class Officer_Model extends Model
 
     public function ajxSearchCropReq($farmerName)
     {
-        $officer_id = Session::get('user_id');
-        $escaped_name = addcslashes($farmerName, '%');
-        $sql = "SELECT 
+        if (Session::get('isadmin') == 1) {
+            $escaped_name = addcslashes($farmerName, '%');
+            $sql = "SELECT 
+        harvest.*, crop.crop_type, crop.crop_varient,
+        user.user_id, user.first_name, user.last_name,
+        gramasewa_division.gs_name,
+        collecting_center.center_name
+        FROM harvest 
+        JOIN user ON user.user_id = harvest.farmer_user_id
+        JOIN crop ON crop.crop_id = harvest.crop_id
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
+        JOIN collecting_center ON collecting_center.center_id = harvest.center_id WHERE user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
+        } else {
+            $officer_id = Session::get('user_id');
+            $escaped_name = addcslashes($farmerName, '%');
+            $sql = "SELECT 
         harvest.*, crop.crop_type, crop.crop_varient,
         user.user_id, user.first_name, user.last_name,
         gramasewa_division.gs_name,
@@ -289,6 +435,7 @@ class Officer_Model extends Model
         JOIN crop ON crop.crop_id = harvest.crop_id
         JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id
         JOIN collecting_center ON collecting_center.center_id = harvest.center_id WHERE harvest.officer_user_id = $officer_id AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
+        }
         $st = $this->db->prepare($sql);
         // print_r($sql);
         $st->execute(array(
@@ -300,13 +447,22 @@ class Officer_Model extends Model
 
     public function ajxSearchDmgClaim($farmerName)
     {
-        $officer_id = Session::get('user_id');
-        $escaped_name = addcslashes($farmerName, '%');
-        $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+        if (Session::get('isadmin') == 1) {
+            $escaped_name = addcslashes($farmerName, '%');
+            $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
+        JOIN user ON user.user_id = crop_damage.farmer_user_id
+        JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
+        JOIN crop ON harvest.crop_id = crop.crop_id
+        JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
+        } else {
+            $officer_id = Session::get('user_id');
+            $escaped_name = addcslashes($farmerName, '%');
+            $sql = "SELECT user.first_name as farmer, user.user_id as farmer_id, crop_damage.damage_area as damageAmt, crop_damage.damage_id, crop_damage.is_accepted, crop.crop_type as crops, gramasewa_division.gs_name as area FROM crop_damage 
         JOIN user ON user.user_id = crop_damage.farmer_user_id
         JOIN harvest ON harvest.harvest_id = crop_damage.harvest_id
         JOIN crop ON harvest.crop_id = crop.crop_id
         JOIN gramasewa_division ON gramasewa_division.gs_id = harvest.gs_id WHERE harvest.officer_user_id = $officer_id AND user.first_name LIKE :first_name OR user.last_name LIKE :first_name ";
+        }
         $st = $this->db->prepare($sql);
         // print_r($sql);
         $st->execute(array(

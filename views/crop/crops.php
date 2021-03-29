@@ -52,7 +52,7 @@
             <th>#</th>
             <th>Crop-Name</th>
             <th>Crop Varient</th>
-            <th>kg Per ha</sup></th>
+            <th>kg Per acres</sup></th>
             <th>Harvest Period (Days)</th>
             <th>Best Area</th>
             <th>View</th>

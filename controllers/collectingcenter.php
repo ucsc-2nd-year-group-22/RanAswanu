@@ -31,7 +31,7 @@ class CollectingCenter extends Controller
     {
         $data = array();
 
-        $data['center_name'] = $_POST['center_name'];
+        $data['center_name'] = filter_var($_POST['center_name'], FILTER_SANITIZE_STRING);
         $data['district_id'] = $_POST['district'];
 
         // TODO: Do error checking
@@ -70,7 +70,7 @@ class CollectingCenter extends Controller
         $data = array();
 
         $data['id'] = $id;
-        $data['center_name'] = $_POST['center_name'];
+        $data['center_name'] = filter_var($_POST['center_name'], FILTER_SANITIZE_STRING);
         $data['district'] = $_POST['district'];
 
         $this->model->update($data);

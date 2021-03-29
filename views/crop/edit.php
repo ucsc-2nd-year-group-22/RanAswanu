@@ -37,10 +37,10 @@
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="harvest_per_land">Harvest Per Land (Kg)</label>
+                <label for="harvest_per_land">Harvest Per Land (kg per acres)</label>
             </div>
             <div class="col-75">
-                <input type="number" value="<?php echo $this->crop['harvest_per_land']; ?>" id="harvest_per_land" name="harvest_per_land" placeholder="Harvest per land(Kg)..">
+                <input type="number" value="<?php echo $this->crop['harvest_per_land']; ?>" id="harvest_per_land" name="harvest_per_land" placeholder="Harvest per land (kg per acres)..">
             </div>
         </div>
         <div class="row">

@@ -283,7 +283,8 @@ class Farmer_Model extends Model {
         print_r($data);
 
         if ($res) {
-            echo 'good';
+            echo 'goog';
+            // header('location: ' . URL . 'farmer/cropReqMng');
         } else {
             echo 'bad';
         }

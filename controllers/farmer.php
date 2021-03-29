@@ -409,7 +409,7 @@ class Farmer extends Controller {
     }
 
     public function updateCropReq($harvest_id) {
-        // print_r($_POST);
+        print_r($_POST);
         $data['harvest_id'] = $harvest_id;
 
         $data['harvesting_month'] = $_POST['harvesting_month'];
@@ -421,7 +421,7 @@ class Farmer extends Controller {
         $data['expected_harvest'] = $_POST['expected_harvest'];
         $data['is_accept'] = 0;
         $data['gs_id'] = $_POST['gramaSewa'];
-        $data['crop_id'] = $_POST['croptype'];
+        $data['crop_id'] = $_POST['selectCrop'];
         $data['center_id'] = $_POST['selectCenter'];
 
         $data['farmer_user_id'] = Session::get('user_id');
@@ -429,7 +429,7 @@ class Farmer extends Controller {
 
         $this->model->updateCropReq($data);
 
-        header('location: ' . URL . 'farmer/cropReqMng');
+        
     }
 
     public function getAllLocations() {

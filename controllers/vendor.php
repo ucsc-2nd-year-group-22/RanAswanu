@@ -237,7 +237,7 @@ class Vendor extends Controller
         $data['myOffers'] = $d;
 
         if (!empty($d)) {
-            $this->view->rendor('vendor/ajxCrop', $data, $withoutHeaderFooter = true);
+            $this->view->rendor('vendor/ajxViewOffers', $data, $withoutHeaderFooter = true);
         } else {
             $data['errMsg'] = "No Result Found !";
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);

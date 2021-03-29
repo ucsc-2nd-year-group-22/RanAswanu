@@ -1,5 +1,5 @@
 <Script>
-    $(function () {
+    $(function() {
         $('#expectedHarv').hide();
         $('#harvestMonth').hide();
         var vart;
@@ -13,27 +13,29 @@
             var district = ($(this).val());
             $('#cropType').empty();
             // Load crop types
-            $.ajax({ 
-                type: 'GET', 
-                url: 'ajxGetCropTypes', 
-                data: {district:district},
-                success: function (data) { 
+            $.ajax({
+                type: 'GET',
+                url: 'ajxGetCropTypes',
+                data: {
+                    district: district
+                },
+                success: function(data) {
                     var json = $.parseJSON(data);
-                    var x = new Option('s', 't' );
-                        $(x).html('-- Select Crops --');
-                        $('#cropType').append(x);
-                    $(json).each(function (i, val) {
+                    var x = new Option('s', 't');
+                    $(x).html('-- Select Crops --');
+                    $('#cropType').append(x);
+                    $(json).each(function(i, val) {
                         // console.log(val.crop_id);
                         var newOp = new Option(val.crop_type, val.crop_id);
                         $(newOp).html(val.crop_type);
                         $('#cropType').append(newOp);
-                    }); 
+                    });
                 }
             });
         });
 
-        
-        $('#cropType').change(function () {
+
+        $('#cropType').change(function() {
             getCropTypes($(this));
             $('#harvestMonth').empty();
             $('#harvestMonth').hide();
@@ -57,22 +59,24 @@
         });
 
         function getHarvestPerLand(e) {
-            var area = e.val()/2.471;
+            var area = e.val() / 2.471;
             $('#harvestMonth').empty();
             vart = $('#cropVart').val();
-            if(vart != null) {
-                if(area != 0) {
+            if (vart != null) {
+                if (area != 0) {
                     $('#expectedHarv').show();
-                    $.ajax({ 
-                        type: 'GET', 
-                        url: 'ajxGetHarvPerLand', 
-                        data: {vart:vart},
-                        success: function (data) { 
+                    $.ajax({
+                        type: 'GET',
+                        url: 'ajxGetHarvPerLand',
+                        data: {
+                            vart: vart
+                        },
+                        success: function(data) {
                             var json = $.parseJSON(data);
-                            $(json).each(function (i, val) {
+                            $(json).each(function(i, val) {
                                 $('#expectedHarv').html((val.harvest_per_land * area).toFixed(2) + ' kgs of ' + vart);
                                 $('#expected_harvest').val((val.harvest_per_land * area).toFixed(2));
-                            }); 
+                            });
                         }
                     });
                 } else {
@@ -84,29 +88,31 @@
         }
 
         function getHarvestData(e) {
-            
+
             $('#harvestMonth').show();
             var startMonth = e.val();
             vart = $('#cropVart').val();
             $('#harvestMonth').html(startMonth);
             var formattedDate;
-            $.ajax({ 
-                type: 'GET', 
-                url: 'ajxGetHarvPerLand', 
-                data: {vart:vart},
-                success: function (data) { 
+            $.ajax({
+                type: 'GET',
+                url: 'ajxGetHarvPerLand',
+                data: {
+                    vart: vart
+                },
+                success: function(data) {
                     var json = $.parseJSON(data);
-                    $(json).each(function (i, val) {
+                    $(json).each(function(i, val) {
                         var date1 = new Date(startMonth);
                         var weeks = val.harvest_period;
-                        date1.setDate(date1.getDate() + weeks*7);
-                        formattedDate = date1.getFullYear()+ '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
+                        date1.setDate(date1.getDate() + weeks * 7);
+                        formattedDate = date1.getFullYear() + '-' + (date1.getMonth() + 1) + '-' + date1.getDate();
                         $('#harvestMonth').html("Harvesting Period :" + val.harvest_period + ' weeks<br> Harvesting month =>' + formattedDate);
                         $('#harvesting_month').val(formattedDate);
-                    }); 
+                    });
                 }
             })
-            
+
         }
 
         function getCropTypes(e) {
@@ -116,50 +122,52 @@
             $('#cropVart').empty();
             $('#harvestMonth').empty();
             $('#harvestMonth').hide();
-            $.ajax({ 
-                type: 'GET', 
-                url: 'ajxGetCropVart', 
-                data: {type:type},
-                success: function (data) { 
+            $.ajax({
+                type: 'GET',
+                url: 'ajxGetCropVart',
+                data: {
+                    type: type
+                },
+                success: function(data) {
                     var json = $.parseJSON(data);
-                    $(json).each(function (i, val) {
+                    $(json).each(function(i, val) {
                         var newOp = new Option(val.crop_varient, val.crop_id);
                         // console.log(val.crop_id);
                         $(newOp).html(val.crop_varient);
                         $('#cropVart').append(newOp);
-                    }); 
+                    });
                 }
             });
         }
 
         // get center data
-        $.ajax({ 
-                type: 'GET', 
-                url: 'ajxGetCenters', 
-                // data: {type:type},
-                success: function (data) { 
-                    var json = $.parseJSON(data);
-                    $(json).each(function (i, val) {
-                        var newOp = new Option(val.center_name, val.center_id);
-                        console.log(val.center_name);
-                        $(newOp).html(val.center_name);
-                        $('#selectCenter').append(newOp);
-                    }); 
-                }
-            });
-        
+        $.ajax({
+            type: 'GET',
+            url: 'ajxGetCenters',
+            // data: {type:type},
+            success: function(data) {
+                var json = $.parseJSON(data);
+                $(json).each(function(i, val) {
+                    var newOp = new Option(val.center_name, val.center_id);
+                    console.log(val.center_name);
+                    $(newOp).html(val.center_name);
+                    $('#selectCenter').append(newOp);
+                });
+            }
+        });
 
 
-        
-        
+
+
+
     });
 </Script>
 
 <h1>Crop Reqeust Form</h1>
 
-
 <div class="main-form">
-    <form action="<?= URL; ?>farmer/insertCropReq" method="post">
+    <div id="errors" class="error"></div>
+    <form action="<?= URL; ?>farmer/insertCropReq" method="post" onsubmit="return CheckPassword()">
 
 
         <div class="row">
@@ -168,11 +176,11 @@
             </div>
             <div class="col-75">
                 <select id="province" name="province" required>
-                    <option value=""> -- SELECT PROVINCE -- </option>
+                    <option value="null"> -- SELECT PROVINCE -- </option>
                     <?php foreach ($provinces as $provinceItem) : ?>
-                    <option value="<?= $provinceItem['province_id'] ?>">
-                        <?= $provinceItem['province_name'] ?>
-                    </option>
+                        <option value="<?= $provinceItem['province_id'] ?>">
+                            <?= $provinceItem['province_name'] ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -182,8 +190,8 @@
                 <label for="district">District</label>
             </div>
             <div class="col-75">
-                <select id="district" name="district" required>
-                    <option value=""> -- SELECT DISTRICT --</option>
+                <select id="district" name="district">
+                    <option value="null"> -- SELECT DISTRICT --</option>
                 </select>
             </div>
         </div>
@@ -193,7 +201,7 @@
             </div>
             <div class="col-75">
                 <select id="divisional_secratariast" name="divisional_secratariast" required>
-                    <option value=""> -- SELECT DIVISIONAL SECT. --</option>
+                    <option value="null"> -- SELECT DIVISIONAL SECT. --</option>
                 </select>
             </div>
         </div>
@@ -203,7 +211,7 @@
             </div>
             <div class="col-75">
                 <select id="gramaSewa" name="gramaSewa" required>
-                    <option value=""> -- SELECT GRAMASEWA DIV. --</option>
+                    <option value="null"> -- SELECT GRAMASEWA DIV. --</option>
                 </select>
             </div>
         </div>
@@ -223,7 +231,7 @@
             </div>
             <div class="col-75">
                 <select id="cropType" name="croptype" required>
-                    <option value="" selected >-- Select Crops --</option>
+                    <option value="null" selected>-- Select Crops --</option>
                 </select>
             </div>
         </div>
@@ -234,7 +242,7 @@
             </div>
             <div class="col-75">
                 <select id="cropVart" name="selectCrop" required>
-                    <option value="" selected>-- Select crop varient --</option>
+                    <option value="null" selected>-- Select crop varient --</option>
                 </select>
             </div>
         </div>
@@ -258,7 +266,7 @@
                 <input type="date" id="startMonth" name="startMonth" placeholder="Month/Date/Year " required>
             </div>
         </div>
-        
+
         <div class="ajxToolTip" id="harvestMonth">harvestMonth : kgs</div>
 
         <div class="row">
@@ -267,7 +275,7 @@
             </div>
             <div class="col-75">
                 <select id="selectCenter" name="selectCenter" required>
-                    <option value="" disabled selected>-- Select center --</option>
+                    <option value="null" disabled selected>-- Select center --</option>
                 </select>
             </div>
         </div>
@@ -297,3 +305,115 @@
 </div>
 
 <script src="<?php echo URL; ?>/views/user/js/locations.js"></script>
+<script>
+    function CheckPassword() {
+
+        let validateErrors = [];
+
+        var element = document.getElementById("errors"); //select error section
+
+        //   while (element.firstChild) {
+        //     //remove if any previous errors
+        //     element.removeChild(element.firstChild);
+        //   }
+
+        //   // nic validation
+        //   let nic = document.getElementById("nic");
+        //   let usernic = nic.value;
+        //   if (
+        //     usernic.length != 10 ||
+        //     (usernic.charAt(usernic.length - 1) != "v" &&
+        //       usernic.charAt(usernic.length - 1) != "V") ||
+        //     hasChar(usernic.substr(0, usernic.length - 1))
+        //   ) {
+        //     validateErrors.push("Invalid NIC");
+        //   }
+
+        //   //name validation
+        //   let first_name = document.getElementById("first_name");
+        //   let last_name = document.getElementById("last_name");
+        //   if (hasNumbers(first_name.value)) {
+        //     validateErrors.push("Invalid First Name");
+        //   }
+        //   if (hasNumbers(last_name.value)) {
+        //     validateErrors.push("Invalid Last Name");
+        //   }
+
+        //   //tel validation
+        //   let tel1 = document.getElementById("tel_no_1");
+        //   var numbers = /^[0-9]+$/;
+        //   if (tel1.value.length != 10 || !tel1.value.match(numbers)) {
+        //     validateErrors.push("Invalid Telephone Number(1)");
+        //   }
+        //   let tel2 = document.getElementById("tel_no_2");
+        //   if (tel2.value.length != 0) {
+        //     var numbers = /^[0-9]+$/;
+        //     if (tel2.value.length != 10 || !tel2.value.match(numbers)) {
+        //       validateErrors.push("Invalid Telephone Number(2)");
+        //     }
+        //   }
+
+        //   //pwd validation for vendors
+        //   let role = document.getElementById("role");
+        //   let password = document.getElementById("password");
+        //   if (role.value == "vendor") {
+        //     var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+        //     if (!password.value.match(passw)) {
+        //       validateErrors.push(
+        //         "Password must include at least Uppsercase, Lowercase and Special Character!"
+        //       );
+        //     }
+        //     if (password.value.length < 6) {
+        //       validateErrors.push("Password should include at least 6 characters!");
+        //     }
+        //   }
+
+        //   location validations
+        let province = document.getElementById("province");
+        let district = document.getElementById("district");
+        let divSec = document.getElementById("divisional_secratariast");
+        let gramaSewa = document.getElementById("gramaSewa");
+
+        if (
+            province.value == "null" ||
+            district.value == "null" ||
+            divSec.value == "null" ||
+            gramaSewa.value == "null"
+        ) {
+            validateErrors.push("Please check all the location dropdowns!");
+
+        }
+
+        validateErrors.forEach((error) => {
+            //view errors
+
+            var tag = document.createElement("p");
+            var text = document.createTextNode(error);
+
+            tag.appendChild(text);
+            element.appendChild(tag);
+        });
+
+        if (validateErrors.length > 0) {
+
+            window.scrollTo(500, 0);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //is contain number
+    function hasNumbers(t) {
+        var regex = /\d/g;
+        return regex.test(t);
+    }
+
+    //is contain non-numeric
+    function hasChar(t) {
+        if (t.match(/[^$,.\d]/)) {
+            return true;
+        }
+    }
+</script>

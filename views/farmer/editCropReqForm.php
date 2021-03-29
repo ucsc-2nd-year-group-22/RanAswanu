@@ -137,21 +137,21 @@
             });
         }
 
-        // get center data
-        $.ajax({
-            type: 'GET',
-            url: '<?php echo URL; ?>farmer/ajxGetCenters',
-            // data: {type:type},
-            success: function(data) {
-                var json = $.parseJSON(data);
-                $(json).each(function(i, val) {
-                    var newOp = new Option(val.center_name, val.center_id);
-                    console.log(val.center_name);
-                    $(newOp).html(val.center_name);
-                    $('#selectCenter').append(newOp);
-                });
-            }
-        });
+        // // get center data
+        // $.ajax({
+        //     type: 'GET',
+        //     url: '<?php echo URL; ?>farmer/ajxGetCenters',
+        //     // data: {type:type},
+        //     success: function(data) {
+        //         var json = $.parseJSON(data);
+        //         $(json).each(function(i, val) {
+        //             var newOp = new Option(val.center_name, val.center_id);
+        //             console.log(val.center_name);
+        //             $(newOp).html(val.center_name);
+        //             $('#selectCenter').append(newOp);
+        //         });
+        //     }
+        // });
 
 
 
@@ -244,7 +244,7 @@
                 <label for="areaSize">Size of the area (Acres)</label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
+                <input type="number" placeholder="ex: 2 Acres" id="areaSize" max="100" required>
             </div>
         </div>
 
@@ -267,7 +267,9 @@
             </div>
             <div class="col-75">
                 <select id="selectCenter" name="selectCenter" required>
-                    <option value="<?= $cropReqData['center_id']; ?>" selected><?= $cropReqData['center_name']; ?></option>
+                    <?php foreach ($allCenters as $centerItem) : ?>
+                        <option value="<?= $centerItem['center_id'] ?>" <?php if ($cropReqData['center_name'] == $centerItem['center_name']) echo 'selected'; ?>> <?= $centerItem['center_name'] ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -290,7 +292,7 @@
             <div class="col-25">
             </div>
             <div class="col-75">
-                <button type="submit">Create </button>
+                <button type="submit">Update </button>
             </div>
         </div>
     </form>

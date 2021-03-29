@@ -390,6 +390,7 @@ class Farmer extends Controller {
 
     function editCropReqForm($harvest_id) {
         $allLocations = $this->model->getAllLocations();
+        
         $data = [
             'provinces' => $this->model->getProvinces(),
             'locData' => $this->model->getLocDataByGs($harvest_id),
@@ -398,6 +399,7 @@ class Farmer extends Controller {
             'allDistricts' => $allLocations['allDistricts'],
             'allDivSecs' => $allLocations['allDivSecs'],
             'allGramaSewas' => $allLocations['allGramaSewas'],
+            'allCenters' => $this->model->getAllCenters()
         ];
         $district = $data['locData']['district_id'];
         // echo "<b>$district</b>";

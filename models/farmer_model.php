@@ -45,7 +45,7 @@ class Farmer_Model extends Model {
     /// !!!!!!!!!!!!!!! Handled by OFficer !!!!!!!!!!!!!!!!!!!!!!1
     public function farmerList() {
         $gs_id =  Session::get('gs_id');
-        if(Session::get('role') == 'admin') {
+        if (Session::get('role') == 'admin') {
             $sql = "SELECT user.*, group_concat(user_tel.tel_no) AS telNos FROM user 
             JOIN user_tel on user.user_id =user_tel.user_id 
             WHERE user.role = 'farmer' GROUP BY user.user_id";
@@ -54,7 +54,7 @@ class Farmer_Model extends Model {
             JOIN user_tel on user.user_id =user_tel.user_id 
             WHERE user.role = 'farmer' AND user.gs_id = $gs_id GROUP BY user.user_id";
         }
-       
+
         $st = $this->db->prepare($sql);
 
         $st->execute();
@@ -264,12 +264,6 @@ class Farmer_Model extends Model {
     }
 
     public function updateCropReq($data) {
-        // $gs_id = Session::get('gs_id');
-        // Get officer id
-        // $st1 = $this->db->prepare("SELECT user_id from user WHERE gs_id = $gs_id AND role = 'officer'");
-        // $st1->execute();
-        // $data['officer_user_id'] = $st1->fetchColumn();
-
         $sql = "UPDATE `harvest` SET `starting_month_id`=:starting_month_id,`harvesting_month_id`=:harvesting_month_id,`expected_harvest`=:expected_harvest,`gs_id`=:gs_id,`crop_id`=:crop_id,`center_id`=:center_id
         WHERE harvest_id = :harvest_id";
 
@@ -293,6 +287,12 @@ class Farmer_Model extends Model {
         } else {
             echo 'bad';
         }
+    }
+
+    public function getAllCenters() {
+        $st = $this->db->prepare("SELECT center_id, center_name FROM `collecting_center` ");
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllLocations() {

@@ -1,4 +1,5 @@
 function CheckPassword() {
+  console.log('xxx');
   let validateErrors = [];
 
   var element = document.getElementById("errors"); //select error section

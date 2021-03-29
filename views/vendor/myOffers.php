@@ -13,51 +13,51 @@
         });
 
     
-        var selectedSort = 'max_offer';
-        $('#sortby').change(function() {
-            selectedSort = $('#sortby :selected').attr('val');
-        });
-        // asc
-        $('#ascSort').click(function() {
+        // var selectedSort = 'max_offer';
+        // $('#sortby').change(function() {
+        //     selectedSort = $('#sortby :selected').attr('val');
+        // });
+        // // asc
+        // $('#ascSort').click(function() {
 
-            $('#descSort').removeClass("active-btn");
-            $(this).addClass("active-btn");
-            $.ajax({
-                url: "ajxSortCrops",
-                method: "post",
-                data: {
-                    filter: selectedSort,
-                    ascOrDsc: 'ASC'
-                },
-                dataType: "text",
-                success: function(data) {
+        //     $('#descSort').removeClass("active-btn");
+        //     $(this).addClass("active-btn");
+        //     $.ajax({
+        //         url: "SortWeightOffer",
+        //         method: "post",
+        //         data: {
+        //             filter: selectedSort,
+        //             ascOrDsc: 'ASC'
+        //         },
+        //         dataType: "text",
+        //         success: function(data) {
 
-                    $('#box').html(data);
-                },
-                async: true
-            });
-        });
+        //             $('#box').html(data);
+        //         },
+        //         async: true
+        //     });
+        // });
 
         //descending 
-        $('#descSort').click(function() {
-            //alert(selectedSort)
-            $('#ascSort').removeClass("active-btn");
-            $(this).addClass("active-btn");
-            $.ajax({
-                url: "ajxSortCrops",
-                method: "post",
-                data: {
-                    filter: selectedSort,
-                    ascOrDsc: 'DESC'
-                },
-                dataType: "text",
-                success: function(data) {
+        // $('#descSort').click(function() {
+        //     //alert(selectedSort)
+        //     $('#ascSort').removeClass("active-btn");
+        //     $(this).addClass("active-btn");
+        //     $.ajax({
+        //         url: "ajxSortCrops",
+        //         method: "post",
+        //         data: {
+        //             filter: selectedSort,
+        //             ascOrDsc: 'DESC'
+        //         },
+        //         dataType: "text",
+        //         success: function(data) {
 
-                    $('#box').html(data);
-                },
-                async: true
-            });
-        });
+        //             $('#box').html(data);
+        //         },
+        //         async: true
+        //     });
+        // });
 
         //search
         var selectedSearchCategory = $('#searchField').val();
@@ -84,7 +84,7 @@
                 switch (selectedSearchCategory) {
                     case 'crop_type': {
                         $.ajax({
-                            url: "ajxSearchCrops",
+                            url: "SearchCrops",
                             method: "post",
                             data: {
                                 search: inputVal
@@ -97,9 +97,9 @@
                         });
                         break;
                     }
-                    case 'ds_name': {
+                    case 'center_name': {
                         $.ajax({
-                            url: "ajxSearchCropsdistrict",
+                            url: "SearchCollectingCenter",
                             method: "post",
                             data: {
                                 search: inputVal
@@ -189,8 +189,8 @@
             <form class="search-bar">
                 <label>Search Crops by : </label>
                 <select id="searchField">
-                    <option value="crop_type">Crops Name</option>
-                    <option value="ds_name">District</option>
+                    <option value="crop_type">Crop Name</option>
+                    <option value="center_name">Collecting Center</option>
 
                 </select>
                 <input type="text" id="searchInput" placeholder="Search ...">
@@ -202,10 +202,10 @@
 
         <div class="pane2">
             <form class="normal-select">
-                <label>Sort crop requests by : </label>
+                <label>Sort Offer By : </label>
                 <select id="sortby">
 
-                    <option val="max_offer">Price</option>
+                    <option val="offer_amount">Price</option>
                     <option val="harvest_amount">Weight</option>
                 </select>
 

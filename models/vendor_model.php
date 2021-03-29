@@ -170,4 +170,54 @@ JOIN divisional_secratariast ON gramasewa_division.ds_id = divisional_secrataria
         $st->execute();
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    ////////////////////////////////functions of sent offers//////////////////////////////////////////////////////
+    public function SearchCrops($crop_name)
+    {
+        $st = $this->db->prepare("SELECT offer.*, selling_request.*,collecting_center.center_name, crop.crop_type FROM selling_request
+        JOIN offer ON selling_request.selling_req_id=offer.selling_req_id
+        JOIN user ON selling_request.farmer_user_id = user.user_id
+        JOIN harvest ON user.user_id = harvest.farmer_user_id
+        JOIN crop ON harvest.crop_id = crop.crop_id
+        JOIN collecting_center ON harvest.center_id = collecting_center.center_id where offer.vendor_user_id = :id AND crop.crop_type LIKE :crops group by offer.offer_id" );
+        
+        $st->execute(array(
+            ':id' => Session::get('user_id'),
+            ':crops' => $crop_name
+        ));
+        return $st->fetchAll();
+    }
+
+    public function SearchCollectingCenter($center_name)
+    {
+        $st = $this->db->prepare("SELECT offer.*, selling_request.*,collecting_center.center_name, crop.crop_type FROM selling_request
+        JOIN offer ON selling_request.selling_req_id=offer.selling_req_id
+        JOIN user ON selling_request.farmer_user_id = user.user_id
+        JOIN harvest ON user.user_id = harvest.farmer_user_id
+        JOIN crop ON harvest.crop_id = crop.crop_id
+        JOIN collecting_center ON harvest.center_id = collecting_center.center_id where offer.vendor_user_id = :id AND collecting_center.center_name LIKE :center group by offer.offer_id" );
+        
+        $st->execute(array(
+            ':id' => Session::get('user_id'),
+            ':center' => $center_name
+        ));
+        return $st->fetchAll();
+    }
+
+    //weight offer sorting
+    // public function SortWeightOffer($WO)
+    // {
+    //     $st = $this->db->prepare("SELECT offer.*, selling_request.*,collecting_center.center_name, crop.crop_type FROM selling_request
+    //     JOIN offer ON selling_request.selling_req_id=offer.selling_req_id
+    //     JOIN user ON selling_request.farmer_user_id = user.user_id
+    //     JOIN harvest ON user.user_id = harvest.farmer_user_id
+    //     JOIN crop ON harvest.crop_id = crop.crop_id
+    //     JOIN collecting_center ON harvest.center_id = collecting_center.center_id where offer.vendor_user_id = :id order by selling_request.harvest_amount ASC" );
+        
+    //     $st->execute(array(
+    //         ':id' => Session::get('user_id'),
+    //         ':center' => $center_name
+    //     ));
+    //     return $st->fetchAll();
+    // }
 }

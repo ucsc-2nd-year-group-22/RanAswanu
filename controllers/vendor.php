@@ -177,8 +177,10 @@ class Vendor extends Controller
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
-    //AllOffers
-    public function loadOffers() {
+    
+    //////////////////////Ajx functions in my offers///////////////////////////////////////
+    public function loadOffers()
+    {
         $myOffers = $this->model->myOffers(Session::get('user_id'));
         $data['myOffers'] = $myOffers;
        // print_r($data['myOffers']);
@@ -190,4 +192,44 @@ class Vendor extends Controller
         }
     }
 
+    public function SearchCrops()
+    {
+        $d = $this->model->SearchCrops($_POST['search']);
+        $data['myOffers'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxViewOffers', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function SearchCollectingCenter()
+    {
+        $d = $this->model->SearchCollectingCenter($_POST['search']);
+        $data['myOffers'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxCrop', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+    public function SortWeightOffer()
+    {
+        $d = $this->model->SortWeightOffer($_POST['search']);
+        $data['myOffers'] = $d;
+
+        if (!empty($d)) {
+            $this->view->rendor('vendor/ajxCrop', $data, $withoutHeaderFooter = true);
+        } else {
+            $data['errMsg'] = "No Result Found !";
+            $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
+        }
+    }
+
+  
 }

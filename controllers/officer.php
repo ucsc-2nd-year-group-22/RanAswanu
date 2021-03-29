@@ -31,7 +31,7 @@ class Officer extends Controller
         $this->setActivePage('cropReq');
 
         if ((Session::get('role') == 'farmercropReqMng' || 'admin') && Session::get('loggedIn') == true)
-            $this->view->rendor('officer/');
+            $this->view->rendor('officer/cropReqMng');
         else {
             $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
             $this->view->rendor('error/index');

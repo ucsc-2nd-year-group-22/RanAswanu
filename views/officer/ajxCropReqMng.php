@@ -1,3 +1,4 @@
+<?php print_r($cropReqData);?>
 <table>
     <tr>
         <th>#</th>
@@ -7,6 +8,9 @@
         <th>Status</th>
         <th>Gramasewa.</th>
         <th>Collecting center</th>
+        <th>Collected Harvest</th>
+        <th>Demand</th>
+        <th>Status</th>
         <th>Take Action</th>
     </tr>
     <?php $i = 0;
@@ -26,6 +30,20 @@
             </td>
             <td> <?= $cropReqItem['gs_name']; ?></td>
             <td> <?= $cropReqItem['center_name']; ?></td>
+            <td> <?= $cropReqItem['gath_harvest']; ?></td>
+            <td> <?= $cropReqItem['demand']; ?></td>
+
+            <td>
+            <?php if($cropReqItem['is_accept'] == 0): ?>
+                <?php if($cropReqItem['gath_harvest'] < $cropReqItem['demand'] ): ?>
+                    <b style="color:#2aaa26;"><i class="fas fa-thumbs-up"></i> Below Demand </b>
+                <?php else : ?>
+                    <b style="color:rgb(200 78 78);" ><i class="fas fa-exclamation-circle"></i> Above Demand </b>
+                <?php endif; ?>
+            <?php else : ?>
+                <i class="fas fa-ban"></i>
+            <?php endif; ?>
+            </td>
             <td>
                 <?php if ($cropReqItem['is_accept'] == 0) : ?>
                     <a class="mini-button btn" onclick="return confirm('Are you sure you want to accept this crop request ?');" href="<?= URL; ?>officer/acceptCropReq/<?= $cropReqItem['harvest_id']; ?>"><i class="fas fa-check-circle"></i> Accept</a>

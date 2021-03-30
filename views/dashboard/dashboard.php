@@ -17,8 +17,7 @@ try {
     $handle = $link->prepare("SELECT demand_for_crop_center.demant_amount as y, crop.crop_varient as label
         FROM demand_for_crop_center
         JOIN crop ON demand_for_crop_center.crop_id =crop.crop_id
-        WHERE demand_for_crop_center.month_id = $month AND demand_for_crop_center.center_id = $center_id
-        ");
+        WHERE demand_for_crop_center.month_id = $month AND demand_for_crop_center.center_id = $center_id group by crop.crop_varient");
     $handle->execute();
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
     foreach ($result as $row) {

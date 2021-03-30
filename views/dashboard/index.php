@@ -5,7 +5,9 @@
 
 <!-- FORM -->
 <div class="main-form">
-    <form action="<?= URL; ?>/dashboard/submit" method="post">
+    <div id="errors" class="error"></div>
+
+    <form action="<?= URL; ?>/dashboard/submit" onsubmit="return CheckPassword()" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="cetner_name">Col. Center</label>
@@ -68,7 +70,7 @@
 </div>
 
 <script src="views/dashboard/js/dropDowns.js"></script>
-
+<script src="<?php echo URL; ?>views/dashboard/js/validate.js"></script>
 
 <?php
 

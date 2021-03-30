@@ -24,7 +24,7 @@
             <td><?= $cropsall['max_offer']; ?> </td>
             <td><?= $cropsall['ds_name']; ?></td>
             <td>
-            <?php if ($cropsall['offer_sent'] == 1) : ?>
+            <?php if ($cropsall['offer_sent'] == 0) : ?>
                 <a type="button" class="mini-button btn-success" href="<?php echo URL . 'vendor/giveOffer/' . $cropsall['selling_req_id'] . '/' . $cropsall['user_id']; ?>"><i class="fa fa-money"></i> Offer</a>
                 <!-- <a href="<?php echo URL . 'vendor/placeaOffer/' . $cropsall['selling_req_id'] ?>" class="mini-button normal">Offer</a> -->
             <?php else : ?>

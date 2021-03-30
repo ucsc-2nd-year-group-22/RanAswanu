@@ -1,117 +1,161 @@
+<script>
+    $(function() {
+
+        $('#box').html('');
+        $.ajax({
+            url: "offerList",
+            method: "post",
+            dataType: "text",
+            success: function(data) {
+                $('#box').html(data);
+            },
+            async: true,
+        });
+
+        // sorting
+        var selectedSort = 'offer_amount';
+        $('#sortby').change(function() {
+            selectedSort = $('#sortby :selected').attr('val');
+        });
+        // asc
+        $('#ascSort').click(function() {
+            $('#descSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortOffers",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'ASC'
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+        // desc
+        $('#descSort').click(function() {
+            $('#ascSort').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "ajxSortOffers",
+                method: "post",
+                data: {
+                    filter: selectedSort,
+                    ascOrDsc: 'DESC'
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+
+
+        ///
+        // show accepted
+        var selectedFilter;
+        $('#showAccepted').click(function() {
+            selectedFilter = 'accepted';
+            $('#showRejected').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "filterOffers",
+                method: "post",
+                data: {
+                    filter: selectedFilter
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+        $('#showRejected').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showAll').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "filterOffers",
+                method: "post",
+                data: {
+                    filter: selectedFilter
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true
+            });
+        });
+
+        $('#showAll').click(function() {
+            selectedFilter = 'rejected';
+            $('#showAccepted').removeClass("active-btn");
+            $('#showRejected').removeClass("active-btn");
+            $(this).addClass("active-btn");
+            $.ajax({
+                url: "offerList",
+                method: "post",
+                data: {
+                    farmer_id: <?php echo Session::get('user_id'); ?>
+                },
+                dataType: "text",
+                success: function(data) {
+                    $('#box').html(data);
+                },
+                async: true,
+            });
+        });
+
+
+    });
+</script>
+
 <h1>Vender Offers</h1>
 
-<div class="user-tabs">
-    <ul>
-        <li><a id="tab1" href="#" class="active-tab" >Action Need</a></li>
-        <li><a id="tab2" href="#" ><i class="fas fa-check-circle"></i>  Accepted</a></li>
-        <li><a id="tab3" href="#" ><i class="fas fa-times-circle"></i> Rejected</a></li>
-    </ul>
-</div>
-
 <div class="panel-container">
-    <div class="pane1">
-
-        <form class="search-bar">
-            <label>Search crop requests by : </label>
-            <select placeholder="Search ...">
-                    <option>Vendor name</option>
-                    <option>Crop Type</option>
-                    <option>District</option>
-                </select>
-            <input type="text" placeholder="Search ...">
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
-
-    </div>
+    <form class="pane1 ">
+        <label>Show accepted / pending </label>
+        <div class="normal-select">
+            <button type="button" id="showAccepted" class="half"><i class="fas fa-sort-amount-down-alt"></i> Accepted </button>
+            <button type="button" id="showRejected" class="half"><i class="fas fa-sort-amount-down"></i> Pending</button>
+            <button type="button" id="showAll" style="width:100%" class="half"><i class="fas fa-sort-amount-down"></i> Show All</button>
+        </div>
+    </form>
     <div class="pane2">
+        <!-- sort bar -->
         <form class="normal-select">
-            <label>Sort crop requests by : </label>
-            <select placeholder="other">
-                    <option>Date</option>
-                    <option>Vendor name</option>
-                    <option>Crop Type</option>
-                    <option>District</option>
+            <label>Sort damage claims by : </label>
+            <select id="sortby">
+                <option val="offer_amount">Offer price</option>
+                <option val="date_time">Date</option>
             </select>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down-alt"></i> Smaller-first </button>
-            <button type="submit" class="half"><i class="fas fa-sort-amount-down"></i> Larger-first</button>
+            <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
+            <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
         </form>
     </div>
 
     <!-- Comment pane 3 & 4 If they are empty -->
 
- <!--   <div class="pane3">
+    <!--   <div class="pane3">
          <label>Empty pane</label>
     </div>
     <div class="pane4">
         <label>Empty pane</label>
     </div>    -->
-</div> 
-
-
-<div id="tab1C" class="tabContainer">
-    <div class="main-table">
-        <table>
-            <tr>
-                <th>#</th>
-                <th>Vender Name</th>
-                <th>Crop Type</th>
-                <th>Price per Kg</th>
-                <th>District</th>
-                <th>dateTime</th>
-                <th>Take Action</th>
-                <th></th>
-            </tr>
-    <?php $i = 0; foreach($verdoffersData as $verdoffersItem) :; $i++;?>
-            <tr>
-                <td> <?=  $i ?></td>
-                <td><?= $verdoffersItem['vendername'];?></a> <a href="#"> <i class="fas fa-phone-square icon-color"></i> </a> </td>
-                <td><?= $verdoffersItem['croptype'];?> </td>
-                <td> <?= $verdoffersItem['price'];?></td>
-                <td> <?= $verdoffersItem['district'];?></td>
-                <td> <?= $verdoffersItem['dateTime'];?></td>
-                <td><button class="mini-button normal"> <i class="fas fa-check-circle"></i> Accept</button> </td>
-                <td>    <button class="mini-button danger"><i class="fas fa-times-circle"></i> Reject</button> </td>
-                
-            </tr>
-    <?php endforeach;?>
-        </table>
-    </div>
 </div>
 
-<!--
-<div id="tab2C" class="tabContainer">
-    <div class="main-table">
-        <table>
-            <tr>
-                <th>#</th>
-                <th>Farmer</th>
-                <th>Crop</th>
-                <th>Harvest Period</th>
-                <th>Area</th>
-                <th>Expected harvest</th>
-                <th>Demand status</th>
-                <th>Date/Time</th>
-            </tr>
-    <?php $i = 0; foreach($cropReqData as $cropReqItem) :; $i++;?>
-            <tr>
-                <td> <?=  $i ?></td>
-                <td><?= $cropReqItem['farmer'];?></a> <a href="#"> <i class="fas fa-phone-square icon-color"></i> </a> </td>
-                <td><?= $cropReqItem['crop'];?> </td>
-                <td> <?= $cropReqItem['period'];?></td>
-                <td> <?= $cropReqItem['area'];?></td>
-                <td> <?= $cropReqItem['harvest'];?></td>
-                <td> <?= $cropReqItem['demand'];?></td>
-                <td> <?= $cropReqItem['dateTime'];?></td>                              
-            </tr>
-    <?php endforeach;?>
-        </table>
-    </div>
-</div>
--->
 
-<div id="tab3C" class="tabContainer">
-    <div class="banner">
-        <h4> No rejected crop requests found</h4>
-        <h1><i class="far fa-times-circle icon-color"></i><h1>
-    </div>
+
+<div id="box" class="main-table">
+    
 </div>

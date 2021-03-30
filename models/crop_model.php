@@ -83,7 +83,7 @@ class Crop_Model extends Model
             ':district_id' => $data['best_area']
         ));
     }
-    
+
 
     //get crop varients
     public function cropVarients($id)
@@ -129,5 +129,55 @@ class Crop_Model extends Model
         $st = $this->db->prepare("SELECT district_id, ds_name FROM district");
         $st->execute();
         return $st->fetchAll();
+    }
+
+    //Search crops by crop type
+    public function ajxSearchCropType($cropType)
+    {
+        $escaped_name = addcslashes($cropType, '%');
+        $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
+        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.crop_type LIKE :cropType";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':cropType' => "$cropType%"
+        ));
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Search crops by crop varient
+    public function ajxSearchCropVar($cropVar)
+    {
+        $escaped_name = addcslashes($cropVar, '%');
+        $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
+        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.crop_varient LIKE :cropVar";
+        $st = $this->db->prepare($sql);
+        // print_r($sql);
+        $st->execute(array(
+            ':cropVar' => "$cropVar%"
+        ));
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Sort crops
+    public function ajxFilterCrop($filter, $ascOrDsc)
+    {
+        //    echo $ascOrDsc;
+
+        if ($ascOrDsc == 'ASC') {
+            $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
+            ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) ORDER BY $filter ASC";
+        } else if ($ascOrDsc == 'DESC') {
+            $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
+            ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) ORDER BY $filter DESC";
+        }
+
+
+        $st = $this->db->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 }

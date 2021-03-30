@@ -25,7 +25,7 @@ class Auth_Model extends Model {
 
     public function deleteOldTokens($email) {
         
-        $sql = "DELETE FROM pwdReset WHERE pwdResetEmail = :email;";
+        $sql = "DELETE FROM pwdreset WHERE pwdResetEmail = :email;";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
             ':email' => $email
@@ -40,26 +40,34 @@ class Auth_Model extends Model {
 
     public function insertNewToken($email, $selector, $hashedToken, $expires) {
 
-        echo "<hr>$email /$selector/ $hashedToken /$expires/ <br>";
+        echo "<hr> hello -> $email <br>$selector <br> $hashedToken </br> $expires <br>";
 
-        $sql = "INSERT INTO `pwdReset`(`pwdResetEmail`, `pwdResetSelector`, `pwdReset`, `pwdResetExpires`) VALUES (:pwdResetEmail, :pwdResetSelector, :pwdResetToken, :pwdResetExpires);";
+        $sql = "INSERT INTO `pwdreset`(`pwdResetEmail`, `pwdResetSelector`, `pwdReset`, `pwdResetExpires`) 
+        VALUES (:pwdResetEmail, :pwdResetSelector, :pwdResetToken, :pwdResetExpires)";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute(array(
+        $res = $stmt->execute(array(
             ':pwdResetEmail' => $email,
             ':pwdResetSelector'=> $selector,
             ':pwdResetToken' => $hashedToken,
             ':pwdResetExpires' => $expires
         ));
 
+        // if($res) {
+        //     echo 'goooo';
+        // } else {
+        //     echo 'bbo';
+        // }
+
     }
 
     function getPwSelector($selector, $validator) {
+        echo "$selector -> $validator<br>";
         $currentDate = date("U");
-        $sql = "SELECT * FROM `pwdReset` WHERE `pwdResetSelector` = :pwdResetSelector AND `pwdResetExpires` >= :currentDate ";
+        $sql = "SELECT * FROM `pwdreset` WHERE pwdResetSelector = :pwdResetSelector ";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(array(
             ':pwdResetSelector' => $selector,
-            ':currentDate' => $currentDate
+            // ':currentDate' => $currentDate
         ));
 
         $result = $stmt->fetch();
@@ -94,7 +102,7 @@ class Auth_Model extends Model {
     }
 
     function checkUserPw($pwd) {
-        $userId = Session::get('id');
+        $userId = Session::get('user_id');
         $st = $this->db->prepare("SELECT user_id FROM user WHERE password = MD5(:password) AND user_id = :id ");
         $st->execute(array(
             'id' => $userId,

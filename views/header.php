@@ -58,7 +58,7 @@
                         <li><a href="<?php echo URL; ?>officer/damageClaims" class="<?php View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
                         <li><a href="<?php echo URL; ?>farmer/farmerMng" class="<?php View::getActivePage('farmerMng'); ?>">Farmers</a></li>
                         <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
-                        <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
+                        <!-- <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
                         <!-- for real admins act as officers ===== -->
                         <?php if(Session::get('isadmin') == 1): ?>   
@@ -85,9 +85,9 @@
                         <!-- Farmer configurations for the navigation bar =============================================================== -->
                     <?php elseif ((Session::get('role') == 'farmer')): ?>
                         <li><a href="<?php echo URL; ?>farmer/sellCropMng" class="<?php View::getActivePage('sellCropMng'); ?>">Sell Crops</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/cropReqMng" class="<?php View::getActivePage('cropReqMng'); ?>">My Harvest</a></li>
                         <li><a href="<?php echo URL; ?>farmer/offerMng" class="<?php View::getActivePage('offerMng'); ?>">Vendor Offers</a></li>
                         <li><a href="<?php echo URL; ?>farmer/damageMng" class="<?php View::getActivePage('damageMng'); ?>">Damage Claims</a></li>
-                        <li><a href="<?php echo URL; ?>farmer/cropReqMng" class="<?php View::getActivePage('cropReqMng'); ?>">Crop Requests</a></li>
 
                 <?php endif ?>
 

@@ -7,19 +7,16 @@
 </div> -->
 
 <div class="main-form">
-    <form action="#" method="post">
+    <form action="<?= URL;?>/report/generateReport" target="_blank" method="post">
         <div class="row">
             <div class="col-25">
             <label for="province">Select report type</label>
             </div>
             <div class="col-75">
             <select id="province" name="province">
-                <option value="report1">Anual farmer report</option>
-                <option value="report2">Monthly vendor-farmer orders</option>
-                <option value="report3">Farmer report</option>
-                <option value="report3">Damages report</option>
-                <option value="report3">User report</option>
-                <option value="report3">Custom report...</option>
+                <option value="report1">report 1</option>
+                <option value="report2">report 2</option>
+                <option value="report3">report 3</option>
             </select>
             </div>
         </div>
@@ -61,19 +58,6 @@
             </div>
             <div class="col-75">
             <button type="Submit"><i class="fas fa-file"></i> Create Report</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="main-form">
-
-    <form action="#" method="post">
-        <div class="row">
-            <div class="col-25">
-            
-            </div>
-            <div class="col-75">
-            <button type="Submit">Email report</button>
             </div>
         </div>
     </form>

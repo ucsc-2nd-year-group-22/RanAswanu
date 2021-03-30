@@ -11,7 +11,7 @@ class Vendor extends Controller
         $role = Session::get('role');
     }
 
-   
+
     function MyOffers()
     {
         // $myOffers = $this->model->myOffers(Session::get('user_id'));
@@ -19,7 +19,7 @@ class Vendor extends Controller
         $this->setActivePage('MyOffers');
         $this->view->rendor('vendor/myOffers');
     }
- 
+
 
     //Display Cropsmng
     public function allCrops()
@@ -49,11 +49,11 @@ class Vendor extends Controller
         // $this->view->rendor('vendor/giveOffer');
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     public function updateOffer($offer_id)
     {
         $data['offer_id'] = $offer_id;
-        $this->view->rendor('vendor/updateOffer',$data);
+        $this->view->rendor('vendor/updateOffer', $data);
     }
 
     public function update($reqid)
@@ -62,16 +62,15 @@ class Vendor extends Controller
         $data['amount'] =  $_POST['ammount'];
         $this->model->updateOffer($data);
         header('location: ' . URL . 'vendor/MyOffers');
-        
     }
-    
+
     public function undoOffer($id)
     {
         $data['offer_id'] = $id;
         $this->model->undoOffer($data);
         header('location: ' . URL . 'vendor/MyOffers');
     }
-////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
     public function viewfarmerprofile($user_id)
     {
         // $data=['user_id'=>$user_id];
@@ -116,7 +115,7 @@ class Vendor extends Controller
 
     public function ajxSortCrops()
     {
-       
+
         $d = $this->model->ajxSortCrops($_POST['filter'], $_POST['ascOrDsc']);
         $data['crops'] = $d;
 
@@ -203,7 +202,7 @@ class Vendor extends Controller
         }
     }
 
-    
+
     //////////////////////Ajx functions in my offers///////////////////////////////////////
     public function loadOffers()
     {
@@ -257,7 +256,7 @@ class Vendor extends Controller
         }
     }
 
-  
+
 
     // public function ajxSortAcceptedCrops()
     // {
@@ -273,5 +272,42 @@ class Vendor extends Controller
     //     }
     // }
 
-    
+    public function vendors()
+    {
+
+        // //only for admin can execute this
+        if (Session::get('loggedIn') == false || Session::get('role') != 'admin') {
+            Session::destroy();
+            header('location: ' . URL . 'user/login');
+            exit;
+        }
+
+        $vendorData = $this->model->vendorList();
+
+        $pageData = [
+            'role' => Session::get('role'),
+            'tabs' => [
+                [
+                    'label' => '<i class="fas fa-user-plus"></i> Register New Officer',
+                    'path' => 'user/register'
+                ]
+            ],
+            'vendorData' => $vendorData,
+        ];
+        $this->setActivePage('userMgt');
+        if ((Session::get('role') == 'admin') && Session::get('loggedIn') == true)
+            // print_r($vendorData);
+            $this->view->rendor('vendor/vendors', $pageData);
+        else {
+            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
+            $this->view->rendor('error/index', $data);
+        }
+    }
+
+    //remove a vendor
+    public function delete($id)
+    {
+        $this->model->delete($id);
+        header('location: ' . URL . 'vendor/vendors');
+    }
 }

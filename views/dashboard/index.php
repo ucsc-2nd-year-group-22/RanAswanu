@@ -38,7 +38,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="cropType">Crop</label>
+                <label for="cropType">Crop Type</label>
             </div>
             <div class="col-75">
                 <select id="cropType" name="cropType">
@@ -48,7 +48,7 @@
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="cropVart">Crop</label>
+                <label for="cropVart">Crop Varient</label>
             </div>
             <div class="col-75">
                 <select id="cropVart" name="cropVart">

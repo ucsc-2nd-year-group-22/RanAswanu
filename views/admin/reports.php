@@ -7,71 +7,112 @@
 </div> -->
 
 <div class="main-form">
-    <form action="<?= URL;?>/report/generateReport" target="_blank" method="post">
+    <form action="<?= URL; ?>/report/generateReport" target="_blank" method="post">
         <div class="row">
             <div class="col-25">
-            <label for="province">Select report type</label>
+                <label for="cetner_name">Col. Center</label>
             </div>
             <div class="col-75">
-            <select id="province" name="province">
-                <option value="report1">report 1</option>
-                <option value="report2">report 2</option>
-                <option value="report3">report 3</option>
-            </select>
+                <select id="center_name" name="center_name">
+                    <option value="null"> -- SELECT COL. CENTER --</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="dob">From </label>
+                <label for="district">District</label>
             </div>
             <div class="col-75">
-            <input type="date" id="from" name="from" placeholder="Month/Date/Year ">
+                <select id="district" name="district">
+                    <option value="null"> -- SELECT DISTRICT --</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            <label for="dob">To </label>
+                <label for="month">Month</label>
             </div>
             <div class="col-75">
-            <input type="date" id="to" name="to" placeholder="Month/Date/Year ">
+                <select id="month" name="month">
+                    <option value="null"> -- SELECT MONTH --</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                
+                <label for="cropType">Crop Type</label>
             </div>
             <div class="col-75">
-                <input type="checkbox" checked="checked" name="remember"> Email report         
+                <select id="cropType" name="cropType">
+                    <option value="null"> -- SELECT CROP --</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                
+                <label for="cropVart">Crop Varient</label>
             </div>
             <div class="col-75">
-                <input type="checkbox" checked="checked" name="remember"> Open PDF in new tab         
+                <select id="cropVart" name="cropVart">
+                    <option value="null"> -- SELECT CROP VART --</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-            
+                <label for="from">From </label>
             </div>
             <div class="col-75">
-            <button type="Submit"><i class="fas fa-file"></i> Create Report</button>
+                <input type="date" id="from" name="from" placeholder="Month/Date/Year ">
             </div>
         </div>
-    </form>
-</div>
-<div class="main-form">
+        <div class="row">
+            <div class="col-25">
+                <label for="to">To </label>
+            </div>
+            <div class="col-75">
+                <input type="date" id="to" name="to" placeholder="Month/Date/Year ">
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-25">
 
-    <form action="<?= URL;?>officer/sendmail" method="post">
-        <div class="row">
-            <div class="col-25">
-            
             </div>
             <div class="col-75">
-            <button type="Submit">Email report</button>
+                <input type="checkbox" checked="checked" name="remember"> Email report
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+
+            </div>
+            <div class="col-75">
+                <input type="checkbox" checked="checked" name="remember"> Open PDF in new tab
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-25">
+
+            </div>
+            <div class="col-75">
+                <button type="Submit"><i class="fas fa-file"></i> Create Report</button>
             </div>
         </div>
     </form>
 </div>
+
+<script src="<?= URL; ?>views/admin/js/dropDowns.js"></script>
+
+<!-- <div class="main-form">
+
+    <form action="<?= URL; ?>officer/sendmail" method="post">
+        <div class="row">
+            <div class="col-25">
+
+            </div>
+            <div class="col-75">
+                <button type="Submit">Email report</button>
+            </div>
+        </div>
+    </form>
+</div> -->

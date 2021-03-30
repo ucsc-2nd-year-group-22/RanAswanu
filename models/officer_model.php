@@ -571,4 +571,6 @@ class Officer_Model extends Model
 
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
 }

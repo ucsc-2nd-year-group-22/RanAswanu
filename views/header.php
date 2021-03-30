@@ -97,7 +97,7 @@
             </nav>
             <?php if(Session::get('loggedIn') == true): ?>
             <div class="dropdown" >
-                <button class="header-popup-btn"><?php echo substr(Session::get('first_name'),0, 9); ?></button>
+                <button class="header-popup-btn"><?php echo substr(Session::get('first_name'),0, 9); ?> (<?php echo Session::get('role'); ?>)</button>
                 <div class="dropdown-content right-menu">
                     <a href="<?php echo URL . 'user/viewUser/' . Session::get('user_id') ?>"><i class="fas fa-user-circle"></i> My Profile</a>
                     <!-- <a href="#"><i class="fas fa-cog"></i> My Settings</a> -->

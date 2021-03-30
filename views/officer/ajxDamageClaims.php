@@ -4,6 +4,7 @@
         <th>Farmer</th>
         <th>Crops</th>
         <th>Area</th>
+        <th>Reason</th>
         <th>Damage Amount</th>
         <th>Take Action</th>
     </tr>
@@ -15,6 +16,7 @@
             <td> <a style="font-size:1.2em; margin-right:5px;color:var(--main-theme-color);" href="<?= URL; ?>/user/viewUser/ <?= $dmgClaim['farmer_id']; ?>"> <i class="fas fa-address-card"></i></a> <?= $dmgClaim['farmer']; ?></a> </td>
             <td><?= $dmgClaim['crops']; ?> </td>
             <td> <?= $dmgClaim['area']; ?></td>
+            <td> <?= $dmgClaim['damage_reason']; ?></td>
             <td> <?= $dmgClaim['damageAmt']; ?></td>
             <td>
                 <?php if ($dmgClaim['is_accepted'] == 0) : ?>

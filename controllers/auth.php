@@ -96,6 +96,8 @@ class Auth extends Controller {
             $pwd = $_POST['pwd'];
             $pwdRepeat = $_POST['pwdRepeat'];
 
+            
+
             if(empty($pwd) || empty($pwdRepeat)) {
                 // handle epmty pwd
                 header("Location:".URL."auth/createNewPw/$selector/$validator?newpw=empty");
@@ -113,8 +115,10 @@ class Auth extends Controller {
             if($resetResult == 0) {
                 echo 'not valid';
                 // header("Location :".URL."auth/resetPw?reset=timeout");
-                header("Location:".URL."auth/resetPw?reset=timeout");
+                // header("Location:".URL."auth/resetPw?reset=timeout");
                 exit(0);
+            } else {
+                echo 'goood';
             }
 
             $tokenBin = hex2bin($validator);

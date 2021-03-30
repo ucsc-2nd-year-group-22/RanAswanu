@@ -85,6 +85,7 @@
                         <li><a href="<?php echo URL; ?>farmer/cropReqMng" class="<?php View::getActivePage('cropReqMng'); ?>">My Harvest</a></li>
                         <li><a href="<?php echo URL; ?>farmer/offerMng" class="<?php View::getActivePage('offerMng'); ?>">Vendor Offers</a></li>
                         <li><a href="<?php echo URL; ?>farmer/damageMng" class="<?php View::getActivePage('damageMng'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
 
                 <?php endif ?>
 

@@ -163,7 +163,7 @@
     });
 </Script>
 
-<h1>Crop Reqeust Form</h1>
+<h1>Crop Request Form</h1>
 
 <div class="main-form">
     <div id="errors" class="error"></div>

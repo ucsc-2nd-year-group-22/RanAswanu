@@ -326,4 +326,6 @@ class Officer extends Controller
             $this->view->rendor('error/index', $data, $withoutHeaderFooter = true);
         }
     }
+
+
 }

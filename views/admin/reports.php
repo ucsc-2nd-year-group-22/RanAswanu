@@ -18,6 +18,7 @@
                     <option value="userInfo"> User Information </option>
                     <option value="cropInfo"> Crop Information </option>
                     <option value="dmgInfo"> Damage Information </option>
+                    <option value="hvstInfo"> Harvest Information </option>
                 </select>
             </div>
         </div>
@@ -104,7 +105,7 @@
     </form>
 </div>
 
-<script src="<?= URL; ?>views/admin/js/dropDowns.js"></script>
+<!-- <script src="<?= URL; ?>views/admin/js/dropDowns.js"></script> -->
 
 <!-- <div class="main-form">
 

@@ -13,8 +13,8 @@ class Report extends Controller
     public function generateReport()
     {
         $data = array();
-        $data['from'] = substr(filter_var($_POST['from'], FILTER_SANITIZE_STRING), 5, 2);
-        $data['to'] = substr(filter_var($_POST['to'], FILTER_SANITIZE_STRING), 5, 2);
+        $from = substr(filter_var($_POST['from'], FILTER_SANITIZE_STRING), 5, 2);
+        $to = substr(filter_var($_POST['to'], FILTER_SANITIZE_STRING), 5, 2);
         $data['reportType'] = filter_var($_POST['reportType'], FILTER_SANITIZE_STRING);
 
         if($data['reportType'] == 'userInfo'){
@@ -28,6 +28,10 @@ class Report extends Controller
         if($data['reportType'] == 'dmgInfo'){
             $data['result'] = "SELECT damage_reason,damage_area FROM crop_damage";
             $data['header'] = "SELECT UCASE(`COLUMN_NAME`) FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ra_hms' AND `TABLE_NAME`='crop_damage'and `COLUMN_NAME` in ('damage_area','damage_reason')";
+        }
+        if($data['reportType'] == 'hvstInfo'){
+            $data['result'] = "SELECT expected_harvest, crop_id FROM harvest WHERE starting_month_id >= $from AND harvesting_month_id <= $to";
+            $data['header'] = "SELECT UCASE(`COLUMN_NAME`) FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ra_hms' AND `TABLE_NAME`='harvest'and `COLUMN_NAME` in ('expected_harvest','crop_id')";
         }
 
         $this->createReport($data);

@@ -19,7 +19,7 @@
             <td>
                 <?php if ($dmgClaim['is_accepted'] == 0) : ?>
                     <a class="mini-button btn" onclick="return confirm('Are you sure you want to accept this crop request ?');" href="<?= URL; ?>officer/acceptDmgClaim/<?= $dmgClaim['damage_id']; ?>"><i class="fas fa-check-circle"></i> Accept</a>
-                    <a class="btn mini-button danger" onclick="if(confirm('Are you sure you want to reject this crop request ?')) return confirm('Warning ! You can not undo this action. Are you sure ?');" href="<?= URL; ?>officer/deleteCropReq/<?= $cropReqItem['harvest_id']; ?>"><i class="fas fa-times-circle"></i> Reject</a>
+                    <a class="btn mini-button danger" onclick="if(confirm('Are you sure you want to reject this crop request ?')) return confirm('Warning ! You can not undo this action. Are you sure ?');" href="<?= URL; ?>officer/deleteDmgClaim/<?= $dmgClaim['damage_id']; ?>"><i class="fas fa-times-circle"></i> Reject</a>
                 <?php else : ?>
                     <i class="fas fa-ban"></i>
                 <?php endif; ?>

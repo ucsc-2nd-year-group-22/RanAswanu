@@ -81,6 +81,12 @@ class CollectingCenter_Model extends Model
         $st->execute();
         return $st->fetchAll();
     }
+    //retrieve all districts
+    public function getAllMonths() {
+        $st = $this->db->prepare("SELECT month_id, month_name FROM month");
+        $st->execute();
+        return $st->fetchAll();
+    }
 
     //Search centers by center name
     public function ajxSearchCentName($centName)

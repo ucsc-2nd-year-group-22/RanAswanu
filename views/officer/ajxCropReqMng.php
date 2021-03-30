@@ -8,9 +8,9 @@
         <th>Gramasewa.</th>
         <th>Collecting center</th>
         <th>Month</th>
-        <th>Collected Harvest</th>
-        <th>Demand</th>
-        <th>Difference</th>
+        <th>Collected Harvest (kg) </th>
+        <th>Demand (kg)</th>
+        <th>Difference (kg) </th>
         <th>Status</th>
         <th>Take Action</th>
     </tr>

@@ -507,25 +507,10 @@ class Officer_Model extends Model
 
     public function acceptCropReq($harvest_id)
     {
-        $sql = "UPDATE `harvest` SET is_accept = 1 WHERE harvest_id = $harvest_id;";
+        $sql = "UPDATE `harvest` SET is_accept = 1 WHERE harvest_id = $harvest_id";
         $st = $this->db->prepare($sql);
         $res = $st->execute();
         if ($res) {
-            //send notifications -  target_role = 'admin'|'all' , target_user = 0|user_id 
-
-            
-            $sql2 = "SELECT farmer_user_id FROM harvest WHERE harvest_id = $harvest_id";
-            $st2 = $this->db->prepare($sql2);
-            $st2->execute();
-            $result = $st2->fetch(PDO::FETCH_ASSOC);
-
-
-            $notiData = array();
-            $notiData['target_role'] = "null";
-            $notiData['target_user'] = $result['farmer_user_id'];
-            $notiData['title'] = "Crop Accepted";
-            $notiData['description'] = "Officer accepted your crop request";
-            Notification::send($notiData);
             header('location: ' . URL . 'officer/cropReq');
         }
     }
@@ -567,18 +552,6 @@ class Officer_Model extends Model
         $st = $this->db->prepare($sql);
         $res = $st->execute();
         if ($res) {
-            $sql2 = "SELECT farmer_user_id FROM harvest WHERE harvest_id = $harvest_id";
-            $st2 = $this->db->prepare($sql2);
-            $st2->execute();
-            $result = $st2->fetch(PDO::FETCH_ASSOC);
-
-
-            $notiData = array();
-            $notiData['target_role'] = "null";
-            $notiData['target_user'] = $result['farmer_user_id'];
-            $notiData['title'] = "Crop Request Rejected";
-            $notiData['description'] = "Officer rejected your crop request";
-            Notification::send($notiData);
             header('location: ' . URL . 'officer/cropReq');
         }
     }
@@ -596,16 +569,6 @@ class Officer_Model extends Model
         $st->execute();
         // print_r($st->fetchAll());
 
-        return $st->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getNotifications($user_id){
-        $st = $this->db->prepare("SELECT * FROM notification WHERE target_role = :target_role OR target_role = 'all' OR target_user = :target_user ORDER BY time_stamp DESC");
-
-        $st->execute(array(
-            ':target_role' => 'officer',
-            ':target_user' => $user_id
-        ));
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 }

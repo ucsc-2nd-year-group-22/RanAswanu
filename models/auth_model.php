@@ -94,7 +94,7 @@ class Auth_Model extends Model {
     }
 
     function checkUserPw($pwd) {
-        $userId = Session::get('user_id');
+        $userId = Session::get('id');
         $st = $this->db->prepare("SELECT user_id FROM user WHERE password = MD5(:password) AND user_id = :id ");
         $st->execute(array(
             'id' => $userId,

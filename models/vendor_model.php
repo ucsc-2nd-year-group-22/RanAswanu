@@ -53,7 +53,7 @@ class Vendor_Model extends Model
     public function giveOffer($selling_req_id)
     {
         $st = $this->db->prepare("SELECT selling_request.* FROM selling_request 
-    WHERE  selling_request.selling_req_id=:selling_req_id");
+    WHERE  selling_request.selling_req_id = :selling_req_id");
 
         $st->execute(array(
             ':selling_req_id' => $selling_req_id,
@@ -308,12 +308,16 @@ JOIN divisional_secratariast ON gramasewa_division.ds_id = divisional_secrataria
 
     public function updateOffer($data)
     {
-        $st = $this->db->prepare('UPDATE offer SET `offer_amount` = :amount WHERE offer_id = :reqid');
-        $st->execute(array(
-            ':reqid' => $data['reqid'],
-            ':amount' => $data['amount'],
+        $st = $this->db->prepare('UPDATE offer SET offer_amount = :amount WHERE selling_req_id = :reqid');
+        $res = $st->execute(array(
+            ':reqid' => $data['req_id'],
+            ':amount' => $data['max_offer'],
         ));
-        return $st->fetchAll();
+        print_r($data);
+        if($res) {
+            // echo 'ddd';
+            header('location: ' . URL . 'vendor/allCrops');
+        }
     }
 
     public function undoOffer($data)

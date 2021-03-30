@@ -37,23 +37,25 @@ class Vendor extends Controller
     }
 
     //trasfer data from db to giveoffer page
-    public function giveOffer($selling_req_id, $user_id)
+    public function giveOffer($selling_req_id)
     {
 
+        $user_id = Session::get('user_id');
         $data['selling_req_id'] = $selling_req_id;
         $this->view->offer = $this->model->giveOffer($selling_req_id, $user_id);
-        //$data['selling_req_id'] = $selling_req_id;
         $this->view->rendor('vendor/giveOffer', $data);
-        // print_r($this->view->offer);
-        // $this->setActivePage('giveOffer');
-        // $this->view->rendor('vendor/giveOffer');
+
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-    public function updateOffer($offer_id)
+    public function updateOffer($selling_req_id)
     {
-        $data['offer_id'] = $offer_id;
-        $this->view->rendor('vendor/updateOffer', $data);
+        // $data['offer_id'] = $offer_id;
+        // $this->view->rendor('vendor/updateOffer', $data);
+        // print_r($_POST);
+        $data['max_offer'] = $_POST['max_offer'];
+        $data['req_id'] = $selling_req_id;
+        $this->model->updateOffer($data);
     }
 
     public function update($reqid)

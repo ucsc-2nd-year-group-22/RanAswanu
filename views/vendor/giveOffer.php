@@ -3,13 +3,9 @@
 </div>
 
 <!-- FORM -->
+<?php echo $selling_req_id; ?>
 <div class="main-form">
-    <form action="<?= URL; ?>/vendor/updateOffer" method="post">
-        <!-- <form> -->
-
-        <!-- <?php $dd = 1;
-        $newof = $this->offer['max_offer'] + $dd; ?>
-        <?php echo $newof; ?> -->
+    <form action="<?php echo URL; ?>vendor/updateOffer/<?php echo $selling_req_id; ?>" method="post">
         <div class="row">
             <div class="col-25">
                 <label for="max_offer">Give my Offer</label>
@@ -26,18 +22,8 @@
 
             </div>
             <div class="col-75">
-                <!-- <input type="submit" value="Update">  -->
-                <a type="button" class="btn btn-success " onclick="history.back()"><i class=" fa fa-toggle-left fa-0.5x"></i> Go Back</a>
-                <a input type="submit" class="btn btn-success"><i class="fa fa-edit"></i>Update</a>
+                <input type="submit" class="btn btn-success" value="Update"></input>
             </div>
         </div>
-
-
-
-
-
-
-
-
     </form>
 </div>

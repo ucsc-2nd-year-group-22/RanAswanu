@@ -119,12 +119,13 @@
 
     });
 </script>
-<div id="test">
+    <div id="test">
+
 
 </div>
 <h1>Harvest & Crop Requests</h1>
 
-<div class="user-tabs">
+    <div class="user-tabs">
     <ul>
         <li><a id="tab1" href="#" class="active-tab"><i class="fas fa-list"></i> View All</a></li>
         <?php if (Session::get('isadmin') != 1) : ?>
@@ -133,7 +134,7 @@
             <li><a id="tab4" href="newCropReqForm"" ><i class=" fas fa-plus-circle"></i> New crop request</a></li>
         <?php endif ?>
     </ul>
-</div>
+    </div>
 
 <div class="tabContainer" id="tab1C">
     <div class="panel-container">
@@ -163,15 +164,16 @@
 
         <!-- Comment pane 3 & 4 If they are empty -->
         <!-- 
-    <div class="pane3">
+        <div class="pane3">
          <label>Empty pane</label>
-    </div>
-    <div class="pane4">
+        </div>
+        <div class="pane4">
         <label>Empty pane</label>
-    </div> -->
+        </div> -->
+    
     </div>
 
-</div>
-<div id="box" class="main-table">
 
 </div>
+              
+<div id="box" class="main-table"></div>

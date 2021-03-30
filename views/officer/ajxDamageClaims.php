@@ -5,7 +5,7 @@
         <th>Crops</th>
         <th>Area</th>
         <th>Reason</th>
-        <th>Damage Amount</th>
+        <th>Damage Area (Acre)</th>
         <th>Take Action</th>
     </tr>
     <?php $i = 0;

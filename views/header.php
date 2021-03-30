@@ -58,7 +58,7 @@
                         <li><a href="<?php echo URL; ?>officer/damageClaims" class="<?php View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
                         <li><a href="<?php echo URL; ?>farmer/farmerMng" class="<?php View::getActivePage('farmerMng'); ?>">Farmers</a></li>
                         <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
-                        <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
+                        <!-- <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
                         <!-- for real admins act as officers ===== -->
                         <?php if(Session::get('isadmin') == 1): ?>   

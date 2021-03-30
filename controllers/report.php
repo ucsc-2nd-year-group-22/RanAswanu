@@ -25,6 +25,10 @@ class Report extends Controller
             $data['result'] = "SELECT harvest_per_land, harvest_period, crop_varient FROM crop";
             $data['header'] = "SELECT UCASE(`COLUMN_NAME`) FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ra_hms' AND `TABLE_NAME`='crop'and `COLUMN_NAME` in ('harvest_per_land','harvest_period', 'crop_varient')";
         }
+        if($data['reportType'] == 'dmgInfo'){
+            $data['result'] = "SELECT damage_reason,damage_area FROM crop_damage";
+            $data['header'] = "SELECT UCASE(`COLUMN_NAME`) FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ra_hms' AND `TABLE_NAME`='crop_damage'and `COLUMN_NAME` in ('damage_area','damage_reason')";
+        }
 
         $this->createReport($data);
 

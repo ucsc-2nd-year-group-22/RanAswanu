@@ -17,6 +17,7 @@
                     <option value="null"> -- SELECT REPORT TYPE --</option>
                     <option value="userInfo"> User Information </option>
                     <option value="cropInfo"> Crop Information </option>
+                    <option value="dmgInfo"> Damage Information </option>
                 </select>
             </div>
         </div>

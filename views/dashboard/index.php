@@ -1,222 +1,174 @@
+<div class="charts">
+    <div id="chartContainer"></div>
+    <div id="chartContainer1"></div>
+</div>
 
-<!-- <h1>Welcome To Dashboard</h1> -->
+<!-- FORM -->
+<div class="main-form">
+    <div id="errors" class="error"></div>
+
+    <form action="<?= URL; ?>/dashboard/submit" onsubmit="return CheckPassword()" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="cetner_name">Col. Center</label>
+            </div>
+            <div class="col-75">
+                <select id="center_name" name="center_name">
+                    <option value="null"> -- SELECT COL. CENTER --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="district">District</label>
+            </div>
+            <div class="col-75">
+                <select id="district" name="district">
+                    <option value="null"> -- SELECT DISTRICT --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="month">Month</label>
+            </div>
+            <div class="col-75">
+                <select id="month" name="month">
+                    <option value="null"> -- SELECT MONTH --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="cropType">Crop Type</label>
+            </div>
+            <div class="col-75">
+                <select id="cropType" name="cropType">
+                    <option value="null"> -- SELECT CROP --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="cropVart">Crop Varient</label>
+            </div>
+            <div class="col-75">
+                <select id="cropVart" name="cropVart">
+                    <option value="null"> -- SELECT CROP VART --</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+
+            </div>
+            <div class="col-75">
+                <input type="submit" value="Register">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="views/dashboard/js/dropDowns.js"></script>
+<script src="<?php echo URL; ?>views/dashboard/js/validate.js"></script>
 
 <?php
- 
-$dataPoints = array();
-//Best practice is to create a separate file for handling connection to database
-try{
-     // Creating a new connection.
-    // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-                        'root', //'root',
-                        '', //'',
-                        array(
-                            \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                            \PDO::ATTR_PERSISTENT => false
-                        )
-                    );
-    
-    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
-    $handle->execute(); 
-    $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-        
-    foreach($result as $row){
-        array_push($dataPoints, array("label"=> $row->label, "y"=> $row->y));
-    }
-    $link = null;
-}
-catch(\PDOException $ex){
-    print($ex->getMessage());
-}
 
-$dataPoints1 = array();
-//Best practice is to create a separate file for handling connection to database
-try{
-     // Creating a new connection.
-    // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-                        'root', //'root',
-                        '', //'',
-                        array(
-                            \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                            \PDO::ATTR_PERSISTENT => false
-                        )
-                    );
-    
-    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
-    $handle->execute(); 
-    $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-        
-    foreach($result as $row){
-        array_push($dataPoints1, array("label"=> $row->label, "y"=> $row->y));
-    }
-    $link = null;
-}
-catch(\PDOException $ex){
-    print($ex->getMessage());
-}
+try {
+    // Creat the connection
+    $link = new \PDO(
+        'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
+        'root', //'root',
+        '', //'',
+        array(
+            \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_PERSISTENT => false
+        )
+    );
 
 
-$dataPoints2 = array();
-//Best practice is to create a separate file for handling connection to database
-try{
-     // Creating a new connection.
-    // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-                        'root', //'root',
-                        '', //'',
-                        array(
-                            \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                            \PDO::ATTR_PERSISTENT => false
-                        )
-                    );
-    
-    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
-    $handle->execute(); 
+    //chart
+    $dataPoints = array();
+    $handle = $link->prepare('SELECT crop_varient as label, harvest_per_land as y FROM `crop` GROUP BY crop_type');
+    $handle->execute();
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-        
-    foreach($result as $row){
-        array_push($dataPoints2, array("label"=> $row->label, "y"=> $row->y));
+    foreach ($result as $row) {
+        array_push($dataPoints, array("label" => $row->label, "y" => $row->y));
     }
-    $link = null;
-}
-catch(\PDOException $ex){
-    print($ex->getMessage());
-}
 
-$dataPoints3 = array();
-//Best practice is to create a separate file for handling connection to database
-try{
-     // Creating a new connection.
-    // Replace your-hostname, your-db, your-username, your-password according to your database
-    $link = new \PDO(   'mysql:host=localhost;dbname=ra_hms;charset=utf8mb4', //'mysql:host=localhost;dbname=canvasjs_db;charset=utf8mb4',
-                        'root', //'root',
-                        '', //'',
-                        array(
-                            \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                            \PDO::ATTR_PERSISTENT => false
-                        )
-                    );
-    
-    $handle = $link->prepare('select crop_type as label, harvest_per_land as y from crop'); 
-    $handle->execute(); 
+    //chart1
+    $dataPoints1 = array();
+    $handle = $link->prepare('SELECT COUNT(user.user_id) as y, user.role as label FROM user GROUP BY role');
+    $handle->execute();
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-        
-    foreach($result as $row){
-        array_push($dataPoints3, array("label"=> $row->label, "y"=> $row->y));
+    foreach ($result as $row) {
+        array_push($dataPoints1, array("label" => $row->label, "y" => $row->y));
     }
+
     $link = null;
-}
-catch(\PDOException $ex){
+} catch (\PDOException $ex) {
+
     print($ex->getMessage());
 }
 ?>
 
 
 <script>
-window.onload = function() {
+    window.onload = function() {
 
-    CanvasJS.addColorSet("greenShades",
-                [//colorSet Array
-
-                "#2aaa26",
-                "#5cca58",
-                "#046801",
-                "#3CB371",
-                "#90EE90"                
-                ]);
- 
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        exportEnabled: true,
-        colorSet: "greenShades",
-        theme: "light2",
-        title:{
-            text: "Registered crops"
-        },
-        axisY: {
-            title: "Harvest Per Land"
-        },
-        data: [{
-            type: "pie",
-            yValueFormatString: "#,##0.## tonnes",
-            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-        }]
-    });
-    chart.render();
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light2",
+            title: {
+                text: "Expected Harvest (kg) / Acres"
+            },
+            legend: {
+                maxWidth: 350,
+                itemWidth: 120
+            },
+            axisY: {
+                title: "Harvest (kg) / Acres"
+            },
+            axisX: {
+                title: "Crop Varients"
+            },
+            data: [{
+                type: "pie",
+                yValueFormatString: "#,##0.## kg",
+                showInLegend: true,
+                legendText: "{label}",
+                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
 
 
-    var chart1 = new CanvasJS.Chart("chartContainer1", {
-        animationEnabled: true,
-        exportEnabled: true,
-        theme: "light2",
-        title:{
-            text: "Registered Data"
-        },
-        axisY: {
-            title: "Harvest Per Land"
-        },
-        data: [{
-            type: "line",
-            yValueFormatString: "#,##0.## tonnes",
-            dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
-        }]
-    });
-    chart1.render();
-
-    var chart2 = new CanvasJS.Chart("chartContainer2", {
-        animationEnabled: true,
-        exportEnabled: true,
-        theme: "light3",
-        dataPointMaxWidth: 90,
-        title:{
-            text: "Crop Distribution"
-        },
-        axisY: {
-            title: "Harvest Per Land"
-        },
-        axisX:{
-            title: "Crop Name"
-        },
-        data: [{
-            type: "column",
-            yValueFormatString: "#,##0.## tonnes",
-            dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
-        }]
-    });
-    chart2.render();
-
-    var chart3 = new CanvasJS.Chart("chartContainer3", {
-        animationEnabled: true,
-        exportEnabled: true,
-        theme: "light3",
-        title:{
-            text: "Crop Distribution"
-        },
-        axisY: {
-            title: "Harvest Per Land"
-        },
-        axisX:{
-            title: "Crop Name"
-        },
-        data: [{
-            type: "bar",
-            yValueFormatString: "#,##0.## tonnes",
-            dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
-        }]
-    });
-    chart3.render();
- 
-}
+        var chart1 = new CanvasJS.Chart("chartContainer1", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light2",
+            title: {
+                text: "User Distribution"
+            },
+            axisY: {
+                title: "Number of Users"
+            },
+            axisX: {
+                title: "Type of Users"
+            },
+            data: [{
+                type: "pie",
+                yValueFormatString: "#,##0.## s",
+                showInLegend: true,
+                legendText: "{label}",
+                dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart1.render();
+    }
 </script>
 
-<div class="charts">
-    <div id="chartContainer"></div>
-    <div id="chartContainer1"></div>    
-</div>
 
-<div id="chartContainer2"></div>
-<div id="chartContainer3"></div>
 
 <script src="<?php echo URL; ?>/views/dashboard/js/default.js"></script>

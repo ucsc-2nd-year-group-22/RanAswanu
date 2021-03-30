@@ -555,6 +555,16 @@ class Officer_Model extends Model
             header('location: ' . URL . 'officer/cropReq');
         }
     }
+    
+    public function deleteDmgClaim($damage_id)
+    {
+        $sql = "DELETE FROM `crop_damage` WHERE damage_id = $damage_id";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+        if ($res) {
+            header('location: ' . URL . 'officer/damageClaims');
+        }
+    }
 
     //retrieve damage claim data
     public function dmgClaimList()

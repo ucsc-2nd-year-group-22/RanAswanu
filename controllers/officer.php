@@ -160,6 +160,11 @@ class Officer extends Controller
     {
         $this->model->deleteCropReq($harvest_id);
     }
+    
+    public function deleteDmgClaim($damage_id)
+    {
+        $this->model->deleteDmgClaim($damage_id);
+    }
 
     public function damageClaims()
     {

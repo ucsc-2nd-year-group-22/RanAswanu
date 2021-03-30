@@ -15,13 +15,25 @@
 }
 
 #chartContainer2{
-    height: 370px; 
+    height: 470px; 
     width: 100%; 
     margin-top: 5px; 
 }
 
 #chartContainer3{
-    height: 370px; 
+    height: 470px; 
+    width: 100%; 
+    margin-top: 5px; 
+}
+
+#chartContainer4{
+    height: 470px; 
+    width: 100%; 
+    margin-top: 5px; 
+}
+
+#chartContainer5{
+    height: 470px; 
     width: 100%; 
     margin-top: 5px; 
 }

@@ -336,6 +336,10 @@ class Farmer extends Controller {
     public function getAllCropTypes($district) {
         return $this->model->ajxGetCropTypes($district);
     }
+    public function ajxGetAllCropTypes($district) {
+        $cropsTypes =  $this->model->ajxGetCropTypes($district);
+        echo json_encode($cropsTypes);
+    }
 
     public function ajxGetCultivatedCropTypes() {
         $cropsTypes = $this->model->ajxGetCultivatedCropTypes($_GET['district']);
@@ -344,6 +348,11 @@ class Farmer extends Controller {
 
     public function ajxGetCropVart() {
         $varats = $this->model->ajxGetCropVart($_GET['type']);
+        // print_r($varats);
+        echo json_encode($varats);
+    }
+    public function ajxGetCropVartDb($type) {
+        $varats = $this->model->ajxGetCropVart($type);
         // print_r($varats);
         echo json_encode($varats);
     }

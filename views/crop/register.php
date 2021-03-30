@@ -38,7 +38,7 @@
                 <label for="harvest_per_land">Harvest Per Land (kg Per ha)</label>
             </div>
             <div class="col-75">
-                <input type="number" id="harvest_per_land" name="harvest_per_land" required placeholder="Harvest per land (kg Per ha)..">
+                <input type="number" min=0 id="harvest_per_land" name="harvest_per_land" required placeholder="Harvest per land (kg Per ha)..">
             </div>
         </div>
         <div class="row">
@@ -46,7 +46,7 @@
                 <label for="harvest_period">Harvest Period (Days)</label>
             </div>
             <div class="col-75">
-                <input type="number" id="harvest_period" name="harvest_period" required placeholder="Harvest period in days">
+                <input type="number" min=0 id="harvest_period" name="harvest_period" required placeholder="Harvest period in days">
             </div>
         </div>
         <div class="row">

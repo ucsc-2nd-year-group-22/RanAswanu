@@ -69,8 +69,8 @@
     </form>
 </div>
 
-<script src="views/dashboard/js/dropDowns.js"></script>
 <script src="<?php echo URL; ?>views/dashboard/js/validate.js"></script>
+<script src="views/dashboard/js/dropDowns.js"></script>
 
 <?php
 

@@ -10,15 +10,17 @@
     <form action="<?= URL; ?>/report/generateReport" target="_blank" method="post">
         <div class="row">
             <div class="col-25">
-                <label for="cetner_name">Col. Center</label>
+                <label for="reportType">Report Type</label>
             </div>
             <div class="col-75">
-                <select id="center_name" name="center_name">
-                    <option value="null"> -- SELECT COL. CENTER --</option>
+                <select id="reportType" name="reportType">
+                    <option value="null"> -- SELECT REPORT TYPE --</option>
+                    <option value="userInfo"> User Information </option>
+                    <option value="cropInfo"> Crop Information </option>
                 </select>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-25">
                 <label for="district">District</label>
             </div>
@@ -57,7 +59,7 @@
                     <option value="null"> -- SELECT CROP VART --</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-25">
                 <label for="from">From </label>

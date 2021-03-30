@@ -12,13 +12,19 @@ class Report extends Controller
 
     public function generateReport()
     {
+        $data = array();
         $data['from'] = substr(filter_var($_POST['from'], FILTER_SANITIZE_STRING), 5, 2);
         $data['to'] = substr(filter_var($_POST['to'], FILTER_SANITIZE_STRING), 5, 2);
-        $data['center_id'] = filter_var($_POST['center_name'], FILTER_SANITIZE_STRING);
-        $data['district_id'] = filter_var($_POST['district'], FILTER_SANITIZE_STRING);
-        $data['month_id'] = filter_var($_POST['month'], FILTER_SANITIZE_STRING);
-        $data['crop_type'] = filter_var($_POST['cropType'], FILTER_SANITIZE_STRING);
-        $data['crop_varient'] = filter_var($_POST['cropVart'], FILTER_SANITIZE_STRING);
+        $data['reportType'] = filter_var($_POST['reportType'], FILTER_SANITIZE_STRING);
+
+        if($data['reportType'] == 'userInfo'){
+            $data['result'] = "SELECT role, COUNT(first_name) as cnt FROM user GROUP BY role";
+            $data['header'] = "SELECT UCASE(`COLUMN_NAME`) FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ra_hms' AND `TABLE_NAME`='user'and `COLUMN_NAME` in ('role','cnt')";
+        }
+        if($data['reportType'] == 'cropInfo'){
+            $data['result'] = "SELECT harvest_per_land, harvest_period, crop_varient FROM crop";
+            $data['header'] = "SELECT UCASE(`COLUMN_NAME`) FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ra_hms' AND `TABLE_NAME`='crop'and `COLUMN_NAME` in ('harvest_per_land','harvest_period', 'crop_varient')";
+        }
 
         $this->createReport($data);
 
@@ -26,13 +32,15 @@ class Report extends Controller
     public function createReport($data)
     {
         // $database = new Database();
-        $result = $this->model->runQuery("SELECT harvest_period, crop_type, crop_varient  FROM crop");
-        $header = $this->model->runQuery("SELECT UCASE(`COLUMN_NAME`) FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ra_hms' AND `TABLE_NAME`='crop'and `COLUMN_NAME` in ('harvest_period','crop_type','crop_varient')");
-
+        // $result = $this->model->runQuery("SELECT harvest_period, crop_type, crop_varient  FROM crop");
+        $result = $this->model->runQuery($data['result']);
+        $header = $this->model->runQuery($data['header']);
+        // $header = $this->model->runQuery("SELECT 'Harvest Period', 'Crop Type', 'Crop Varient' FROM information_schema.columns WHERE 'SELECT harvest_period, crop_type, crop_varient FROM crop' in('harvet_period' ,'crop_type', 'crop_varient')");
+        
         require('libs/fpdf/fpdf.php');
-        $pdf = new FPDF();
+        $pdf = new FPDF('p', 'mm', 'A4');
         $pdf->AddPage();
-        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->SetFont('Arial', 'B', 14);
 
         // var_dump($header);
 

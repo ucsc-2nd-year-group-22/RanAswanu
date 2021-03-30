@@ -461,7 +461,9 @@ class Farmer extends Controller {
         }
     }
 
-
+    public function acceptOffer($offer_id) {
+        $this->model->acceptOffer($offer_id);
+    }
 
 
     //######################################## END OF Farmer ###################################################################################################

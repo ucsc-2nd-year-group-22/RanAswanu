@@ -735,5 +735,15 @@ class Farmer_Model extends Model
         return $st->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function acceptOffer($offer_id) {
+        $sql = "UPDATE offer SET transaction_flag = 1 WHERE offer_id = $offer_id";
+        $st = $this->db->prepare($sql);
+        $res = $st->execute();
+
+        if($res) {
+            header('location: ' . URL . 'farmer/offerMng');
+        }
+    }
     ##################################### END OF FARMER MODEL ##############################################################################
 }

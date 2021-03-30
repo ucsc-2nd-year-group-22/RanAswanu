@@ -160,27 +160,27 @@ class Auth extends Controller {
             $res = $this->model->checkUserPw($oldPw);
             if($res != 1) {
                 Session::set('alert', 'Inavlid Password, Please enter your correct old password again !');
-                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('user_id'));
                 exit(0);
             }
 
             // check newPw == newPwRepeat
             if($newPw != $newPwRepeat) {
                 Session::set('alert', 'New password not match, Try again !');
-                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('user_id'));
                 exit(0);
             }
 
             // All good
-            $updateRes = $this->model->updatePwLogged($newPw, Session::get('id'));
-            
+            $updateRes = $this->model->updatePwLogged($newPw, Session::get('user_id'));
+            echo $updateRes;
             if($updateRes == 1) {
                 Session::set('alert', 'Your password has been successfully updated !');
-                header("Location:".URL."user/viewUser/".Session::get('id'));
+                header("Location:".URL."user/viewUser/".Session::get('user_id'));
                 exit(0);
             } else {
                 Session::set('alert', 'Password not updated ! Unidentified error happend!');
-                header("Location:".URL."auth/getNewPwLogged/".Session::get('id'));
+                header("Location:".URL."auth/getNewPwLogged/".Session::get('user_id'));
                 exit(0);
             }
            

@@ -29,6 +29,8 @@
             <!-- <td><?= $acceptedoffers['date_time']; ?></td> -->
             <td><?= $acceptedoffers['ds_name']; ?> </td>
             <td><?= $acceptedoffers['center_name']; ?> </td>
+            <td><a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'vendor/viewcontacts/' . $acceptedoffers['farmer_user_id']; ?>"> <i class="far fa-address-card"></i></a></td>
+
             <!-- <td><?= $acceptedoffers['phone_no']; ?></td> -->
 
 

@@ -7,7 +7,7 @@
                 <th>Weight</th>
                 <th>Collecting Center</th>
                 <th>Action</th>
-                <th>View Advertisement</th>
+                <th>View Farmer</th>
                 
             </tr>
 
@@ -26,7 +26,7 @@
                 </td>
             
                 <td style="text-align:left;">
-                    <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL . 'vendor/undoOffer/' . $offer['offer_id'] ;?>"> 
+                    <a class="icon-color" style="font-size:1.5em;" href="<?php echo URL .  'vendor/viewfarmerprofile/' . $offer['farmer_user_id'];?>"> 
                         <i class="fas fa-address-card"></i>
                     </a>
                 </td>     

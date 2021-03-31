@@ -31,7 +31,7 @@
                                     <a href="<?php echo URL; ?>admin/admins">Admins</a>
                                     <a href="<?php echo URL; ?>officer/officers">Officers</a>
                                     <a href="<?php echo URL; ?>farmer/farmerMng">Farmers</a>
-                                    <a href="<?php echo URL; ?>vendor/vendors">Vendors</a>
+                                    <!-- <a href="<?php echo URL; ?>vendor/vendors">Vendors</a> -->
                                 </div>
                             </div>
                         </li>

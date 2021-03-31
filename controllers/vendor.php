@@ -11,7 +11,7 @@ class Vendor extends Controller
         $role = Session::get('role');
     }
 
-
+   
     function MyOffers()
     {
         // $myOffers = $this->model->myOffers(Session::get('user_id'));
@@ -19,7 +19,7 @@ class Vendor extends Controller
         $this->setActivePage('MyOffers');
         $this->view->rendor('vendor/myOffers');
     }
-
+ 
 
     //Display Cropsmng
     public function allCrops()
@@ -37,11 +37,13 @@ class Vendor extends Controller
     }
 
     //trasfer data from db to giveoffer page
-    public function giveOffer($selling_req_id, $user_id)
+    public function giveOffer($selling_req_id)
     {
+        $user_id = Session::get('user_id');
 
         $data['selling_req_id'] = $selling_req_id;
-        $this->view->offer = $this->model->giveOffer($selling_req_id, $user_id);
+        $data['user_id']=$user_id;
+        $this->view->offer = $this->model->giveOffer($selling_req_id,$user_id);
         //$data['selling_req_id'] = $selling_req_id;
         $this->view->rendor('vendor/giveOffer', $data);
         // print_r($this->view->offer);
@@ -49,11 +51,26 @@ class Vendor extends Controller
         // $this->view->rendor('vendor/giveOffer');
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+    public function updatevenOffer($selling_req_id)
+    {
+        
+        // $data['offer_id'] = $offer_id;
+        // $this->view->rendor('vendor/updateOffer', $data);
+        // print_r($_POST);
+        $data['max_offer'] = $_POST['max_offer'];   
+        $data['req_id'] = $selling_req_id;
+        $data['user_id']=$_POST['user_id'];
+        $this->model->updatevenOffer($data);
+
+        header('location: ' . URL . 'vendor/allCrops');
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     public function updateOffer($offer_id)
     {
         $data['offer_id'] = $offer_id;
-        $this->view->rendor('vendor/updateOffer', $data);
+        $this->view->rendor('vendor/updateOffer',$data);
     }
 
     public function update($reqid)
@@ -62,15 +79,16 @@ class Vendor extends Controller
         $data['amount'] =  $_POST['ammount'];
         $this->model->updateOffer($data);
         header('location: ' . URL . 'vendor/MyOffers');
+        
     }
-
+    
     public function undoOffer($id)
     {
         $data['offer_id'] = $id;
         $this->model->undoOffer($data);
         header('location: ' . URL . 'vendor/MyOffers');
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
     public function viewfarmerprofile($user_id)
     {
         // $data=['user_id'=>$user_id];
@@ -80,6 +98,18 @@ class Vendor extends Controller
         $data['details'] = $ss;
         // print_r($data['details']);
         $this->view->rendor('vendor/viewfarmerprofile', $data);
+        //print_r($data['ccc']);
+    }
+
+    public function viewcontacts($user_id)
+    {
+        // $data=['user_id'=>$user_id];
+        $data['user_id'] = $user_id;
+
+        $ss = $this->view->vendr = $this->model->viewprofile($user_id);
+        $data['details'] = $ss;
+        // print_r($data['details']);
+        $this->view->rendor('vendor/viewcontacts', $data);
         //print_r($data['ccc']);
     }
 
@@ -115,7 +145,7 @@ class Vendor extends Controller
 
     public function ajxSortCrops()
     {
-
+       
         $d = $this->model->ajxSortCrops($_POST['filter'], $_POST['ascOrDsc']);
         $data['crops'] = $d;
 
@@ -202,7 +232,7 @@ class Vendor extends Controller
         }
     }
 
-
+    
     //////////////////////Ajx functions in my offers///////////////////////////////////////
     public function loadOffers()
     {
@@ -256,7 +286,7 @@ class Vendor extends Controller
         }
     }
 
-
+  
 
     // public function ajxSortAcceptedCrops()
     // {
@@ -272,42 +302,5 @@ class Vendor extends Controller
     //     }
     // }
 
-    public function vendors()
-    {
-
-        // //only for admin can execute this
-        if (Session::get('loggedIn') == false || Session::get('role') != 'admin') {
-            Session::destroy();
-            header('location: ' . URL . 'user/login');
-            exit;
-        }
-
-        $vendorData = $this->model->vendorList();
-
-        $pageData = [
-            'role' => Session::get('role'),
-            'tabs' => [
-                [
-                    'label' => '<i class="fas fa-user-plus"></i> Register New Officer',
-                    'path' => 'user/register'
-                ]
-            ],
-            'vendorData' => $vendorData,
-        ];
-        $this->setActivePage('userMgt');
-        if ((Session::get('role') == 'admin') && Session::get('loggedIn') == true)
-            // print_r($vendorData);
-            $this->view->rendor('vendor/vendors', $pageData);
-        else {
-            $data['errMsg'] = "Unuthorized Acces ! Only Officers & Admins can visit the requested page";
-            $this->view->rendor('error/index', $data);
-        }
-    }
-
-    //remove a vendor
-    public function delete($id)
-    {
-        $this->model->delete($id);
-        header('location: ' . URL . 'vendor/vendors');
-    }
+    
 }

@@ -88,8 +88,8 @@ class Vendor_Model extends Model
     {
         //$st = $this->db->prepare('UPDATE offer SET `offer_amount` = :amount WHERE offer_id = :reqid');
         $user_id = Session::get('user_id');
-        // $st=$this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type,group_concat(user_tel.tel_no) AS phone_no FROM offer
-        $st = $this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
+        //  $st=$this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type,group_concat(user_tel.tel_no) AS phone_no FROM offer
+         $st = $this->db->prepare("SELECT offer.*,selling_request.*,user.user_id,user.first_name,user.last_name,collecting_center.center_name,district.ds_name,crop.crop_type FROM offer
         JOIN selling_request ON selling_request.selling_req_id=offer.selling_req_id
         JOIN user ON user.user_id=selling_request.farmer_user_id
         JOIN harvest ON harvest.harvest_id=selling_request.harvest_id
@@ -305,6 +305,40 @@ JOIN divisional_secratariast ON gramasewa_division.ds_id = divisional_secrataria
         ));
         return $st->fetchAll();
     }
+
+    public function updatevenOffer($data)
+    {
+        $st = $this->db->prepare('UPDATE selling_request SET max_offer = :amount , offer_sent=1 WHERE selling_req_id = :reqid');
+        $st = $st->execute(array(
+            ':reqid' => $data['req_id'],
+            ':amount' => $data['max_offer'],
+        ));
+
+        $sql2 = "INSERT INTO `offer`(`offer_amount`, `selling_req_id`, `vendor_user_id`,`transaction_flag`) 
+        VALUES (:amount, :reqid,:user_id,0)";
+
+        // print_r($data);
+        $st2 = $this->db->prepare($sql2);
+        $st2->execute(array(
+            ':reqid' => $data['req_id'],
+            ':amount' => $data['max_offer'],
+            ':user_id' => $data['user_id'],
+        ));
+
+        // $st = $this->db->prepare('UPDATE selling_request SET max_offer = :amount WHERE selling_req_id = :reqid');
+
+
+        
+        print_r($data);
+        // return $st->fetchAll();
+        
+        // if($res) {
+
+        //     // echo 'ddd';
+        //     header('location: ' . URL . 'vendor/allCrops');
+        // }
+    }
+
 
     public function updateOffer($data)
     {

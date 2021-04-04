@@ -1,0 +1,126 @@
+
+/* /* Filter panel section ----------------------------------------- */
+
+.panel-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "pane1 pane2 pane3 pane4";
+    background:#fff;
+    margin-bottom: 8px;
+    box-shadow: 0 0 5px #ccc;
+    box-sizing: border-box;
+}
+
+.pane1, .pane2, .pane3, .pane4 {
+    padding: 10px;
+    /* border:1px solid var(--main-layout-bg-color); */
+}
+
+.pane1 {
+    /* background: lightgreen; */
+    grid-area: pane1;
+}
+
+.pane2 {
+    /* background: lightblue; */
+    grid-area: pane2;
+}
+.pane3 {
+    /* background: lightcyan; */
+    grid-area: pane3;
+    height: auto;
+}
+.pane4 {
+    /* background: #ff8686; */
+    grid-area: pane4;
+}
+.panel-container form label {
+    width:100%;
+    float:left;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.panel-container form button {
+    margin: 5px 0;
+    font-size: 0.8em;
+    border:2px solid var(--filter-button);
+    padding: 5px;
+    background-color: var(--filter-button);
+    border-radius: 0;
+}
+
+.panel-container form button:hover {
+    background-color: var(--main-light-green);
+    border:2px solid var(--main-light-green);
+}
+
+.panel-container form input {
+    margin: 5px 0;
+    font-size: 0.8em;
+    padding: 5px;
+    border-radius: 0;
+}
+
+.panel-container form select {
+    width:100%;
+    margin: 5px 0;
+    float:left;
+    font-size: 0.8em;
+    padding: 5px;
+}
+
+.panel-container form.search-bar input {
+    width:75%;
+    float:left;
+}
+
+.panel-container form.search-bar button {
+    width:25%;
+    float:right; 
+}
+
+.panel-container form button.half {
+    width:50%;
+    float:left;
+}
+
+.panel-container .active-btn {
+    background-color: var(--main-theme-color);
+}
+
+
+/* Tab -------------------------------------------------------- */
+
+@media only screen and (max-width:1024px) {
+    
+    .panel-container {
+    display: grid;
+    grid-template-columns: auto auto ;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "pane1 pane2"
+        "pane3 pane4";
+    }
+    
+}
+
+/* Moblie -------------------------------------------------------- */
+
+@media only screen and (max-width:600px) {
+    
+    .panel-container {
+    display: grid;
+    grid-template-columns: auto ;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "pane1"
+        "pane2"
+        "pane3"
+        "pane4";
+    }
+    
+}

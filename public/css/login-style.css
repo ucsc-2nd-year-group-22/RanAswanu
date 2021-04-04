@@ -1,0 +1,40 @@
+.login {
+  height: auto;
+  width: 50%;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.login button {
+  width: 100%;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+ 
+.login .col-center {
+  margin: 0 auto;
+  padding:5px 0;
+}
+
+.col-half-left {
+  width:50%;
+  float: left;
+  padding: 10px 0;
+  position: relative;
+}
+
+.col-half-right {
+  width:50%;
+  float: right;
+  text-align:right;
+  padding: 10px 0;
+  position: relative;
+}
+
+.login-header {
+  text-align: center;
+  letter-spacing: .5em;
+}

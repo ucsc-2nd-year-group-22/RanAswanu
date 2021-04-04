@@ -19,4 +19,12 @@ class Controller {
         }
     }
 
+    public function setActivePage($view) {
+        Session::set('activePage', $view);
+    }
+
+    public function destroyActivePage() {
+        Session::unset('activePage');
+    }
+
 } 

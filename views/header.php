@@ -1,40 +1,114 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css"/>
-    <script src="<?php echo URL;?>public/js/custom.js"></script>
     <script src="<?php echo URL;?>public/js/jquery-3.5.1.min.js"></script>
-    <?php
-        if(isset($this->js)) {
-            foreach ($this->js as $js)
-                echo '<script src="'.URL.'views/'.$js.'"></script>';
-        }
-    ?>
-    <title>Document</title>
-
+    <link rel="icon" href="<?php echo URL; ?>public/img/title-logo.png" type="image/icon type">
+    <link rel="stylesheet" href="<?php echo URL; ?>public/css/main.css"/>
+    <script src="<?php echo URL;?>public/js/custom.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ran Aswanu Hvst Mgt Sys</title>
 </head>
 <body>
+    <div class="main-grid">
+        <header>
+            <img src="<?php echo URL; ?>public/img/logo.png" width="150px" class="logo">
+            <nav>
+                <ul>
+                <?php if(Session::get('loggedIn')==false): ?>
+                <li><a href="<?php echo URL; ?>" class="<?php View::getActivePage('homepage'); ?>">Home</a></li>
+                <?php endif; ?>
+                <li><a id="dashboardNav" href="<?php echo URL; ?>dashboard" class="<?php View::getActivePage('dashboard'); ?>">Dashboard</a></li>
 
-<?php Session::init();?>
-<div id="header">
-    <?php if(Session::get('loggedIn') == false): ?>
-        <a href="<?= URL?>">Home</a> | 
-        <a href="<?= URL?>help">Help</a> |
-    <?php endif; ?>
+                <!-- Admin configurations for the navigation bar =============================================================== -->
+                <?php if(Session::get('role') == 'admin'): ?>
+                        <li>
+                            <div class="dropdown">
+                                <a href="#" class="<?php View::getActivePage('userMgt'); ?>">User Management</a>
+                                <div class="dropdown-content">
+                                    <a href="<?php echo URL; ?>admin/admins">Admins</a>
+                                    <a href="<?php echo URL; ?>officer/officers">Officers</a>
+                                    <a href="<?php echo URL; ?>farmer/farmerMng">Farmers</a>
+                                    <!-- <a href="<?php echo URL; ?>vendor/vendors">Vendors</a> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="<?php echo URL; ?>crop/crops" class="<?php View::getActivePage('crops'); ?>">Crop Management</a></li>
+                        <li><a href="<?php echo URL; ?>collectingcenter/collectingcenters" class="<?php View::getActivePage('collectingcenters'); ?>">Collection Centers</a></li>
+                        <?php if(Session::get('isadmin') == 1): ?>
+                            <li>
+                                <div class="dropdown">
+                                    <a href="#">Change Role</a>
+                                    <div class="dropdown-content">
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('user_id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('user_id'); ?>">Officer</a>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endif; ?>
+                        <li><a href="<?php echo URL; ?>admin/reports">Reports</a></li>
+                        <li><a href="<?php echo URL; ?>admin/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li>
 
-    <?php if(Session::get('loggedIn') == true): ?>
-        <a href="<?= URL?>dashboard">Dashboard</a> | 
-        
-        <?php if(Session::get('role') == 'owner'): ?>
-            <a href="<?= URL?>user">Users</a> |
-        <?php endif; ?>
+                    <!-- Officer configurations for the navigation bar =============================================================== -->
+                    <?php elseif(Session::get('role') == 'officer'): ?>
 
-        <a href="<?= URL?>dashboard/logout">Logout</a> | 
-    <?php else: ?>
+                        <li><a href="<?php echo URL; ?>officer/cropReq" class="<?php View::getActivePage('cropReq'); ?>">Crop Requests</a></li>
+                        <li><a href="<?php echo URL; ?>officer/damageClaims" class="<?php View::getActivePage('damageClaims'); ?>">Damage Claims</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/farmerMng" class="<?php View::getActivePage('farmerMng'); ?>">Farmers</a></li>
+                        <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
+                        <!-- <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
 
-        <a href="<?= URL?>login">Login</a>
-    <?php endif?>
-</div>
-<div id="content">
+                        <!-- for real admins act as officers ===== -->
+                        <?php if(Session::get('isadmin') == 1): ?>   
+                            <li>
+                                <div class="dropdown">
+                                    <a href="#">Change Role</a>
+                                    <div class="dropdown-content">
+                                        <a href="<?php echo URL; ?>admin/toadmin/<?php echo Session::get('user_id'); ?>">Admin</a>
+                                        <a href="<?php echo URL; ?>admin/toofficer/<?php echo Session::get('user_id'); ?>">Officer</a>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endif; ?>
+                        <!-- <li><a href="<?php echo URL; ?>officer/reports" class="<?php View::getActivePage('reports'); ?>">Reports</a></li>
+                        <li><a href="<?php echo URL; ?>officer/notifications" class="<?php View::getActivePage('notifications'); ?>">Notifications</a></li> -->
+
+                    <!-- Vendor configurations for the navigation bar =============================================================== -->
+                    <?php elseif(Session::get('role') == 'vendor'): ?>
+                        <li><a href="<?php echo URL; ?>vendor/MyOffers" class="<?php View::getActivePage('MyOffers'); ?>">My Offers</a></li>
+                        <li><a href="<?php echo URL; ?>vendor/allCrops" class="<?php View::getActivePage('allCrops'); ?>">Buy Crops</a></li>
+                        <li><a href="<?php echo URL; ?>vendor/acceptedOffers" class="<?php View::getActivePage('acceptedOffers'); ?>">Accepted Offers</a></li>
+
+
+                        <!-- Farmer configurations for the navigation bar =============================================================== -->
+                    <?php elseif ((Session::get('role') == 'farmer')): ?>
+                        <li><a href="<?php echo URL; ?>farmer/sellCropMng" class="<?php View::getActivePage('sellCropMng'); ?>">Sell Crops</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/cropReqMng" class="<?php View::getActivePage('cropReqMng'); ?>">My Harvest</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/offerMng" class="<?php View::getActivePage('offerMng'); ?>">Vendor Offers</a></li>
+                        <li><a href="<?php echo URL; ?>farmer/damageMng" class="<?php View::getActivePage('damageMng'); ?>">Damage Claims</a></li>
+
+                <?php endif ?>
+
+
+
+                </ul>
+            </nav>
+            <?php if(Session::get('loggedIn') == true): ?>
+            <div class="dropdown" >
+                <button class="header-popup-btn"><?php echo substr(Session::get('first_name'),0, 9); ?> (<?php echo Session::get('role'); ?>)</button>
+                <div class="dropdown-content right-menu">
+                    <a href="<?php echo URL . 'user/viewUser/' . Session::get('user_id') ?>"><i class="fas fa-user-circle"></i> My Profile</a>
+                    <!-- <a href="#"><i class="fas fa-cog"></i> My Settings</a> -->
+                    <a href="#"><i class="fas fa-question-circle"></i> Help & Support</a>
+                    <?php if(Session::get('loggedIn') == true): ?>
+                        <a href="<?= URL?>user/logout"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php else: ?>
+            <a style="text-decoration: none;" class="header-popup-btn" href="<?php echo URL . 'user/login' ?>">Login</a>
+            <?php endif;?>
+        </header>
+        <div class="content">

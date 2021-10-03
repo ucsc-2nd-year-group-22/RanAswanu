@@ -1,11 +1,5 @@
 <h1>Create Report</h1>
 
-<!-- <div class="user-tabs">
-    <ul>
-        <li><a href="#">Home</a></li>
-    </ul>
-</div> -->
-
 <div class="main-form">
     <form action="<?= URL; ?>/report/generateReport" target="_blank" method="post">
         <div class="row">

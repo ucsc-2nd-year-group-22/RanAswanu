@@ -129,8 +129,6 @@
     <ul>
         <li><a id="tab1" href="#" class="active-tab"><i class="fas fa-list"></i> View All</a></li>
         <?php if (Session::get('isadmin') != 1) : ?>
-            <!-- <li><a id="tab2" href="#" ><i class="fas fa-user-edit"></i> Update</a></li>
-        <li><a id="tab3" href="#" ><i class="fas fa-user-times"></i> Delete</a></li> -->
             <li><a id="tab4" href="newCropReqForm"" ><i class=" fas fa-plus-circle"></i> New crop request</a></li>
         <?php endif ?>
     </ul>
@@ -153,23 +151,12 @@
             <form class="normal-select">
                 <label>Sort crop requests by : </label>
                 <select id="sortby">
-                    <!-- <option val="crop_type" selected>Crop type</option>
-                    <option val="cetner">Collectin center</option> -->
                     <option val="expected_harvest">Expected harvest</option>
                 </select>
                 <button type="button" id="ascSort" class="half"><i class="fas fa-sort-amount-down-alt"></i> Ascending </button>
                 <button type="button" id="descSort" class="half"><i class="fas fa-sort-amount-down"></i> Descending</button>
             </form>
         </div>
-
-        <!-- Comment pane 3 & 4 If they are empty -->
-        <!-- 
-        <div class="pane3">
-         <label>Empty pane</label>
-        </div>
-        <div class="pane4">
-        <label>Empty pane</label>
-        </div> -->
     
     </div>
 

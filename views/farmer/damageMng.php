@@ -158,14 +158,6 @@
             </form>
         </div>
 
-        <!-- Comment pane 3 & 4 If they are empty -->
-        <!-- 
-    <div class="pane3">
-         <label>Empty pane</label>
-    </div>
-    <div class="pane4">
-        <label>Empty pane</label>
-    </div> -->
     </div>
 
     <div id="box" class="main-table">

@@ -22,46 +22,7 @@
                 </select>
             </div>
         </div>
-        <!-- <div class="row">
-            <div class="col-25">
-                <label for="district">District</label>
-            </div>
-            <div class="col-75">
-                <select id="district" name="district">
-                    <option value="null"> -- SELECT DISTRICT --</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="month">Month</label>
-            </div>
-            <div class="col-75">
-                <select id="month" name="month">
-                    <option value="null"> -- SELECT MONTH --</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="cropType">Crop Type</label>
-            </div>
-            <div class="col-75">
-                <select id="cropType" name="cropType">
-                    <option value="null"> -- SELECT CROP --</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="cropVart">Crop Varient</label>
-            </div>
-            <div class="col-75">
-                <select id="cropVart" name="cropVart">
-                    <option value="null"> -- SELECT CROP VART --</option>
-                </select>
-            </div>
-        </div> -->
+        
         <div class="row">
             <div class="col-25">
                 <label for="from">From </label>

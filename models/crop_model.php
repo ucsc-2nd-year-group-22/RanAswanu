@@ -56,7 +56,7 @@ class Crop_Model extends Model
     public function crops()
     {
         $crops = $this->db->prepare("SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
-        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id)");
+        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.isActive = 1");
         $crops->execute();
 
         return $crops->fetchAll();
@@ -96,9 +96,17 @@ class Crop_Model extends Model
     }
 
     //delete a crop
+    // public function delete($id)
+    // {
+    //     $st = $this->db->prepare('DELETE FROM crop WHERE crop_id = :id');
+    //     $st->execute(array(
+    //         ':id' => $id
+    //     ));
+    // }
+    //delete a crop
     public function delete($id)
     {
-        $st = $this->db->prepare('DELETE FROM crop WHERE crop_id = :id');
+        $st = $this->db->prepare('UPDATE crop SET isActive = 0 WHERE crop_id = :id');
         $st->execute(array(
             ':id' => $id
         ));
@@ -136,7 +144,7 @@ class Crop_Model extends Model
     {
         $escaped_name = addcslashes($cropType, '%');
         $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
-        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.crop_type LIKE :cropType";
+        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.crop_type LIKE :cropType AND crop.isActive = 1";
         $st = $this->db->prepare($sql);
         // print_r($sql);
         $st->execute(array(
@@ -151,7 +159,7 @@ class Crop_Model extends Model
     {
         $escaped_name = addcslashes($cropVar, '%');
         $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
-        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.crop_varient LIKE :cropVar";
+        ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.crop_varient LIKE :cropVar AND crop.isActive = 1";
         $st = $this->db->prepare($sql);
         // print_r($sql);
         $st->execute(array(
@@ -168,10 +176,10 @@ class Crop_Model extends Model
 
         if ($ascOrDsc == 'ASC') {
             $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
-            ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) ORDER BY $filter ASC";
+            ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.isActive = 1 ORDER BY $filter ASC";
         } else if ($ascOrDsc == 'DESC') {
             $sql = "SELECT crop.crop_id, crop.crop_type, crop.crop_varient, crop.harvest_per_land, crop.harvest_period, district.ds_name FROM
-            ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) ORDER BY $filter DESC";
+            ((crop INNER JOIN best_area ON crop.crop_id = best_area.crop_id) INNER JOIN district ON district.district_id = best_area.district_id) WHERE crop.isActive = 1 ORDER BY $filter DESC";
         }
 
 

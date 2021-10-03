@@ -5,10 +5,6 @@
         var vart;
         var type;
 
-        // $('#province').change(function() {
-        //     $('#cropType').html('ssss');
-        // });
-
         $('#district').change(function() {
             var district = ($(this).val());
             $('#cropType').empty();
@@ -136,26 +132,6 @@
                 }
             });
         }
-
-        // // get center data
-        // $.ajax({
-        //     type: 'GET',
-        //     url: '<?php echo URL; ?>farmer/ajxGetCenters',
-        //     // data: {type:type},
-        //     success: function(data) {
-        //         var json = $.parseJSON(data);
-        //         $(json).each(function(i, val) {
-        //             var newOp = new Option(val.center_name, val.center_id);
-        //             console.log(val.center_name);
-        //             $(newOp).html(val.center_name);
-        //             $('#selectCenter').append(newOp);
-        //         });
-        //     }
-        // });
-
-
-
-
     });
 </Script>
 
